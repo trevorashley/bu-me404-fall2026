@@ -1,5 +1,6 @@
 # BU ME404: Dynamics and Control of Mechanical Systems, Fall 2026
 
+[Overview](./content/overview.md)
 [Syllabus](./content/syllabus.md)
 [Schedule](./content/schedule.md)
 
