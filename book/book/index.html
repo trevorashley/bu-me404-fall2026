@@ -1,0 +1,416 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Syllabus - BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</title>
+
+
+        <!-- Custom HTML head -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-41f20a4d.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-3d00bfa7.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-02d46aea.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="syllabus"><a class="header" href="#syllabus">Syllabus</a></h1>
+<h2 id="instructor"><a class="header" href="#instructor">Instructor</a></h2>
+<p>Trevor T. Ashley (he/him), Adjunct Lecturer, Dept. Mechanical Engineering</p>
+<p><strong>Email:</strong> tashley@bu.edu</p>
+<p><strong>About Me</strong>: Trevor is a Senior Technical Staff in the Tactical Autonomy Group within the ISR and Tactical Systems Division at MIT Lincoln Laboratory.
+Prior to his current role, he served as Technical Staff (2018-2022) and Assistant Group Leader (2022-2025) within the Control and Autonomous Systems Group within the Engineering Division.
+Before joining MIT Lincoln Laboratory, Trevor developed autonomy, guidance, navigation, and control algorithms for the SPUR robot at QinetiQ North America.
+In 2016, he received the PhD degree in Mechanical Engineering from Boston University under the direction of Sean B. Andersson; his graduate research focused on developing and testing novel control and estimation algorithms for tracking fluorescent nanoparticles.
+Trevor was also the teaching fellow for ME404 in 2011 and continued to drop in on future courses during his tenure as a graduate student.
+Additionally, Trevor worked at Electro Scientific Industries, Inc., from 2009-2011 where he developed high-precision control algorithms for laser-based silicon singulation equipment.
+Trevor’s current research interests lie broadly in the area of perception-based guidance, navigation, and control for multi-domain systems with a strong emphasis on establishing formal guarantees for data-driven algorithms - especially those reliant on machine learning techniques.</p>
+<h2 id="meeting-time-and-place"><a class="header" href="#meeting-time-and-place">Meeting Time and Place</a></h2>
+<p><strong>Lectures:</strong> Tuesday and Thursday, 3:30 - 5:15 PM, PHO 202</p>
+<p><strong>Office Hours:</strong></p>
+<ul>
+<li>Tuesday and Thursday, 2:00 - 3:30 PM, “Conference room next to adjunct office in 730 Comm Ave”</li>
+<li>(As Requested) Tuesday and Thursday, 5:15 - 6:00 PM, TBD</li>
+<li>(As Requested) Email me and we’ll find a time, Zoom or Google Meet</li>
+</ul>
+<h2 id="introduction-and-course-goals"><a class="header" href="#introduction-and-course-goals">Introduction and Course Goals</a></h2>
+<p>Systems and control theory plays a vital role across most aspects of modern life.
+Control systems are found in cars, appliances, cell phones, airplanes, robots, and just about anywhere you look.
+The goal of this course is to introduce you to the fundamental concepts in feedback control and provide you a set of tools to analyze and design controllers.
+Our primary focus will be on what is known by the community as <em>classical control</em>, and topics will include: modeling, feedback, transfer functions, frequency domain analysis and design (e.g., Bode and Nyquist plots), and PID control.
+Time permitting, we’ll cover elements from digital and state space control, which is how it’s (nearly) all done nowadays anyway.
+My goal is to make the class as interactive as possible and to focus on the application and design of controllers rather than (just) the theory and mathematics (but is still important, nonetheless).</p>
+<h2 id="course-prerequisites"><a class="header" href="#course-prerequisites">Course Prerequisites</a></h2>
+<p>All students should have taken <strong>ME 302: Engineering Mechanics II</strong>, as well as the standard math sequence. An alternative name for our course very well could be “How to Do (Nearly) Anything with a Differential Equation”, so you’ll want to make sure you’ve brushed up on your ordinary differential equations. (We’ll do a short review at the start of the semester.)</p>
+<p>Helpful (but not required) prerequisites include a course on signals and systems (e.g., fourier series and transforms) as well as complex variables (e.g., complex integration, Cauchy-Goursat theorem, residues).</p>
+<p>In addition, MATLAB (including the Control System Toolbox) and Python will be used quite heavily.
+If you haven’t done so already, you should download and install MATLAB and Python on your computer.
+Information on obtaining a copy of the software can be found at: <a href="http://www.bu.edu/tech/support/research/software-and-programming/common-languages/matlab/">MATLAB</a> and <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/">Python</a></p>
+<h2 id="course-expectations-and-grading"><a class="header" href="#course-expectations-and-grading">Course Expectations and Grading</a></h2>
+<p><strong>Your overall grade will be assigned according to the following breakdown:</strong></p>
+<ul>
+<li>Reading Quizzes (5%)</li>
+<li>Homework (15%)</li>
+<li>Midterm (25%)</li>
+<li>Final (30%)</li>
+<li>Project (25%)</li>
+</ul>
+<h3 id="reading-quizzes"><a class="header" href="#reading-quizzes">Reading Quizzes</a></h3>
+<p>It is my ﬁrm belief that learning is an active experience. While there is some traditional lecture in class, most of our time will be spent working problems. For this to work, it is essential that prior to class you read the assigned material and organize your thoughts and questions.</p>
+<blockquote>
+<p>As an indication of the importance of properly preparing for lecture, there will be short “did you read” quizzes at the start of most lectures. You can (and should!) do these simultaneously with your reading.</p>
+</blockquote>
+<p>The idea is not for you to closely study all the material prior to class but rather to familiarize yourself with the topics of the day, to think about what might be easy and what might be hard, and to come ready with questions.</p>
+<h3 id="homework"><a class="header" href="#homework">Homework</a></h3>
+<p>Of course, doing things in class is a good start but not enough. Thus there will be some homework to complete. As usual, you are welcome to discuss the regular homework with others as well but each student must perform and submit their own work. Submitted work should be neat, organized, and legible and is to be turned in by the start of class on the due date. For problems requiring MATLAB or Python, your code should also be submitted electronically by e-mailing it to me as a zip file. (I will also accept - and encourage the use of - a Github link to your own repository.)</p>
+<p>For paper assignments, I wish I didn’t have to say this but experience has proven me wrong: <em>Please - no ragged edges!</em></p>
+<h3 id="midterm-and-final-exam"><a class="header" href="#midterm-and-final-exam">Midterm and Final Exam</a></h3>
+<p>The <strong>midterm exam</strong> will be held during our normal class period (3:30 - 5:15 PM) and location (PHO 202) on <strong>November 5, 2026</strong>.</p>
+<p>The <strong>final exam</strong> will be held during 3:00 - 5:00 PM (note: this is <em>not</em> our normal meeting time) in PHO 202 on <strong>December 17, 2026</strong>.</p>
+<h3 id="term-project"><a class="header" href="#term-project">Term Project</a></h3>
+<p>Our term project, with presentations (tentatively) scheduled for <strong>December 3, 2026</strong>, will consist of a short report and presentation (~10-12 minutes) on a topic that is of interest to you. You must discuss the topic with Trevor and receive approval prior to starting. We’ll discuss this more in October.</p>
+<h2 id="artificial-intelligence-policy"><a class="header" href="#artificial-intelligence-policy">Artificial Intelligence Policy</a></h2>
+<p>I’ll be direct and upfront about this: <em>you will use AI almost daily in your (future) career.</em>
+(I use it every day, even to help me write lecture notes for this class.)
+Consequently, learning how to use AI effectively will now be one of your greatest ongoing challenges, and you must maintain pace with technology that is developing at a nearly impossible rate.</p>
+<blockquote>
+<p>To leverage AI effectively, you must know when to trust the output of an AI agent and how to test its validity. Completion of this course should enable you to understand how to assess the output of an AI agent when using it to design a control system.</p>
+</blockquote>
+<p>Our AI policy for this course is as follows:</p>
+<ul>
+<li><strong>Problem Sets:</strong>
+<ul>
+<li>Before the problem set is turned in, you are not permitted to use AI to directly solve the problem for you.
+<ul>
+<li><span style="color:green">OKAY:</span> “The book says this about gain and phase margin. Can you clarify what they mean by…”</li>
+<li><span style="color:green">OKAY:</span> “The book has this example problem. I don’t understand how they derived … . Can you explain it better?”</li>
+<li><span style="color:green">OKAY:</span> “How do I generally use lsim to simulate a dynamical system? What does ode45 actually do?”</li>
+<li><span style="color:red">NOT OKAY</span>: “Problem 2.45 is &lt;…&gt; . Solve the problem and provide me the solution. Show all work.”</li>
+<li><span style="color:red">NOT OKAY</span>: “Here is my solution to Problem 2.45 &lt;…&gt;. Is it correct? If not, provide me a hint.”</li>
+<li><span style="color:red">NOT OKAY</span>: “I’m stuck on Problem 2.45. Can you help me get unstuck?”</li>
+</ul>
+</li>
+<li>After the problem set is turned in, you are more than welcome <em>and encouraged</em> to use AI to evaluate your solutions.</li>
+</ul>
+</li>
+<li><strong>Exams:</strong>
+<ul>
+<li>The midterm and final exams will not permit the use of AI. They will be closed-book and closed-notes, and you will be provided all the formulas you need to perform the exam.</li>
+</ul>
+</li>
+<li><strong>Project:</strong> The goal of the project is to give you an opportunity to investigate and learn more about a system or control approach that interests you. In general, AI use is only permitted if it does not detract from your learning the subject material.
+<ul>
+<li>You are <span style="color:green">permitted</span> to use AI on your project only for the following:
+<ul>
+<li>Brainstorming ideas for the project,</li>
+<li>Performing research on the topic of your interest,</li>
+<li>Creating plots or videos,</li>
+<li>Running Monte Carlo workflows.</li>
+</ul>
+</li>
+<li>You are <span style="color:red"><em>not</em> permitted</span> to use AI on your project for the following:
+<ul>
+<li>Setting up the meat of your simulation code,</li>
+<li>Writing your presentation or paper/report,
+<ul>
+<li>Regular spell-check and grammar-checking is fine.</li>
+</ul>
+</li>
+<li>Deriving or checking mathematical formulations,
+<ul>
+<li>Wolfram Alpha and other symbolic tools (MATLAB Symbolic Toolbox, SymPy) are fine.</li>
+</ul>
+</li>
+<li>Vetting your approach,</li>
+<li>Converting a paper directly to math or code.</li>
+</ul>
+</li>
+<li>Your report must include an “AI Disclosure” section where you will describe where and what AI agent(s) were used.</li>
+</ul>
+</li>
+<li><strong>Supplemental Problems:</strong>
+<ul>
+<li>You are permitted <em>and encouraged</em> to use AI while working on supplemental problems that will not be graded.</li>
+<li>Caveat: AI can produce incorrect answers. You should not take the mindset that the agent is a knowledgeable professor who is concerned for your semester grade but rather a potentially malicious grad student who might trick you to see if you’re actually paying attention.</li>
+<li>I highly encourage you to use AI to create <em>visualizations</em> of supplemental problems to help you connect with and explore the material. Much of control can feel very intuitive (e.g., PID tuning) after you see enough examples.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>If there’s any doubt in when AI may or may not be permissible, please check with me. I’m generally liberal about AI use as long as it encourages and promotes your learning. On the other hand, I also encourage you to talk with your peers more than you do an AI agent. Please take responsibility for your learning.</p>
+</blockquote>
+<h2 id="textbook-and-references"><a class="header" href="#textbook-and-references">Textbook and References</a></h2>
+<h3 id="primary-textbook"><a class="header" href="#primary-textbook">Primary Textbook</a></h3>
+<p>Our primary textbook will be:</p>
+<blockquote>
+<p>G. F. Franklin, J. D. Powell, and A. Emami-Naeini, <em>Feedback Control of Dynamic Systems</em>, 8th Edition, Prentice Hall, 2019.</p>
+</blockquote>
+<p>(The sixth and seventh editions should also be ﬁne to use. The most recent 9th edition published by Pearson and authored by Powell, Emami-Naeini, and  Ivler may also suffice. You may just need to adjust the assigned reading if you deviate from the 8th edition. Please talk to Trevor if there is any confusion.)</p>
+<h3 id="additional-references"><a class="header" href="#additional-references">Additional References</a></h3>
+<h4 id="classical-control"><a class="header" href="#classical-control">Classical Control</a></h4>
+<p>There are a number of textbooks on classical control, and they mostly carry the same content but provide different exercises and perspectives on how to solve problems. I <em>highly</em> recommend you supplement this course with this additional material and work on exercises outside of our normal assigned homework. Talk to Trevor for recommendations.</p>
+<ul>
+<li>N. Nise, <em>Control Systems Engineering</em>, 8th Edtion, Wiley, 2019.</li>
+<li>K. Ogata, <em>Modern Control Engineering</em>, 5th Edition, Prentice Hall, 2009.</li>
+<li>R. C. Dorf, R. H. Bishop, <em>Modern Control Systems</em>, 14th Edition, Pearson, 2022.</li>
+<li>H. K. Khalil, <em>Control Systems: An Introduction</em>, 2023.</li>
+<li>K. J. Åström and R. M. Murray, <em>Feedback Systems: An Introduction for Scientists and Engineers</em>, Princeton University Press, 2021.  <a href="https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html">Available free online</a></li>
+<li>J. J. DiStefano, A. R. Stubberud, I. J. Williams, <em>Feedback and Control Systems</em>, 3rd Edition, McGraw Hill, 2014.</li>
+<li>S. Brunton, <em>Control Bootcamp</em>, <a href="https://www.youtube.com/watch?v=Pi7l8mMjYVE&amp;list=PLMrJAkhIeNNR20Mz-VpzgfQs5zrYi085m">YouTube Link</a>.</li>
+<li>B. Douglas, <a href="https://www.youtube.com/@BrianBDouglas/playlists">YouTube Link</a>.</li>
+</ul>
+<h4 id="engineering-mathematics"><a class="header" href="#engineering-mathematics">Engineering Mathematics</a></h4>
+<p>During your career, you will quickly find that having an extensive and mature understanding of mathematics - both pure and applied - will make you more useful and, to be honest, more employable. <em>Math is the language of engineering.</em> You should continue to both broaden and deepen your understanding of mathematics, never becoming complacent. No worries - there will <em>always</em> be more to learn.</p>
+<ul>
+<li>E. Kreyszig, <em>Advanced Engineering Mathematics</em>, 10th Edition, Wiley, 2011.</li>
+<li>S. Brunton, <em>Engineering Math: Crash Course in Complex Analysis</em>, <a href="https://www.youtube.com/watch?v=_mv0q7-WF4E&amp;list=PLMrJAkhIeNNQBRslPb7I0yTnES981R8Cg">YouTube Link</a>.</li>
+<li>S. Brunton, <em>Fourier Analysis</em>, <a href="https://www.youtube.com/watch?v=jNC0jxb0OxE&amp;list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC&amp;pp=0gcJCf8COCosWNin">YouTube Link</a>.</li>
+<li>S. Brunton, <em>Differential Equations and Dynamical Systems</em>, <a href="https://www.youtube.com/watch?v=9fQkLQZe3u8&amp;list=PLMrJAkhIeNNTYaOnVI3QpH7jgULnAmvPA&amp;pp=0gcJCbwFa94AFGB0">YouTube Link</a>.</li>
+</ul>
+<h4 id="signals-and-systems"><a class="header" href="#signals-and-systems">Signals and Systems</a></h4>
+<p>At most other universities, a course on signals and systems is a <em>required</em> prerequisite to a course in control theory. This textbook is considered a gold standard by many, and it should be a part of your bookshelf. A proper understanding of Fourier series and transforms will help you better understand the nature of the Laplace transform as something more than just an operator that “converts” a <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span> to an <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span>.</p>
+<ul>
+<li>A. V. Oppenheim, A. S. Willsky, S. H. Nawab, <em>Signals &amp; Systems</em>, 2nd Edition, Prentice Hall, 1997.</li>
+</ul>
+<h4 id="control-of-aerodynamic-systems"><a class="header" href="#control-of-aerodynamic-systems">Control of Aerodynamic Systems</a></h4>
+<p>Many years ago, BU offered a sibling course to ME404 which was ME403: Control of Aerodynamic Systems. For those interested in seeing controls as is usually taught from an aerodynamics perspective, I highly recommend this reference.</p>
+<ul>
+<li>R. F. Stengel, <em>Flight Dynamics</em>, 2nd Edition, Princeton University Press, 2022.</li>
+</ul>
+<h4 id="data-driven-approaches"><a class="header" href="#data-driven-approaches">Data-driven Approaches</a></h4>
+<p>Machine learning and control theory go hand-in-hand, and techniques we learn from this course can enable you to better understand machine learning techniques (e.g., gradient descent is a feedback loop!). Reinforcement learning is just another way of implementing optimal control when modeling a system can be challenging but numerically sampling from it is easy. I highly recommend learning a bit about optimal control before tackling reinforcement learning.</p>
+<ul>
+<li>S. L. Brunton, J. N. Kutz, <em>Data-driven Science and Engineering: Machine Learning, Dynamical Systems, and Control</em>, 2nd Edition, Cambridge University Press, 2022.</li>
+<li>R. S. Sutton, A. G. Barto, <em>Reinforcement Learning: An Introduction</em>, 2nd Edition, The MIT Press, 2018.</li>
+<li>S. L. Brunton, <em>Reinforcement Learning</em>, <a href="https://www.youtube.com/watch?v=0MNVhXEX9to&amp;list=PLMrJAkhIeNNQe1JXNvaFvURxGY4gE9k74&amp;pp=0gcJCf8COCosWNin">YouTube Link</a>.</li>
+</ul>
+<h4 id="modern-optimal-and-nonlinear-control"><a class="header" href="#modern-optimal-and-nonlinear-control">Modern, Optimal, and Nonlinear Control</a></h4>
+<p>Through thought-leaders like Kalman, state-space methods to control design led to a paradigm shift in the 1950s-1960s known as <em>modern control</em>. These methods enable us to handle significantly more complex systems, including multi-input multi-output systems, with relative ease. Moreover, all real-world systems are nonlinear, so having an understanding of the phenomena they exhibit (e.g., bifurcations, finite escape times, chaos) will help you better understand how to control them. Moreover, we often wonder when designing a control law, “Is this current control law <em>the best</em> in some way?” The field of optimal control will help you design feedback controllers that are <em>optimal</em> (in some sense), leading to modern approaches, like model predictive control, which is used in many modern applications like quadrotor racing.</p>
+<ul>
+<li>W. L. Brogan, <em>Modern Control Theory</em>, 3rd Edition, Prentice Hall, 1991.</li>
+<li>R.W. Brockett, <em>Finite Dimensional Linear Systems</em>, SIAM, 2015. (Book for ME501.)</li>
+<li>G. F. Franklin, J. D. Powell, M. L. Workman, <em>Digital Control of Dynamic Systems</em>, 3rd Edition, Addison-Wesley, 1998.</li>
+<li>S. Skogestad, I. Postlethwaite, <em>Multivariable Feedback Control: Analysis and Design</em>, 2nd Edition, Wiley, 2006.</li>
+<li>H.K. Khalil, <em>Nonlinear Systems</em>, Prentice-Hall, Third Edition, 2002. (Book for ME762.)</li>
+<li>D. Bertsekas, <em>Dynamic Programming and Optimal Control</em>, 4th Edition, Athena Scientific, 2020.</li>
+<li>A. E. Bryson, Y. Ho, <em>Applied Optimal Control</em>, Revised Printing, Taylor and Francis, 1975.</li>
+</ul>
+<link rel="stylesheet" href="../vi-mode.css">
+<script src="../vi-mode-config.js"></script>
+<script defer="" src="../vi-mode-keybinding-vim.js"></script>
+<script defer="" src="../vi-mode.js"></script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="content/schedule.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="content/schedule.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-f509a403.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-53b67c53.js"></script>
+
+
+
+    </div>
+    </body>
+</html>
