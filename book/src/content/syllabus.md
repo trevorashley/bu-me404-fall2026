@@ -17,7 +17,7 @@ Trevor's current research interests lie broadly in the area of perception-based 
 
 **Office Hours:** 
 - Tuesday and Thursday, 2:00 - 3:30 PM, "Conference room next to adjunct office in 730 Comm Ave"
-- (As Requested) Tuesday and Thursday, 5:15 - 6:00 PM, TBD
+- (As Requested) Tuesday and Thursday, 5:15 - 6:00 PM, PHO 202
 - (As Requested) Email me and we'll find a time, Zoom or Google Meet
 
 ## Introduction and Course Goals

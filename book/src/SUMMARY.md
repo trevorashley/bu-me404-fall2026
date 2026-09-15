@@ -11,6 +11,6 @@
 # Lecture and Book Notes
 - [Lecture Notes](./content/lectures/notes.md)
     - [Introduction to Control](./content/lectures/20260903.md)
-    - [ODE Review / Dynamics](./content/lectures/20260908.md)
-    - [Signals Review](./content/lectures/20260910.md)
-    - [Laplace Transform](./content/lectures/20260915.md)
+    - [Modeling and Solving ODEs](./content/lectures/20260908.md)
+    - [Poles and Zeros](./content/lectures/20260910.md)
+    - [Fourier and Laplace](./content/lectures/20260915.md)
