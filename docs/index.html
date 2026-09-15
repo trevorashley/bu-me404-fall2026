@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Syllabus - BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</title>
+        <title>Overview - BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</title>
 
 
         <!-- Custom HTML head -->
@@ -35,10 +35,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-3d00bfa7.js";
+            window.path_to_searchindex_js = "searchindex-279a1845.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-02d46aea.js"></script>
+        <script src="toc-6382ddce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -175,187 +175,8 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-<h1 id="syllabus"><a class="header" href="#syllabus">Syllabus</a></h1>
-<h2 id="instructor"><a class="header" href="#instructor">Instructor</a></h2>
-<p>Trevor T. Ashley (he/him), Adjunct Lecturer, Dept. Mechanical Engineering</p>
-<p><strong>Email:</strong> tashley@bu.edu</p>
-<p><strong>About Me</strong>: Trevor is a Senior Technical Staff in the Tactical Autonomy Group within the ISR and Tactical Systems Division at MIT Lincoln Laboratory.
-Prior to his current role, he served as Technical Staff (2018-2022) and Assistant Group Leader (2022-2025) within the Control and Autonomous Systems Group within the Engineering Division.
-Before joining MIT Lincoln Laboratory, Trevor developed autonomy, guidance, navigation, and control algorithms for the SPUR robot at QinetiQ North America.
-In 2016, he received the PhD degree in Mechanical Engineering from Boston University under the direction of Sean B. Andersson; his graduate research focused on developing and testing novel control and estimation algorithms for tracking fluorescent nanoparticles.
-Trevor was also the teaching fellow for ME404 in 2011 and continued to drop in on future courses during his tenure as a graduate student.
-Additionally, Trevor worked at Electro Scientific Industries, Inc., from 2009-2011 where he developed high-precision control algorithms for laser-based silicon singulation equipment.
-Trevor’s current research interests lie broadly in the area of perception-based guidance, navigation, and control for multi-domain systems with a strong emphasis on establishing formal guarantees for data-driven algorithms - especially those reliant on machine learning techniques.</p>
-<h2 id="meeting-time-and-place"><a class="header" href="#meeting-time-and-place">Meeting Time and Place</a></h2>
-<p><strong>Lectures:</strong> Tuesday and Thursday, 3:30 - 5:15 PM, PHO 202</p>
-<p><strong>Office Hours:</strong></p>
-<ul>
-<li>Tuesday and Thursday, 2:00 - 3:30 PM, “Conference room next to adjunct office in 730 Comm Ave”</li>
-<li>(As Requested) Tuesday and Thursday, 5:15 - 6:00 PM, TBD</li>
-<li>(As Requested) Email me and we’ll find a time, Zoom or Google Meet</li>
-</ul>
-<h2 id="introduction-and-course-goals"><a class="header" href="#introduction-and-course-goals">Introduction and Course Goals</a></h2>
-<p>Systems and control theory plays a vital role across most aspects of modern life.
-Control systems are found in cars, appliances, cell phones, airplanes, robots, and just about anywhere you look.
-The goal of this course is to introduce you to the fundamental concepts in feedback control and provide you a set of tools to analyze and design controllers.
-Our primary focus will be on what is known by the community as <em>classical control</em>, and topics will include: modeling, feedback, transfer functions, frequency domain analysis and design (e.g., Bode and Nyquist plots), and PID control.
-Time permitting, we’ll cover elements from digital and state space control, which is how it’s (nearly) all done nowadays anyway.
-My goal is to make the class as interactive as possible and to focus on the application and design of controllers rather than (just) the theory and mathematics (but is still important, nonetheless).</p>
-<h2 id="course-prerequisites"><a class="header" href="#course-prerequisites">Course Prerequisites</a></h2>
-<p>All students should have taken <strong>ME 302: Engineering Mechanics II</strong>, as well as the standard math sequence. An alternative name for our course very well could be “How to Do (Nearly) Anything with a Differential Equation”, so you’ll want to make sure you’ve brushed up on your ordinary differential equations. (We’ll do a short review at the start of the semester.)</p>
-<p>Helpful (but not required) prerequisites include a course on signals and systems (e.g., fourier series and transforms) as well as complex variables (e.g., complex integration, Cauchy-Goursat theorem, residues).</p>
-<p>In addition, MATLAB (including the Control System Toolbox) and Python will be used quite heavily.
-If you haven’t done so already, you should download and install MATLAB and Python on your computer.
-Information on obtaining a copy of the software can be found at: <a href="http://www.bu.edu/tech/support/research/software-and-programming/common-languages/matlab/">MATLAB</a> and <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/">Python</a></p>
-<h2 id="course-expectations-and-grading"><a class="header" href="#course-expectations-and-grading">Course Expectations and Grading</a></h2>
-<p><strong>Your overall grade will be assigned according to the following breakdown:</strong></p>
-<ul>
-<li>Reading Quizzes (5%)</li>
-<li>Homework (15%)</li>
-<li>Midterm (25%)</li>
-<li>Final (30%)</li>
-<li>Project (25%)</li>
-</ul>
-<h3 id="reading-quizzes"><a class="header" href="#reading-quizzes">Reading Quizzes</a></h3>
-<p>It is my ﬁrm belief that learning is an active experience. While there is some traditional lecture in class, most of our time will be spent working problems. For this to work, it is essential that prior to class you read the assigned material and organize your thoughts and questions.</p>
-<blockquote>
-<p>As an indication of the importance of properly preparing for lecture, there will be short “did you read” quizzes at the start of most lectures. You can (and should!) do these simultaneously with your reading.</p>
-</blockquote>
-<p>The idea is not for you to closely study all the material prior to class but rather to familiarize yourself with the topics of the day, to think about what might be easy and what might be hard, and to come ready with questions.</p>
-<h3 id="homework"><a class="header" href="#homework">Homework</a></h3>
-<p>Of course, doing things in class is a good start but not enough. Thus there will be some homework to complete. As usual, you are welcome to discuss the regular homework with others as well but each student must perform and submit their own work. Submitted work should be neat, organized, and legible and is to be turned in by the start of class on the due date. For problems requiring MATLAB or Python, your code should also be submitted electronically by e-mailing it to me as a zip file. (I will also accept - and encourage the use of - a Github link to your own repository.)</p>
-<p>For paper assignments, I wish I didn’t have to say this but experience has proven me wrong: <em>Please - no ragged edges!</em></p>
-<h3 id="midterm-and-final-exam"><a class="header" href="#midterm-and-final-exam">Midterm and Final Exam</a></h3>
-<p>The <strong>midterm exam</strong> will be held during our normal class period (3:30 - 5:15 PM) and location (PHO 202) on <strong>November 5, 2026</strong>.</p>
-<p>The <strong>final exam</strong> will be held during 3:00 - 5:00 PM (note: this is <em>not</em> our normal meeting time) in PHO 202 on <strong>December 17, 2026</strong>.</p>
-<h3 id="term-project"><a class="header" href="#term-project">Term Project</a></h3>
-<p>Our term project, with presentations (tentatively) scheduled for <strong>December 3, 2026</strong>, will consist of a short report and presentation (~10-12 minutes) on a topic that is of interest to you. You must discuss the topic with Trevor and receive approval prior to starting. We’ll discuss this more in October.</p>
-<h2 id="artificial-intelligence-policy"><a class="header" href="#artificial-intelligence-policy">Artificial Intelligence Policy</a></h2>
-<p>I’ll be direct and upfront about this: <em>you will use AI almost daily in your (future) career.</em>
-(I use it every day, even to help me write lecture notes for this class.)
-Consequently, learning how to use AI effectively will now be one of your greatest ongoing challenges, and you must maintain pace with technology that is developing at a nearly impossible rate.</p>
-<blockquote>
-<p>To leverage AI effectively, you must know when to trust the output of an AI agent and how to test its validity. Completion of this course should enable you to understand how to assess the output of an AI agent when using it to design a control system.</p>
-</blockquote>
-<p>Our AI policy for this course is as follows:</p>
-<ul>
-<li><strong>Problem Sets:</strong>
-<ul>
-<li>Before the problem set is turned in, you are not permitted to use AI to directly solve the problem for you.
-<ul>
-<li><span style="color:green">OKAY:</span> “The book says this about gain and phase margin. Can you clarify what they mean by…”</li>
-<li><span style="color:green">OKAY:</span> “The book has this example problem. I don’t understand how they derived … . Can you explain it better?”</li>
-<li><span style="color:green">OKAY:</span> “How do I generally use lsim to simulate a dynamical system? What does ode45 actually do?”</li>
-<li><span style="color:red">NOT OKAY</span>: “Problem 2.45 is &lt;…&gt; . Solve the problem and provide me the solution. Show all work.”</li>
-<li><span style="color:red">NOT OKAY</span>: “Here is my solution to Problem 2.45 &lt;…&gt;. Is it correct? If not, provide me a hint.”</li>
-<li><span style="color:red">NOT OKAY</span>: “I’m stuck on Problem 2.45. Can you help me get unstuck?”</li>
-</ul>
-</li>
-<li>After the problem set is turned in, you are more than welcome <em>and encouraged</em> to use AI to evaluate your solutions.</li>
-</ul>
-</li>
-<li><strong>Exams:</strong>
-<ul>
-<li>The midterm and final exams will not permit the use of AI. They will be closed-book and closed-notes, and you will be provided all the formulas you need to perform the exam.</li>
-</ul>
-</li>
-<li><strong>Project:</strong> The goal of the project is to give you an opportunity to investigate and learn more about a system or control approach that interests you. In general, AI use is only permitted if it does not detract from your learning the subject material.
-<ul>
-<li>You are <span style="color:green">permitted</span> to use AI on your project only for the following:
-<ul>
-<li>Brainstorming ideas for the project,</li>
-<li>Performing research on the topic of your interest,</li>
-<li>Creating plots or videos,</li>
-<li>Running Monte Carlo workflows.</li>
-</ul>
-</li>
-<li>You are <span style="color:red"><em>not</em> permitted</span> to use AI on your project for the following:
-<ul>
-<li>Setting up the meat of your simulation code,</li>
-<li>Writing your presentation or paper/report,
-<ul>
-<li>Regular spell-check and grammar-checking is fine.</li>
-</ul>
-</li>
-<li>Deriving or checking mathematical formulations,
-<ul>
-<li>Wolfram Alpha and other symbolic tools (MATLAB Symbolic Toolbox, SymPy) are fine.</li>
-</ul>
-</li>
-<li>Vetting your approach,</li>
-<li>Converting a paper directly to math or code.</li>
-</ul>
-</li>
-<li>Your report must include an “AI Disclosure” section where you will describe where and what AI agent(s) were used.</li>
-</ul>
-</li>
-<li><strong>Supplemental Problems:</strong>
-<ul>
-<li>You are permitted <em>and encouraged</em> to use AI while working on supplemental problems that will not be graded.</li>
-<li>Caveat: AI can produce incorrect answers. You should not take the mindset that the agent is a knowledgeable professor who is concerned for your semester grade but rather a potentially malicious grad student who might trick you to see if you’re actually paying attention.</li>
-<li>I highly encourage you to use AI to create <em>visualizations</em> of supplemental problems to help you connect with and explore the material. Much of control can feel very intuitive (e.g., PID tuning) after you see enough examples.</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>If there’s any doubt in when AI may or may not be permissible, please check with me. I’m generally liberal about AI use as long as it encourages and promotes your learning. On the other hand, I also encourage you to talk with your peers more than you do an AI agent. Please take responsibility for your learning.</p>
-</blockquote>
-<h2 id="textbook-and-references"><a class="header" href="#textbook-and-references">Textbook and References</a></h2>
-<h3 id="primary-textbook"><a class="header" href="#primary-textbook">Primary Textbook</a></h3>
-<p>Our primary textbook will be:</p>
-<blockquote>
-<p>G. F. Franklin, J. D. Powell, and A. Emami-Naeini, <em>Feedback Control of Dynamic Systems</em>, 8th Edition, Prentice Hall, 2019.</p>
-</blockquote>
-<p>(The sixth and seventh editions should also be ﬁne to use. The most recent 9th edition published by Pearson and authored by Powell, Emami-Naeini, and  Ivler may also suffice. You may just need to adjust the assigned reading if you deviate from the 8th edition. Please talk to Trevor if there is any confusion.)</p>
-<h3 id="additional-references"><a class="header" href="#additional-references">Additional References</a></h3>
-<h4 id="classical-control"><a class="header" href="#classical-control">Classical Control</a></h4>
-<p>There are a number of textbooks on classical control, and they mostly carry the same content but provide different exercises and perspectives on how to solve problems. I <em>highly</em> recommend you supplement this course with this additional material and work on exercises outside of our normal assigned homework. Talk to Trevor for recommendations.</p>
-<ul>
-<li>N. Nise, <em>Control Systems Engineering</em>, 8th Edtion, Wiley, 2019.</li>
-<li>K. Ogata, <em>Modern Control Engineering</em>, 5th Edition, Prentice Hall, 2009.</li>
-<li>R. C. Dorf, R. H. Bishop, <em>Modern Control Systems</em>, 14th Edition, Pearson, 2022.</li>
-<li>H. K. Khalil, <em>Control Systems: An Introduction</em>, 2023.</li>
-<li>K. J. Åström and R. M. Murray, <em>Feedback Systems: An Introduction for Scientists and Engineers</em>, Princeton University Press, 2021.  <a href="https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html">Available free online</a></li>
-<li>J. J. DiStefano, A. R. Stubberud, I. J. Williams, <em>Feedback and Control Systems</em>, 3rd Edition, McGraw Hill, 2014.</li>
-<li>S. Brunton, <em>Control Bootcamp</em>, <a href="https://www.youtube.com/watch?v=Pi7l8mMjYVE&amp;list=PLMrJAkhIeNNR20Mz-VpzgfQs5zrYi085m">YouTube Link</a>.</li>
-<li>B. Douglas, <a href="https://www.youtube.com/@BrianBDouglas/playlists">YouTube Link</a>.</li>
-</ul>
-<h4 id="engineering-mathematics"><a class="header" href="#engineering-mathematics">Engineering Mathematics</a></h4>
-<p>During your career, you will quickly find that having an extensive and mature understanding of mathematics - both pure and applied - will make you more useful and, to be honest, more employable. <em>Math is the language of engineering.</em> You should continue to both broaden and deepen your understanding of mathematics, never becoming complacent. No worries - there will <em>always</em> be more to learn.</p>
-<ul>
-<li>E. Kreyszig, <em>Advanced Engineering Mathematics</em>, 10th Edition, Wiley, 2011.</li>
-<li>S. Brunton, <em>Engineering Math: Crash Course in Complex Analysis</em>, <a href="https://www.youtube.com/watch?v=_mv0q7-WF4E&amp;list=PLMrJAkhIeNNQBRslPb7I0yTnES981R8Cg">YouTube Link</a>.</li>
-<li>S. Brunton, <em>Fourier Analysis</em>, <a href="https://www.youtube.com/watch?v=jNC0jxb0OxE&amp;list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC&amp;pp=0gcJCf8COCosWNin">YouTube Link</a>.</li>
-<li>S. Brunton, <em>Differential Equations and Dynamical Systems</em>, <a href="https://www.youtube.com/watch?v=9fQkLQZe3u8&amp;list=PLMrJAkhIeNNTYaOnVI3QpH7jgULnAmvPA&amp;pp=0gcJCbwFa94AFGB0">YouTube Link</a>.</li>
-</ul>
-<h4 id="signals-and-systems"><a class="header" href="#signals-and-systems">Signals and Systems</a></h4>
-<p>At most other universities, a course on signals and systems is a <em>required</em> prerequisite to a course in control theory. This textbook is considered a gold standard by many, and it should be a part of your bookshelf. A proper understanding of Fourier series and transforms will help you better understand the nature of the Laplace transform as something more than just an operator that “converts” a <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span> to an <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span>.</p>
-<ul>
-<li>A. V. Oppenheim, A. S. Willsky, S. H. Nawab, <em>Signals &amp; Systems</em>, 2nd Edition, Prentice Hall, 1997.</li>
-</ul>
-<h4 id="control-of-aerodynamic-systems"><a class="header" href="#control-of-aerodynamic-systems">Control of Aerodynamic Systems</a></h4>
-<p>Many years ago, BU offered a sibling course to ME404 which was ME403: Control of Aerodynamic Systems. For those interested in seeing controls as is usually taught from an aerodynamics perspective, I highly recommend this reference.</p>
-<ul>
-<li>R. F. Stengel, <em>Flight Dynamics</em>, 2nd Edition, Princeton University Press, 2022.</li>
-</ul>
-<h4 id="data-driven-approaches"><a class="header" href="#data-driven-approaches">Data-driven Approaches</a></h4>
-<p>Machine learning and control theory go hand-in-hand, and techniques we learn from this course can enable you to better understand machine learning techniques (e.g., gradient descent is a feedback loop!). Reinforcement learning is just another way of implementing optimal control when modeling a system can be challenging but numerically sampling from it is easy. I highly recommend learning a bit about optimal control before tackling reinforcement learning.</p>
-<ul>
-<li>S. L. Brunton, J. N. Kutz, <em>Data-driven Science and Engineering: Machine Learning, Dynamical Systems, and Control</em>, 2nd Edition, Cambridge University Press, 2022.</li>
-<li>R. S. Sutton, A. G. Barto, <em>Reinforcement Learning: An Introduction</em>, 2nd Edition, The MIT Press, 2018.</li>
-<li>S. L. Brunton, <em>Reinforcement Learning</em>, <a href="https://www.youtube.com/watch?v=0MNVhXEX9to&amp;list=PLMrJAkhIeNNQe1JXNvaFvURxGY4gE9k74&amp;pp=0gcJCf8COCosWNin">YouTube Link</a>.</li>
-</ul>
-<h4 id="modern-optimal-and-nonlinear-control"><a class="header" href="#modern-optimal-and-nonlinear-control">Modern, Optimal, and Nonlinear Control</a></h4>
-<p>Through thought-leaders like Kalman, state-space methods to control design led to a paradigm shift in the 1950s-1960s known as <em>modern control</em>. These methods enable us to handle significantly more complex systems, including multi-input multi-output systems, with relative ease. Moreover, all real-world systems are nonlinear, so having an understanding of the phenomena they exhibit (e.g., bifurcations, finite escape times, chaos) will help you better understand how to control them. Moreover, we often wonder when designing a control law, “Is this current control law <em>the best</em> in some way?” The field of optimal control will help you design feedback controllers that are <em>optimal</em> (in some sense), leading to modern approaches, like model predictive control, which is used in many modern applications like quadrotor racing.</p>
-<ul>
-<li>W. L. Brogan, <em>Modern Control Theory</em>, 3rd Edition, Prentice Hall, 1991.</li>
-<li>R.W. Brockett, <em>Finite Dimensional Linear Systems</em>, SIAM, 2015. (Book for ME501.)</li>
-<li>G. F. Franklin, J. D. Powell, M. L. Workman, <em>Digital Control of Dynamic Systems</em>, 3rd Edition, Addison-Wesley, 1998.</li>
-<li>S. Skogestad, I. Postlethwaite, <em>Multivariable Feedback Control: Analysis and Design</em>, 2nd Edition, Wiley, 2006.</li>
-<li>H.K. Khalil, <em>Nonlinear Systems</em>, Prentice-Hall, Third Edition, 2002. (Book for ME762.)</li>
-<li>D. Bertsekas, <em>Dynamic Programming and Optimal Control</em>, 4th Edition, Athena Scientific, 2020.</li>
-<li>A. E. Bryson, Y. Ho, <em>Applied Optimal Control</em>, Revised Printing, Taylor and Francis, 1975.</li>
-</ul>
+<h1 id="welcome-to-the-me404-course-website"><a class="header" href="#welcome-to-the-me404-course-website">Welcome to the ME404 course website!</a></h1>
+<p>Please use the menu on the left to navigate the site.</p>
 <link rel="stylesheet" href="../vi-mode.css">
 <script src="../vi-mode-config.js"></script>
 <script defer="" src="../vi-mode-keybinding-vim.js"></script>
@@ -366,7 +187,7 @@ Consequently, learning how to use AI effectively will now be one of your greates
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next prefetch" href="content/schedule.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="content/syllabus.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -377,7 +198,7 @@ Consequently, learning how to use AI effectively will now be one of your greates
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next prefetch" href="content/schedule.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="content/syllabus.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
