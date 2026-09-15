@@ -1,0 +1,42 @@
+[book]
+title = "BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026"
+authors = ["Trevor Ashley"]
+language = "en"
+
+[output.html]
+mathjax-support = false  # prefer katex support
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
+
+[preprocessor.inline-highlighting]  # e.g., `[cpp] class FooBar {};`
+
+[preprocessor.embedify]  # embed video with: {% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+
+[preprocessor.katex]  # use $...$ and $$...$$ instead of mathjax \\(...\\) etc.
+trust = true
+
+#[preprocessor.mathpunc]
+#before = ["katex"]
+
+[preprocessor.vi-mode]
+
+[preprocessor.numeq]  # add {{numeq}} to a centered equation; add {{numeq}}{mylabel} with label, then refer to it with {{eqref: mylabel}}
+
+[preprocessor.codeblocks]  # invoke with regular markdown codeblocks
+renderers = ["html"]
+cpp = { color = "#FFFF99", link = "https://wiki.redmodding.org/red4ext" }
+redscript = { color = "tomato", link = "https://wiki.redmodding.org/redscript" }
+rust = { color = "#ac4313", link = "https://github.com/jac3km4/red4ext-rs" }
+lua = { link = "https://wiki.redmodding.org/cyber-engine-tweaks" }
+swift = { label = "Swift code snippet", color = "skyblue" }
+javascript = { color = "#FFFA8D" }
+typescript = { color = "brightblue" }
+csharp = { color = "skyblue" }
+yaml = { color = "tomato" }
+json = { color = "darkseagreen" }
+xml = { color = "#1E90FF" }
+
+[preprocessor.footnote]  # This is normal text{{footnote: ...but this is a footnote...}}.
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
