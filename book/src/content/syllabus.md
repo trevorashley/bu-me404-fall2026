@@ -49,7 +49,9 @@ Information on obtaining a copy of the software can be found at: [MATLAB](http:/
 ### Reading Quizzes
 It is my ﬁrm belief that learning is an active experience. While there is some traditional lecture in class, most of our time will be spent working problems. For this to work, it is essential that prior to class you read the assigned material and organize your thoughts and questions. 
 
-> As an indication of the importance of properly preparing for lecture, there will be short “did you read” quizzes at the start of most lectures. You can (and should!) do these simultaneously with your reading. 
+```admonish note
+As an indication of the importance of properly preparing for lecture, there will be short “did you read” quizzes at the start of most lectures. You can (and should!) do these simultaneously with your reading. 
+```
 
 The idea is not for you to closely study all the material prior to class but rather to familiarize yourself with the topics of the day, to think about what might be easy and what might be hard, and to come ready with questions. 
 

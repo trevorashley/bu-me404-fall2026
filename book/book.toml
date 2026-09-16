@@ -7,27 +7,6 @@ language = "en"
 mathjax-support = false  # prefer katex support
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
 
-[preprocessor.inline-highlighting]  # e.g., `[cpp] class FooBar {};`
-after = ["katex"]
-
-
-#[preprocessor.embedify]  # embed video with: {% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
-
-[preprocessor.katex]  # use $...$ and $$...$$ instead of mathjax \\(...\\) etc.
-trust = true
-pre-render = true
-after = ["links", "numeq"]
-before = ["inline-highlighting","codeblocks"]
-
-
-#[preprocessor.mathpunc]
-#before = ["katex"]
-
-[preprocessor.vi-mode]
-
-[preprocessor.numeq]  # add {{numeq}} to a centered equation; add {{numeq}}{mylabel} with label, then refer to it with {{eqref: mylabel}}
-before = ["katex"]
-
 [preprocessor.codeblocks]  # invoke with regular markdown codeblocks
 renderers = ["html"]
 after = ["katex"]
@@ -43,8 +22,25 @@ yaml = { color = "tomato" }
 json = { color = "darkseagreen" }
 xml = { color = "#1E90FF" }
 
+[preprocessor.embedify]  # embed video with: {% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+
 [preprocessor.footnote]  # This is normal text{{footnote: ...but this is a footnote...}}.
+
+[preprocessor.hide]
+# mdbook-hide 0.4.0 uses the incompatible mdBook 0.4 input format.
+command = "python3 ../scripts/hide_chapters.py"
+hide = true
+
+[preprocessor.katex]  # use $...$ and $$...$$ instead of mathjax \\(...\\) etc.
+trust = true
+pre-render = true
+after = ["links", "numeq"]
+before = ["codeblocks"]
 
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
 
+[preprocessor.numeq]  # add {{numeq}} to a centered equation; add {{numeq}}{mylabel} with label, then refer to it with {{eqref: mylabel}}
+before = ["katex"]
+
+[preprocessor.vi-mode]
