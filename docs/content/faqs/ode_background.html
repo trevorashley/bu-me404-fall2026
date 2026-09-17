@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Problem Sets - BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</title>
+        <title>ODE Review - BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</title>
 
 
         <!-- Custom HTML head -->
@@ -175,7 +175,47 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-<h1 id="problem-sets"><a class="header" href="#problem-sets">Problem Sets</a></h1>
+<h1 id="ode-background"><a class="header" href="#ode-background">ODE Background</a></h1>
+<blockquote>
+<p><em>Question:</em> I haven’t taken differential equations in several years. How can I refresh my understanding?</p>
+</blockquote>
+<p>Having a strong understanding of (systems of) linear ordinary differential equations will be foundational to your success in this course. You can assume that anything fromm your prior ODEs course is fair game for this course. <em>ODEs are a foundational language for control systems - that is, modeling and design/analysis of feedback systems.</em></p>
+<p>That said, here are the references I most recommend as a <em>refresher</em> (i.e., not as a first course):</p>
+<ul>
+<li>S. Brunton, <em>Differential Equations and Dynamical Systems</em>, <a href="https://www.youtube.com/watch?v=9fQkLQZe3u8&amp;list=PLMrJAkhIeNNTYaOnVI3QpH7jgULnAmvPA&amp;pp=0gcJCbwFa94AFGB0">YouTube Link</a>.
+<ul>
+<li>Steve is an <em>excellent</em> lecturer, and his presentations are dynamic, colorful, and thorough. He excels at bringing the student to an intuition rather than a complex proof. If you need an audio track to learn better, I <em>highly</em> recommend Steve’s series.</li>
+</ul>
+</li>
+<li>E. Kreyszig, <em>Advanced Engineering Mathematics</em>, 10th Edition, Wiley, 2011.
+<ul>
+<li>This is a standard textbook that covers not just ODEs but many other ubiquitous math topics. The first six chapters in this source will provide you all you need for the course, including Laplace transforms.</li>
+</ul>
+</li>
+<li>G. Sanderson, “Differential Equations: Solving the Unsolvable”, <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6KVlfJuKtYTftqH6">YouTube Link</a>.
+<ul>
+<li>Grant Sanderson, also known as “3blue1brown”, is most known for his incredible visualizations of mathematical concepts. He’s also an excellent teacher, and I’ve personally benefitted from his videos. I highly recommend watching these, perhaps at minimum to add some extra intuition to concepts you may already know.</li>
+</ul>
+</li>
+</ul>
+<p>As you may remember from your preliminary course on ODEs, <em>linear algebra</em> also provides us a boon for solving and analyzing systems of differential equations. Although this course will mostly focus on <em>classical control</em>, which revolves around the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span>-domain, most control today is performed in the time-domain using <em>state space</em> methods. As you continue in your control eduation (perhaps through taking ME501), you’ll need a refresher on linear algebra. Here are the sources I recommend for that:</p>
+<ul>
+<li>E. Kreyszig, <em>Advanced Engineering Mathematics</em>, 10th Edition, Wiley, 2011.
+<ul>
+<li>Yes, this text is once again relevant. Focus on chapters 7 and 8 for some helpful information.</li>
+</ul>
+</li>
+<li>G. Strang, <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/">MIT OCW</a>
+<ul>
+<li>Gilbert Strang is one of the best lecturers on this topic, so this series is worth a mention. It’s not a review - it’s truly a series of long lectures. However, if you haven’t received the Strang treatment of linear algebra, do yourself a favor and watch these. It’ll change your perspective of linear algebra.</li>
+</ul>
+</li>
+<li>G. Sanderson, “Essence of Linear Algebra”, <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">YouTube Link</a>
+<ul>
+<li>Once again, another excellent series by Grant. Highly recommend watching these.</li>
+</ul>
+</li>
+</ul>
 <link rel="stylesheet" href="../../vi-mode.css">
 <script src="../../vi-mode-config.js"></script>
 <script defer="" src="../../vi-mode-keybinding-vim.js"></script>
@@ -185,13 +225,10 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../content/schedule.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../content/lectures/20260917d_instructor.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../content/assignments/ps1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -199,13 +236,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../content/schedule.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../content/lectures/20260917d_instructor.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../content/assignments/ps1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
