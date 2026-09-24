@@ -176,7 +176,17 @@ y(t)=1-e^{-\sigma t}\left(\cos\omega_dt+\frac{\sigma}{\omega_d}\sin\omega_dt\rig
 \tag{3.69}
 $$
 
-which the identity $A\sin\alpha+B\cos\alpha=C\cos(\alpha-\beta)$ compresses to
+(derived by partial fractions in L2 §10.2). The identity $A\sin\alpha+B\cos\alpha=C\cos(\alpha-\beta)$ compresses it. Here the bracket has $B=1$ and $A=\sigma/\omega_d=\zeta/\sqrt{1-\zeta^2}$, so
+
+$$
+C=\sqrt{1+\frac{\zeta^2}{1-\zeta^2}}=\frac{1}{\sqrt{1-\zeta^2}},
+\qquad
+\cos\beta=\frac BC=\sqrt{1-\zeta^2},
+\qquad
+\sin\beta=\frac AC=\zeta .
+$$
+
+Hence $\beta=\sin^{-1}\zeta$, the same angle $\theta$ as in the Fig. 3.18 pole geometry, and
 
 $$
 \boxed{
@@ -189,11 +199,21 @@ $$
 
 **Source correction [beyond the book]:** Eq. (3.70) on PDF p. 108 prints $\sqrt{1-\zeta}$ in the denominator; it should be $\sqrt{1-\zeta^2}$, as used here and in the envelope bound in §5.4.
 
-Differentiate. The algebra collapses beautifully:
+Differentiate Eq. (3.69) with the product rule. The derivative of $-e^{-\sigma t}$ is $+\sigma e^{-\sigma t}$, and the bracket differentiates to $-\omega_d\sin\omega_dt+\sigma\cos\omega_dt$:
 
 $$
-\dot y(t)=e^{-\sigma t}\left(\frac{\sigma^2}{\omega_d}+\omega_d\right)\sin\omega_dt .
+\dot y(t)=\sigma e^{-\sigma t}\left(\cos\omega_dt+\frac{\sigma}{\omega_d}\sin\omega_dt\right)
+-e^{-\sigma t}\left(-\omega_d\sin\omega_dt+\sigma\cos\omega_dt\right).
 $$
+
+The two cosine terms, $+\sigma\cos$ and $-\sigma\cos$, cancel. That is the collapse. What remains is
+
+$$
+\dot y(t)=e^{-\sigma t}\left(\frac{\sigma^2}{\omega_d}+\omega_d\right)\sin\omega_dt
+=\frac{\omega_n^2}{\omega_d}e^{-\sigma t}\sin\omega_dt ,
+$$
+
+using $\sigma^2+\omega_d^2=\omega_n^2$. This is the impulse response, Eq. (3.66), as it must be.
 
 **Everything except $\sin\omega_dt$ is strictly positive**, so nonzero-time extrema occur at $\omega_dt=k\pi$. Odd $k$ give maxima and even $k$ minima. The first peak is at $\omega_dt_p=\pi$:
 
@@ -204,7 +224,13 @@ t_p=\frac{\pi}{\omega_d}
 }
 $$
 
-Substituting back, $y(t_p)=1+e^{-\sigma\pi/\omega_d}$, so
+Substituting $\omega_dt_p=\pi$ into Eq. (3.69), $\cos\pi=-1$ and $\sin\pi=0$:
+
+$$
+y(t_p)=1-e^{-\sigma\pi/\omega_d}(-1+0)=1+e^{-\sigma\pi/\omega_d} .
+$$
+
+The final value is 1, so the overshoot is $M_p=e^{-\sigma\pi/\omega_d}$. Finally, $\sigma/\omega_d=\zeta\omega_n/(\omega_n\sqrt{1-\zeta^2})=\zeta/\sqrt{1-\zeta^2}$:
 
 $$
 \boxed{
@@ -218,7 +244,7 @@ $$
 
 At $\zeta=0$, the same peak formula gives a 100% excursion above the equilibrium value, but the response never settles and has no final-value limit. For $\zeta\ge1$, the zero-free standard step response is monotone: $M_p=0$ and there is no finite overshoot peak time.
 
-Two values to memorise, and they should be memorised:
+Two values to memorise, and they should be memorised. At $\zeta=0.5$ the exponent is $\pi(0.5)/0.866=1.814$, and $e^{-1.814}=0.163$. At $\zeta=0.7$ it is $\pi(0.7)/0.714=3.079$, and $e^{-3.079}=0.046$:
 
 $$
 \boxed{
@@ -234,12 +260,16 @@ $$
 
 Because $\omega_n$ only scales time. Two systems with the same $\zeta$ have the same step response shape, one played faster than the other. Overshoot is a property of the shape.
 
+Algebraically, $\sigma t=\zeta(\omega_nt)$ and $\omega_dt=\sqrt{1-\zeta^2}(\omega_nt)$. Eq. (3.69) is therefore a function of $\zeta$ and the normalised time $\omega_nt$ only. The peak *height* depends on $\zeta$ alone, and the peak *time* scales as $1/\omega_n$.
+
 ### 5.4 Settling time
 
 The textbook uses the exponential decay rate to estimate the 1% settling time. Dropping the oscillatory phase and the envelope prefactor gives
 
 $$
-e^{-\sigma t}\approx0.01
+e^{-\sigma t_s}=0.01
+\quad\Longrightarrow\quad
+\sigma t_s=-\ln0.01=\ln100=4.605
 \quad\Longrightarrow\quad
 \boxed{
 t_s\simeq\frac{4.6}{\zeta\omega_n}=\frac{4.6}{\sigma}
@@ -255,13 +285,13 @@ t_{s,\mathrm{env}}=\frac{-\ln\!\left(\epsilon\sqrt{1-\zeta^2}\right)}{\sigma},
 \qquad 0<\zeta<1.
 $$
 
-For a tolerance $\epsilon=0.01$, the response stays in the band once $t\ge t_{s,\mathrm{env}}$. The actual settling time is the last band crossing and can be earlier. The shorter rule $4.6/\sigma$ is **not a guaranteed upper bound**. Near critical damping the sinusoidal envelope bound is very loose; use the actual response. At $\zeta=1$, solving $(1+\omega_nt)e^{-\omega_nt}=0.01$ gives $t_s\approx6.64/\omega_n$, not $4.6/\omega_n$.
+The bound follows from Eq. (3.70) because $|\cos(\cdot)|\le1$. To get $t_{s,\mathrm{env}}$, set the bound equal to $\epsilon$ and take logs: $e^{-\sigma t}=\epsilon\sqrt{1-\zeta^2}$, so $\sigma t=-\ln(\epsilon\sqrt{1-\zeta^2})$. For a tolerance $\epsilon=0.01$, the response stays in the band once $t\ge t_{s,\mathrm{env}}$. The actual settling time is the last band crossing and can be earlier. The shorter rule $4.6/\sigma$ is **not a guaranteed upper bound**. Near critical damping the sinusoidal envelope bound is very loose; use the actual response. At $\zeta=1$, the step response is $1-(1+\omega_nt)e^{-\omega_nt}$ (L2 §10.2), which approaches 1 monotonically from below. Setting the error $(1+x)e^{-x}=0.01$ with $x=\omega_nt$ gives a transcendental equation. Its root is $x\approx6.64$ (Newton's method from $x=6$ gives 6.49, 6.63, 6.64; or use `fsolve`), so $t_s\approx6.64/\omega_n$, not $4.6/\omega_n$. The factor $(1+x)$ is what the pure-exponential rule misses.
 
 > **[ FIG 3.21 ]** — PDF p. 99 *(recall from L2: the envelope)*
 
 > **[ DEMO 1, continued ]** — right-hand panel
 >
-> **Teaching check [beyond the book]:** At $\zeta=0.7$, $\omega_n=4$ rad/s, the actual 1% settling time is approximately 1.644 s, slightly later than $4.6/\sigma=1.643$ s. The corrected envelope bound above is approximately 1.765 s. Thus the textbook estimate is not guaranteed conservative.
+> **Teaching check [beyond the book]:** At $\zeta=0.7$, $\omega_n=4$ rad/s, the actual 1% settling time is approximately 1.644 s, slightly later than $4.6/\sigma=1.643$ s. The corrected envelope bound above is approximately 1.765 s. Arithmetic: $\sigma=0.7\times4=2.8$ s$^{-1}$, $4.6/2.8=1.643$ s, $\sqrt{1-0.49}=0.714$, and $-\ln(0.00714)/2.8=4.942/2.8=1.765$ s. Thus the textbook estimate is not guaranteed conservative.
 
 ### 5.5 The first-order case
 
@@ -272,7 +302,11 @@ y(t)=\left(1-e^{-\sigma t}\right)1(t)
 \tag{3.77}
 $$
 
-so
+(the step response of L2 §8.2, scaled to unit DC gain). Each specification follows by solving $y(t)=$ level:
+
+- **Overshoot.** $\dot y=\sigma e^{-\sigma t}>0$, so $y$ rises monotonically to 1 and never exceeds it: $M_p=0$.
+- **Rise time.** $1-e^{-\sigma t}=p$ gives $t=-\ln(1-p)/\sigma$. So $t_{10}=-\ln0.9/\sigma=0.105/\sigma$ and $t_{90}=-\ln0.1/\sigma=2.303/\sigma$. The difference is $t_r=(\ln10-\ln\tfrac{10}{9})/\sigma=\ln9/\sigma=2.197/\sigma$.
+- **Settling time.** The error is $e^{-\sigma t}$ exactly, with no oscillation and no prefactor. It reaches 0.01 at $t_s=\ln100/\sigma=4.605/\sigma$.
 
 $$
 \boxed{
@@ -313,6 +347,24 @@ $$
 \zeta\ge\frac{-\ln M_p}{\sqrt{\pi^2+(\ln M_p)^2}}.
 $$
 
+**Derivation.** Take logs of Eq. (3.72) and write $L=-\ln M_p>0$:
+
+$$
+\frac{\pi\zeta}{\sqrt{1-\zeta^2}}=L
+\quad\Longrightarrow\quad
+\pi^2\zeta^2=L^2(1-\zeta^2)
+\quad\Longrightarrow\quad
+\zeta^2(\pi^2+L^2)=L^2
+\quad\Longrightarrow\quad
+\zeta=\frac{L}{\sqrt{\pi^2+L^2}} .
+$$
+
+Squaring is safe because both sides are positive for $0<\zeta<1$. $M_p$ decreases as $\zeta$ increases, so "$M_p\le$ spec" becomes "$\zeta\ge$ this value".
+
+**The other two bounds** follow directly from Eqs. (3.68) and (3.73). $t_r\simeq1.8/\omega_n\le t_r^{\rm spec}$ gives $\omega_n\ge1.8/t_r^{\rm spec}$, and $t_s\simeq4.6/\sigma\le t_s^{\rm spec}$ gives $\sigma\ge4.6/t_s^{\rm spec}$.
+
+**Why each is the stated shape (the L2 §10.1 geometry).** $\omega_n$ is the pole's distance from the origin, so a lower bound on it excludes a disc. $\zeta=\sin\theta$ with $\theta$ measured from the imaginary axis, so a lower bound on $\zeta$ is a lower bound on $\theta$: a wedge about the negative real axis. $\sigma$ is the distance from the imaginary axis, so a lower bound on it is a half-plane to the left of a vertical line.
+
 | Bound | Region in the $s$-plane |
 |---|---|
 | $\omega_n\ge$ | outside a circle of that radius |
@@ -341,12 +393,12 @@ The book's closing observation is worth the extra thirty seconds: any pole meeti
 
 **Two small corrections to make in passing [beyond the book]:**
 
-- Inverting $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$ at 10% gives $\zeta=0.591$. The book reads 0.6 off Fig. 3.24, which is the same number rounded, but students should know the bound is exact and computable.
+- Inverting $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$ at 10% gives $\zeta=0.591$: $L=-\ln0.1=2.303$, so $\zeta=2.303/\sqrt{9.870+5.302}=2.303/3.895=0.591$. The corresponding wedge half-angle is $\theta=\sin^{-1}0.591=36.2^\circ$. The book reads 0.6 off Fig. 3.24, which is the same number rounded, but students should know the bound is exact and computable.
 - The book prints "$\sigma\ge4.6/3=1.5$ sec". The value is right and the unit is not: $\sigma$ is a rate, in inverse seconds.
 
 > **[ DEMO 2 ]** — `ch3/l3_demo2_spec_regions.py` *(live, ~10 s — the most important demo of this lecture)*
 >
-> **Teaching check [beyond the book]:** Place the poles at $\zeta=0.7$, $\omega_n=3$ rad/s. They satisfy the approximate design region, yet the actual 10–90% rise time is about 0.709 s, exceeding 0.6 s. The overshoot constraint is exact for the standard pair; the rise-time circle and settling-time line require verification.
+> **Teaching check [beyond the book]:** Place the poles at $\zeta=0.7$, $\omega_n=3$ rad/s. They satisfy the approximate design region: $\omega_n=3\ge3$, $\zeta=0.7\ge0.591$, and $\sigma=2.1\ge1.53$. Yet the actual 10–90% rise time is about 0.709 s, which is $\omega_nt_r\approx2.13$ from §5.2 divided by $\omega_n=3$, exceeding 0.6 s. The overshoot constraint is exact for the standard pair; the rise-time circle and settling-time line require verification.
 
 ---
 
@@ -372,9 +424,27 @@ H_2(s)=\frac{2(s+1.1)}{1.1(s+1)(s+2)}=\frac{2/11}{s+1}+\frac{18/11}{s+2}
 \tag{3.79}
 $$
 
+**The residues, by cover-up.** Both transfer functions have $H(0)=1$: $2/(1\cdot2)=1$ and $2(1.1)/(1.1\cdot1\cdot2)=1$. The 1.1 in the denominator of $H_2$ is there to make that true.
+
+$$
+H_1:\quad
+\left.\frac{2}{s+2}\right|_{s=-1}=\frac{2}{1}=2,
+\qquad
+\left.\frac{2}{s+1}\right|_{s=-2}=\frac{2}{-1}=-2 .
+$$
+
+$$
+H_2:\quad
+\left.\frac{2(s+1.1)}{1.1(s+2)}\right|_{s=-1}=\frac{2(0.1)}{1.1(1)}=\frac{0.2}{1.1}=\frac{2}{11},
+\qquad
+\left.\frac{2(s+1.1)}{1.1(s+1)}\right|_{s=-2}=\frac{2(-0.9)}{1.1(-1)}=\frac{1.8}{1.1}=\frac{18}{11} .
+$$
+
+The factor $(s+1.1)$ evaluated at the pole $s=-1$ is $0.1$. That small number is the whole effect.
+
 $$
 \boxed{
-\text{the coefficient of }e^{-t}\text{ fell from }2\text{ to }0.18
+\text{the coefficient of }e^{-t}\text{ fell from }2\text{ to }2/11\approx0.18
 }
 $$
 
@@ -420,7 +490,13 @@ For $\alpha>0$, **read $\alpha$ as the ratio of the zero's distance from the ima
 
 This is the explanation that makes both the LHP and the RHP case obvious, so give it the board.
 
-Set $\omega_n=1$ and split Eq. (3.80) into two terms:
+Set $\omega_n=1$. Eq. (3.80) becomes
+
+$$
+H(s)=\frac{\dfrac{s}{\alpha\zeta}+1}{s^2+2\zeta s+1} .
+$$
+
+The numerator is a sum of two terms, so split the fraction into two terms over the same denominator:
 
 $$
 \boxed{
@@ -430,7 +506,7 @@ H(s)=\underbrace{\frac{1}{s^2+2\zeta s+1}}_{H_0(s)}
 }
 $$
 
-The second term is a constant times $s$ times the first. Multiplication by $s$ is differentiation. Therefore, in the time domain,
+The second term is a constant times $s$ times the first. With a step input, $Y=H/s$, so $Y=Y_0+\frac1{\alpha\zeta}sY_0$ with $Y_0=H_0/s$. By property 5 of L1 §9, $\mathcal L\{\dot y_0\}=sY_0-y_0(0^-)=sY_0$, because the system starts at rest. Multiplication by $s$ is differentiation. Therefore, in the time domain,
 
 $$
 \boxed{
@@ -474,7 +550,9 @@ $$
 }
 $$
 
-This is **nonminimum-phase** behaviour. Here $\dot y(0^+)=1/(\alpha\zeta)<0$ in normalised units, which proves the initial reversal. In general, having RHP zeros does not always mean the step response's first motion is backwards; other zeros and the relative degree matter. For example, two real RHP zeros can give an initially positive response followed by an inverse excursion. The unstable zero-dynamics interpretation is developed in *(0.0.8 §31–§34)*.
+This is **nonminimum-phase** behaviour. Here $\dot y(0^+)=1/(\alpha\zeta)<0$ in normalised units, which proves the initial reversal.
+
+*Derivation of the initial slope.* Differentiate the decomposition: $\dot y=\dot y_0+\frac1{\alpha\zeta}\ddot y_0$. For the zero-free pair, $\dot y_0=h_0$, which has $h_0(0^+)=0$ by Eq. (3.66) because $\sin0=0$. Its derivative at $0^+$ is $\ddot y_0(0^+)=\omega_n^2=1$, from differentiating Eq. (3.66) or from the initial value theorem, $\lim_{s\to\infty}s^2H_0(s)=1$. So $\dot y(0^+)=0+\frac1{\alpha\zeta}\cdot1=1/(\alpha\zeta)$, which is negative for $\alpha<0$. In general, having RHP zeros does not always mean the step response's first motion is backwards; other zeros and the relative degree matter. For example, two real RHP zeros can give an initially positive response followed by an inverse excursion. The unstable zero-dynamics interpretation is developed in *(0.0.8 §31–§34)*.
 
 > **[ DEMO 3, continued ]** — the RHP table
 >
@@ -498,11 +576,29 @@ H(s)=\frac{24}{z}\cdot\frac{s+z}{(s+4)(s+6)},
 \qquad z=1,\dots,6
 $$
 
-The step response works out to
+The factor $24/z$ makes the DC gain unity: $H(0)=\frac{24}{z}\cdot\frac{z}{4\cdot6}=1$. For a unit step,
+
+$$
+Y(s)=\frac{24}{z}\cdot\frac{s+z}{s(s+4)(s+6)}=\frac{C_0}{s}+\frac{C_4}{s+4}+\frac{C_6}{s+6} .
+$$
+
+Cover up each factor:
+
+$$
+C_0=\frac{24}{z}\cdot\frac{z}{(4)(6)}=1,
+\qquad
+C_4=\frac{24}{z}\cdot\frac{z-4}{(-4)(2)}=-\frac{3(z-4)}{z}=\frac{12}{z}-3,
+\qquad
+C_6=\frac{24}{z}\cdot\frac{z-6}{(-6)(-2)}=\frac{2(z-6)}{z}=2-\frac{12}{z} .
+$$
+
+So the step response is
 
 $$
 y(t)=1+\left(\frac{12}{z}-3\right)e^{-4t}+\left(2-\frac{12}{z}\right)e^{-6t} .
 $$
+
+*Check:* $y(0)=1+\frac{12}{z}-3+2-\frac{12}{z}=0$ for every $z$ ✓.
 
 > **[ FIG 3.32 ]** — PDF p. 127 *(slide)*
 
@@ -516,6 +612,16 @@ Read the coefficients as $z$ moves, from Demo 3's table:
 | 4 | $0$ | $-1.000$ | 0 |
 | 5 | $-0.600$ | $-0.400$ | 0 |
 | 6 | $-1.000$ | $0$ | 0 |
+
+**The overshoot column, by hand [beyond the book].** Write $c_4$ and $c_6$ for the two coefficients. A peak needs $\dot y=-4c_4e^{-4t}-6c_6e^{-6t}=0$. Dividing by $e^{-6t}$ gives $e^{2t_p}=-\dfrac{6c_6}{4c_4}$. This has a positive solution only when $c_4>0>c_6$ and $-6c_6>4c_4$, which is the case $z<4$. Let $r=e^{-2t_p}=-\dfrac{2c_4}{3c_6}$. Then $e^{-4t_p}=r^2$, $e^{-6t_p}=r^3$, and $y(t_p)=1+c_4r^2+c_6r^3$:
+
+| $z$ | $c_4,\ c_6$ | $r$ | $t_p=-\tfrac12\ln r$ | $y(t_p)$ |
+|---:|---|---:|---:|---|
+| 1 | $9,\ -10$ | $\tfrac35$ | 0.255 s | $1+9(0.36)-10(0.216)=2.08$ |
+| 2 | $3,\ -4$ | $\tfrac12$ | 0.347 s | $1+\tfrac34-\tfrac48=1.25$ |
+| 3 | $1,\ -2$ | $\tfrac13$ | 0.549 s | $1+\tfrac19-\tfrac2{27}=1.037$ |
+
+These reproduce 108%, 25% and 3.7%. For $4\le z\le6$ both coefficients are $\le0$, so $y<1$ for all $t>0$ and there is no overshoot.
 
 Three things to point at:
 
@@ -541,7 +647,7 @@ Then read the book's warning, which is the whole lesson of the example:
 
 > *In practice, the locations of the lightly damped poles are not known precisely, and exact cancellation is not really possible.*
 
-**[beyond the book]** The stated transfer function has DC gain $(\alpha^2+\beta^2)/1.01$, giving 1.00, 1.052 and 1.238 for the three cases. Fig. 3.34 is drawn about a common final value of 1, suggesting an unstated normalisation or a plotting inconsistency. To reproduce that comparison explicitly, plot $H(s)/H(0)$ and label it normalised. The source does not state the normalisation. Placing compensator zeros near a resonance can attenuate its response, but exact cancellation is sensitive to modelling error. L4 treats unstable cancellations.
+**[beyond the book]** The stated transfer function has DC gain $H(0)=\dfrac{\alpha^2+\beta^2}{1\cdot(0.1^2+1)}=\dfrac{\alpha^2+\beta^2}{1.01}$. For the three cases this is $1.01/1.01=1.00$, $1.0625/1.01=1.052$ and $1.25/1.01=1.238$. Fig. 3.34 is drawn about a common final value of 1, suggesting an unstated normalisation or a plotting inconsistency. To reproduce that comparison explicitly, plot $H(s)/H(0)$ and label it normalised. The source does not state the normalisation. Placing compensator zeros near a resonance can attenuate its response, but exact cancellation is sensitive to modelling error. L4 treats unstable cancellations.
 
 ---
 
@@ -553,7 +659,7 @@ $$
 }
 $$
 
-Altitude $h$ from elevator angle $\delta_e$, for a Boeing 747. A zero at $s=+6$, poles at $s=0$ and $s=-2\pm3j$.
+Altitude $h$ from elevator angle $\delta_e$, for a Boeing 747. A zero at $s=+6$, from $s-6=0$. Poles at $s=0$ and at the roots of $s^2+4s+13$, which are $s=\frac{-4\pm\sqrt{16-52}}{2}=-2\pm3j$.
 
 > **[ FIG 3.35 ]** — PDF p. 132 *(slide)*
 
@@ -577,9 +683,19 @@ $$
 h(\infty)=\lim_{s\to0}s\cdot\frac{30(s-6)(-1)}{s(s^2+4s+13)}=\frac{30\times(-6)\times(-1)}{13}=+13.8 .
 $$
 
+The $s$ in front cancels the integrator pole, leaving $\dfrac{-30(s-6)}{s^2+4s+13}$ evaluated at $s=0$: $\dfrac{-30(-6)}{13}=\dfrac{180}{13}=13.85$.
+
+**The initial dip, from the transform [beyond the book].** The altitude transform is $H_{\rm alt}(s)=\dfrac{-30(s-6)}{s(s^2+4s+13)}$, which has relative degree 2. The initial value theorem gives $h(0^+)=\lim_{s\to\infty}sH_{\rm alt}=0$ and $\dot h(0^+)=\lim_{s\to\infty}s^2H_{\rm alt}=-30$. The aircraft starts at the reference altitude and moves **down** at first, as the physics said.
+
 **Note why an impulse gives a finite final value:** the pole at the origin integrates, and the integral of an impulse is a constant. A step input would give an altitude that increases forever.
 
-Here $sH_{\rm altitude}(s)$ has poles $-2\pm3j$, so the Final Value Theorem applies to this impulse response even though the altitude plant itself has an integrator and is not BIBO stable. After scaling, the altitude impulse response equals the step response of a second-order pair with a RHP zero (see Demo 4 below). From $s^2+4s+13$: $\omega_n=\sqrt{13}=3.61$ rad/s, $\zeta=2/\sqrt{13}=0.55$, $\sigma=2$.
+Here $sH_{\rm altitude}(s)$ has poles $-2\pm3j$, so the Final Value Theorem applies to this impulse response even though the altitude plant itself has an integrator and is not BIBO stable. After scaling, the altitude impulse response equals the step response of a second-order pair with a RHP zero (see Demo 4 below). Match $s^2+4s+13$ to $s^2+2\zeta\omega_ns+\omega_n^2$. This gives $\omega_n=\sqrt{13}=3.61$ rad/s, $2\zeta\omega_n=4$ so $\zeta=2/\sqrt{13}=0.555$, and $\sigma=\zeta\omega_n=2$, agreeing with the real part of the roots.
+
+The estimates in the table follow:
+
+- $t_r\simeq1.8/3.606=0.50$ s.
+- For overshoot, $\sqrt{1-\zeta^2}=\sqrt{9/13}=3/\sqrt{13}$, so the exponent is $\pi\zeta/\sqrt{1-\zeta^2}=\pi\cdot\tfrac{2}{3}=2.094$ and $M_p=e^{-2.094}=0.123$.
+- $t_s\simeq4.6/2=2.30$ s.
 
 | Quantity | Estimate | Source | Recomputed from the model (Demo 4) |
 |---|---|---|---|
@@ -591,7 +707,7 @@ Here $sH_{\rm altitude}(s)$ has poles $-2\pm3j$, so the Final Value Theorem appl
 
 > **[ DEMO 4 ]** — `ch3/l3_demo4_extra_pole_aircraft.py` *(live, ~10 s)*
 >
-> **Teaching check [beyond the book]:** For the negative unit elevator impulse, verify $h(\infty)=180/13\approx13.846$ and an initial minimum near $-1.68$. The altitude transform is $\frac{180}{13}\frac{1-s/6}{s}\frac{13}{s^2+4s+13}$: after scaling, this impulse response is exactly the step response of the second-order pair with a RHP zero. This explains why the second-order estimates are useful here.
+> **Teaching check [beyond the book]:** For the negative unit elevator impulse, verify $h(\infty)=180/13\approx13.846$ and an initial minimum near $-1.68$. The altitude transform is $\frac{180}{13}\frac{1-s/6}{s}\frac{13}{s^2+4s+13}$. To see this, factor $-30(s-6)=180(1-s/6)$ and split $180=\frac{180}{13}\cdot13$. After scaling, this impulse response is exactly the step response of the second-order pair with a RHP zero: $1/s$ is the step, and the rest is a unit-DC-gain pair with the zero at $+6$. This explains why the second-order estimates are useful here.
 
 ---
 
@@ -715,6 +831,15 @@ $$
 | 3.41 | Sketch a step response, then compare with Matlab | Predict from poles and zeros before computing. |
 
 **Suggested additional exercise [beyond the book]:** compare the altitude impulse responses of $-30(s-6)/[s(s^2+4s+13)]$ and $30(s+6)/[s(s^2+4s+13)]$. They have the same poles and final altitude $180/13$, so the comparison isolates zero location. Report undershoot, rise time, and overshoot.
+
+*Answer key (numerical, 1% settling).*
+
+| Zero | Undershoot | $t_r$ | $M_p$ | $t_s$ |
+|---|---:|---:|---:|---:|
+| $+6$ (RHP, the 747) | $-1.68$ | 0.43 s | 13.8% | 2.54 s |
+| $-6$ (LHP mirror) | none | 0.38 s | 15.8% | 2.24 s |
+
+Both zeros are $6=3\sigma$ from the imaginary axis ($|\alpha|=3$ in the normalised family), so both overshoot a little more than the zero-free 12.3%. Only the RHP zero dips first and rises more slowly.
 
 ## 17. Instructor cautions
 

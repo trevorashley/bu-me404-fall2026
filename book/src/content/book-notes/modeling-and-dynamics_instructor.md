@@ -643,6 +643,14 @@ $$
 
 Mention it, verify by substitution if you have the time, and move on.
 
+**The substitution, if there is time.** The $Ae^{st}$ part solves the equation already, so check only $x=te^{st}$. Its derivatives are $\dot x=(1+st)e^{st}$ and $\ddot x=(2s+s^2t)e^{st}$. Substituting and grouping by powers of $t$:
+
+$$
+m\ddot x+c\dot x+kx=\big[\underbrace{(ms^2+cs+k)}_{=0\text{ (root)}}\,t+\underbrace{(2ms+c)}_{=0\text{ at }s=-c/2m}\big]e^{st}=0 .
+$$
+
+The first bracket vanishes because $s$ is a root. The second vanishes *only* because the root is repeated: $2ms+c$ is the derivative of the characteristic polynomial, and a repeated root is also a root of the derivative. For distinct roots the second bracket is nonzero, and $te^{st}$ is not a solution.
+
 ### 7.3 Undamped: $c=0$
 
 The roots are purely imaginary:
@@ -658,7 +666,13 @@ This oscillatory case returns as a zero in the undamped antiresonance (§15) and
 
 ### 7.4 Underdamped: $0<c<2\sqrt{mk}$
 
-The roots are a complex-conjugate pair. Write them explicitly in terms of the physical parameters:
+The roots are a complex-conjugate pair. Here $c^2-4mk<0$, so write $\sqrt{c^2-4mk}=j\sqrt{4mk-c^2}$ in the quadratic formula and split it into its real and imaginary parts:
+
+$$
+s_{1,2}=\frac{-c}{2m}\pm j\frac{\sqrt{4mk-c^2}}{2m} .
+$$
+
+Write them explicitly in terms of the physical parameters:
 
 $$
 \boxed{
@@ -693,7 +707,7 @@ $$
 \end{array}}
 $$
 
-Worth a numerical demonstration on the board, with $m=1$, $k=25$ (so $\omega_n=5$):
+Worth a numerical demonstration on the board, with $m=1$, $k=25$ (so $\omega_n=5$). Each row uses $\sigma=-c/2$ and $\omega_d=\sqrt{100-c^2}/2$. For example, $c=4$ gives $\omega_d=\sqrt{84}/2=4.58$, and $|s|=\sqrt{4+21}=5$:
 
 | $c$ | $\sigma$ | $\omega_d$ | $\lvert s\rvert$ |
 |---:|---:|---:|---:|
@@ -758,7 +772,17 @@ x(t)=A_1e^{s_1t}+\overline{A_1}e^{\overline{s_1}t}
 =2\,\Re\!\left\{A_1e^{(\sigma+j\omega_d)t}\right\},
 $$
 
-which expands to the form students already know:
+The first equality holds because a number plus its conjugate is twice its real part, and $\overline{A_1e^{s_1t}}=\overline{A_1}e^{\overline{s_1}t}$ for real $t$.
+
+**Expand it.** Write $A_1=\alpha+j\beta$ with $\alpha,\beta$ real, and use Euler's identity:
+
+$$
+A_1e^{(\sigma+j\omega_d)t}
+=e^{\sigma t}(\alpha+j\beta)(\cos\omega_dt+j\sin\omega_dt)
+=e^{\sigma t}\left[(\alpha\cos\omega_dt-\beta\sin\omega_dt)+j(\beta\cos\omega_dt+\alpha\sin\omega_dt)\right].
+$$
+
+Twice the real part is $e^{\sigma t}(2\alpha\cos\omega_dt-2\beta\sin\omega_dt)$. This is the form students already know, with $B=2\alpha$ and $C=-2\beta$:
 
 $$
 \boxed{
@@ -771,11 +795,17 @@ C\sin\omega_d t
 }
 $$
 
-with $B$ and $C$ real and fixed by the initial conditions, or equivalently
+with $B$ and $C$ real and fixed by the initial conditions. Equivalently,
 
 $$
-x(t)=Re^{\sigma t}\cos(\omega_d t+\psi).
+x(t)=Re^{\sigma t}\cos(\omega_d t+\psi),
+\qquad
+R=\sqrt{B^2+C^2}=2|A_1|,
+\qquad
+\psi=\angle A_1 ,
 $$
+
+since $2\Re\{|A_1|e^{j\psi}e^{j\omega_dt}\}=2|A_1|\cos(\omega_dt+\psi)$. Problem 6 (§37) has $A_1=1-j/3$, which gives $B=2$ and $C=2/3$.
 
 #### Instructor script
 
@@ -988,7 +1018,13 @@ Js^2+bs-m_pgl=0
 }
 $$
 
-The product of the roots is $-m_pgl/J<0$, so the two roots are real with **opposite signs**. One of them therefore lies in the right half plane:
+The product of the roots is $-m_pgl/J<0$, so the two roots are real with **opposite signs**. (The product of the roots of $a_2s^2+a_1s+a_0$ is $a_0/a_2$. A complex pair has product $|s|^2>0$, so a negative product rules out complex roots.) Explicitly,
+
+$$
+s_{1,2}=\frac{-b\pm\sqrt{b^2+4Jm_pgl}}{2J},
+$$
+
+and $\sqrt{b^2+4Jm_pgl}>b$, so the "$+$" root is strictly positive for any damping. One of them therefore lies in the right half plane:
 
 $$
 e^{st},
@@ -1141,7 +1177,7 @@ x_2=X_2e^{st},
 u=Ue^{st}.
 $$
 
-Then
+Each derivative becomes a factor of $s$: $\dot x_i\to sX_ie^{st}$ and $\ddot x_i\to s^2X_ie^{st}$. Cancel $e^{st}$ from every term of the two collected equations of §11. The first becomes $[m_1s^2+(c_1+c_2)s+(k_1+k_2)]X_1-(c_2s+k_2)X_2=U$, and the second becomes $-(c_2s+k_2)X_1+(m_2s^2+c_2s+k_2)X_2=0$. In matrix form:
 
 $$
 \begin{bmatrix}
@@ -1218,7 +1254,14 @@ $D(s)$ is a fourth-degree polynomial for the four-state model. Its roots are the
 
 The actuator acts on $m_1$, and the sensor also measures $x_1$. This is a **collocated** input-output pair: force is applied at the same coordinate whose displacement is measured. Force and displacement are conjugate for virtual work; force and velocity are conjugate for power (§25).
 
-Solving the $2\times2$ system by Cramer's rule,
+Solving the $2\times2$ system by Cramer's rule, replace the first column of the matrix with the right-hand side $(U,0)^{\mathsf T}$ and divide by $D(s)$:
+
+$$
+X_1=\frac{1}{D(s)}\det\begin{bmatrix}U&-K_2(s)\\0&m_2s^2+K_2(s)\end{bmatrix}
+=\frac{U\left(m_2s^2+K_2(s)\right)-0}{D(s)} .
+$$
+
+With $K_2=c_2s+k_2$, this gives
 
 $$
 \boxed{
@@ -1391,7 +1434,14 @@ $$
 y=x_2 .
 $$
 
-Cramer's rule on the same matrix gives
+Cramer's rule on the same matrix, now replacing the *second* column with $(U,0)^{\mathsf T}$, gives
+
+$$
+X_2=\frac{1}{D(s)}\det\begin{bmatrix}m_1s^2+c_1s+k_1+K_2(s)&U\\-K_2(s)&0\end{bmatrix}
+=\frac{0-U\cdot\left(-K_2(s)\right)}{D(s)}=\frac{K_2(s)\,U}{D(s)} ,
+$$
+
+that is,
 
 $$
 \boxed{
@@ -1525,6 +1575,8 @@ Relate the name to a concrete comparison:
 > Compare stable causal rational systems with the same magnitude response and the same nonzero DC gain. The minimum-phase one has the least phase lag. For a real $z>0$, reflecting a zero from $-z$ to $+z$ while preserving DC gain multiplies in
 > $$A_{\mathrm{ap}}(s)=\frac{z-s}{z+s},\qquad |A_{\mathrm{ap}}(j\omega)|=1.$$
 > Its phase is $-2\arctan(\omega/z)$: it starts at zero and approaches $-180^\circ$ as frequency increases.
+
+The factor is what you get by dividing the reflected plant by the original. With $G_+(s)=(z-s)R(s)$ and $G_-(s)=(z+s)R(s)$ for the same $R(s)$, both have the same DC gain $zR(0)$, and $G_+=A_{\mathrm{ap}}G_-$. At $s=j\omega$, the numerator $z-j\omega$ and denominator $z+j\omega$ are conjugates, so they have equal magnitude, which gives $|A_{\mathrm{ap}}|=1$. Their angles are $-\arctan(\omega/z)$ and $+\arctan(\omega/z)$, so the quotient's phase is $-\arctan(\omega/z)-\arctan(\omega/z)=-2\arctan(\omega/z)$.
 
 That extra phase lag is one way to see the feedback difficulty. §34 states the associated interpolation constraint.
 
@@ -1660,7 +1712,13 @@ sX(s)-x(0^-)
 }
 $$
 
-and similarly
+and similarly, applying the same rule to $\dot x$ in place of $x$ (so $\ddot x$ is the derivative of $\dot x$):
+
+$$
+\mathcal L\{\ddot x\}=s\,\mathcal L\{\dot x\}-\dot x(0^-)=s\left[sX(s)-x(0^-)\right]-\dot x(0^-),
+$$
+
+so
 
 $$
 \boxed{
@@ -1710,7 +1768,15 @@ kX
 F.
 $$
 
-The initial conditions enter the algebra directly. The exponential method can also enforce them by adding homogeneous solutions, as in §5 and §7; the gain calculation alone does not. Rearranging gives
+The initial conditions enter the algebra directly. The exponential method can also enforce them by adding homogeneous solutions, as in §5 and §7; the gain calculation alone does not.
+
+To rearrange, keep the $X$ terms on the left and move the initial-condition terms to the right:
+
+$$
+(ms^2+cs+k)X=F+msx(0^-)+m\dot x(0^-)+cx(0^-)=F+(ms+c)x(0^-)+m\dot x(0^-) .
+$$
+
+Dividing by $ms^2+cs+k$ gives
 
 $$
 \boxed{
@@ -1762,21 +1828,45 @@ Return to $C\dot x+x/R=q_{\mathrm{in}}$ with $x(0^-)=0$ and $\tau=RC$. Switch th
 Two transform pairs follow directly from the integral:
 
 $$
-\mathcal L\{1\}=\int_0^\infty e^{-st}\,dt=\frac1s
+\mathcal L\{1\}=\int_0^\infty e^{-st}\,dt=\left[-\frac{e^{-st}}{s}\right]_0^\infty=\frac1s
 \quad (\Re(s)>0),
-\qquad
-\mathcal L\{e^{-t/\tau}\}=\frac1{s+1/\tau}
+$$
+
+$$
+\mathcal L\{e^{-t/\tau}\}=\int_0^\infty e^{-(s+1/\tau)t}\,dt=\left[-\frac{e^{-(s+1/\tau)t}}{s+1/\tau}\right]_0^\infty=\frac1{s+1/\tau}
 \quad (\Re(s)>-1/\tau).
 $$
+
+The second is the first with $s$ replaced by $s+1/\tau$. The upper limits vanish because the real part of the exponent is negative in each stated region.
 
 Here the functions on the left are understood for $t\ge0$. Therefore the switched input has transform $Q(s)=q_0/s$. Apply the derivative rule to the thermal equation:
 
 $$
-\left(Cs+\frac1R\right)X(s)=Q(s),
-\qquad
-X(s)=\frac{Rq_0}{s(\tau s+1)}
-=Rq_0\left(\frac1s-\frac1{s+1/\tau}\right).
+\left(Cs+\frac1R\right)X(s)-Cx(0^-)=Q(s),
+\qquad x(0^-)=0 .
 $$
+
+Multiply by $R$, so that $Cs+1/R$ becomes $(RCs+1)/R=(\tau s+1)/R$:
+
+$$
+X(s)=\frac{R}{\tau s+1}\cdot\frac{q_0}{s}=\frac{Rq_0}{s(\tau s+1)} .
+$$
+
+*Partial fractions.* Divide top and bottom by $\tau$ so each factor is monic: $X=\dfrac{Rq_0/\tau}{s(s+1/\tau)}$. Cover up each factor:
+
+$$
+\text{at }s=0:\ \frac{Rq_0/\tau}{1/\tau}=Rq_0,
+\qquad
+\text{at }s=-1/\tau:\ \frac{Rq_0/\tau}{-1/\tau}=-Rq_0 ,
+$$
+
+so
+
+$$
+X(s)=Rq_0\left(\frac1s-\frac1{s+1/\tau}\right).
+$$
+
+*Check:* $\dfrac1s-\dfrac1{s+1/\tau}=\dfrac{1/\tau}{s(s+1/\tau)}=\dfrac{1}{s(\tau s+1)}$ ✓.
 
 Read the answer back from the two transform pairs:
 
@@ -1784,11 +1874,18 @@ $$
 \boxed{x(t)=Rq_0\left(1-e^{-t/\tau}\right),\qquad t\ge0.}
 $$
 
-**Check it with the class:** $x(0)=0$, $x(\infty)=Rq_0$, and $\dot x(0^+)=q_0/C$, as the energy balance requires. After one time constant, the rise is about 63% complete.
+**Check it with the class:**
+- $x(0)=Rq_0(1-1)=0$.
+- $x(\infty)=Rq_0$, where the heater input balances the loss through $R$: $q_0=x/R$.
+- $\dot x(0^+)=Rq_0/\tau=q_0/C$. The energy balance requires exactly this, because at $t=0^+$ nothing has yet leaked through $R$, so $C\dot x=q_0$.
+
+After one time constant, $1-e^{-1}=0.632$, so the rise is about 63% complete.
 
 > We transformed a switched input, solved an algebraic equation, and recovered the time response. The decaying exponential is present even though the initial state was zero: it makes the complete response start at the required temperature.
 
 **Optional instructor follow-up:** At the natural test rate, $q_{\mathrm{in}}=q_0e^{-t/\tau}$, the same-exponential gain is undefined. The particular solution is instead $(q_0/C)t e^{-t/\tau}$. A pole marks failure of that trial form, not an infinite temperature.
+
+To verify, substitute $x_p=(q_0/C)te^{-t/\tau}$. Then $C\dot x_p=q_0e^{-t/\tau}-(q_0/\tau)te^{-t/\tau}$, and $x_p/R=(q_0/RC)te^{-t/\tau}=(q_0/\tau)te^{-t/\tau}$. The $te^{-t/\tau}$ terms cancel, leaving $C\dot x_p+x_p/R=q_0e^{-t/\tau}$ ✓. This is the same "multiply by $t$" repair as the repeated root in §7.2.
 
 ---
 
@@ -2010,6 +2107,16 @@ m_{\text{eff}}
 m+\frac{J_b}{r^2}.
 $$
 
+To see where $m_{\text{eff}}$ comes from, let $F$ be the friction force from the beam on the ball, acting up the slope at the contact point. The ball's translation and its spin about its own center are then
+
+$$
+m\ddot x=mg\sin\alpha-F,
+\qquad
+J_b\dot\omega_b=Fr .
+$$
+
+No-slip gives $\dot\omega_b=\ddot x/r$, so $F=J_b\ddot x/r^2$. Substituting into the translation equation, $m\ddot x=mg\sin\alpha-(J_b/r^2)\ddot x$. The friction needed to spin the ball acts like extra mass.
+
 The component of gravity along the beam is exactly $mg\sin\alpha$. Two approximations are being made in what follows, and it is worth naming them: we drop the centrifugal term $m x\dot\alpha^2$ (small when the beam rotates slowly), and we ignore the ball's effect on the beam's own dynamics. Then
 
 $$
@@ -2090,7 +2197,7 @@ $$
 J_{\text{beam}}\ddot\alpha=M .
 $$
 
-The neglected gravitational torque from the ball is proportional to $mgx$ near the centered equilibrium and is first order. Omitting it is an additional modeling assumption, not a consequence of small-angle linearization. This simplified cascade gives
+The neglected gravitational torque from the ball is proportional to $mgx$ near the centered equilibrium and is first order. Omitting it is an additional modeling assumption, not a consequence of small-angle linearization. This simplified cascade has $\mathcal A(s)/M(s)=1/(J_{\text{beam}}s^2)$, and multiplying by $X/\mathcal A=5g/(7s^2)$ gives
 
 $$
 \frac{X(s)}{M(s)}
@@ -2333,7 +2440,14 @@ $$
 \frac{ab}{Js^2+c_\theta s+k_\theta}.
 $$
 
-Over the common denominator:
+Over the common denominator, the numerator is the first fraction's numerator times the second denominator, minus the second numerator times the first denominator:
+
+$$
+1\cdot(Js^2+c_\theta s+k_\theta)-ab\,(ms^2+c_xs+k_x)
+=(J-abm)s^2+(c_\theta-abc_x)s+(k_\theta-abk_x) .
+$$
+
+Therefore
 
 $$
 \boxed{
@@ -2383,7 +2497,9 @@ $$
 \boxed{AC<0\ \Rightarrow\ \text{one RHP zero for every damping distribution}}
 $$
 
-Show the $AC<0$ case with $ab=0.15$ and the numbers below. The left family has $c_\theta=0.1c_x$; the right family has $c_\theta=0.25c_x$ and includes the worked case:
+Show the $AC<0$ case with $ab=0.15$ and the numbers below. The left family has $c_\theta=0.1c_x$; the right family has $c_\theta=0.25c_x$ and includes the worked case.
+
+Each row uses the worked-case values $m=1$, $J=0.1$, $k_x=100$, $k_\theta=20$. These fix $A=0.1-0.15=-0.05$ and $C=20-15=5$, while $B=c_\theta-0.15c_x$. Dividing $As^2+Bs+C$ by $A$ gives $s^2-20Bs-100=0$, so $s=10B\pm\sqrt{100B^2+100}$. For example, $(c_x,c_\theta)=(2,0.2)$ gives $B=-0.1$ and $s=-1\pm\sqrt{101}=+9.05,\ -11.05$. The product is always $-100$:
 
 | $c_x$ | $c_\theta$ | zeros | $c_x$ | $c_\theta$ | zeros |
 |---:|---:|---|---:|---:|---|
@@ -2401,7 +2517,7 @@ The RHP zero moves a long way — and which direction it moves depends on the si
 > **Say:** "For this $AC<0$ geometry, damping moves the zero without changing its sign. The script sweeps farther than the table, to $c_x=60$: the two families reach about $+1.6$ and $+121$."
 > **Right panel:** all three step responses still start by going the wrong way, however heavily damped. That is the §33 point made in one picture.
 
-**2. If $ab<0$** — sensor and actuator on the *same* side of the center of mass — then $A>0$, $B>0$ and $C>0$, so both zeros lie in the open **left** half plane. (For the worked numbers below with $ab=-0.15$: $-1.60\pm j11.72$.) Only in the *undamped* case $B=0$ do those zeros sit exactly on the $j\omega$ axis.
+**2. If $ab<0$** — sensor and actuator on the *same* side of the center of mass — then $A>0$, $B>0$ and $C>0$, so both zeros lie in the open **left** half plane. (For the worked numbers below with $ab=-0.15$: $A=0.1+0.15=0.25$, $B=0.5+0.3=0.8$, $C=20+15=35$. Then $s^2+3.2s+140=0$ gives $s=-1.6\pm j\sqrt{140-2.56}=-1.60\pm j11.72$.) Only in the *undamped* case $B=0$ do those zeros sit exactly on the $j\omega$ axis.
 
 Note that "same side" is weaker than collocated: the two can sit at different points and still share a sign. True collocation is the special case $b=-a$, meaning the sensor is *at* the actuator, which gives $ab=-a^2<0$. So collocation lives inside this family, and the favorable sign structure of §25 turns out to extend to a strictly larger set of geometries than collocation alone. That is worth saying out loud — collocation is sufficient for good sign structure here, not necessary.
 
@@ -2413,8 +2529,8 @@ Take $m=1$, $J=0.1$, $k_x=100$, $k_\theta=20$, $c_x=2$, $c_\theta=0.5$, with $a=
 
 Check the condition: $J/m=0.1$ and $k_\theta/k_x=0.2$, and indeed $0.1<0.15<0.2$.
 
-- **Poles:** $s^2+2s+100=0 \Rightarrow s=-1\pm j9.95$, and $0.1s^2+0.5s+20=0 \Rightarrow s=-2.5\pm j13.92$. All four are stable.
-- **Numerator:** $A=-0.05$, $B=0.2$, $C=5$, so $-0.05s^2+0.2s+5=0$, i.e. $s^2-4s-100=0$, giving $s=-8.20$ and $\boxed{s=+12.20}$.
+- **Poles:** $s^2+2s+100=0 \Rightarrow s=-1\pm j\sqrt{100-1}=-1\pm j9.95$. Also $0.1s^2+0.5s+20=0$, i.e. $s^2+5s+200=0$, gives $s=-2.5\pm j\sqrt{200-6.25}=-2.5\pm j13.92$. All four are stable.
+- **Numerator:** $A=0.1-0.15(1)=-0.05$, $B=0.5-0.15(2)=0.2$, $C=20-0.15(100)=5$. So $-0.05s^2+0.2s+5=0$. Dividing by $-0.05$ gives $s^2-4s-100=0$, so $s=2\pm\sqrt{4+100}=2\pm10.198$. That is $s=-8.20$ and $\boxed{s=+12.20}$.
 
 A stable plant with a right-half-plane zero. Put these numbers on the board; they make §33 concrete rather than assertional.
 
@@ -2432,7 +2548,9 @@ $$
 y(\infty)=u_0\left(\frac1{k_x}-\frac{ab}{k_\theta}\right)=\frac{u_0C}{k_xk_\theta}.
 $$
 
-When $AC<0$, initial acceleration and final displacement have opposite signs. In the worked case, $J/m<ab<k_\theta/k_x$: rotation wins initially ($A=-0.05$), translation wins at DC ($C=5$). The reverse ordering, $k_\theta/k_x<ab<J/m$, also gives inverse response, with translation winning initially and rotation at DC. The distinction is acceleration gain versus static gain, not relative degree.
+Both formulas come straight from the two decoupled equations. At $t=0^+$ the system is at rest, so the damping and spring forces are zero. That leaves $m\ddot x=u_0$ and $J\ddot\theta=au_0$, and $\ddot y=\ddot x-b\ddot\theta$. At steady state all derivatives vanish, leaving $k_xx=u_0$ and $k_\theta\theta=au_0$, and $y=x-b\theta$. Put each over a common denominator to get the $A$ and $C$ forms. Equivalently, with $Y=(Y/U)\,u_0/s$, the initial value theorem gives $\ddot y(0^+)=\lim_{s\to\infty}s^3Y=\lim_{s\to\infty}s^2(Y/U)\,u_0=u_0A/(mJ)$, the ratio of leading coefficients. The final value theorem gives $y(\infty)=\lim_{s\to0}sY=(Y/U)(0)\,u_0=u_0C/(k_xk_\theta)$.
+
+When $AC<0$, initial acceleration and final displacement have opposite signs. In the worked case, $\ddot y(0^+)=u_0(-0.05)/(0.1)=-0.5u_0$ and $y(\infty)=u_0(5)/(2000)=0.0025u_0$. In the worked case, $J/m<ab<k_\theta/k_x$: rotation wins initially ($A=-0.05$), translation wins at DC ($C=5$). The reverse ordering, $k_\theta/k_x<ab<J/m$, also gives inverse response, with translation winning initially and rotation at DC. The distinction is acceleration gain versus static gain, not relative degree.
 
 This wrong-way motion is called an **inverse response**.
 
@@ -2451,7 +2569,7 @@ Keep this table in the handout or use it for Problem 8; the live example above n
 | $C/A>0$, $B/A<0$ | Both strictly in the RHP; real if $B^2-4AC\ge0$, otherwise conjugate |
 | $C/A>0$, $B=0$ | A purely imaginary conjugate pair |
 
-When $AC>0$, changing the damping distribution can change the half plane of the zeros. For the same $m,J,k_x,k_\theta$ as the worked example, but $ab=0.05$ and $c_x=2$:
+When $AC>0$, changing the damping distribution can change the half plane of the zeros. For the same $m,J,k_x,k_\theta$ as the worked example, but $ab=0.05$ and $c_x=2$, the coefficients are $A=0.1-0.05=0.05$, $C=20-5=15$ and $B=c_\theta-0.1$. Dividing by $A$ gives $s^2+20Bs+300=0$. For $c_\theta=0.05$ this is $s^2-s+300$, with roots $0.5\pm j\sqrt{299.75}$. For $c_\theta=0.20$ it is $s^2+2s+300$, with roots $-1\pm j\sqrt{299}$:
 
 $$
 \begin{array}{c|c|c}
@@ -2461,7 +2579,7 @@ c_\theta & N(s) & \text{zeros}\\ \hline
 \end{array}
 $$
 
-The plant poles remain in the LHP in both cases. Damping alone removes the RHP pair. Two **real** positive zeros are also possible outside the interval: with $ab=0.05$, $c_x=100$, $c_\theta=0.05$, the numerator is $0.05s^2-4.95s+15$, with roots approximately $3.12921$ and $95.87079$.
+The plant poles remain in the LHP in both cases. Damping alone removes the RHP pair. Two **real** positive zeros are also possible outside the interval: with $ab=0.05$, $c_x=100$, $c_\theta=0.05$, the numerator is $0.05s^2-4.95s+15$, with roots approximately $3.12921$ and $95.87079$. Here $B=0.05-0.05(100)=-4.95$. Dividing by $0.05$ gives $s^2-99s+300=0$, so $s=\tfrac12\left(99\pm\sqrt{9801-1200}\right)=\tfrac12(99\pm92.742)$.
 
 For positive $c_x$ and nonzero $A,B,C$, all three coefficients share a sign exactly when $ab$ lies strictly below all three ratios $J/m$, $k_\theta/k_x$, $c_\theta/c_x$, or strictly above all three. This is the generic LHP-zero condition. Handle boundaries separately: $A=0$ is item 3 above; $C=0$ gives a numerator factor $s$ and requires the usual cancellation check. Thus the “same side of three ratios” rule is not a substitute for checking degree reductions.
 
@@ -2577,7 +2695,7 @@ $$
 \frac{1}{Js^2},
 $$
 
-so
+so, since $Y=X-h\Theta$,
 
 $$
 \frac{Y}{M}
@@ -2587,7 +2705,7 @@ $$
 \frac{h}{Js^2}
 $$
 
-and therefore
+and therefore, writing the second term over $Js^4$ as $hs^2/(Js^4)$,
 
 $$
 \boxed{
@@ -2613,7 +2731,7 @@ s=+\sqrt{\frac gh}
 }
 $$
 
-This is a nonminimum-phase zero. Summarizing the geometry:
+This is a nonminimum-phase zero. For the point *above* the CM, the sign of the $h$ term flips: $Y/M=(g+hs^2)/(Js^4)$, and $g+hs^2=0$ gives $s^2=-g/h$, i.e. $s=\pm j\sqrt{g/h}$. Summarizing the geometry:
 
 | Measurement point | Output | Zeros | Character |
 |---|---|---|---|
@@ -2633,6 +2751,7 @@ Say it in those words. The recurrence is worth more to students than another def
 >
 > **Show:** the top panel first. Three outputs, one plant, one actuator; only the point below the centre of mass dips negative before recovering.
 > **Point at:** the wrong-way excursion ending at $t=\sqrt{12h/g}=0.49$ s — an exact analytic result the script confirms against `scipy.signal.step` to $10^{-12}$.
+> **Derivation of the crossing time.** For a torque step $M_0$ from rest, $\theta=\frac{M_0}{2J}t^2$. Integrating $\ddot x=g\theta$ twice gives $x=\frac{gM_0}{24J}t^4$. So $y=x-h\theta=\frac{M_0t^2}{2J}\left(\frac{gt^2}{12}-h\right)$. This is negative until $gt^2/12=h$, i.e. $t=\sqrt{12h/g}$. With $h=0.2$: $\sqrt{2.4/9.81}=0.4946$ s. The same formula gives $\theta=0.2446/(2\cdot0.02)=6.12$ rad for the script's unit torque.
 > **Then the lower-right panel:** $\theta(t)$ under $y\equiv0$, diverging on a log scale, lying exactly on $\cosh(\sqrt{g/h}\,t)$.
 > **Point at:** the three-row table. Divergence rate fitted from the simulation, $\sqrt{g/h}$, and the RHP zero of $Y/M$ all read $7.00357$.
 > **Say:** "The zero is the exponential growth rate of a motion compatible with keeping this output at zero. The linear zero dynamics are unstable."
@@ -2683,8 +2802,10 @@ $$
 For a camera $h=0.2\ \text{m}$ below the center of mass,
 
 $$
-z=\sqrt{\frac{9.81}{0.2}}\approx 7.0\ \mathrm{s}^{-1}.
+z=\sqrt{\frac{9.81}{0.2}}=\sqrt{49.05}\approx 7.0\ \mathrm{s}^{-1}.
 $$
+
+For the bandwidth estimate below, $z/2\approx3.5$ rad/s, and dividing by $2\pi$ gives about $0.56$ Hz.
 
 The design heuristic of §34 — keep crossover comfortably below the RHP zero, with $z/2$ a common illustrative target — then suggests a practical closed-loop bandwidth for that output somewhere around $3.5\ \text{rad/s}$, about $0.56\ \text{Hz}$. Treat that as an order-of-magnitude expectation, not a computed limit.
 
@@ -2870,6 +2991,8 @@ S(z)=1
 $$
 
 at every RHP zero $z$ of the plant. Internal stability excludes canceling that zero with a controller RHP pole.
+
+The one-line derivation: $G(z)=0$ at a zero, so $S(z)=1/[1+0\cdot K(z)]=1$. The only escape is for $K$ to have a pole at $z$, making $G(z)K(z)$ an indeterminate $0\cdot\infty$. That is exactly the forbidden RHP cancellation of item 4. Similarly, the complementary sensitivity $T=1-S$ satisfies $T(z)=0$: the closed loop inherits the plant's RHP zero.
 
 Read that carefully: for a real RHP zero, $z>0$ is a point on the **positive real axis of the $s$-plane**, not a sinusoidal frequency. Frequency response lives on $s=j\omega$, so it is wrong to say the sensitivity is stuck at 1 "at that frequency." $S(z)=1$ is an *analytic* constraint pinning the value of $S$ at one point of the complex plane — and because $S$ is analytic, pinning it there restricts how small it can be made along the $j\omega$ axis, which is where performance is actually measured. Together with stability and the remaining plant dynamics, this constraint underlies the tracking and robustness tradeoffs measured on the imaginary axis.
 

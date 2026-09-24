@@ -6,7 +6,7 @@ Physical laws lead to differential equations. Exponential trial solutions turn t
 
 **Prerequisites:** Basic ordinary differential equations, complex numbers, and elementary matrix algebra.
 
-**Next lecture:** [Zeros, Geometry, and Noncollocation](lecture_0.0.8_student_lecture_2.md).
+**Next lecture:** [Zeros, Geometry, and Noncollocation](modeling-and-dynamics-zeroes_student.md).
 
 ## Learning objectives
 
@@ -35,7 +35,7 @@ After studying this lecture, you should be able to:
 | $j$ | imaginary unit |
 | $s$ | complex exponential rate: solve for it in free motion; choose it when testing a forced response |
 | $s_i$ | a system-selected natural rate, located on the $s$-plane |
-| $A$ | complex amplitude in $x = Ae^{st}$; local coefficient/matrix uses in [Lecture 2, §4](lecture_0.0.8_student_lecture_2.md#section-4)/[Lecture 2, §9](lecture_0.0.8_student_lecture_2.md#section-9) are defined there |
+| $A$ | complex amplitude in $x = Ae^{st}$; local coefficient/matrix uses in [Lecture 2, §4](modeling-and-dynamics-zeroes_student.md#section-4)/[Lecture 2, §9](modeling-and-dynamics-zeroes_student.md#section-9) are defined there |
 | $\mathcal A(s)$ | Laplace transform of a beam angle $\alpha(t)$ |
 
 Physical masses, inertias, capacitances, resistances, and restoring stiffnesses are positive unless stated otherwise; damping coefficients are nonnegative. Amplitudes such as $X$ and $U$ are numbers. Transforms such as $X(s)$ and $U(s)$ are introduced in [§15](#section-15).
@@ -478,6 +478,14 @@ $$
 
 Substitution gives $[ (ms^2+cs+k)(A+Bt)+(2ms+c)B ]e^{st}=0$, because both $ms^2+cs+k=0$ and $2ms+c=0$ at the repeated root.
 
+**Why the repeated root matters.** The $Ae^{st}$ part solves the equation already, so the new piece to check is $x=te^{st}$. Its derivatives are $\dot x=(1+st)e^{st}$ and $\ddot x=(2s+s^2t)e^{st}$. Substituting and grouping by powers of $t$:
+
+$$
+m\ddot x+c\dot x+kx=\big[\underbrace{(ms^2+cs+k)}_{=0\text{ (root)}}\,t+\underbrace{(2ms+c)}_{=0\text{ at }s=-c/2m}\big]e^{st}=0 .
+$$
+
+The first bracket vanishes because $s$ is a root. The second vanishes *only* because the root is repeated: $2ms+c$ is the derivative of the characteristic polynomial, and a repeated root is also a root of the derivative. For distinct roots the second bracket is nonzero, and $te^{st}$ is not a solution.
+
 ### 4.3 Undamped: $c=0$ {#section-4-3}
 
 The roots are purely imaginary:
@@ -489,11 +497,17 @@ $$
 
 Here $\sigma=0$: neither growth nor decay, just sustained oscillation at the natural frequency $\omega_n=\sqrt{k/m}$.
 
-This oscillatory case returns as a zero in the undamped antiresonance ([§12](#section-12)) and for the above-CM quadrotor output ([Lecture 2, §6](lecture_0.0.8_student_lecture_2.md#section-6)). The quadrotor's repeated poles at the origin are different: they can produce polynomial motion ([§7](#section-7)).
+This oscillatory case returns as a zero in the undamped antiresonance ([§12](#section-12)) and for the above-CM quadrotor output ([Lecture 2, §6](modeling-and-dynamics-zeroes_student.md#section-6)). The quadrotor's repeated poles at the origin are different: they can produce polynomial motion ([§7](#section-7)).
 
 ### 4.4 Underdamped: $0<c<2\sqrt{mk}$ {#section-4-4}
 
-The roots are a complex-conjugate pair. Write them explicitly in terms of the physical parameters:
+The roots are a complex-conjugate pair. Here $c^2-4mk<0$, so write $\sqrt{c^2-4mk}=j\sqrt{4mk-c^2}$ in the quadratic formula and split it into its real and imaginary parts:
+
+$$
+s_{1,2}=\frac{-c}{2m}\pm j\frac{\sqrt{4mk-c^2}}{2m} .
+$$
+
+Write them explicitly in terms of the physical parameters:
 
 $$
 \boxed{
@@ -528,7 +542,7 @@ $$
 \end{array}}
 $$
 
-For a numerical example, take $m=1$, $k=25$ (so $\omega_n=5$):
+For a numerical example, take $m=1$, $k=25$ (so $\omega_n=5$). Each row uses $\sigma=-c/2$ and $\omega_d=\sqrt{100-c^2}/2$. For example, $c=4$ gives $\omega_d=\sqrt{84}/2=4.58$, and $|s|=\sqrt{4+21}=5$:
 
 | $c$ | $\sigma$ | $\omega_d$ | $\lvert s\rvert$ |
 |---:|---:|---:|---:|
@@ -588,7 +602,17 @@ x(t)=A_1e^{s_1t}+\overline{A_1}e^{\overline{s_1}t}
 =2\,\Re\!\left\{A_1e^{(\sigma+j\omega_d)t}\right\},
 $$
 
-which expands to a real form:
+The first equality holds because a number plus its conjugate is twice its real part, and $\overline{A_1e^{s_1t}}=\overline{A_1}e^{\overline{s_1}t}$ for real $t$.
+
+**Expand it.** Write $A_1=\alpha+j\beta$ with $\alpha,\beta$ real, and use Euler's identity:
+
+$$
+A_1e^{(\sigma+j\omega_d)t}
+=e^{\sigma t}(\alpha+j\beta)(\cos\omega_dt+j\sin\omega_dt)
+=e^{\sigma t}\left[(\alpha\cos\omega_dt-\beta\sin\omega_dt)+j(\beta\cos\omega_dt+\alpha\sin\omega_dt)\right].
+$$
+
+Twice the real part is $e^{\sigma t}(2\alpha\cos\omega_dt-2\beta\sin\omega_dt)$. This is a real form, with $B=2\alpha$ and $C=-2\beta$:
 
 $$
 \boxed{
@@ -601,11 +625,17 @@ C\sin\omega_d t
 }
 $$
 
-with $B$ and $C$ real and fixed by the initial conditions, or equivalently
+with $B$ and $C$ real and fixed by the initial conditions. Equivalently,
 
 $$
-x(t)=Re^{\sigma t}\cos(\omega_d t+\psi).
+x(t)=Re^{\sigma t}\cos(\omega_d t+\psi),
+\qquad
+R=\sqrt{B^2+C^2}=2|A_1|,
+\qquad
+\psi=\angle A_1 ,
 $$
+
+since $2\Re\{|A_1|e^{j\psi}e^{j\omega_dt}\}=2|A_1|\cos(\omega_dt+\psi)$. In the worked example below, $A_1=1-j/3$, which gives $B=2$ and $C=2/3$.
 
 The imaginary parts did not disappear. They cancelled, because they always arrive in pairs.
 
@@ -823,7 +853,13 @@ Js^2+bs-m_pgl=0
 }
 $$
 
-The product of the roots is $-m_pgl/J<0$, so the two roots are real with **opposite signs**. One of them therefore lies in the right half plane:
+The product of the roots is $-m_pgl/J<0$, so the two roots are real with **opposite signs**. (The product of the roots of $a_2s^2+a_1s+a_0$ is $a_0/a_2$. A complex pair has product $|s|^2>0$, so a negative product rules out complex roots.) Explicitly,
+
+$$
+s_{1,2}=\frac{-b\pm\sqrt{b^2+4Jm_pgl}}{2J},
+$$
+
+and $\sqrt{b^2+4Jm_pgl}>b$, so the "$+$" root is strictly positive for any damping. One of them therefore lies in the right half plane:
 
 $$
 e^{st},
@@ -972,7 +1008,7 @@ x_2=X_2e^{st},
 u=Ue^{st}.
 $$
 
-Then
+Each derivative becomes a factor of $s$: $\dot x_i\to sX_ie^{st}$ and $\ddot x_i\to s^2X_ie^{st}$. Cancel $e^{st}$ from every term of the two collected equations of [§8](#section-8). The first becomes $[m_1s^2+(c_1+c_2)s+(k_1+k_2)]X_1-(c_2s+k_2)X_2=U$, and the second becomes $-(c_2s+k_2)X_1+(m_2s^2+c_2s+k_2)X_2=0$. In matrix form:
 
 $$
 \begin{bmatrix}
@@ -1047,9 +1083,16 @@ $D(s)$ is a fourth-degree polynomial for the four-state model. Its roots are the
 
 ## 10. Collocated output: measure $x_1$ {#section-10}
 
-The actuator acts on $m_1$, and the sensor also measures $x_1$. This is a **collocated** input-output pair: force is applied at the same coordinate whose displacement is measured. Force and displacement are conjugate for virtual work; force and velocity are conjugate for power ([Lecture 2, §2](lecture_0.0.8_student_lecture_2.md#section-2)).
+The actuator acts on $m_1$, and the sensor also measures $x_1$. This is a **collocated** input-output pair: force is applied at the same coordinate whose displacement is measured. Force and displacement are conjugate for virtual work; force and velocity are conjugate for power ([Lecture 2, §2](modeling-and-dynamics-zeroes_student.md#section-2)).
 
-Solving the $2\times2$ system by Cramer's rule,
+Solving the $2\times2$ system by Cramer's rule, replace the first column of the matrix with the right-hand side $(U,0)^{\mathsf T}$ and divide by $D(s)$:
+
+$$
+X_1=\frac{1}{D(s)}\det\begin{bmatrix}U&-K_2(s)\\0&m_2s^2+K_2(s)\end{bmatrix}
+=\frac{U\left(m_2s^2+K_2(s)\right)-0}{D(s)} .
+$$
+
+With $K_2=c_2s+k_2$, this gives
 
 $$
 \boxed{
@@ -1127,7 +1170,7 @@ $$
 
 Holding the output at zero is **not free**. It requires a specific, generally nonzero input — and that input is exactly the coupling force that $m_2$ feeds back into $m_1$. The actuator's entire job is to cancel it.
 
-Zero dynamics are *the internal motion under the input that holds $y\equiv0$*. Both the internal motion and its required input belong to this description; [Lecture 2, §9](lecture_0.0.8_student_lecture_2.md#section-9) gives the state-space form.
+Zero dynamics are *the internal motion under the input that holds $y\equiv0$*. Both the internal motion and its required input belong to this description; [Lecture 2, §9](modeling-and-dynamics-zeroes_student.md#section-9) gives the state-space form.
 
 ![Zero measured displacement while the second mass moves and the actuator cancels its coupling force.](demos/figures/demo5_zero_dynamics.png)
 
@@ -1211,7 +1254,14 @@ $$
 y=x_2 .
 $$
 
-Cramer's rule on the same matrix gives
+Cramer's rule on the same matrix, now replacing the *second* column with $(U,0)^{\mathsf T}$, gives
+
+$$
+X_2=\frac{1}{D(s)}\det\begin{bmatrix}m_1s^2+c_1s+k_1+K_2(s)&U\\-K_2(s)&0\end{bmatrix}
+=\frac{0-U\cdot\left(-K_2(s)\right)}{D(s)}=\frac{K_2(s)\,U}{D(s)} ,
+$$
+
+that is,
 
 $$
 \boxed{
@@ -1225,7 +1275,7 @@ D(s)
 }
 $$
 
-The poles are unchanged, because the physical internal dynamics are unchanged. (This holds provided no pole-zero cancellation occurs; if a numerator root coincided with a denominator root, that mode would become invisible from this output, and the transfer function would no longer tell the whole story. See [§14](#section-14) and [Lecture 2, §11](lecture_0.0.8_student_lecture_2.md#section-11).)
+The poles are unchanged, because the physical internal dynamics are unchanged. (This holds provided no pole-zero cancellation occurs; if a numerator root coincided with a denominator root, that mode would become invisible from this output, and the transfer function would no longer tell the whole story. See [§14](#section-14) and [Lecture 2, §11](modeling-and-dynamics-zeroes_student.md#section-11).)
 
 But the numerator has changed. If $c_2>0$, the single finite zero is
 
@@ -1279,7 +1329,7 @@ G(s)=\frac{Y}{U}
 \frac{N(s)}{D(s)},
 $$
 
-where $N$ and $D$ are **coprime** — any common factors have already been cancelled. A canceled factor can hide an internal mode, as discussed in [Lecture 2, §11](lecture_0.0.8_student_lecture_2.md#section-11).
+where $N$ and $D$ are **coprime** — any common factors have already been cancelled. A canceled factor can hide an internal mode, as discussed in [Lecture 2, §11](modeling-and-dynamics-zeroes_student.md#section-11).
 
 The poles are the roots of
 
@@ -1317,7 +1367,7 @@ $$
 
 The *particular* response contains no $e^{zt}$ component at all. But the complete response is the particular solution plus the homogeneous one, and nothing has switched the homogeneous part off: the plant's own natural modes are still there, excited by the transient and by any nonzero initial condition. So the output need not be identically zero.
 
-What *is* true is the stronger statement [§11](#section-11) already gave us and [Lecture 2, §9](lecture_0.0.8_student_lecture_2.md#section-9) will formalize: there is an input $u_0e^{zt}$ and a matching initial state $\mathbf x(0)=\mathbf x_0$ such that $\mathbf x(t)=\mathbf x_0e^{zt}$ and the output is identically zero. For a conjugate pair of zeros, combine conjugate trajectories to obtain real motion. Exact blocking requires a compatible initial state.
+What *is* true is the stronger statement [§11](#section-11) already gave us and [Lecture 2, §9](modeling-and-dynamics-zeroes_student.md#section-9) will formalize: there is an input $u_0e^{zt}$ and a matching initial state $\mathbf x(0)=\mathbf x_0$ such that $\mathbf x(t)=\mathbf x_0e^{zt}$ and the output is identically zero. For a conjugate pair of zeros, combine conjugate trajectories to obtain real motion. Exact blocking requires a compatible initial state.
 
 At a transfer-function zero, the $e^{zt}$ component of the forced response is blocked at the chosen output. The system may nevertheless be moving internally — and the zero dynamics tell us what that hidden motion is.
 
@@ -1337,7 +1387,9 @@ Compare stable causal rational systems with the same magnitude response and the 
 $$A_{\mathrm{ap}}(s)=\frac{z-s}{z+s},\qquad |A_{\mathrm{ap}}(j\omega)|=1.$$
 Its phase is $-2\arctan(\omega/z)$: it starts at zero and approaches $-180^\circ$ as frequency increases.
 
-That extra phase lag is one way to see the feedback difficulty. [Lecture 2, §11](lecture_0.0.8_student_lecture_2.md#section-11) states the associated interpolation constraint.
+The factor is what you get by dividing the reflected plant by the original. With $G_+(s)=(z-s)R(s)$ and $G_-(s)=(z+s)R(s)$ for the same $R(s)$, both have the same DC gain $zR(0)$, and $G_+=A_{\mathrm{ap}}G_-$. At $s=j\omega$, the numerator $z-j\omega$ and denominator $z+j\omega$ are conjugates, so they have equal magnitude, which gives $|A_{\mathrm{ap}}|=1$. Their angles are $-\arctan(\omega/z)$ and $+\arctan(\omega/z)$, so the quotient's phase is $-\arctan(\omega/z)-\arctan(\omega/z)=-2\arctan(\omega/z)$.
+
+That extra phase lag is one way to see the feedback difficulty. [Lecture 2, §11](modeling-and-dynamics-zeroes_student.md#section-11) states the associated interpolation constraint.
 
 ---
 
@@ -1469,7 +1521,13 @@ sX(s)-x(0^-)
 }
 $$
 
-and similarly
+and similarly, applying the same rule to $\dot x$ in place of $x$ (so $\ddot x$ is the derivative of $\dot x$):
+
+$$
+\mathcal L\{\ddot x\}=s\,\mathcal L\{\dot x\}-\dot x(0^-)=s\left[sX(s)-x(0^-)\right]-\dot x(0^-),
+$$
+
+so
 
 $$
 \boxed{
@@ -1519,7 +1577,15 @@ kX
 F.
 $$
 
-The initial conditions enter the algebra directly. The exponential method can also enforce them by adding homogeneous solutions, as in [§2](#section-2) and [§4](#section-4); the gain calculation alone does not. Rearranging gives
+The initial conditions enter the algebra directly. The exponential method can also enforce them by adding homogeneous solutions, as in [§2](#section-2) and [§4](#section-4); the gain calculation alone does not.
+
+To rearrange, keep the $X$ terms on the left and move the initial-condition terms to the right:
+
+$$
+(ms^2+cs+k)X=F+msx(0^-)+m\dot x(0^-)+cx(0^-)=F+(ms+c)x(0^-)+m\dot x(0^-) .
+$$
+
+Dividing by $ms^2+cs+k$ gives
 
 $$
 \boxed{
@@ -1569,21 +1635,45 @@ Return to $C\dot x+x/R=q_{\mathrm{in}}$ with $x(0^-)=0$ and $\tau=RC$. Switch th
 Two transform pairs follow directly from the integral:
 
 $$
-\mathcal L\{1\}=\int_0^\infty e^{-st}\,dt=\frac1s
+\mathcal L\{1\}=\int_0^\infty e^{-st}\,dt=\left[-\frac{e^{-st}}{s}\right]_0^\infty=\frac1s
 \quad (\Re(s)>0),
-\qquad
-\mathcal L\{e^{-t/\tau}\}=\frac1{s+1/\tau}
+$$
+
+$$
+\mathcal L\{e^{-t/\tau}\}=\int_0^\infty e^{-(s+1/\tau)t}\,dt=\left[-\frac{e^{-(s+1/\tau)t}}{s+1/\tau}\right]_0^\infty=\frac1{s+1/\tau}
 \quad (\Re(s)>-1/\tau).
 $$
+
+The second is the first with $s$ replaced by $s+1/\tau$. The upper limits vanish because the real part of the exponent is negative in each stated region.
 
 Here the functions on the left are understood for $t\ge0$. Therefore the switched input has transform $Q(s)=q_0/s$. Apply the derivative rule to the thermal equation:
 
 $$
-\left(Cs+\frac1R\right)X(s)=Q(s),
-\qquad
-X(s)=\frac{Rq_0}{s(\tau s+1)}
-=Rq_0\left(\frac1s-\frac1{s+1/\tau}\right).
+\left(Cs+\frac1R\right)X(s)-Cx(0^-)=Q(s),
+\qquad x(0^-)=0 .
 $$
+
+Multiply by $R$, so that $Cs+1/R$ becomes $(RCs+1)/R=(\tau s+1)/R$:
+
+$$
+X(s)=\frac{R}{\tau s+1}\cdot\frac{q_0}{s}=\frac{Rq_0}{s(\tau s+1)} .
+$$
+
+*Partial fractions.* Divide top and bottom by $\tau$ so each factor is monic: $X=\dfrac{Rq_0/\tau}{s(s+1/\tau)}$. Cover up each factor:
+
+$$
+\text{at }s=0:\ \frac{Rq_0/\tau}{1/\tau}=Rq_0,
+\qquad
+\text{at }s=-1/\tau:\ \frac{Rq_0/\tau}{-1/\tau}=-Rq_0 ,
+$$
+
+so
+
+$$
+X(s)=Rq_0\left(\frac1s-\frac1{s+1/\tau}\right).
+$$
+
+*Check:* $\dfrac1s-\dfrac1{s+1/\tau}=\dfrac{1/\tau}{s(s+1/\tau)}=\dfrac{1}{s(\tau s+1)}$ ✓.
 
 Read the answer back from the two transform pairs:
 
@@ -1591,11 +1681,18 @@ $$
 \boxed{x(t)=Rq_0\left(1-e^{-t/\tau}\right),\qquad t\ge0.}
 $$
 
-**Check:** $x(0)=0$, $x(\infty)=Rq_0$, and $\dot x(0^+)=q_0/C$, as the energy balance requires. After one time constant, the rise is about 63% complete.
+**Check:**
+- $x(0)=Rq_0(1-1)=0$.
+- $x(\infty)=Rq_0$, where the heater input balances the loss through $R$: $q_0=x/R$.
+- $\dot x(0^+)=Rq_0/\tau=q_0/C$. The energy balance requires exactly this, because at $t=0^+$ nothing has yet leaked through $R$, so $C\dot x=q_0$.
+
+After one time constant, $1-e^{-1}=0.632$, so the rise is about 63% complete.
 
 We transformed a switched input, solved an algebraic equation, and recovered the time response. The decaying exponential is present even though the initial state was zero: it makes the complete response start at the required temperature.
 
 **Forcing at the natural rate:** At the natural test rate, $q_{\mathrm{in}}=q_0e^{-t/\tau}$, the same-exponential gain is undefined. The particular solution is instead $(q_0/C)t e^{-t/\tau}$. A pole marks failure of that trial form, not an infinite temperature.
+
+To verify, substitute $x_p=(q_0/C)te^{-t/\tau}$. Then $C\dot x_p=q_0e^{-t/\tau}-(q_0/\tau)te^{-t/\tau}$, and $x_p/R=(q_0/RC)te^{-t/\tau}=(q_0/\tau)te^{-t/\tau}$. The $te^{-t/\tau}$ terms cancel, leaving $C\dot x_p+x_p/R=q_0e^{-t/\tau}$ ✓. This is the same "multiply by $t$" repair as the repeated root in [§4.2](#section-4-2).
 
 ---
 

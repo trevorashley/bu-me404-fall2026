@@ -1,9 +1,9 @@
 # ME404: Dynamics and Control of Mechanical Systems, Fall 2026
 ## Problem Set \#1: Modeling and Dynamics
 
-**Due Date**: Tuesday, September 29, 2026
+**Due Date**: 3:30 PM, Tuesday, September 29, 2026
 
-### Problem \#1 (**NO AI**)
+### Problem \#1
 
 #### (Part A) Dubin's Kinematics (**NO AI**)
 A wheeled cart moves in a horizontal plane. Let $(x,y)$ be the position of the cart's center in a fixed inertial frame, and let $\theta$ be the vehicle heading, measured counterclockwise from the $x$-axis. The cart is driven forward along its heading with speed $v(t)$ and turns with angular rate $\omega(t)$. Assume the wheels roll without slipping, so the cart's velocity is always directed along its heading — it cannot translate sideways.
@@ -13,7 +13,7 @@ Taking the state to be $q=(x,y,\theta)$ and the inputs to be $u=(v,\omega)$, der
 
 ![Dubin's Kinematics](./cart-kinematics.svg)
 
-#### (Part B) Dubin's Kinematics (**NO AI**)
+#### (Part B) Dubin's Dynamics (**NO AI**)
 The vehicle of Part A is now free to slip sideways — model it as a rigid body of mass $m$ moving in a horizontal plane, with moment of inertia $J$ about the vertical axis through its center of mass.
 
 Attach a body frame at the center of mass: the $x_b$-axis points forward along the heading, the $y_b$-axis points to the vehicle's left, and the $z_b$-axis points out of the plane, forming a right-handed triad. As before, $\theta$ is the heading measured counterclockwise from the inertial $x$-axis, and $\omega = \dot\theta$. Let $(v_x, v_y)$ be the vehicle's velocity **expressed in the body frame**.

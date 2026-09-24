@@ -139,6 +139,11 @@ Use the demos for the selected live examples; the accompanying checks also work 
 | Parallel | $G_1$ and $G_2$ share the same input; outputs added | $G_1+G_2$ |
 | Feedback | $G_1$ forward, $G_2$ returned and subtracted | $\dfrac{G_1}{1+G_1G_2}$ |
 
+The first two need only one line each. Write $U$ for the input and $Y$ for the output.
+
+- **Series.** The intermediate signal is $V=G_1U$, and $Y=G_2V=G_2G_1U$. For scalar transfer functions the order does not matter, but writing $G_2G_1$ keeps the signal-flow order, which matters for matrices later.
+- **Parallel.** $Y=G_1U+G_2U=(G_1+G_2)U$.
+
 ### 5.2 Deriving the feedback rule
 
 Assume zero initial conditions and a well-posed scalar interconnection. These algebraic identities compute input-output transfer functions; they do not establish internal stability.
@@ -155,7 +160,23 @@ Y_2(s)=G_2(s)G_1(s)U_1(s),
 Y_1(s)=G_1(s)U_1(s).
 $$
 
-Substitute the second into the first, then the result into the third:
+Here $U_1$ is the error signal leaving the summing junction and $Y_2$ is the signal fed back.
+
+*Step 1: eliminate $Y_2$.* Substitute the second equation into the first:
+
+$$
+U_1=R-G_2G_1U_1 .
+$$
+
+*Step 2: solve for the error.* Collect the $U_1$ terms:
+
+$$
+(1+G_1G_2)U_1=R
+\qquad\Longrightarrow\qquad
+U_1=\frac{R}{1+G_1G_2} .
+$$
+
+*Step 3: substitute into the output equation.* $Y_1=G_1U_1$, so
 
 $$
 \boxed{
@@ -172,14 +193,16 @@ $$
 }
 $$
 
-and for **positive** feedback the denominator is $1-\text{loop gain}$.
+For **positive** feedback the first equation becomes $U_1=R+Y_2$. Step 2 then gives $(1-G_1G_2)U_1=R$, so the denominator is $1-\text{loop gain}$.
 
 #### Ask the class
 
 > If the loop gain is very large, what is the closed-loop gain?
 
+Divide the numerator and denominator by $G_1G_2$:
+
 $$
-\frac{G_1}{1+G_1G_2}\ \longrightarrow\ \frac{1}{G_2}
+\frac{G_1}{1+G_1G_2}=\frac{1/G_2}{1/(G_1G_2)+1}\ \longrightarrow\ \frac{1}{G_2}
 \qquad\text{when } |G_1G_2|\gg1 .
 $$
 
@@ -194,7 +217,9 @@ $$
 
 The governing principle, in the book's words: *block-diagram reduction is a pictorial way to solve equations by eliminating variables.* Everything in this section is legal because the underlying equations are unchanged.
 
-**Board check:** if $v=Gu$, taking off $u$ after the block requires $v/G$, while taking off $v$ before it requires $Gu$. Likewise, $G(u+d)=Gu+Gd$: moving an input-side sum to the output multiplies its side input by $G$. These are algebraic rearrangements; $1/G$ may be unstable or improper and need not be physically implementable. A nonunity feedback loop has $Y/R=(1/G_2)[G_1G_2/(1+G_1G_2)]$ algebraically, but the signal compared with $R$ is still the measured output $G_2Y$.
+**Board check:** if $v=Gu$, taking off $u$ after the block requires $v/G$, while taking off $v$ before it requires $Gu$. Likewise, $G(u+d)=Gu+Gd$: moving an input-side sum to the output multiplies its side input by $G$. These are algebraic rearrangements for nonzero $G$; $1/G$ may be unstable or improper and need not be physically implementable.
+
+For nonzero $G_2$, a nonunity feedback loop has $Y/R=(1/G_2)[G_1G_2/(1+G_1G_2)]$. In the original diagram the error is $e=R-G_2Y$. In the equivalent diagram of Fig. 3.10(c), a prefilter $1/G_2$ precedes a unity-feedback loop around $G_1G_2$: its error is $e'=R/G_2-Y=e/G_2$, and $Y=G_1G_2e'=G_1e$. Thus $Y/R$ is unchanged, but the signal at the summing junction is rescaled. Canceling $G_2$ in the overall transfer function recovers Eq. (3.58).
 
 ---
 
@@ -212,21 +237,30 @@ $$
 \text{series: } \frac{2s+4}{s}\cdot\frac1s=\frac{2s+4}{s^2},
 $$
 
-then the feedback rule:
+then the feedback rule with $G_1=(2s+4)/s^2$ and unity feedback, $G_2=1$. Multiply the numerator and denominator by $s^2$ to clear the inner fractions:
 
 $$
 \boxed{
 T(s)=\frac{Y(s)}{R(s)}
 =\frac{(2s+4)/s^2}{1+(2s+4)/s^2}
+=\frac{2s+4}{s^2+(2s+4)}
 =\frac{2s+4}{s^2+2s+4}
 }
 $$
+
+For unity feedback this is $G/(1+G)$, which is the numerator of $G$ over its numerator plus its denominator. That is a useful shortcut to point out.
 
 #### Ask the class
 
 > Where are the closed-loop poles, and what were the poles of the forward path?
 
-The forward path had a double pole at the origin; the closed loop has $s=-1\pm j\sqrt3$. Say it plainly: **feedback moved the poles.** That single sentence is the reason Chapter 5 exists. In the second-order language of §10 below, this loop has $\omega_n=2$ rad/s and $\zeta=0.5$. It also has a zero at $-2$, so the zero-free overshoot formula from L3 does not apply directly.
+The forward path had a double pole at the origin, from $s^2=0$. For the closed loop, solve $s^2+2s+4=0$:
+
+$$
+s=\frac{-2\pm\sqrt{4-16}}{2}=-1\pm j\frac{\sqrt{12}}{2}=-1\pm j\sqrt3 .
+$$
+
+Say it plainly: **feedback moved the poles.** That single sentence is the reason Chapter 5 exists. In the second-order language of §10 below, match $s^2+2s+4$ to $s^2+2\zeta\omega_ns+\omega_n^2$. This gives $\omega_n^2=4$, so $\omega_n=2$ rad/s, and $2\zeta\omega_n=2$, so $\zeta=0.5$. Check: $\sigma=\zeta\omega_n=1$ and $\omega_d=2\sqrt{1-0.25}=\sqrt3$, matching the roots. It also has a zero at $-2$, so the zero-free overshoot formula from L3 does not apply directly.
 
 ### 6.2 Example 3.23
 
@@ -234,26 +268,48 @@ The forward path had a double pole at the origin; the closed loop has $s=-1\pm j
 
 Six blocks, a nested **positive** feedback loop through $G_3$, an outer loop through $G_4$, and a feedforward path through $G_6$ that takes off before $G_2$.
 
-**Step 1.** Reduce the inner loop. It is positive feedback, so the denominator carries a minus sign:
+**Step 1: the inner loop (Fig. 3.12a → b).** The loop runs from the inner summing junction through $G_1$, then back through $G_3$, and enters the junction with a $+$ sign. Let $e$ be the signal arriving at the inner junction from the outer one. Then $a=G_1(e+G_3a)$, so $(1-G_1G_3)a=G_1e$. This is the positive-feedback form of Eq. (3.58):
 
 $$
-\frac{G_1}{1-G_1G_3}.
+\frac{a}{e}=\frac{G_1}{1-G_1G_3}.
 $$
 
-**Step 2.** Move the pickoff point that precedes $G_2$ to its output. The $G_6$ path must then be divided by $G_2$, giving two parallel blocks $G_5$ and $G_6/G_2$ at the output.
+**Source correction [beyond the book]:** the book's solution text (PDF p. 74) says the feedback loop involving "$G_1$ and $G_2$". The figure shows the loop is $G_1$ and $G_3$, and the result $G_1/(1-G_1G_3)$ confirms it.
 
-**Step 3.** Apply the negative-feedback rule to the outer loop and multiply by the parallel pair:
+**Step 2: move the pickoff (Fig. 3.12b → c).** $G_6$ takes its input from $a$, before $G_2$. After the move it takes its input from $b=G_2a$. To deliver the same signal $G_6a$, the block must become $G_6/G_2$, because $(G_6/G_2)\,b=(G_6/G_2)G_2a=G_6a$. The output is now two parallel blocks acting on $b$:
 
 $$
-T(s)
-=\frac{\dfrac{G_1G_2}{1-G_1G_3}}{1+\dfrac{G_1G_2G_4}{1-G_1G_3}}\left(G_5+\frac{G_6}{G_2}\right)
+\frac{Y}{b}=G_5+\frac{G_6}{G_2}.
 $$
+
+**Step 3: the outer loop, then the series connection.** The outer loop has forward path $\dfrac{G_1}{1-G_1G_3}\cdot G_2$ from the outer error to $b$, and feedback $G_4$ from $b$ with a $-$ sign. By Eq. (3.58),
+
+$$
+\frac{b}{R}=\frac{\dfrac{G_1G_2}{1-G_1G_3}}{1+\dfrac{G_1G_2}{1-G_1G_3}G_4} .
+$$
+
+Multiply the numerator and denominator by $1-G_1G_3$ to clear the nested fraction:
+
+$$
+\frac{b}{R}=\frac{G_1G_2}{(1-G_1G_3)+G_1G_2G_4} .
+$$
+
+The parallel pair from Step 2 is in series with this loop:
+
+$$
+T(s)=\frac{Y}{R}=\frac{b}{R}\cdot\frac{Y}{b}
+=\frac{G_1G_2}{1-G_1G_3+G_1G_2G_4}\left(G_5+\frac{G_6}{G_2}\right) .
+$$
+
+Distribute $G_1G_2$ over the bracket. The $G_2$ cancels in the second term: $G_1G_2\cdot G_6/G_2=G_1G_6$. So
 
 $$
 \boxed{
 T(s)=\frac{G_1G_2G_5+G_1G_6}{1-G_1G_3+G_1G_2G_4}
 }
 $$
+
+**Read the answer [beyond the book].** The numerator lists the two forward paths from $R$ to $Y$, which are $G_1G_2G_5$ and $G_1G_6$. The denominator is $1$ minus the positive loop gain $G_1G_3$, plus the negative loop gain $G_1G_2G_4$. Both loops pass through $G_1$, so they touch and no product of loop gains appears. This is Mason's rule in miniature; see §7.
 
 ### The same thing as equations **[beyond the book]**
 
@@ -267,7 +323,17 @@ b=G_2a,
 Y=G_5b+G_6a .
 $$
 
-Eliminating $a$ gives $a(1-G_1G_3+G_1G_2G_4)=G_1R$, and substituting into the third equation reproduces the boxed result exactly. **The three reduction steps are three eliminations, in the same order.**
+The first equation is the outer junction ($R-G_4b$), then the inner junction ($+G_3a$), then $G_1$. Eliminate in three moves:
+
+1. Substitute $b=G_2a$ into the first equation: $a=G_1R-G_1G_2G_4a+G_1G_3a$.
+2. Collect the $a$ terms: $a(1-G_1G_3+G_1G_2G_4)=G_1R$, so $a=\dfrac{G_1R}{1-G_1G_3+G_1G_2G_4}$.
+3. Substitute into the output equation: $Y=G_5G_2a+G_6a=(G_2G_5+G_6)a$, which gives
+   $$
+   \frac YR=\frac{G_1(G_2G_5+G_6)}{1-G_1G_3+G_1G_2G_4},
+   $$
+   which is the boxed result exactly.
+
+**The three reduction steps are three eliminations.** Collecting the $G_3a$ term is the inner loop, writing $G_6a$ in terms of $b$ is the pickoff move, and collecting the $G_4b$ term is the outer loop.
 
 > **[ DEMO 1 ]** — `ch3/l2_demo1_block_reduction.py` *(live, ~15 s)*
 >
@@ -296,7 +362,7 @@ which returns $(2s+4)/(s^2+2s+4)$, as before.
 
 #### Say out loud
 
-> The reduction tells you which blocks enter the characteristic equation: $1-G_1G_3+G_1G_2G_4=0$. After clearing the block denominators, analyse the roots. The opposite signs of two terms do not imply that increasing those gains moves every pole in opposite directions.
+> The feedback-dependent factor is $1-G_1G_3+G_1G_2G_4$. Substitute the block transfer functions into the full expression for $T(s)$, combine the fractions, and check for cancellations before identifying its input-output poles. Dynamic blocks $G_5$ and $G_6$ can contribute additional poles even though they lie outside the loops. Internal modes can also be hidden by cancellations; the reduced $Y/R$ alone does not establish internal stability. The opposite signs of the two loop terms do not imply that increasing those gains moves every pole in opposite directions.
 
 ---
 
@@ -312,7 +378,7 @@ $$
 
 The poles say which exponentials appear; the numerator says how much of each.
 
-Here “natural response” means the modes excited by an impulse. For a strictly proper system, the motion after that impulse is unforced, but its modal coefficients need not match an arbitrary initial-state response. A proper system with direct feedthrough also has an impulse at $t=0$.
+Here “natural response” follows the book's terminology and means the modes excited by an impulse. More generally, natural (or zero-input) response means motion due to initial conditions with the input set to zero. For a strictly proper system, the motion after the impulse is unforced, but its modal coefficients need not match an arbitrary initial-state response. Modes hidden from the input-output transfer function need not appear in the impulse response at all. A proper system with direct feedthrough also has an impulse at $t=0$.
 
 ### 8.2 One pole, one exponential
 
@@ -329,14 +395,26 @@ $$
 \tag{3.59}
 $$
 
-the **time constant**, for $\sigma>0$: the time at which the response has fallen to $1/e$ of its initial value. For this $H(s)$ the step response is $(1-e^{-\sigma t})/\sigma$, so the percentages below are fractions of its final value $1/\sigma$. Multiplying $H$ by $\sigma$ makes that final value unity.
+the **time constant**, for $\sigma>0$: the time at which the response has fallen to $1/e$ of its initial value, since $h(\tau)=e^{-\sigma/\sigma}=e^{-1}$.
+
+**The step response, derived.** With $U=1/s$, cover-up gives
+
+$$
+Y(s)=\frac{1}{s(s+\sigma)}=\frac{1/\sigma}{s}-\frac{1/\sigma}{s+\sigma}
+\qquad\Longrightarrow\qquad
+y(t)=\frac1\sigma\left(1-e^{-\sigma t}\right),\quad t\ge0 .
+$$
+
+The residues are $\left.\frac1{s+\sigma}\right|_{s=0}=\frac1\sigma$ and $\left.\frac1s\right|_{s=-\sigma}=-\frac1\sigma$. The final value is $1/\sigma$, so the percentages below are fractions of $1/\sigma$. Multiplying $H$ by $\sigma$ makes that final value unity: $\sigma/(s+\sigma)$ has DC gain 1.
+
+**The tangent-line construction.** The unit-DC-gain step response $1-e^{-t/\tau}$ has initial slope $\frac{d}{dt}(1-e^{-t/\tau})\big|_{t=0}=1/\tau$. A line with that slope starting from 0 reaches the final value 1 at $t=\tau$. For the decaying impulse response $e^{-t/\tau}$, the tangent at the origin, $1-t/\tau$, reaches zero at the same time.
 
 > **[ FIG 3.14 ]** — PDF p. 82 (a), PDF p. 83 (b) *(slide)*
 >
 > **Show:** panel (a) with the tangent line at the origin, which reaches zero at $t=\tau$. Then panel (b), the step response with the percentages marked.
-> **Point at:** 63% at one time constant, and essentially settled by five.
+> **Point at:** 63% at one time constant, and within 1% of the final value by five. “Settled” always needs a tolerance; the final value is approached asymptotically.
 
-The percentages follow by evaluating $1-e^{-t/\tau}$:
+The percentages follow by evaluating $1-e^{-t/\tau}$. For example, $e^{-1}=0.368$, so $1-0.368=0.632$:
 
 | $t/\tau$ | $1-e^{-t/\tau}$ |
 |---:|---:|
@@ -359,11 +437,27 @@ H(s)=\frac{2s+1}{s^2+3s+2}
 \tag{3.60}
 $$
 
-Poles at $s=-1$ and $s=-2$; one finite zero at $s=-\tfrac12$.
+*Poles and zero.* The denominator factors as $s^2+3s+2=(s+1)(s+2)$, since $1\cdot2=2$ and $1+2=3$. This gives poles at $s=-1$ and $s=-2$. The numerator $2s+1=0$ gives one finite zero at $s=-\tfrac12$.
 
 > **[ FIG 3.15 ]** — PDF p. 86 *(slide: poles as crosses, zeros as circles)*
 
-Cover-up gives the residues, and hence
+*Expand.* The numerator has degree 1 and the denominator has degree 2, so $H$ is strictly proper with distinct poles:
+
+$$
+H(s)=\frac{2s+1}{(s+1)(s+2)}=\frac{C_1}{s+1}+\frac{C_2}{s+2} .
+$$
+
+Cover up each factor:
+
+$$
+C_1=\left.\frac{2s+1}{s+2}\right|_{s=-1}=\frac{-2+1}{-1+2}=-1,
+\qquad
+C_2=\left.\frac{2s+1}{s+1}\right|_{s=-2}=\frac{-4+1}{-2+1}=3 .
+$$
+
+*Check:* $\dfrac{-1}{s+1}+\dfrac{3}{s+2}=\dfrac{-(s+2)+3(s+1)}{(s+1)(s+2)}=\dfrac{2s+1}{(s+1)(s+2)}$ ✓.
+
+*Invert* with $1/(s+a)\leftrightarrow e^{-at}$:
 
 $$
 \boxed{
@@ -380,13 +474,13 @@ $$
 
 > Two poles, two exponentials. That much came from the denominator alone.
 >
-> The numerator did something different: it set the two coefficients, $-1$ and $+3$. Move the zero and those numbers change while the exponentials do not.
+> With the denominator fixed, the numerator set the two coefficients, $-1$ and $+3$. Move the zero and those numbers change while the exponential rates do not. If the zero lands exactly on a pole, that term disappears from the input-output response through cancellation.
 >
 > And notice the vocabulary the book introduces here. The pole at $-2$ is *faster* than the pole at $-1$ — not higher frequency, just quicker to die. Farther left means faster. That is the whole meaning of "fast pole" and "slow pole" in this course.
 
 > **[ DEMO 3 ]** — `ch3/l2_demo3_second_order.py` *(slide)*
 >
-> **Teaching check [beyond the book]:** The two modal contributions have equal magnitude when $3e^{-2t}=e^{-t}$, at $t=\ln3\approx1.10$ s. At that instant the impulse response crosses zero. This separates fast initial motion from the slow tail.
+> **Teaching check [beyond the book]:** The two modal contributions have equal magnitude when $3e^{-2t}=e^{-t}$. Dividing by $e^{-2t}$ gives $e^{t}=3$, so $t=\ln3\approx1.10$ s. At this time the contributions cancel and the impulse response crosses zero. Separately, $h(0^+)=-1+3=2$, as the initial-value theorem $h(0^+)=\lim_{s\to\infty}sH(s)=2$ requires. This equals the leading numerator coefficient here because the denominator is monic and its degree is exactly one greater than the numerator's.
 
 ### 9.2 The board that matters: Fig. 3.16
 
@@ -418,7 +512,7 @@ Walk this table, sketching as you go:
 | Location | Natural response | Phrase to use |
 |---|---|---|
 | Far left, real axis | Fast decay, no ringing | "small time constant" |
-| Near the origin, real axis | Slow decay, no ringing | "large time constant" |
+| Near the origin, negative real axis | Slow decay, no ringing | "large time constant" |
 | Left half plane, complex pair | Decaying oscillation | "rings, then settles" |
 | On the imaginary axis, simple pair | Constant-amplitude oscillation | "neutrally stable" |
 | Right half plane, complex pair | Growing oscillation | "unstable" |
@@ -442,6 +536,8 @@ a(s)=(s+\sigma-j\omega_d)(s+\sigma+j\omega_d)=(s+\sigma)^2+\omega_d^2 .
 \tag{3.62}
 $$
 
+The product is a difference of squares, $(x-jy)(x+jy)=x^2-(jy)^2=x^2+y^2$, with $x=s+\sigma$ and $y=\omega_d$.
+
 The book's standard form, which recurs for the rest of the course:
 
 $$
@@ -451,7 +547,19 @@ H(s)=\frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2}
 }
 $$
 
-Matching coefficients,
+Expand Eq. (3.62) and match it to the denominator of Eq. (3.63) coefficient by coefficient:
+
+$$
+s^2+2\sigma s+(\sigma^2+\omega_d^2)\ \equiv\ s^2+2\zeta\omega_ns+\omega_n^2 .
+$$
+
+$$
+s^1:\ 2\sigma=2\zeta\omega_n\ \Rightarrow\ \sigma=\zeta\omega_n;
+\qquad
+s^0:\ \sigma^2+\omega_d^2=\omega_n^2\ \Rightarrow\ \omega_d^2=\omega_n^2-\zeta^2\omega_n^2=\omega_n^2(1-\zeta^2).
+$$
+
+Therefore
 
 $$
 \boxed{
@@ -478,6 +586,12 @@ $$
 \end{array}}
 $$
 
+**Why each entry holds.** The upper pole sits at horizontal distance $\sigma$ from the imaginary axis and height $\omega_d$ above the real axis. Draw the right triangle from the origin to that pole.
+
+- *Radius:* by Pythagoras, the distance from the origin is $\sqrt{\sigma^2+\omega_d^2}=\sqrt{\omega_n^2}=\omega_n$, using the $s^0$ match above. The pole's magnitude is $\omega_n$.
+- *Angle:* measured from the imaginary axis, the side opposite $\theta$ is the horizontal leg $\sigma$ and the hypotenuse is $\omega_n$. So $\sin\theta=\sigma/\omega_n=\zeta\omega_n/\omega_n=\zeta$.
+- *Height:* similarly, $\cos\theta=\omega_d/\omega_n=\sqrt{1-\zeta^2}$, consistent with $\sin^2\theta+\cos^2\theta=1$.
+
 #### Ask the class
 
 > Where do the poles go as $\zeta$ runs from 0 to 1, with $\omega_n$ held fixed?
@@ -501,7 +615,21 @@ H(s)=\frac{\omega_n^2}{(s+\zeta\omega_n)^2+\omega_n^2(1-\zeta^2)},
 \tag{3.65}
 $$
 
-so the impulse response is
+which is Eq. (3.62) with $\sigma=\zeta\omega_n$ and $\omega_d^2=\omega_n^2(1-\zeta^2)$ substituted. The table pair needed is
+
+$$
+\mathcal L\{e^{-\sigma t}\sin\omega_dt\,1(t)\}=\frac{\omega_d}{(s+\sigma)^2+\omega_d^2},
+$$
+
+which is the sine transform of L1 §8.2 with the frequency shift $s\to s+\sigma$ (property 4). The numerator of $H$ is $\omega_n^2$, not $\omega_d$, so multiply and divide by $\omega_d$:
+
+$$
+H(s)=\frac{\omega_n^2}{\omega_d}\cdot\frac{\omega_d}{(s+\sigma)^2+\omega_d^2}
+\qquad\Longrightarrow\qquad
+h(t)=\frac{\omega_n^2}{\omega_d}e^{-\sigma t}\sin\omega_dt .
+$$
+
+Finally, $\omega_n^2/\omega_d=\omega_n^2/(\omega_n\sqrt{1-\zeta^2})=\omega_n/\sqrt{1-\zeta^2}$, so the impulse response is
 
 $$
 \boxed{
@@ -525,11 +653,29 @@ $$
 y_{\rm step}(t)=1-e^{-\sigma t}\left(\cos\omega_dt+\frac{\sigma}{\omega_d}\sin\omega_dt\right),\qquad t\ge0.
 $$
 
-At critical damping, $h(t)=\omega_n^2t e^{-\omega_nt}$ and $y_{\rm step}(t)=1-(1+\omega_nt)e^{-\omega_nt}$. The underdamped formulas with $\sqrt{1-\zeta^2}$ in a denominator must not be used directly at $\zeta=1$.
+**Derivation [beyond the book].** In $s$ this is $Y=H/s$. The residue at the origin is $H(0)=\omega_n^2/\omega_n^2=1$. Subtract it and simplify the remainder using $\sigma^2+\omega_d^2=\omega_n^2$:
+
+$$
+\frac{\omega_n^2}{s[(s+\sigma)^2+\omega_d^2]}-\frac1s
+=\frac{\omega_n^2-(s^2+2\sigma s+\omega_n^2)}{s[(s+\sigma)^2+\omega_d^2]}
+=-\frac{s+2\sigma}{(s+\sigma)^2+\omega_d^2} .
+$$
+
+Split $s+2\sigma=(s+\sigma)+\sigma$ to match the shifted cosine and shifted sine entries:
+
+$$
+Y(s)=\frac1s-\frac{s+\sigma}{(s+\sigma)^2+\omega_d^2}-\frac{\sigma}{\omega_d}\cdot\frac{\omega_d}{(s+\sigma)^2+\omega_d^2},
+$$
+
+which inverts term by term to the formula above. *Checks:* $y(0)=1-1=0$. Differentiating gives $\dot y=h$ from Eq. (3.66); the cosine and sine terms combine using $\sigma^2+\omega_d^2=\omega_n^2$.
+
+For $0<\zeta<1$, the step response tends to 1. At $\zeta=0$, the same formula gives $y_{\rm step}(t)=1-\cos\omega_nt$, which oscillates indefinitely and has no final value despite $H(0)=1$.
+
+At critical damping, $\zeta=1$, the denominator is $(s+\omega_n)^2$. Then $H=\omega_n^2/(s+\omega_n)^2$, and the repeated-pole pair $1/(s+a)^2\leftrightarrow te^{-at}$ gives $h(t)=\omega_n^2t e^{-\omega_nt}$. For the step, $\dfrac{\omega_n^2}{s(s+\omega_n)^2}=\dfrac1s-\dfrac1{s+\omega_n}-\dfrac{\omega_n}{(s+\omega_n)^2}$, so $y_{\rm step}(t)=1-(1+\omega_nt)e^{-\omega_nt}$. To check the expansion, recombine over a common denominator: $(s+\omega_n)^2-s(s+\omega_n)-\omega_ns=\omega_n^2$ ✓. The underdamped formulas with $\sqrt{1-\zeta^2}$ in a denominator must not be used directly at $\zeta=1$.
 
 > **[ DEMO 3, continued ]** — right-hand panel of `l2_demo3_second_order.py`
 >
-> **Teaching check [beyond the book]:** For the zero-free standard pair, the overshoot formula in L3 gives 72.92% at $\zeta=0.1$, 16.30% at 0.5, and 4.60% at 0.7. Keep the numerator fixed when comparing this family.
+> **Teaching check [beyond the book]:** For the zero-free standard pair, the overshoot formula in L3 gives 72.92% at $\zeta=0.1$, 16.30% at 0.5, and 4.60% at 0.7. The formula is $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$, from evaluating $y_{\rm step}$ at the first peak, $\omega_dt=\pi$. The exponents are $\pi(0.1)/0.99499=0.3157$, $\pi(0.5)/0.86603=1.8138$, and $\pi(0.7)/0.71414=3.0794$. Keep the numerator fixed when comparing this family.
 
 ### 10.3 Example 3.26
 
@@ -541,23 +687,39 @@ $$
 Read the parameters off the denominator first:
 
 $$
-\omega_n^2=5 \Rightarrow \omega_n=2.24\ \text{rad/s},
+\omega_n^2=5 \Rightarrow \omega_n=\sqrt5=2.24\ \text{rad/s},
 \qquad
-2\zeta\omega_n=2 \Rightarrow \zeta=\frac1{\sqrt5}=0.447,
-\qquad
-\sigma=1,
-\qquad
-\omega_d=2 .
+2\zeta\omega_n=2 \Rightarrow \zeta=\frac{1}{\omega_n}=\frac1{\sqrt5}=0.447,
 $$
+
+$$
+\sigma=\zeta\omega_n=1,
+\qquad
+\omega_d=\omega_n\sqrt{1-\zeta^2}=\sqrt5\sqrt{1-\tfrac15}=\sqrt4=2 .
+$$
+
+*Check with the quadratic formula:* $s=\dfrac{-2\pm\sqrt{4-20}}{2}=-1\pm2j$, so $\sigma=1$ and $\omega_d=2$ ✓. The zero is at $s=-\tfrac12$, as in Example 3.25.
 
 *Predict before computing:* moderately damped, so expect a brief oscillatory transient near 2 rad/s with decay rate $e^{-t}$, consistent with the book's description of little oscillatory motion (PDF p. 101).
 
-Now complete the square and split the numerator to match table entries 19 and 20:
+Now invert. The poles are complex, so rather than using complex residues, match table entries 19 and 20:
 
 $$
-H(s)=\frac{2s+1}{(s+1)^2+2^2}
-=2\,\frac{s+1}{(s+1)^2+2^2}-\frac12\,\frac{2}{(s+1)^2+2^2}
+e^{-\sigma t}\cos\omega_dt\ \leftrightarrow\ \frac{s+\sigma}{(s+\sigma)^2+\omega_d^2},
+\qquad
+e^{-\sigma t}\sin\omega_dt\ \leftrightarrow\ \frac{\omega_d}{(s+\sigma)^2+\omega_d^2} .
 $$
+
+*Step 1: complete the square.* $s^2+2s+5=(s^2+2s+1)+4=(s+1)^2+2^2$, so $\sigma=1$ and $\omega_d=2$.
+
+*Step 2: rewrite the numerator in terms of $s+1$.* $2s+1=2(s+1)-1$. The cosine entry needs $s+1$ on top. The sine entry needs $\omega_d=2$ on top, so write $-1=-\tfrac12\cdot2$:
+
+$$
+H(s)=\frac{2(s+1)-1}{(s+1)^2+2^2}
+=2\,\frac{s+1}{(s+1)^2+2^2}-\frac12\,\frac{2}{(s+1)^2+2^2} .
+$$
+
+*Step 3: invert term by term.*
 
 $$
 \boxed{
@@ -565,11 +727,13 @@ h(t)=\left(2e^{-t}\cos2t-\tfrac12e^{-t}\sin2t\right)1(t)
 }
 $$
 
+*Checks.* $h(0)=2$, which equals $\lim_{s\to\infty}sH(s)=2$, as in Example 3.25. Combining the two sinusoids, $2\cos2t-\tfrac12\sin2t=\tfrac{\sqrt{17}}{2}\cos(2t+\phi)$ with $\phi=\tan^{-1}(1/4)\approx14.0^\circ$. This is the "small phase shift" to point at in Fig. 3.22.
+
 > **[ FIG 3.22 ]** — PDF p. 103 *(slide)*
 >
 > **Point at:** the envelope, the dominance of the $2\cos2t$ term, and the small phase shift the $-\tfrac12\sin2t$ term produces.
 
-**Compare with Example 3.25 deliberately.** Same numerator, $2s+1$. Changing the denominator moved the poles and changed a sum of two decays into a decaying oscillation. Its amplitude envelope is $\sqrt{4+1/4}\,e^{-t}$; $e^{-t}$ alone gives the decay rate.
+**Compare with Example 3.25 deliberately.** Same numerator, $2s+1$. Changing the denominator moved the poles and changed a sum of two decays into a decaying oscillation. Its amplitude envelope is $\sqrt{4+1/4}\,e^{-t}=\tfrac{\sqrt{17}}{2}e^{-t}\approx2.06e^{-t}$; $e^{-t}$ alone gives the decay rate.
 
 ---
 
@@ -622,7 +786,7 @@ Put numbers on it. *How much* overshoot? Settled by *when*? That is Section 3.4,
    POLE LOCATION  ->  NATURAL RESPONSE
 
      H = 1/(s + sigma)         h = e^{-sigma t},     tau = 1/sigma
-                               63% of the step in one tau, settled in five
+                               63% of the step in one tau, within 1% in five
 
      complex pair at -sigma +/- j omega_d:
          (s + sigma)^2 + omega_d^2  =  s^2 + 2 zeta wn s + wn^2
@@ -637,7 +801,7 @@ Put numbers on it. *How much* overshoot? Settled by *when*? That is Section 3.4,
 
 ## 14. Discussion questions
 
-1. Example 3.22 has a forward path with a double pole at the origin and a closed loop with a well-damped pair. Which of the three elementary connections moved the poles, and why can that one do it when the others cannot?
+1. Example 3.22 has a forward path with a double pole at the origin and a closed loop with a well-damped pair. How does the feedback denominator $D+N$, for $G=N/D$, create new pole locations? Compare this with series and parallel connections of fixed blocks, whose poles come from the component poles, possibly with cancellations.
 2. Moving a pickoff point introduced $G_6/G_2$. If $G_2$ has a RHP zero, why can the algebra remain valid while a separate physical realisation of $1/G_2$ is problematic?
 3. The impulse response is called the natural response. In what sense is a system's response to being hit "natural" when a step response is not?
 4. For $H_1(s)=2/[(s+1)(s+2)]$ and $H_2(s)=200/[(s+10)(s+20)]$, what is the same about their step responses and what differs? Why was specifying the numerators necessary?
@@ -654,9 +818,17 @@ Put numbers on it. *How much* overshoot? Settled by *when*? That is Section 3.4,
 | 3.22, 3.23 | The same diagrams by Mason's rule | Optional; pair with the online appendix. |
 | 3.16 | DC gain and unit-step final value of a second-order system | Review L1; add pole and damping calculations as an instructor extension. |
 | 3.36 | Initial-condition response and logarithmic decrement | Connects complex poles to observed decay; extension after §10. |
-| 3.41 | Sketch a step response from a transfer function | Exactly the Fig. 3.16 skill, on paper, with no computer. |
+| 3.41 | Sketch a step response from poles and zeros, then compare with Matlab | Extends Fig. 3.16 using the zero effects taught in L3; assign after that lecture. |
 
 **Suggested additional exercise [beyond the book]:** deliberately reverse the inner-loop sign in Example 3.23. Use both elimination and a numerical substitution to identify which term changes.
+
+*Answer key.* The inner-junction term becomes $-G_3a$, so step 2 of the elimination gives $a(1+G_1G_3+G_1G_2G_4)=G_1R$ and
+
+$$
+T(s)=\frac{G_1G_2G_5+G_1G_6}{1+G_1G_3+G_1G_2G_4} .
+$$
+
+Only the sign of the $G_1G_3$ term in the denominator changes. The numerator does not change, because the forward paths are the same. Numerical check with $G_1=G_2=G_4=G_5=G_6=1$ and $G_3=1/2$: the original gives $2/(1-1/2+1)=4/3$ and the reversed sign gives $2/(1+1/2+1)=4/5$. These values also keep the isolated inner loop well posed. Setting every block to 1 would still give a solvable full set of node equations, but the intermediate reduction $G_1/(1-G_1G_3)$ would be undefined.
 
 ## 16. Instructor cautions
 

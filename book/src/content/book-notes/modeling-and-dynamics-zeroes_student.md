@@ -2,7 +2,7 @@
 
 **Student lecture notes — internal motion and control limitations**
 
-This lecture builds on [Lecture 1: From Physical Models to the Laplace Transform](lecture_0.0.8_student_lecture_1.md). The central idea is that moving a sensor leaves the internal dynamics fixed while changing the zeros. Cancellations can also change which internal modes appear as transfer-function poles.
+This lecture builds on [Lecture 1: From Physical Models to the Laplace Transform](modeling-and-dynamics-poles_student.md). The central idea is that moving a sensor leaves the internal dynamics fixed while changing the zeros. Cancellations can also change which internal modes appear as transfer-function poles.
 
 **Prerequisites:** Exponential modes, transfer functions, poles, and the two-mass zero-dynamics example from Lecture 1. The state-space section is an optional extension.
 
@@ -32,7 +32,7 @@ After studying this lecture, you should be able to:
 | $A$ | complex amplitude in $x = Ae^{st}$; local coefficient/matrix uses in [§4](#section-4)/[§9](#section-9) are defined there |
 | $\mathcal A(s)$ | Laplace transform of a beam angle $\alpha(t)$ |
 
-Physical masses, inertias, capacitances, resistances, and restoring stiffnesses are positive unless stated otherwise; damping coefficients are nonnegative. Amplitudes such as $X$ and $U$ are numbers. Transforms such as $X(s)$ and $U(s)$ are introduced in [Lecture 1, §15](lecture_0.0.8_student_lecture_1.md#section-15).
+Physical masses, inertias, capacitances, resistances, and restoring stiffnesses are positive unless stated otherwise; damping coefficients are nonnegative. Amplitudes such as $X$ and $U$ are numbers. Transforms such as $X(s)$ and $U(s)$ are introduced in [Lecture 1, §15](modeling-and-dynamics-poles_student.md#section-15).
 
 **Terminology:** LHP and RHP mean the left and right half planes of the complex $s$-plane. CM means center of mass. A configuration degree of freedom is an independent position or angle; a second-order coordinate contributes two states. We call a proper real-rational continuous-time SISO transfer function minimum phase when its poles and finite zeros are all strictly in the LHP. SISO means single input, single output; LTI means linear and time invariant.
 
@@ -75,6 +75,16 @@ m_{\text{eff}}
 =
 m+\frac{J_b}{r^2}.
 $$
+
+To see where $m_{\text{eff}}$ comes from, let $F$ be the friction force from the beam on the ball, acting up the slope at the contact point. The ball's translation and its spin about its own center are then
+
+$$
+m\ddot x=mg\sin\alpha-F,
+\qquad
+J_b\dot\omega_b=Fr .
+$$
+
+No-slip gives $\dot\omega_b=\ddot x/r$, so $F=J_b\ddot x/r^2$. Substituting into the translation equation, $m\ddot x=mg\sin\alpha-(J_b/r^2)\ddot x$. The friction needed to spin the ball acts like extra mass.
 
 The component of gravity along the beam is exactly $mg\sin\alpha$. Two approximations are being made in what follows, and it is worth naming them: we drop the centrifugal term $m x\dot\alpha^2$ (small when the beam rotates slowly), and we ignore the ball's effect on the beam's own dynamics. Then
 
@@ -156,7 +166,7 @@ $$
 J_{\text{beam}}\ddot\alpha=M .
 $$
 
-The neglected gravitational torque from the ball is proportional to $mgx$ near the centered equilibrium and is first order. Omitting it is an additional modeling assumption, not a consequence of small-angle linearization. This simplified cascade gives
+The neglected gravitational torque from the ball is proportional to $mgx$ near the centered equilibrium and is first order. Omitting it is an additional modeling assumption, not a consequence of small-angle linearization. This simplified cascade has $\mathcal A(s)/M(s)=1/(J_{\text{beam}}s^2)$, and multiplying by $X/\mathcal A=5g/(7s^2)$ gives
 
 $$
 \frac{X(s)}{M(s)}
@@ -210,7 +220,7 @@ These models connect transfer behavior to internal states and disprove the claim
 
 ## 2. Flexible structures and noncollocation {#section-2}
 
-The two-mass system of [Lecture 1, §8](lecture_0.0.8_student_lecture_1.md#section-8) is a lumped model of a flexible structure. For a genuine flexible beam, the displacement field expands in modes:
+The two-mass system of [Lecture 1, §8](modeling-and-dynamics-poles_student.md#section-8) is a lumped model of a flexible structure. For a genuine flexible beam, the displacement field expands in modes:
 
 $$
 w(x,t)
@@ -250,9 +260,9 @@ $$
 G(s)=\sum_i\frac{\phi_i(x_a)^2}{s^2+\omega_i^2}.
 $$
 
-For distinct participating undamped frequencies with positive modal coefficients, the poles and zeros **interlace along the $j\omega$ axis**: between adjacent positive-frequency resonances sits exactly one antiresonance. These are the natural frequencies of the structure constrained at the measured coordinate — the [Lecture 1, §11](lecture_0.0.8_student_lecture_1.md#section-11) result again.
+For distinct participating undamped frequencies with positive modal coefficients, the poles and zeros **interlace along the $j\omega$ axis**: between adjacent positive-frequency resonances sits exactly one antiresonance. These are the natural frequencies of the structure constrained at the measured coordinate — the [Lecture 1, §11](modeling-and-dynamics-poles_student.md#section-11) result again.
 
-For this ideal passive mechanical model, collocation excludes finite RHP zeros. Undamped zeros lie on the axis; they do not satisfy [Lecture 1, §14](lecture_0.0.8_student_lecture_1.md#section-14)'s strict minimum-phase convention. If damping makes the constrained zero dynamics asymptotically stable, its zeros move strictly into the LHP. A stable plant with those LHP zeros is minimum phase. Under light damping, the resonance/notch ordering remains a useful picture, but exact interlacing is the undamped result.
+For this ideal passive mechanical model, collocation excludes finite RHP zeros. Undamped zeros lie on the axis; they do not satisfy [Lecture 1, §14](modeling-and-dynamics-poles_student.md#section-14)'s strict minimum-phase convention. If damping makes the constrained zero dynamics asymptotically stable, its zeros move strictly into the LHP. A stable plant with those LHP zeros is minimum phase. Under light damping, the resonance/notch ordering remains a useful picture, but exact interlacing is the undamped result.
 
 With the usual positive force/displacement sign convention, the frequency-response phase lies between $-180^\circ$ and $0^\circ$ wherever the response is nonzero and finite.
 
@@ -322,7 +332,7 @@ $$
 \text{multi-mode flexible structure},
 $$
 
-which is precisely [Lecture 1, §6](lecture_0.0.8_student_lecture_1.md#section-6) $\rightarrow$ [Lecture 1, §8](lecture_0.0.8_student_lecture_1.md#section-8) $\rightarrow$ [§2](#section-2).
+which is precisely [Lecture 1, §6](modeling-and-dynamics-poles_student.md#section-6) $\rightarrow$ [Lecture 1, §8](modeling-and-dynamics-poles_student.md#section-8) $\rightarrow$ [§2](#section-2).
 
 The location of zeros depends on the actuator and sensor geometry; a RHP zero is possible but is not required:
 
@@ -399,7 +409,14 @@ $$
 \frac{ab}{Js^2+c_\theta s+k_\theta}.
 $$
 
-Over the common denominator:
+Over the common denominator, the numerator is the first fraction's numerator times the second denominator, minus the second numerator times the first denominator:
+
+$$
+1\cdot(Js^2+c_\theta s+k_\theta)-ab\,(ms^2+c_xs+k_x)
+=(J-abm)s^2+(c_\theta-abc_x)s+(k_\theta-abk_x) .
+$$
+
+Therefore
 
 $$
 \boxed{
@@ -449,7 +466,9 @@ $$
 \boxed{AC<0\ \Rightarrow\ \text{one RHP zero for every damping distribution}}
 $$
 
-Consider the $AC<0$ case with $ab=0.15$ and the numbers below. The left family has $c_\theta=0.1c_x$; the right family has $c_\theta=0.25c_x$ and includes the worked case:
+Consider the $AC<0$ case with $ab=0.15$ and the numbers below. The left family has $c_\theta=0.1c_x$; the right family has $c_\theta=0.25c_x$ and includes the worked case.
+
+Each row uses the worked-case values $m=1$, $J=0.1$, $k_x=100$, $k_\theta=20$. These fix $A=0.1-0.15=-0.05$ and $C=20-15=5$, while $B=c_\theta-0.15c_x$. Dividing $As^2+Bs+C$ by $A$ gives $s^2-20Bs-100=0$, so $s=10B\pm\sqrt{100B^2+100}$. For example, $(c_x,c_\theta)=(2,0.2)$ gives $B=-0.1$ and $s=-1\pm\sqrt{101}=+9.05,\ -11.05$. The product is always $-100$:
 
 | $c_x$ | $c_\theta$ | zeros | $c_x$ | $c_\theta$ | zeros |
 |---:|---:|---|---:|---:|---|
@@ -462,7 +481,7 @@ The RHP zero moves a long way — and which direction it moves depends on the si
 
 **Numerical check.** For this $AC<0$ geometry, $C/A=-100$ throughout the damping sweep, so the zeros retain opposite signs. Extending to $c_x=60$ gives RHP zeros near $+1.6$ and $+121$ for the two families. For positive damping in these families, initial acceleration and final displacement have opposite signs, as derived below.
 
-**2. If $ab<0$** — sensor and actuator on the *same* side of the center of mass — then $A>0$, $B>0$ and $C>0$, so both zeros lie in the open **left** half plane. (For the worked numbers below with $ab=-0.15$: $-1.60\pm j11.72$.) Only in the *undamped* case $B=0$ do those zeros sit exactly on the $j\omega$ axis.
+**2. If $ab<0$** — sensor and actuator on the *same* side of the center of mass — then $A>0$, $B>0$ and $C>0$, so both zeros lie in the open **left** half plane. (For the worked numbers below with $ab=-0.15$: $A=0.1+0.15=0.25$, $B=0.5+0.3=0.8$, $C=20+15=35$. Then $s^2+3.2s+140=0$ gives $s=-1.6\pm j\sqrt{140-2.56}=-1.60\pm j11.72$.) Only in the *undamped* case $B=0$ do those zeros sit exactly on the $j\omega$ axis.
 
 Note that "same side" is weaker than collocated: the two can sit at different points and still share a sign. True collocation is the special case $b=-a$, meaning the sensor is *at* the actuator, which gives $ab=-a^2<0$. So collocation lives inside this family, and the favorable sign structure of [§2](#section-2) turns out to extend to a strictly larger set of geometries than collocation alone. Collocation is sufficient for this favorable sign structure, but other geometries can have it too.
 
@@ -474,8 +493,8 @@ Take $m=1$, $J=0.1$, $k_x=100$, $k_\theta=20$, $c_x=2$, $c_\theta=0.5$, with $a=
 
 Check the condition: $J/m=0.1$ and $k_\theta/k_x=0.2$, and indeed $0.1<0.15<0.2$.
 
-- **Poles:** $s^2+2s+100=0 \Rightarrow s=-1\pm j9.95$, and $0.1s^2+0.5s+20=0 \Rightarrow s=-2.5\pm j13.92$. All four are stable.
-- **Numerator:** $A=-0.05$, $B=0.2$, $C=5$, so $-0.05s^2+0.2s+5=0$, i.e. $s^2-4s-100=0$, giving $s=-8.20$ and $\boxed{s=+12.20}$.
+- **Poles:** $s^2+2s+100=0 \Rightarrow s=-1\pm j\sqrt{100-1}=-1\pm j9.95$. Also $0.1s^2+0.5s+20=0$, i.e. $s^2+5s+200=0$, gives $s=-2.5\pm j\sqrt{200-6.25}=-2.5\pm j13.92$. All four are stable.
+- **Numerator:** $A=0.1-0.15(1)=-0.05$, $B=0.5-0.15(2)=0.2$, $C=20-0.15(100)=5$. So $-0.05s^2+0.2s+5=0$. Dividing by $-0.05$ gives $s^2-4s-100=0$, so $s=2\pm\sqrt{4+100}=2\pm10.198$. That is $s=-8.20$ and $\boxed{s=+12.20}$.
 
 This is a stable plant with a right-half-plane zero, illustrating [§10](#section-10).
 
@@ -493,13 +512,15 @@ $$
 y(\infty)=u_0\left(\frac1{k_x}-\frac{ab}{k_\theta}\right)=\frac{u_0C}{k_xk_\theta}.
 $$
 
-When $AC<0$, initial acceleration and final displacement have opposite signs. In the worked case, $J/m<ab<k_\theta/k_x$: rotation wins initially ($A=-0.05$), translation wins at DC ($C=5$). The reverse ordering, $k_\theta/k_x<ab<J/m$, also gives inverse response, with translation winning initially and rotation at DC. The distinction is acceleration gain versus static gain, not relative degree.
+Both formulas come straight from the two decoupled equations. At $t=0^+$ the system is at rest, so the damping and spring forces are zero. That leaves $m\ddot x=u_0$ and $J\ddot\theta=au_0$, and $\ddot y=\ddot x-b\ddot\theta$. At steady state all derivatives vanish, leaving $k_xx=u_0$ and $k_\theta\theta=au_0$, and $y=x-b\theta$. Put each over a common denominator to get the $A$ and $C$ forms. Equivalently, with $Y=(Y/U)\,u_0/s$, the initial value theorem gives $\ddot y(0^+)=\lim_{s\to\infty}s^3Y=\lim_{s\to\infty}s^2(Y/U)\,u_0=u_0A/(mJ)$, the ratio of leading coefficients. The final value theorem gives $y(\infty)=\lim_{s\to0}sY=(Y/U)(0)\,u_0=u_0C/(k_xk_\theta)$.
+
+When $AC<0$, initial acceleration and final displacement have opposite signs. In the worked case, $\ddot y(0^+)=u_0(-0.05)/(0.1)=-0.5u_0$ and $y(\infty)=u_0(5)/(2000)=0.0025u_0$. In the worked case, $J/m<ab<k_\theta/k_x$: rotation wins initially ($A=-0.05$), translation wins at DC ($C=5$). The reverse ordering, $k_\theta/k_x<ab<J/m$, also gives inverse response, with translation winning initially and rotation at DC. The distinction is acceleration gain versus static gain, not relative degree.
 
 This wrong-way motion is called an **inverse response**.
 
 Important caution:
 
-Wrong-way initial motion is a common physical manifestation of a RHP zero, but it should not be used as the formal definition of one. The definition is in [Lecture 1, §14](lecture_0.0.8_student_lecture_1.md#section-14) and [§8](#section-8).
+Wrong-way initial motion is a common physical manifestation of a RHP zero, but it should not be used as the formal definition of one. The definition is in [Lecture 1, §14](modeling-and-dynamics-poles_student.md#section-14) and [§8](#section-8).
 
 ### Full quadratic classification
 
@@ -512,7 +533,7 @@ For $A,C\ne0$, the full classification is:
 | $C/A>0$, $B/A<0$ | Both strictly in the RHP; real if $B^2-4AC\ge0$, otherwise conjugate |
 | $C/A>0$, $B=0$ | A purely imaginary conjugate pair |
 
-When $AC>0$, changing the damping distribution can change the half plane of the zeros. For the same $m,J,k_x,k_\theta$ as the worked example, but $ab=0.05$ and $c_x=2$:
+When $AC>0$, changing the damping distribution can change the half plane of the zeros. For the same $m,J,k_x,k_\theta$ as the worked example, but $ab=0.05$ and $c_x=2$, the coefficients are $A=0.1-0.05=0.05$, $C=20-5=15$ and $B=c_\theta-0.1$. Dividing by $A$ gives $s^2+20Bs+300=0$. For $c_\theta=0.05$ this is $s^2-s+300$, with roots $0.5\pm j\sqrt{299.75}$. For $c_\theta=0.20$ it is $s^2+2s+300$, with roots $-1\pm j\sqrt{299}$:
 
 $$
 \begin{array}{c|c|c}
@@ -522,7 +543,7 @@ c_\theta & N(s) & \text{zeros}\\ \hline
 \end{array}
 $$
 
-The plant poles remain in the LHP in both cases. Damping alone removes the RHP pair. Two **real** positive zeros are also possible outside the interval: with $ab=0.05$, $c_x=100$, $c_\theta=0.05$, the numerator is $0.05s^2-4.95s+15$, with roots approximately $3.12921$ and $95.87079$.
+The plant poles remain in the LHP in both cases. Damping alone removes the RHP pair. Two **real** positive zeros are also possible outside the interval: with $ab=0.05$, $c_x=100$, $c_\theta=0.05$, the numerator is $0.05s^2-4.95s+15$, with roots approximately $3.12921$ and $95.87079$. Here $B=0.05-0.05(100)=-4.95$. Dividing by $0.05$ gives $s^2-99s+300=0$, so $s=\tfrac12\left(99\pm\sqrt{9801-1200}\right)=\tfrac12(99\pm92.742)$.
 
 For positive $c_x$ and nonzero $A,B,C$, all three coefficients share a sign exactly when $ab$ lies strictly below all three ratios $J/m$, $k_\theta/k_x$, $c_\theta/c_x$, or strictly above all three. This is the generic LHP-zero condition. Handle boundaries separately: $A=0$ is item 3 above; $C=0$ gives a numerator factor $s$ and requires the usual cancellation check. Thus the “same side of three ratios” rule is not a substitute for checking degree reductions.
 
@@ -596,7 +617,7 @@ $$
 }
 $$
 
-**Stability:** Four poles at the origin and relative degree 4 make this a demanding control problem. The free response can grow polynomially; the plant is neither asymptotically stable nor BIBO stable. “No finite zeros” describes the zeros only, and does not make this plant minimum phase under [Lecture 1, §14](lecture_0.0.8_student_lecture_1.md#section-14)'s convention.
+**Stability:** Four poles at the origin and relative degree 4 make this a demanding control problem. The free response can grow polynomially; the plant is neither asymptotically stable nor BIBO stable. “No finite zeros” describes the zeros only, and does not make this plant minimum phase under [Lecture 1, §14](modeling-and-dynamics-poles_student.md#section-14)'s convention.
 
 ---
 
@@ -634,7 +655,7 @@ $$
 \frac{1}{Js^2},
 $$
 
-so
+so, since $Y=X-h\Theta$,
 
 $$
 \frac{Y}{M}
@@ -644,7 +665,7 @@ $$
 \frac{h}{Js^2}
 $$
 
-and therefore
+and therefore, writing the second term over $Js^4$ as $hs^2/(Js^4)$,
 
 $$
 \boxed{
@@ -670,7 +691,7 @@ s=+\sqrt{\frac gh}
 }
 $$
 
-This is a nonminimum-phase zero. Summarizing the geometry:
+This is a nonminimum-phase zero. For the point *above* the CM, the sign of the $h$ term flips: $Y/M=(g+hs^2)/(Js^4)$, and $g+hs^2=0$ gives $s^2=-g/h$, i.e. $s=\pm j\sqrt{g/h}$. Summarizing the geometry:
 
 | Measurement point | Output | Zeros | Character |
 |---|---|---|---|
@@ -684,7 +705,7 @@ The zero can also be found directly from the equations of motion.
 
 This is the exact same trick we did with the second mass. Set the measured output to zero, and ask what the rest of the machine is still free to do.
 
-In [Lecture 1, §11](lecture_0.0.8_student_lecture_1.md#section-11), holding $x_1=0$ left $m_2$ free to oscillate. Here, holding the camera fixed leaves the airframe free to pitch.
+In [Lecture 1, §11](modeling-and-dynamics-poles_student.md#section-11), holding $x_1=0$ left $m_2$ free to oscillate. Here, holding the camera fixed leaves the airframe free to pitch.
 
 **Numerical example and model scope.** For $h=0.2\ \mathrm{m}$, the growing zero-dynamics rate is $\sqrt{g/h}=7.00357\ \mathrm{s}^{-1}$. With $\dot\theta(0)=0$, the matched zero-output motion is $\theta(t)=\theta(0)\cosh(\sqrt{g/h}\,t)$. A torque-step response changes sign at $t=\sqrt{12h/g}\approx0.4946\ \mathrm{s}$; [§7](#section-7) derives this result.
 
@@ -735,8 +756,10 @@ $$
 For a camera $h=0.2\ \text{m}$ below the center of mass,
 
 $$
-z=\sqrt{\frac{9.81}{0.2}}\approx 7.0\ \mathrm{s}^{-1}.
+z=\sqrt{\frac{9.81}{0.2}}=\sqrt{49.05}\approx 7.0\ \mathrm{s}^{-1}.
 $$
+
+For the bandwidth estimate below, $z/2\approx3.5$ rad/s, and dividing by $2\pi$ gives about $0.56$ Hz.
 
 The design heuristic of [§11](#section-11) — keep crossover comfortably below the RHP zero, with $z/2$ a common illustrative target — then suggests a practical closed-loop bandwidth for that output somewhere around $3.5\ \text{rad/s}$, about $0.56\ \text{Hz}$. Treat that as an order-of-magnitude expectation, not a computed limit.
 
@@ -800,13 +823,13 @@ $$
 \boxed{y(t)=\frac{M_0}{24J}t^2(gt^2-12h),\qquad t\ge0.}
 $$
 
-For $M_0>0$ and small positive $t$, $y<0$. The nonzero crossing time is $t=\sqrt{12h/g}$, after which translation dominates. The center-of-mass output is positive for $t>0$, and the above-center output adds $hM_0t^2/(2J)$ rather than subtracting it. None of these open-loop step responses approaches a finite steady state. The small-angle qualification in [§6](#section-6) applies throughout.
+Equivalently, $y=x-h\theta=\dfrac{M_0t^2}{2J}\left(\dfrac{gt^2}{12}-h\right)$. For $M_0>0$ and small positive $t$, $y<0$. It stays negative until $gt^2/12=h$, so the nonzero crossing time is $t=\sqrt{12h/g}$, after which translation dominates. With $h=0.2$: $\sqrt{2.4/9.81}=0.4946$ s. The center-of-mass output is positive for $t>0$, and the above-center output adds $hM_0t^2/(2J)$ rather than subtracting it. None of these open-loop step responses approaches a finite steady state. The small-angle qualification in [§6](#section-6) applies throughout.
 
 ---
 
 ## 8. Zero dynamics in general {#section-8}
 
-The transfer-function definition of [Lecture 1, §14](lecture_0.0.8_student_lecture_1.md#section-14) is algebraically convenient, but the physical interpretation is more revealing and generalizes to nonlinear systems.
+The transfer-function definition of [Lecture 1, §14](modeling-and-dynamics-poles_student.md#section-14) is algebraically convenient, but the physical interpretation is more revealing and generalizes to nonlinear systems.
 
 Suppose the output is $y(t)$. Impose
 
@@ -820,7 +843,7 @@ $$
 
 What internal motions can still occur?
 
-Those internal motions are the **zero dynamics**. Recall [Lecture 1, §11](lecture_0.0.8_student_lecture_1.md#section-11), where the required input was $u=-(c_2\dot x_2+k_2x_2)$ and the internal motion was the free vibration of the pinned second mass.
+Those internal motions are the **zero dynamics**. Recall [Lecture 1, §11](modeling-and-dynamics-poles_student.md#section-11), where the required input was $u=-(c_2\dot x_2+k_2x_2)$ and the internal motion was the free vibration of the pinned second mass.
 
 - If all compatible internal motions decay toward equilibrium, the zero dynamics are asymptotically stable.
 - A growing compatible mode makes them unstable.
@@ -879,7 +902,7 @@ y(t)=C\mathbf x_0e^{zt}+Du_0e^{zt}=0
 \qquad\text{for all }t .
 $$
 
-So: the internal state evolves as $e^{zt}$, the input $u_0e^{zt}$ sustains that motion, and the output is identically zero. That is precisely [Lecture 1, §11](lecture_0.0.8_student_lecture_1.md#section-11) and [§8](#section-8), written in matrix form — and note that $u_0$ is generally nonzero, which is why [Lecture 1, §11](lecture_0.0.8_student_lecture_1.md#section-11)'s derivation of the required input mattered.
+So: the internal state evolves as $e^{zt}$, the input $u_0e^{zt}$ sustains that motion, and the output is identically zero. That is precisely [Lecture 1, §11](modeling-and-dynamics-poles_student.md#section-11) and [§8](#section-8), written in matrix form — and note that $u_0$ is generally nonzero, which is why [Lecture 1, §11](modeling-and-dynamics-poles_student.md#section-11)'s derivation of the required input mattered.
 
 The minimality hypothesis matters: for a nonminimal realization the system-matrix condition describes invariant zeros, which need not coincide with the reduced transfer-function zeros. The exponential trajectory above gives the physical interpretation of the matrix condition.
 
@@ -897,7 +920,7 @@ The chosen input-output channel has unstable zero dynamics.
 
 A system can therefore have stable poles *and* a RHP zero — and [§4](#section-4) is a fully worked example: four poles at $-1\pm j9.95$ and $-2.5\pm j13.92$, all comfortably stable, alongside a zero at $s=+12.20$.
 
-For each underdamped platform mode, increasing its damping coefficient moves the pole pair leftward toward critical damping; beyond critical damping one real pole returns toward the origin ([Lecture 1, §4.4](lecture_0.0.8_student_lecture_1.md#section-4-4)). Damping also moves the zeros.
+For each underdamped platform mode, increasing its damping coefficient moves the pole pair leftward toward critical damping; beyond critical damping one real pole returns toward the origin ([Lecture 1, §4.4](modeling-and-dynamics-poles_student.md#section-4-4)). Damping also moves the zeros.
 
 In the worked platform, $AC<0$: the numerator's leading and constant coefficients have opposite signs. Their negative root product forces one positive and one negative real root for every finite damping distribution. Thus **for this geometry**, damping cannot remove the RHP zero.
 
@@ -915,7 +938,7 @@ $$
 }
 $$
 
-The upright pendulum of [Lecture 1, §6.2](lecture_0.0.8_student_lecture_1.md#section-6-2) supplies the other distinction: it has an unstable pole and no finite zeros. Thus unstable poles do not require RHP zeros. Under [Lecture 1, §14](lecture_0.0.8_student_lecture_1.md#section-14)'s convention, we do not call that unstable plant minimum phase.
+The upright pendulum of [Lecture 1, §6.2](modeling-and-dynamics-poles_student.md#section-6-2) supplies the other distinction: it has an unstable pole and no finite zeros. Thus unstable poles do not require RHP zeros. Under [Lecture 1, §14](modeling-and-dynamics-poles_student.md#section-14)'s convention, we do not call that unstable plant minimum phase.
 
 ---
 
@@ -928,7 +951,7 @@ Conceptually:
 1. The output may initially move in the wrong direction ([§4](#section-4), [§7](#section-7)).
 2. Aggressive tracking becomes difficult: reacting hard to the initial wrong-way motion drives the system the wrong way.
 3. **Bandwidth is limited.** Crossover is normally kept comfortably below the RHP zero, with $\omega_c\lesssim z/2$ widely used as an illustrative design target. This factor is a heuristic. The interpolation constraint below is fundamental; a numerical bandwidth target also depends on phase margin, loop slope, robustness requirements, and the remaining plant dynamics. Different texts quote different factors for exactly this reason. What is *not* negotiable is the direction of the effect — a slow RHP zero is a severe constraint, and [§6](#section-6)'s camera example makes it concrete.
-4. Exact pole-zero cancellation is dangerous. Specifically: cancelling a plant RHP zero with a controller RHP pole (or a plant RHP pole with a controller RHP zero) produces a closed loop whose input-output transfer function looks fine but which is **internally unstable** — a hidden mode grows without bound and eventually saturates or breaks something. The cancelled factor does not go away; it just stops being visible from that one input-output pair. This is why [Lecture 1, §14](lecture_0.0.8_student_lecture_1.md#section-14) insisted $N$ and $D$ be coprime.
+4. Exact pole-zero cancellation is dangerous. Specifically: cancelling a plant RHP zero with a controller RHP pole (or a plant RHP pole with a controller RHP zero) produces a closed loop whose input-output transfer function looks fine but which is **internally unstable** — a hidden mode grows without bound and eventually saturates or breaks something. The cancelled factor does not go away; it just stops being visible from that one input-output pair. This is why [Lecture 1, §14](modeling-and-dynamics-poles_student.md#section-14) insisted $N$ and $D$ be coprime.
 5. Fast plant inversion is fundamentally problematic: inverting a RHP zero produces a RHP pole.
 
 ### The underlying reason, in one line
@@ -940,6 +963,8 @@ S(z)=1
 $$
 
 at every RHP zero $z$ of the plant. Internal stability excludes canceling that zero with a controller RHP pole.
+
+The one-line derivation: $G(z)=0$ at a zero, so $S(z)=1/[1+0\cdot K(z)]=1$. The only escape is for $K$ to have a pole at $z$, making $G(z)K(z)$ an indeterminate $0\cdot\infty$. That is exactly the forbidden RHP cancellation of item 4. Similarly, the complementary sensitivity $T=1-S$ satisfies $T(z)=0$: the closed loop inherits the plant's RHP zero.
 
 Read that carefully: for a real RHP zero, $z>0$ is a point on the **positive real axis of the $s$-plane**, not a sinusoidal frequency. Frequency response lives on $s=j\omega$, so it is wrong to say the sensitivity is stuck at 1 "at that frequency." $S(z)=1$ is an *analytic* constraint pinning the value of $S$ at one point of the complex plane — and because $S$ is analytic, pinning it there restricts how small it can be made along the $j\omega$ axis, which is where performance is actually measured. Together with stability and the remaining plant dynamics, this constraint underlies the tracking and robustness tradeoffs measured on the imaginary axis.
 
