@@ -553,7 +553,7 @@ For a numerical example, take $m=1$, $k=25$ (so $\omega_n=5$). Each row uses $\s
 
 This arc is a root locus: a path traced by roots as a parameter varies.
 
-![How damping changes pole locations and time responses for fixed mass and stiffness.](demos/figures/demo2_damping_pole_locus.png)
+![How damping changes pole locations and time responses for fixed mass and stiffness.](demos/ch2/figures/demo2_damping_pole_locus.svg)
 
 **Numerical check.** The figure’s leftward-motion title applies up to critical damping. In that range, the pole magnitudes remain $\omega_n$; the accompanying calculation gives a maximum deviation of about $1.8\times10^{-15}$. Beyond critical damping, one real pole moves toward the origin.
 
@@ -657,7 +657,7 @@ $$
 
 Equivalently, $A_1=1-j/3$ and $A_2=1+j/3$. Their imaginary contributions cancel. A numerical ODE solution agrees to about $5\times10^{-12}$.
 
-![A conjugate pair of complex modes combines to give a real displacement.](demos/figures/demo3_real_from_complex.png)
+![A conjugate pair of complex modes combines to give a real displacement.](demos/ch2/figures/demo3_real_from_complex.svg)
 
 The thermal system did not require us to invent a new variable.
 
@@ -898,7 +898,7 @@ The $s$-plane represents exponential rates geometrically: the horizontal axis is
      <---------- LHP: decay -------|------- RHP: growth ---------->
 ```
 
-![Pole locations and their corresponding time responses.](demos/figures/demo1_splane_modes.png)
+![Pole locations and their corresponding time responses.](demos/ch2/figures/demo1_splane_modes.svg)
 
 **Reading the figure.** Farther left means faster exponential decay; a nonzero imaginary part produces oscillation. Right-half-plane rates produce growth. Axis modes require the separate stability checks below.
 
@@ -1172,7 +1172,7 @@ Holding the output at zero is **not free**. It requires a specific, generally no
 
 Zero dynamics are *the internal motion under the input that holds $y\equiv0$*. Both the internal motion and its required input belong to this description; [Lecture 2, §9](modeling-and-dynamics-zeroes_student.md#section-9) gives the state-space form.
 
-![Zero measured displacement while the second mass moves and the actuator cancels its coupling force.](demos/figures/demo5_zero_dynamics.png)
+![Zero measured displacement while the second mass moves and the actuator cancels its coupling force.](demos/ch2/figures/demo5_zero_dynamics.svg)
 
 **Numerical example.** The second mass starts with displacement $1\ \mathrm{m}$ and zero velocity. The actuator force has maximum magnitude $8\ \mathrm{N}$. The hidden motion and force have envelopes decaying at $0.02\ \mathrm{s}^{-1}$, reaching about 30% of their initial envelope after 60 seconds. Meanwhile, the computed maximum $|x_1|$ is about $3.2\times10^{-17}$. The measured oscillation rate $3.99997\ \mathrm{rad/s}$ and decay rate $0.02000\ \mathrm{s}^{-1}$ agree with the zero pair $-0.02\pm j3.99995$. These are zero-dynamics rates, rather than the free plant poles.
 
@@ -1224,7 +1224,7 @@ This is the [§4.3](#section-4-3) case, now appearing as a *zero* rather than a 
 
 This is an **antiresonance**, and it is the operating principle of the **dynamic vibration absorber** — and closely related to the tuned mass damper. The distinction is that the undamped absorber here produces an *exact* notch at a single frequency, whereas a practical tuned mass damper is deliberately damped, trading that exact zero for broader but shallower attenuation.
 
-![Exact undamped antiresonance and the corresponding mass motions.](demos/figures/demo6_antiresonance.png)
+![Exact undamped antiresonance and the corresponding mass motions.](demos/ch2/figures/demo6_antiresonance.svg)
 
 **Numerical example.** With $c_2=0$ and $\sqrt{k_2/m_2}=4\ \mathrm{rad/s}$, the steady-state gain $|X_1/U|$ is exactly zero. The second mass and spring still store energy; the example has mean stored energy $0.0625\ \mathrm{J}$. A finite-time simulation can retain a small $x_1$ transient (about $4\times10^{-5}$ here), because the plant's natural transient decays only as $e^{-0.027t}$. That residual does not change the exact steady-state null.
 
@@ -1299,7 +1299,7 @@ The poles remained the same.
 
 The zeros changed completely — from a resonant pair to a single real zero, or to none at all.
 
-![Moving the sensor changes the zeros and frequency response while preserving the poles in this example.](demos/figures/demo4_sensor_moves_zeros.png)
+![Moving the sensor changes the zeros and frequency response while preserving the poles in this example.](demos/ch2/figures/demo4_sensor_moves_zeros.svg)
 
 **Damped numerical example.** Both outputs show two flexible resonances; only the collocated output has a pronounced notch between them. With $c_2=0.02$, the notch is finite: $|G_1(j4)|\approx1.249\times10^{-3}$. Pole magnitudes near $3.03$ and $5.90\ \mathrm{rad/s}$ surround a zero magnitude near $4.00\ \mathrm{s}^{-1}$. With damping, these magnitudes need not equal the exact frequencies of the response extrema. The two computed pole sets are identical.
 
@@ -2068,7 +2068,7 @@ Use these questions to check both the algebra and its physical meaning.
 The accompanying Python examples recompute the numerical results and generate figures. From the directory containing these notes:
 
 ```sh
-cd demos
+cd demos/ch2
 uv run python demo1_splane_modes.py
 ```
 
@@ -2076,11 +2076,11 @@ Use `--show` for an interactive plot or `--no-save` for terminal output only. `u
 
 | Script | Topic |
 |---|---|
-| [demo1_splane_modes.py](demos/demo1_splane_modes.py) | Pole locations and time responses |
-| [demo2_damping_pole_locus.py](demos/demo2_damping_pole_locus.py) | Damping and the pole locus |
-| [demo3_real_from_complex.py](demos/demo3_real_from_complex.py) | Real motion from conjugate modes |
-| [demo4_sensor_moves_zeros.py](demos/demo4_sensor_moves_zeros.py) | Changing the measured coordinate |
-| [demo5_zero_dynamics.py](demos/demo5_zero_dynamics.py) | Motion with zero measured output |
-| [demo6_antiresonance.py](demos/demo6_antiresonance.py) | Exact undamped antiresonance |
+| [demo1_splane_modes.py](demos/ch2/demo1_splane_modes.py) | Pole locations and time responses |
+| [demo2_damping_pole_locus.py](demos/ch2/demo2_damping_pole_locus.py) | Damping and the pole locus |
+| [demo3_real_from_complex.py](demos/ch2/demo3_real_from_complex.py) | Real motion from conjugate modes |
+| [demo4_sensor_moves_zeros.py](demos/ch2/demo4_sensor_moves_zeros.py) | Changing the measured coordinate |
+| [demo5_zero_dynamics.py](demos/ch2/demo5_zero_dynamics.py) | Motion with zero measured output |
+| [demo6_antiresonance.py](demos/ch2/demo6_antiresonance.py) | Exact undamped antiresonance |
 
 `twomass.py` supplies the shared physical model for examples 4–6. Example 4 has a damped, finite notch; example 6 sets the coupling damping to zero for an exact null. Example 5 checks both the frequency and decay rate of the zero dynamics.

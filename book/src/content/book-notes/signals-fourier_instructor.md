@@ -254,6 +254,8 @@ $$
 > **Point at:** the first table in the terminal. The $U_n$ computed by numerically integrating the projection formula agree with $1/(j\pi n)$ for odd $n$ and zero for nonzero even $n$, to numerical precision. The script integrates only over the on interval, avoiding quadrature across jumps.
 > **Say:** "One sine is a poor square wave. Three is recognisable. By forty-nine the only visible error is right at the corners."
 
+![Square-wave reconstruction from harmonics, harmonic gains through G, harmonic-sum versus ODE steady state, and convergence of the weighted step integral.](demos/ch2/figures/demo9_square_wave_harmonics.svg)
+
 ### A.6.5 What happens at the corners, in one sentence
 
 Near a jump, the partial sums overshoot. Adding harmonics narrows the oscillations, but the overshoot approaches about 8.949% of the jump and does not tend to zero. At the jump itself the series converges to the midpoint. Demo 9 reports peaks of $1.1366$, $1.0912$ and $1.0895$ for $N=1$, $9$ and $199$. This is the **Gibbs phenomenon**. Name it and move on.

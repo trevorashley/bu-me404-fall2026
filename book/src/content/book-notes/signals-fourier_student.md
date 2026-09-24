@@ -237,6 +237,8 @@ Near a jump, the partial sums overshoot. Adding harmonics narrows the oscillatio
 
 **What "well-behaved" means.** The series converges to $u(t)$ wherever $u$ is continuous, and to the midpoint of each jump, when three conditions hold over one period: $u$ is absolutely integrable, has finitely many maxima and minima, and has finitely many finite jumps. These **Dirichlet conditions** are sufficient for the piecewise-smooth periodic waveforms used here; they are not necessary conditions for every Fourier representation. Ideal impulses require a generalized interpretation ([§5](#section-5)).
 
+![Square-wave reconstruction from harmonics, harmonic gains through G, harmonic-sum versus ODE steady state, and convergence of the weighted step integral.](demos/ch2/figures/demo9_square_wave_harmonics.svg)
+
 ## 4. Driving the spring-mass-damper with a square wave {#section-4}
 
 ### 4.1 The response, harmonic by harmonic {#section-4-1}
@@ -645,14 +647,14 @@ The fundamental now dominates by a factor of about 120 ($0.1273/0.00106$). Close
 
 ## Optional computational example
 
-The accompanying [demo9_square_wave_harmonics.py](demos/demo9_square_wave_harmonics.py) recomputes the numerical results and compares a harmonic reconstruction with direct integration of the equation of motion. From the directory containing these notes:
+The accompanying [demo9_square_wave_harmonics.py](demos/ch2/demo9_square_wave_harmonics.py) recomputes the numerical results and compares a harmonic reconstruction with direct integration of the equation of motion. From the directory containing these notes:
 
 ```sh
-cd demos
+cd demos/ch2
 uv run python demo9_square_wave_harmonics.py
 ```
 
-Use `--show` for an interactive plot or `--no-save` to skip writing figures. The default run saves PNG and SVG figures in `demos/figures/`.
+Use `--show` for an interactive plot or `--no-save` to skip writing figures. The default run saves PNG and SVG figures in `demos/ch2/figures/`.
 
 | Panel | What to examine |
 |---|---|

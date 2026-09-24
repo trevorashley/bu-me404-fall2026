@@ -165,6 +165,8 @@ $$
 >
 > **Teaching check [beyond the book]:** Compute the 10% and 90% crossings of the standard step response. The products $\omega_nt_r$ are approximately 1.10, 1.64, 2.13, and 3.36 at $\zeta=0.1,0.5,0.7,1$, respectively. The value 1.8 is attained near $\zeta=0.58$; it is a rough fit, not a bound.
 
+![Rise-time fit versus measured rise time, overshoot versus damping ratio, and the settling envelope for a step response](demos/ch3/figures/l3_demo1_step_specs.svg)
+
 **[beyond the book]** That last sentence has a consequence students should hear now rather than discover in a lab: a pole pair placed exactly on the $\omega_n$ boundary can *fail* the rise-time requirement if its damping is high. Demo 2 shows exactly that case.
 
 ### 5.3 Overshoot and peak time — derive this one
@@ -400,6 +402,8 @@ The book's closing observation is worth the extra thirty seconds: any pole meeti
 >
 > **Teaching check [beyond the book]:** Place the poles at $\zeta=0.7$, $\omega_n=3$ rad/s. They satisfy the approximate design region: $\omega_n=3\ge3$, $\zeta=0.7\ge0.591$, and $\sigma=2.1\ge1.53$. Yet the actual 10–90% rise time is about 0.709 s, which is $\omega_nt_r\approx2.13$ from §5.2 divided by $\omega_n=3$, exceeding 0.6 s. The overshoot constraint is exact for the standard pair; the rise-time circle and settling-time line require verification.
 
+![Approximate allowable pole region and the responses of five candidate pole pairs](demos/ch3/figures/l3_demo2_spec_regions.svg)
+
 ---
 
 ## 7. Zeros, first pass: they reweight the modes (§3.5)
@@ -481,6 +485,8 @@ For $\alpha>0$, **read $\alpha$ as the ratio of the zero's distance from the ima
 > **[ DEMO 3 ]** — `ch3/l3_demo3_zeros.py` *(slide)*
 >
 > **Teaching check [beyond the book]:** For $\zeta=0.5$, compare the zero-free overshoot (16.3%) with $\alpha=4,2,1,0.5$: approximately 19.1%, 29.8%, 69.9%, and 171%. A nearby zero can change the response substantially even though the poles are fixed.
+
+![Step responses with a LHP zero, overshoot versus zero location, and the derivative decomposition for LHP and RHP zeros](demos/ch3/figures/l3_demo3_zeros.svg)
 
 **The factor-of-four rule** is the book's heuristic for when a real LHP zero is likely to matter. It is not an error bound: at $\alpha=4$, overshoot still rises from 16.3% to 19.1% in this example.
 
@@ -708,6 +714,8 @@ The estimates in the table follow:
 > **[ DEMO 4 ]** — `ch3/l3_demo4_extra_pole_aircraft.py` *(live, ~10 s)*
 >
 > **Teaching check [beyond the book]:** For the negative unit elevator impulse, verify $h(\infty)=180/13\approx13.846$ and an initial minimum near $-1.68$. The altitude transform is $\frac{180}{13}\frac{1-s/6}{s}\frac{13}{s^2+4s+13}$. To see this, factor $-30(s-6)=180(1-s/6)$ and split $180=\frac{180}{13}\cdot13$. After scaling, this impulse response is exactly the step response of the second-order pair with a RHP zero: $1/s$ is the step, and the rest is a unit-DC-gain pair with the zero at $+6$. This explains why the second-order estimates are useful here.
+
+![Step responses with an extra pole, rise time versus extra-pole location, and the Boeing 747 altitude undershoot](demos/ch3/figures/l3_demo4_extra_pole_aircraft.svg)
 
 ---
 

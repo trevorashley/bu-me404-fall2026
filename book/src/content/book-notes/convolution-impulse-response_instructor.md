@@ -258,6 +258,8 @@ $$
 >
 > **Teaching check [beyond the book]:** Demo 1 uses $\Delta\,u(k\Delta)h(t-k\Delta)$, an impulse-quadrature approximation to convolution. At finite $\Delta$, this differs from the exact finite-pulse response $h_\Delta$ in Eq. (3.5). Compare it with the ODE solution. Halve the pulse width and check convergence; first-order error scaling is an asymptotic expectation, not an exact halving at every step.
 
+![Weighted impulse responses converging to the response of a first-order system](demos/ch3/figures/l1_demo1_convolution.svg)
+
 ### 5.2 The impulse and its sifting property
 
 Dirac's definition:
@@ -576,6 +578,8 @@ The steady-state part matches Eq. (3.28): $M(10)=1/\sqrt{101}$ and $\varphi(10)=
 >
 > **Teaching check [beyond the book]:** For $u(t)=\sin(10t)1(t)$, predict amplitude $1/\sqrt{101}=0.099504$ and phase $-\tan^{-1}(10)=-84.29^\circ$. Verify the complete expression gives $y(0)=0$. The transient coefficient is $10/101$; it is absent from the steady-state frequency-response calculation.
 
+![Simulated sinusoidal response split into transient and steady state, the output phase lag, and the magnitude and phase of H(jw)](demos/ch3/figures/l1_demo2_frequency_response.svg)
+
 > **[ FIG 3.5 ]** — PDF p. 33 (a), PDF p. 34 (b) *(slide)*
 >
 > **Point at:** panel (b), where the phase lag is measured off the plot as $10\,\delta t=1.47$ rad $=84.2^\circ$. That is how you would measure it in a lab, with no model at all.
@@ -783,6 +787,8 @@ In Matlab this is `[r,p,k] = residue(num,den)`, and the book prints the result t
 > **[ DEMO 3 ]** — `ch3/l1_demo3_partial_fractions_fvt.py` *(slide)*
 >
 > **Teaching check [beyond the book]:** Recombine the three fractions of Example 3.11 over a common denominator. Also check $y(0^+)=1$ and $y(\infty)=8/3$. These checks catch residue sign errors without a simulation.
+
+![Partial-fraction terms for Example 3.11, a valid Final Value Theorem result for Example 3.12, and the invalid result for Example 3.13](demos/ch3/figures/l1_demo3_partial_fractions_fvt.svg)
 
 **Repeated roots and complex pairs** are in Appendix A. Mention that a repeated root brings in $te^{pt}$ terms — the same $(A+Bt)e^{st}$ structure as the critically damped case of *(0.0.8 §7.2)* — and leave the algebra to the appendix.
 
@@ -1153,6 +1159,8 @@ The book works four systems from Chapter 2 through Matlab. Show the code, run th
 > $$
 >
 > The $1/s^2$ of the plant integrates the net impulse into a rate and then into an angle.
+
+![Satellite attitude drifting after one thruster pulse and holding after a pulse and counter-pulse](demos/ch3/figures/l1_demo4_satellite_pulse.svg)
 
 > **[ FIG 3.7, 3.8 ]** — PDF p. 63, PDF p. 64, PDF p. 65, PDF p. 65
 

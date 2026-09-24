@@ -245,6 +245,8 @@ The first equation is the outer junction ($R-G_4b$), then the inner junction ($+
 
 **Worked check:** Choose nonzero numerical values for the six blocks and solve the three node equations. Compare $Y/R$ with the reduced formula, then reverse the inner-feedback sign and repeat. Agreement at sample points is a useful error check; the symbolic elimination establishes the identity.
 
+![Reduced transfer function matching the block diagram solved directly, and the Example 3.22 closed-loop step response](demos/ch3/figures/l2_demo1_block_reduction.svg)
+
 ---
 
 ## 4. Doing it by computer {#section-4}
@@ -369,9 +371,11 @@ The denominator supplies the rates $-1$ and $-2$, while the numerator sets the c
 
 **Worked check:** The two modal contributions have equal magnitude when $3e^{-2t}=e^{-t}$. Dividing by $e^{-2t}$ gives $e^{t}=3$, so $t=\ln3\approx1.10$ s. At this time the contributions cancel and the impulse response crosses zero. This separates fast initial motion from the slow tail. Separately, $h(0^+)=-1+3=2$, as the initial-value theorem $h(0^+)=\lim_{s\to\infty}sH(s)=2$ requires. This equals the leading numerator coefficient here because the denominator is monic and its degree is exactly one greater than the numerator's.
 
+![Impulse responses for Examples 3.25 and 3.26 and the second-order step response family versus damping ratio](demos/ch3/figures/l2_demo3_second_order.svg)
+
 ### 6.2 Pole locations and modal shapes {#section-6-2}
 
-![Decaying, sustained, and growing modal responses for different pole locations](images/ch3/pole-locations.png)
+![Decaying, sustained, and growing modal responses for different pole locations](demos/ch3/figures/l2_demo2_pole_locations.svg)
 
 *Modal shapes:* the real part sets decay or growth; the imaginary part sets oscillation frequency. These curves illustrate simple free modes, not boundedness under every possible input.
 

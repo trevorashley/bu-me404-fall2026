@@ -487,6 +487,8 @@ Note that "same side" is weaker than collocated: the two can sit at different po
 
 **3. If $ab=J/m$ exactly**, then $A=0$. When $B\ne0$, the numerator is linear, with a root at $-C/B$, and the relative degree is **3**. If also $B=0$ but $C\ne0$, the relative degree is **4**. Here $B=0$ means $c_\theta=(J/m)c_x$, the mass-proportional damping condition for these coordinates; the undamped limit satisfies it too. If $A=B=C=0$, the entire output transfer function is zero and no finite relative degree is assigned. As usual, common factors must be canceled when identifying finite transfer zeros.
 
+![Zero locus as damping increases, with the RHP zero never crossing the imaginary axis, and step responses that all start in the wrong direction.](demos/ch2/figures/demo7_damping_moves_zeros.svg)
+
 ### A worked numerical case
 
 Take $m=1$, $J=0.1$, $k_x=100$, $k_\theta=20$, $c_x=2$, $c_\theta=0.5$, with $a=0.3$ and $b=0.5$, so $ab=0.15$.
@@ -751,6 +753,8 @@ $$
 }
 $$
 
+![Pitch-torque step responses at points above, at, and below the center of mass; the RHP zero at +sqrt(g/h); and the diverging zero dynamics.](demos/ch2/figures/demo8_quadrotor_rhp.svg)
+
 ### Put a number on it
 
 For a camera $h=0.2\ \text{m}$ below the center of mass,
@@ -1011,7 +1015,7 @@ Use these questions to connect sensor geometry, internal motion, and control beh
 The accompanying Python examples recompute the numerical results and generate figures. From the directory containing these notes:
 
 ```sh
-cd demos
+cd demos/ch2
 uv run python demo7_damping_moves_zeros.py
 ```
 
@@ -1019,7 +1023,7 @@ Use `--show` for an interactive plot or `--no-save` for terminal output only. `u
 
 | Script | Topic |
 |---|---|
-| [demo7_damping_moves_zeros.py](demos/demo7_damping_moves_zeros.py) | Zero locations under changing damping |
-| [demo8_quadrotor_rhp.py](demos/demo8_quadrotor_rhp.py) | Sensor offsets and unstable zero dynamics |
+| [demo7_damping_moves_zeros.py](demos/ch2/demo7_damping_moves_zeros.py) | Zero locations under changing damping |
+| [demo8_quadrotor_rhp.py](demos/ch2/demo8_quadrotor_rhp.py) | Sensor offsets and unstable zero dynamics |
 
 Example 7 verifies the root-product result for the selected $AC<0$ geometry. Its statements about damping preserving the half planes of the zeros apply to that case; the full classification in these notes explains why they do not extend to every geometry. Example 8 checks the divergence rate through the transfer zeros, analytic zero dynamics, and numerical simulation. Its center-of-mass plot label “minimum phase” should be read as “no finite zeros” under the convention used here. Its unit-torque and growing-angle traces illustrate the linear equations; they exceed the physical small-angle range at sufficiently large amplitudes. The worked derivation in these notes states the applicable model limits.

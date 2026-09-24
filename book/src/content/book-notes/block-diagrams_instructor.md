@@ -339,6 +339,8 @@ The first equation is the outer junction ($R-G_4b$), then the inner junction ($+
 >
 > **Teaching check [beyond the book]:** Choose nonzero numerical values for the six blocks and solve the three node equations. Compare $Y/R$ with the reduced formula, then reverse the inner-feedback sign and repeat. Agreement at sample points is a useful error check; the symbolic elimination establishes the identity.
 
+![Reduced transfer function matching the block diagram solved directly, and the Example 3.22 closed-loop step response](demos/ch3/figures/l2_demo1_block_reduction.svg)
+
 ---
 
 ## 7. Doing it by computer (§3.2.2, §3.2.3)
@@ -482,6 +484,8 @@ $$
 >
 > **Teaching check [beyond the book]:** The two modal contributions have equal magnitude when $3e^{-2t}=e^{-t}$. Dividing by $e^{-2t}$ gives $e^{t}=3$, so $t=\ln3\approx1.10$ s. At this time the contributions cancel and the impulse response crosses zero. Separately, $h(0^+)=-1+3=2$, as the initial-value theorem $h(0^+)=\lim_{s\to\infty}sH(s)=2$ requires. This equals the leading numerator coefficient here because the denominator is monic and its degree is exactly one greater than the numerator's.
 
+![Impulse responses for Examples 3.25 and 3.26 and the second-order step response family versus damping ratio](demos/ch3/figures/l2_demo3_second_order.svg)
+
 ### 9.2 The board that matters: Fig. 3.16
 
 > **[ FIG 3.16 ]** — PDF p. 88
@@ -524,6 +528,8 @@ This table describes simple modes. Repeated poles add polynomial factors in time
 > **[ DEMO 2 ]** — `ch3/l2_demo2_pole_locations.py` *(live, ~10 s, projected beside the board)*
 >
 > **Teaching check [beyond the book]:** Compare poles at $-3$ and $-0.6$: their decay time constants are $1/3$ s and $5/3$ s. Then sketch poles at $\pm j$ and $+0.5\pm j$: equal oscillation frequency, different amplitude evolution. These are modal shapes, not claims about arbitrary-input boundedness.
+
+![Decaying, sustained, and growing modal responses for different pole locations](demos/ch3/figures/l2_demo2_pole_locations.svg)
 
 ---
 

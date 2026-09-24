@@ -223,6 +223,8 @@ $$
 >
 > *Working.* The capacitor: $V=\frac1s\cdot\frac1s=\frac1{s^2}$, so $v=t$. The resonance: $Y=\frac{1}{s^2+1}\cdot\frac{1}{s^2+1}=\frac{1}{(s^2+1)^2}$, a *repeated* pole pair at $\pm j$. This is not in the elementary table, so use property 9 of L1 §9 ($tf\leftrightarrow-dF/ds$) on the cosine. $\mathcal L\{t\cos t\}=-\frac{d}{ds}\frac{s}{s^2+1}=\frac{s^2-1}{(s^2+1)^2}$. Write $\frac{1}{(s^2+1)^2}=\frac12\left[\frac{1}{s^2+1}-\frac{s^2-1}{(s^2+1)^2}\right]$; the check is $\frac{(s^2+1)-(s^2-1)}{2(s^2+1)^2}=\frac{1}{(s^2+1)^2}$. Inverting gives $y=\tfrac12(\sin t-t\cos t)$. The $t\cos t$ term grows linearly: forcing at the pole frequency makes the input's poles coincide with the plant's.
 
+![A capacitor's unbounded voltage, a resonant system driven at resonance, and a stable transfer function hiding an unstable internal mode](demos/ch3/figures/l4_demo4_bibo_internal.svg)
+
 ---
 
 ## 6. Internal stability (§3.6.2)
@@ -481,6 +483,8 @@ First column: $1,\ 4,\ 2.5,\ 2,\ 3,\ -5.0667,\ 4$. The sign goes $+\to-$ between
 >
 > *The sum-of-roots check.* For a monic polynomial, the sum of the roots is $-a_1=-4$. The real parts sum to $-3.2644-0.8858+2(-0.6046)+2(0.6797)=-4.1502-1.2092+1.3594=-4.0000$ ✓. With $+0.7797$ the sum would be $-3.8$ ✗.
 
+![Example 3.32 roots with two in the RHP, and the growing and decaying natural modes](demos/ch3/figures/l4_demo1_routh.svg)
+
 #### Ask the class
 
 > Routh gives a count, not locations. When is a count enough?
@@ -554,6 +558,8 @@ The first inequality gives $4K>30$, so $K>7.5$. That implies $K>0$ and the neces
 >
 > **Teaching check [beyond the book]:** At $K=7.5$, the polynomial is $s^3+5s^2+1.5s+7.5$. Group the terms: $s^2(s+5)+1.5(s+5)=(s+5)(s^2+1.5)$. The imaginary poles are $\pm j\sqrt{1.5}=\pm1.225j$, so the free response is neutral and the system is not BIBO stable. At $K=13$ the roots are approximately $-4.065,-0.468\pm1.726j$; at $K=25$, $-1.908,-1.546\pm3.273j$. The pair's damping ratio increases from about 0.261 to 0.427. Using $\zeta=\sigma/\sqrt{\sigma^2+\omega_d^2}$: $0.468/\sqrt{0.219+2.979}=0.468/1.788=0.261$ and $1.546/\sqrt{2.390+10.711}=1.546/3.620=0.427$. Still, the zero and third pole mean that damping ratio alone does not determine overshoot; compare the full responses in Fig. 3.41.
 
+![Closed-loop roots as the gain varies, and step responses at K = 7.5, 13, and 25](demos/ch3/figures/l4_demo2_gain_range.svg)
+
 > **[ FIG 3.41 ]** — PDF p. 154
 
 ---
@@ -614,6 +620,8 @@ In the $(K,K_I)$ plane the second condition is the region below the straight lin
 > **[ DEMO 3 ]** — `ch3/l4_demo3_pi_region.py` *(slide)*
 >
 > **Teaching check [beyond the book]:** At $K=K_I=1$, $T(s)=(s+1)/(s+1)^3=1/(s+1)^2$, with unit final value. The denominator is $s^3+3s^2+3s+1=(s+1)^3$ by the binomial theorem, and $T(0)=K_I/K_I=1$ for any stable $K_I>0$, which is the integrator doing its job. Routh: $6+3-1=8>0$ ✓. At $K=10,K_I=5$, the polynomial is $s^3+3s^2+12s+5$ ($6+30-5=31>0$ ✓), the roots are approximately $-0.462,-1.269\pm3.036j$, and the zero is at $-K_I/K=-0.5$. Check: the roots sum to $-0.462-2.538=-3.000=-a_1$ ✓. **Source correction [beyond the book]:** PDF p. 159 prints an imaginary part near 3.3; substitution or numerical roots gives 3.036. Treat $K_I=0$ separately, as explained below.
+
+![PI gain stability region and step responses at selected gain pairs](demos/ch3/figures/l4_demo3_pi_region.svg)
 
 **Boundary case $K_I=0$ [beyond the book].** The cubic becomes $s[s^2+3s+(2+K)]$. If the PI integrator state is retained, it has a neutral mode and the full realisation is not asymptotically stable. If the integral term is removed and the controller is implemented as a pure gain, the physical closed loop is second order and is stable for $K>-2$. In that case $T=\dfrac{K}{(s+1)(s+2)+K}=\dfrac{K}{s^2+3s+2+K}$; a second-order polynomial is stable iff all its coefficients are positive, so $2+K>0$. At $K=1$, $T=1/(s^2+3s+3)$ has final value $T(0)=1/3$. The zero at the origin cancels in that input-output transfer; it is not an uncancelled transfer pole. Distinguish controller implementation from an algebraic factor introduced by multiplying through by $s$.
 

@@ -74,6 +74,8 @@ $$
 
 A pair placed exactly on the approximate $\omega_n$ boundary can fail a rise-time requirement. Example 3.27 below shows this explicitly.
 
+![Rise-time fit versus measured rise time, overshoot versus damping ratio, and the settling envelope for a step response](demos/ch3/figures/l3_demo1_step_specs.svg)
+
 ### 2.3 Overshoot and peak time {#section-2-3}
 
 For zero initial state, unit DC gain, $\omega_n>0$, and $0<\zeta<1$, the step response of the standard second-order system is
@@ -295,9 +297,9 @@ The approximate settling constraint is redundant in this example: $\sigma=\zeta\
 
 **Worked check:** Place the poles at $\zeta=0.7$, $\omega_n=3$ rad/s. They satisfy the approximate design region: $\omega_n=3\ge3$, $\zeta=0.7\ge0.591$, and $\sigma=2.1\ge1.53$. Yet the actual 10–90% rise time is about 0.709 s, which is $\omega_nt_r\approx2.13$ from §2.2 divided by $\omega_n=3$, exceeding 0.6 s. The overshoot constraint is exact for the standard pair; the rise-time circle and settling-time line require verification.
 
----
+![Approximate allowable pole region and the responses of five candidate pole pairs](demos/ch3/figures/l3_demo2_spec_regions.svg)
 
-![Approximate allowable pole region and the responses of five candidate pole pairs](images/ch3/specification-region.png)
+---
 
 *Checking the design region:* the shaded area is the approximate allowable region, using the exact 10% damping bound $\zeta\ge0.591155\ldots$. Unlike the textbook figure’s excluded-region shading, shading here means allowable. The pair on the $\omega_n=3$ circle at $\zeta=0.7$ meets the approximate bounds but fails the actual rise-time requirement.
 
@@ -367,6 +369,8 @@ For $\alpha>0$, **read $\alpha$ as the ratio of the zero's distance from the ima
 **Worked check:** For $\zeta=0.5$, compare the zero-free overshoot (16.3%) with $\alpha=4,2,1,0.5$: approximately 19.1%, 29.8%, 69.9%, and 171%. A nearby zero can change the response substantially even though the poles are fixed.
 
 **The factor-of-four rule:** explicitly check a real LHP zero whose distance from the imaginary axis is less than about four times $\sigma$ ($\alpha\lesssim4$). A more distant zero is a candidate for neglect, subject to a response check. It is not an error bound: at $\alpha=4$, overshoot still rises from 16.3% to 19.1% in this example.
+
+![Step responses with a LHP zero, overshoot versus zero location, and the derivative decomposition for LHP and RHP zeros](demos/ch3/figures/l3_demo3_zeros.svg)
 
 ---
 
@@ -562,6 +566,8 @@ The estimates in the table follow:
 The complete-model values use the negative unit elevator impulse. The 12.3% estimate evaluates Eq. (3.72) for the zero-free pair; the textbook’s approximate 14% estimate is read from its overshoot chart. The model’s nonzero RHP zero explains why the pair-only estimates differ from the response.
 
 **Worked check:** For the negative unit elevator impulse, verify $h(\infty)=180/13\approx13.846$ and an initial minimum near $-1.68$. The altitude transform is $\frac{180}{13}\frac{1-s/6}{s}\frac{13}{s^2+4s+13}$. To see this, factor $-30(s-6)=180(1-s/6)$ and split $180=\frac{180}{13}\cdot13$. After scaling, this impulse response is exactly the step response of the second-order pair with a RHP zero: $1/s$ is the step, and the rest is a unit-DC-gain pair with the zero at $+6$. This explains why the second-order estimates are useful here.
+
+![Step responses with an extra pole, rise time versus extra-pole location, and the Boeing 747 altitude undershoot](demos/ch3/figures/l3_demo4_extra_pole_aircraft.svg)
 
 ---
 

@@ -128,6 +128,8 @@ $$
 
 *Working.* The capacitor: $V=\frac1s\cdot\frac1s=\frac1{s^2}$, so $v=t$. The resonance: $Y=\frac{1}{s^2+1}\cdot\frac{1}{s^2+1}=\frac{1}{(s^2+1)^2}$, a *repeated* pole pair at $\pm j$. This is not in the elementary table, so use property 9 of the properties table in L1 §6 ($tf\leftrightarrow-dF/ds$) on the cosine. $\mathcal L\{t\cos t\}=-\frac{d}{ds}\frac{s}{s^2+1}=\frac{s^2-1}{(s^2+1)^2}$. Write $\frac{1}{(s^2+1)^2}=\frac12\left[\frac{1}{s^2+1}-\frac{s^2-1}{(s^2+1)^2}\right]$; the check is $\frac{(s^2+1)-(s^2-1)}{2(s^2+1)^2}=\frac{1}{(s^2+1)^2}$. Inverting gives $y=\tfrac12(\sin t-t\cos t)$. The $t\cos t$ term grows linearly: forcing at the pole frequency makes the input's poles coincide with the plant's.
 
+![A capacitor's unbounded voltage, a resonant system driven at resonance, and a stable transfer function hiding an unstable internal mode](demos/ch3/figures/l4_demo4_bibo_internal.svg)
+
 ---
 
 ## 3. Internal stability {#section-3}
@@ -394,6 +396,8 @@ The sum-of-roots check catches the typo. For a monic polynomial, the roots sum t
 
 Whenever the question is a yes-or-no about stability, or a *boundary* in a parameter. That is the next two examples.
 
+![Example 3.32 roots with two in the RHP, and the growing and decaying natural modes](demos/ch3/figures/l4_demo1_routh.svg)
+
 ---
 
 ## 5. Example 3.33: the range of stabilising gain {#section-5}
@@ -451,6 +455,8 @@ Routh’s criterion answers the stability question for an entire family of syste
 
 **Worked check:** At $K=7.5$, the polynomial is $s^3+5s^2+1.5s+7.5$. Group the terms: $s^2(s+5)+1.5(s+5)=(s+5)(s^2+1.5)$. The imaginary poles are $\pm j\sqrt{1.5}=\pm1.225j$, so the free response is neutral and the system is not BIBO stable. At $K=13$ the roots are approximately $-4.065,-0.468\pm1.726j$; at $K=25$, $-1.908,-1.546\pm3.273j$. The pair's damping ratio increases from about 0.261 to 0.427. Using $\zeta=\sigma/\sqrt{\sigma^2+\omega_d^2}$: $0.468/\sqrt{0.219+2.979}=0.468/1.788=0.261$ and $1.546/\sqrt{2.390+10.711}=1.546/3.620=0.427$. Still, the zero and third pole mean that damping ratio alone does not determine overshoot; compute the full response to determine overshoot.
 
+![Closed-loop roots as the gain varies, and step responses at K = 7.5, 13, and 25](demos/ch3/figures/l4_demo2_gain_range.svg)
+
 ---
 
 ## 6. Example 3.34: two parameters, and a region {#section-6}
@@ -506,7 +512,7 @@ In the $(K,K_I)$ plane the second condition is the region below the straight lin
 
 **Boundary case $K_I=0$.** The cubic becomes $s[s^2+3s+(2+K)]$. If the PI integrator state is retained, it has a neutral mode and the full realisation is not asymptotically stable. If the integral term is removed and the controller is implemented as a pure gain, the physical closed loop is second order and is stable for $K>-2$. In that case $T=\dfrac{K}{(s+1)(s+2)+K}=\dfrac{K}{s^2+3s+2+K}$; a second-order polynomial is stable iff all its coefficients are positive, so $2+K>0$. At $K=1$, $T=1/(s^2+3s+3)$ has final value $T(0)=1/3$. The zero at the origin cancels in that input-output transfer; it is not an uncancelled transfer pole. Distinguish controller implementation from an algebraic factor introduced by multiplying through by $s$.
 
-![PI gain stability region and step responses at selected gain pairs](images/ch3/pi-stability-region.png)
+![PI gain stability region and step responses at selected gain pairs](demos/ch3/figures/l4_demo3_pi_region.svg)
 
 *PI stability region:* the shaded set has $K_I>0$ and $K>K_I/3-2$; both boundary lines are excluded for strict stability of the full cubic. The $K_I=0$ response shown at right uses a controller implemented as a pure proportional gain. Stable PI cases shown reach a unit final value; the pure-gain case at $K=1$ reaches $1/3$.
 

@@ -163,7 +163,7 @@ $$
 
 **Numerical approximation:** The sum $\sum_k\Delta u(k\Delta)h(t-k\Delta)$ approximates convolution using weighted impulses. At finite $\Delta$, it differs from Eq. (3.5), which uses the exact finite-pulse response $h_\Delta$. Refining $\Delta$ improves this quadrature approximation; it does not turn each finite impulse sample into an exact finite-pulse response.
 
-![Weighted impulse responses converging to the response of a first-order system](images/ch3/convolution.png)
+![Weighted impulse responses converging to the response of a first-order system](demos/ch3/figures/l1_demo1_convolution.svg)
 
 *Convolution example:* $\dot y+y=u$ from rest, with $u(t)=0.6+e^{-0.3t}\sin2t+0.25\,1(t-3)$ for $t\ge0$ and zero input before zero. The plotted sums use weighted impulses and $h(t)=e^{-t}1(t)$; smaller $\Delta$ brings them closer to the numerical ODE solution. At finite $\Delta$, these are not exact responses to the staircase input.
 
@@ -469,6 +469,8 @@ The steady-state part matches Eq. (3.28): $M(10)=1/\sqrt{101}$ and $\varphi(10)=
 
 Identify a system you have not modeled. That is textbook §3.7, and it is why the frequency response matters even to people who never draw a Bode plot.
 
+![Simulated sinusoidal response split into transient and steady state, the output phase lag, and the magnitude and phase of H(jw)](demos/ch3/figures/l1_demo2_frequency_response.svg)
+
 ---
 
 ## 5. The $\mathcal L_-$ transform and four transform pairs {#section-5}
@@ -681,6 +683,8 @@ $$
 $$
 
 Thus a double pole contributes $(A+Bt)e^{pt}$. Complex-conjugate terms combine into real sines and cosines. See textbook Appendix A for further inversion examples.
+
+![Partial-fraction terms for Example 3.11, a valid Final Value Theorem result for Example 3.12, and the invalid result for Example 3.13](demos/ch3/figures/l1_demo3_partial_fractions_fvt.svg)
 
 ### 7.3 Solving differential equations (Examples 3.15–3.17) {#section-7-3}
 
@@ -1037,6 +1041,8 @@ s^2\Theta(s)=\frac{0.005}{s}\left[\left(e^{-5s}-e^{-5.1s}\right)-\left(e^{-6.1s}
 $$
 
 The $1/s^2$ of the plant integrates the net impulse into a rate and then into an angle.
+
+![Satellite attitude drifting after one thruster pulse and holding after a pulse and counter-pulse](demos/ch3/figures/l1_demo4_satellite_pulse.svg)
 
 ---
 

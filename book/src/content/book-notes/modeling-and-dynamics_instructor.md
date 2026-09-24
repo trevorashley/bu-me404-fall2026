@@ -725,6 +725,8 @@ That constant-radius arc is the first root locus students will ever see, and it 
 > **Say:** "Up to critical damping, both coordinates move along the circle while the magnitude stays fixed. After the roots meet, one moves back toward the origin."
 > **Why live:** this pre-empts the wrong intuition before students form it, and the right panel ties each pole location to a waveform they recognise.
 
+![How damping changes pole locations and time responses for fixed mass and stiffness.](demos/ch2/figures/demo2_damping_pole_locus.svg)
+
 Now expand the exponential. With $s=\sigma+j\omega$,
 
 $$
@@ -819,6 +821,8 @@ since $2\Re\{|A_1|e^{j\psi}e^{j\omega_dt}\}=2|A_1|\cos(\omega_dt+\psi)$. Problem
 > **Point at:** the printed line `max |Im(mode1 + mode2)| = 0.000e+00`.
 > **Numbers:** this is Problem 6. The script solves for $A_1 = 1 - j/3$ from the initial conditions and lands on $e^{-t}(2\cos 3t + \tfrac23\sin 3t)$, cross-checked against a numerical ODE solve to $5\times10^{-12}$.
 > **Say:** "Neither of those complex curves is a motion the mass could perform. Only their sum is."
+
+![A conjugate pair of complex modes combines to give a real displacement.](demos/ch2/figures/demo3_real_from_complex.svg)
 
 ### Instructor script — closing §7
 
@@ -1068,6 +1072,8 @@ Everything so far has been sign conditions in prose. Draw the picture once and t
 > **Show:** both panels together. Left is where each pole sits, right is what it does, colour-matched.
 > **Use it for:** the walk down the table below. Rather than describing each case, point at the pair.
 > **Say:** "Farther left means faster exponential decay; off the real axis means oscillation. A right-half-plane pole gives exponential growth. Poles on the axis need a separate check."
+
+![Pole locations and their corresponding time responses.](demos/ch2/figures/demo1_splane_modes.svg)
 
 ### The three rules
 
@@ -1349,6 +1355,8 @@ This matters because the formal definition of zero dynamics is *the internal mot
 > **Say:** "The sensor is telling the truth. It is just not telling you very much."
 > **Why live:** students accept "zero output does not mean zero motion" as words. They believe it when they watch a flat line sit above a swinging mass for sixty seconds.
 
+![Zero measured displacement while the second mass moves and the actuator cancels its coupling force.](demos/ch2/figures/demo5_zero_dynamics.svg)
+
 ### Instructor script
 
 > Here is a physical way to understand a zero.
@@ -1407,6 +1415,8 @@ This is an **antiresonance**, and it is the operating principle of the **dynamic
 > **Point at:** the steady-state table. $|X_1/U|$ at the antiresonance is `0.000e+00` — an exact algebraic zero, not a small number.
 > **Also:** the script reports mean stored energy of $0.0625$ in the $m_2$ branch while $x_1\approx0$, which sets up the question below before you ask it.
 > **Watch out:** the simulated $x_1$ shows a residue near $4\times10^{-5}$. That is the plant's own transient, which decays only as $e^{-0.027t}$ — not a discrepancy in the steady state. The script says so.
+
+![Exact undamped antiresonance and the corresponding mass motions.](demos/ch2/figures/demo6_antiresonance.svg)
 
 ### Ask the class
 
@@ -1487,6 +1497,8 @@ and if $c_2=0$, there is no finite zero at all — the numerator is the constant
 > **Point at:** the printed `largest discrepancy between the two pole sets: 0.00e+00`. Not "small" — identical.
 > **Then:** both outputs show the two flexible resonances; only the collocated one has a pronounced notch between them. Here $c_2=0.02$, so the notch is not an exact null: $|G_1(j4)|\approx1.249\times10^{-3}$. Demo 6 uses $c_2=0$ for the exact null.
 > **Worth adding out loud:** the script marks pole magnitudes near $3.03$ and $5.90$ rad/s and a zero magnitude of $4.00$. These indicate the resonances and notch approximately; with damping, they are not necessarily the exact extrema of the frequency response. The ordering recalls the exact undamped interlacing in §25.
+
+![Moving the sensor changes the zeros and frequency response while preserving the poles in this example.](demos/ch2/figures/demo4_sensor_moves_zeros.svg)
 
 Board statement:
 
@@ -2517,6 +2529,8 @@ The RHP zero moves a long way — and which direction it moves depends on the si
 > **Say:** "For this $AC<0$ geometry, damping moves the zero without changing its sign. The script sweeps farther than the table, to $c_x=60$: the two families reach about $+1.6$ and $+121$."
 > **Right panel:** all three step responses still start by going the wrong way, however heavily damped. That is the §33 point made in one picture.
 
+![Zero locus as damping increases, with the RHP zero never crossing the imaginary axis, and step responses that all start in the wrong direction.](demos/ch2/figures/demo7_damping_moves_zeros.svg)
+
 **2. If $ab<0$** — sensor and actuator on the *same* side of the center of mass — then $A>0$, $B>0$ and $C>0$, so both zeros lie in the open **left** half plane. (For the worked numbers below with $ab=-0.15$: $A=0.1+0.15=0.25$, $B=0.5+0.3=0.8$, $C=20+15=35$. Then $s^2+3.2s+140=0$ gives $s=-1.6\pm j\sqrt{140-2.56}=-1.60\pm j11.72$.) Only in the *undamped* case $B=0$ do those zeros sit exactly on the $j\omega$ axis.
 
 Note that "same side" is weaker than collocated: the two can sit at different points and still share a sign. True collocation is the special case $b=-a$, meaning the sensor is *at* the actuator, which gives $ab=-a^2<0$. So collocation lives inside this family, and the favorable sign structure of §25 turns out to extend to a strictly larger set of geometries than collocation alone. That is worth saying out loud — collocation is sufficient for good sign structure here, not necessary.
@@ -2756,6 +2770,8 @@ Say it in those words. The recurrence is worth more to students than another def
 > **Point at:** the three-row table. Divergence rate fitted from the simulation, $\sqrt{g/h}$, and the RHP zero of $Y/M$ all read $7.00357$.
 > **Say:** "The zero is the exponential growth rate of a motion compatible with keeping this output at zero. The linear zero dynamics are unstable."
 > **Model scope:** these are responses of the linearized model. The script's unit torque with $J=0.02$ gives $\theta\approx6.12$ rad at the $0.4946$ s crossing, outside the small-angle range. The crossing time is independent of nonzero step amplitude; a smaller torque scales the motion down. Likewise the growing zero-dynamics trace is physically local, not a prediction of unlimited large-angle flight. Read the script's CM label “minimum phase” as “no finite zeros,” following §17's convention.
+
+![Pitch-torque step responses at points above, at, and below the center of mass; the RHP zero at +sqrt(g/h); and the diverging zero dynamics.](demos/ch2/figures/demo8_quadrotor_rhp.svg)
 
 Impose the defining condition:
 
