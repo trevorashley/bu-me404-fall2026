@@ -27,6 +27,7 @@
     - [09/15/2026](./content/class-notes/20260915.md)
     - [09/17/2026](./content/class-notes/20260917.md)
     - [09/22/2026](./content/class-notes/20260922.md)
+    - [09/24/2026](./content/class-notes/20260924.md)
 
 ---
 
