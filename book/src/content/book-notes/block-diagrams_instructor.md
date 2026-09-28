@@ -11,12 +11,6 @@
 
 **Duration:** 75 minutes.
 
-**Book figures:** figure numbers refer to the source chapter at
-
-```text
-references/documents/Franklin, Powell, Emami-Naeimi - 8th Ed./3 - Dynamic Response.pdf
-```
-
 Page cues below use the PDF viewer's 1-based page numbers (202 pages). Project the figures directly from this PDF; extracted image files are not supplied. **[beyond the book]** Classroom checks and teaching prompts are instructor additions. Demo paths are relative to `demos/`; the demonstration index lists the scripts.
 
 **Notation:**
@@ -131,7 +125,7 @@ Use the demos for the selected live examples; the accompanying checks also work 
 
 ### 5.1 Three elementary connections
 
-> **[ FIG 3.9 ]** — PDF p. 68 *(slide)*
+![alt text](./book-figures/3-9.png)
 
 | Connection | Diagram | Transfer function |
 |---|---|---|
@@ -210,7 +204,7 @@ $$
 
 ### 5.3 Moving things around
 
-> **[ FIG 3.10 ]** — PDF p. 71 *(slide)*
+![alt text](./book-figures/3-10.png)
 >
 > **Show:** panel (a), moving a pickoff point; panel (b), moving a summing junction; panel (c), converting to unity feedback.
 > **Say:** "Each of these is an identity, not a trick. Move a pickoff point past a block and whatever you take off must be corrected by that block — which is why you will see a $1/G$ appear."
@@ -227,6 +221,7 @@ For nonzero $G_2$, a nonunity feedback loop has $Y/R=(1/G_2)[G_1G_2/(1+G_1G_2)]$
 
 ### 6.1 Example 3.22
 
+![alt text](./book-figures/3-11.png)
 > **[ FIG 3.11 ]** — PDF p. 72 (a), PDF p. 72 (b)
 
 The forward path is a gain of 2 in parallel with $4/s$, followed by an integrator $1/s$, all inside unity negative feedback. Reduce in two steps:
@@ -263,8 +258,7 @@ $$
 Say it plainly: **feedback moved the poles.** That single sentence is the reason Chapter 5 exists. In the second-order language of §10 below, match $s^2+2s+4$ to $s^2+2\zeta\omega_ns+\omega_n^2$. This gives $\omega_n^2=4$, so $\omega_n=2$ rad/s, and $2\zeta\omega_n=2$, so $\zeta=0.5$. Check: $\sigma=\zeta\omega_n=1$ and $\omega_d=2\sqrt{1-0.25}=\sqrt3$, matching the roots. It also has a zero at $-2$, so the zero-free overshoot formula from L3 does not apply directly.
 
 ### 6.2 Example 3.23
-
-> **[ FIG 3.12 ]** — PDF p. 73 (a), PDF p. 74 (b), PDF p. 74 (c)
+![alt text](./book-figures/3-12a.png)
 
 Six blocks, a nested **positive** feedback loop through $G_3$, an outer loop through $G_4$, and a feedforward path through $G_6$ that takes off before $G_2$.
 
@@ -275,6 +269,8 @@ $$
 $$
 
 **Source correction [beyond the book]:** the book's solution text (PDF p. 74) says the feedback loop involving "$G_1$ and $G_2$". The figure shows the loop is $G_1$ and $G_3$, and the result $G_1/(1-G_1G_3)$ confirms it.
+
+![alt text](image.png)
 
 **Step 2: move the pickoff (Fig. 3.12b → c).** $G_6$ takes its input from $a$, before $G_2$. After the move it takes its input from $b=G_2a$. To deliver the same signal $G_6a$, the block must become $G_6/G_2$, because $(G_6/G_2)\,b=(G_6/G_2)G_2a=G_6a$. The output is now two parallel blocks acting on $b$:
 
@@ -367,6 +363,10 @@ which returns $(2s+4)/(s^2+2s+4)$, as before.
 > The feedback-dependent factor is $1-G_1G_3+G_1G_2G_4$. Substitute the block transfer functions into the full expression for $T(s)$, combine the fractions, and check for cancellations before identifying its input-output poles. Dynamic blocks $G_5$ and $G_6$ can contribute additional poles even though they lie outside the loops. Internal modes can also be hidden by cancellations; the reduced $Y/R$ alone does not establish internal stability. The opposite signs of the two loop terms do not imply that increasing those gains moves every pole in opposite directions.
 
 ---
+---
+
+> **We've wrapped up block-diagrams for now.**
+> We're now moving on to how to determine plant/system behaviors based on pole/zero locations.
 
 ## 8. The natural response, and first-order poles (§3.3)
 
@@ -411,8 +411,9 @@ The residues are $\left.\frac1{s+\sigma}\right|_{s=0}=\frac1\sigma$ and $\left.\
 
 **The tangent-line construction.** The unit-DC-gain step response $1-e^{-t/\tau}$ has initial slope $\frac{d}{dt}(1-e^{-t/\tau})\big|_{t=0}=1/\tau$. A line with that slope starting from 0 reaches the final value 1 at $t=\tau$. For the decaying impulse response $e^{-t/\tau}$, the tangent at the origin, $1-t/\tau$, reaches zero at the same time.
 
-> **[ FIG 3.14 ]** — PDF p. 82 (a), PDF p. 83 (b) *(slide)*
->
+![alt text](./book-figures/3-14a.png)
+![alt text](./book-figures/3-14b.png)
+
 > **Show:** panel (a) with the tangent line at the origin, which reaches zero at $t=\tau$. Then panel (b), the step response with the percentages marked.
 > **Point at:** 63% at one time constant, and within 1% of the final value by five. “Settled” always needs a tolerance; the final value is approached asymptotically.
 
@@ -468,7 +469,7 @@ h(t)=-e^{-t}+3e^{-2t},\qquad t\ge0
 }
 $$
 
-> **[ FIG 3.17 ]** — PDF p. 90 *(slide)*
+![alt text](./book-figures/3-17.png)
 >
 > **Point at:** the early part of the curve, dominated by $3e^{-2t}$, and the tail, where $-e^{-t}$ is all that is left.
 
@@ -488,8 +489,8 @@ $$
 
 ### 9.2 The board that matters: Fig. 3.16
 
-> **[ FIG 3.16 ]** — PDF p. 88
->
+![alt text](./book-figures/3-16.png)
+
 > Project it, but **draw it as well**. Build it one location at a time, sketching the waveform beside each cross. This is the ten minutes of the lecture that students will still have in their heads in April.
 
 ```text
@@ -648,7 +649,11 @@ $$
 > **[ FIG 3.20 ]** — PDF p. 98 *(the three pole locations that produced them)*
 > **[ FIG 3.21 ]** — PDF p. 99 *(the exponential envelope)*
 >
-> **Show:** Fig. 3.19(a) and Fig. 3.20 side by side, so each curve is tied to a pole angle.
+![alt text](./book-figures/3-19a.png)
+![alt text](./book-figures/3-19b.png)
+![alt text](./book-figures/3-20.png)
+![alt text](./book-figures/3-21.png)
+
 > **Point at:** the time axis, normalised to $\omega_nt$. Holding $\zeta$ fixed while changing $\omega_n$ stretches time; changing $\zeta$ changes the response shape as well. The impulse amplitude also scales with $\omega_n$.
 > **Then:** Fig. 3.19(b). The step response is the integral of the impulse response; its phase, amplitudes, and final value differ.
 > **Finally:** Fig. 3.21. The real part sets the exponential decay rate; the full envelope includes a coefficient.
@@ -735,6 +740,7 @@ $$
 
 *Checks.* $h(0)=2$, which equals $\lim_{s\to\infty}sH(s)=2$, as in Example 3.25. Combining the two sinusoids, $2\cos2t-\tfrac12\sin2t=\tfrac{\sqrt{17}}{2}\cos(2t+\phi)$ with $\phi=\tan^{-1}(1/4)\approx14.0^\circ$. This is the "small phase shift" to point at in Fig. 3.22.
 
+![alt text](./book-figures/3-22.png)
 > **[ FIG 3.22 ]** — PDF p. 103 *(slide)*
 >
 > **Point at:** the envelope, the dominance of the $2\cos2t$ term, and the small phase shift the $-\tfrac12\sin2t$ term produces.

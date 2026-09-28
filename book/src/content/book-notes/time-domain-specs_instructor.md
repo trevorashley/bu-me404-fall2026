@@ -137,6 +137,7 @@ Use the demos for the selected live examples; the accompanying checks also work 
 
 ### 5.1 Definitions
 
+![alt text](./book-figures/3-23.png)
 > **[ FIG 3.23 ]** — PDF p. 106 *(slide; leave it up for the whole of §5)*
 
 | Quantity | Definition |
@@ -241,7 +242,7 @@ M_p=e^{-\zeta\pi/\sqrt{1-\zeta^2}},
 \tag{3.72}
 }
 $$
-
+![alt text](./book-figures/3-24.png)
 > **[ FIG 3.24 ]** — PDF p. 110 *(slide)*
 
 At $\zeta=0$, the same peak formula gives a 100% excursion above the equilibrium value, but the response never settles and has no final-value limit. For $\zeta\ge1$, the zero-free standard step response is monotone: $M_p=0$ and there is no finite overshoot peak time.
@@ -289,6 +290,7 @@ $$
 
 The bound follows from Eq. (3.70) because $|\cos(\cdot)|\le1$. To get $t_{s,\mathrm{env}}$, set the bound equal to $\epsilon$ and take logs: $e^{-\sigma t}=\epsilon\sqrt{1-\zeta^2}$, so $\sigma t=-\ln(\epsilon\sqrt{1-\zeta^2})$. For a tolerance $\epsilon=0.01$, the response stays in the band once $t\ge t_{s,\mathrm{env}}$. The actual settling time is the last band crossing and can be earlier. The shorter rule $4.6/\sigma$ is **not a guaranteed upper bound**. Near critical damping the sinusoidal envelope bound is very loose; use the actual response. At $\zeta=1$, the step response is $1-(1+\omega_nt)e^{-\omega_nt}$ (L2 §10.2), which approaches 1 monotonically from below. Setting the error $(1+x)e^{-x}=0.01$ with $x=\omega_nt$ gives a transcendental equation. Its root is $x\approx6.64$ (Newton's method from $x=6$ gives 6.49, 6.63, 6.64; or use `fsolve`), so $t_s\approx6.64/\omega_n$, not $4.6/\omega_n$. The factor $(1+x)$ is what the pure-exponential rule misses.
 
+![alt](./book-figures/3-21.png)
 > **[ FIG 3.21 ]** — PDF p. 99 *(recall from L2: the envelope)*
 
 > **[ DEMO 1, continued ]** — right-hand panel
@@ -373,7 +375,9 @@ Squaring is safe because both sides are positive for $0<\zeta<1$. $M_p$ decrease
 | $\zeta\ge$ | inside a wedge, measured by the angle $\theta=\sin^{-1}\zeta$ from the imaginary axis |
 | $\sigma\ge$ | to the left of a vertical line |
 
-> **[ FIG 3.25 ]** — PDF p. 113, PDF p. 113, PDF p. 114, PDF p. 114 *(slide: the three regions and their intersection)*
+![alt text](./book-figures/3-25ab.png)
+![alt text](./book-figures/3-25cd.png)
+> **[ FIG 3.25 ]** — PDF p. 113, PDF p. 113, PDF p. 114, PDF p. 114 *(slide: the three regions and their intersection)* (a) rise-time, (b) overshoot, (c) settling time, (d) composite
 
 ### 6.1 Example 3.27
 
@@ -387,6 +391,7 @@ $$
 \sigma\ge\frac{4.6}{3}=1.53\ \text{s}^{-1} .
 $$
 
+![alt text](./book-figures/3-26.png)
 > **[ FIG 3.26 ]** — PDF p. 117 *(slide)*
 >
 > **Careful:** the shading in the book's Fig. 3.26 covers the region that is **excluded**; the allowable set is to the left of the solid boundary, as the text says. Say which is which before a student copies the picture into an exam answer.
@@ -475,10 +480,13 @@ $$
 
 For $\alpha>0$, **read $\alpha$ as the ratio of the zero's distance from the imaginary axis to the pair's distance $\sigma$**. Large $\alpha$ means a relatively distant LHP zero. $\alpha=1$ means equal real parts, not coincidence with either complex pole. Negative $\alpha$ puts the zero in the RHP. Assume $0<\zeta<1$ in this family.
 
-> **[ FIG 3.27 ]** — PDF p. 120 ($\zeta=0.5$)
-> **[ FIG 3.28 ]** — PDF p. 121 ($\zeta=0.707$)
-> **[ FIG 3.29 ]** — PDF p. 122 (overshoot versus $\alpha$)
->
+![alt text](./book-figures/3-27.png)
+**[ FIG 3.27 ]** — PDF p. 120 ($\zeta=0.5$)
+![alt text](./book-figures/3-28.png)
+**[ FIG 3.28 ]** — PDF p. 121 ($\zeta=0.707$)
+![alt text](./book-figures/3-29.png)
+**[ FIG 3.29 ]** — PDF p. 122 (overshoot versus $\alpha$)
+
 > **Show:** Fig. 3.27, then Fig. 3.29 immediately after.
 > **Say:** "In this family the LHP zero raises overshoot and quickens the rise. It leaves the pole decay rates unchanged, but changing modal amplitudes can still change settling time. Its effect diminishes with distance; decide whether it is negligible using the actual specification."
 
@@ -524,6 +532,7 @@ where $y_0$ is the step response of the zero-free system.
 
 With physical time and arbitrary $\omega_n$, the coefficient is $1/(\alpha\zeta\omega_n)=1/(\alpha\sigma)$. The displayed $1/(\alpha\zeta)$ form uses $\omega_n=1$ (or differentiation with respect to normalised time). The zero initial value of $y_0$ is what permits $sY_0=\mathcal L\{\dot y_0\}$ without an initial-condition term.
 
+![alt text](./book-figures/3-30.png)
 > **[ FIG 3.30 ]** — PDF p. 124 *(slide: $y$, $y_0$ and the derivative term)*
 >
 > **Say:** "The derivative has a large hump early, while $y_0$ is still climbing. Adding that hump lifts the early response — which is exactly what more overshoot and a quicker rise look like."
@@ -546,6 +555,7 @@ $$
 
 **The hump is subtracted.** Early on, when $\dot y_0$ is largest, the response is pushed *down* — often below zero.
 
+![alt text](./book-figures/3-31.png)
 > **[ FIG 3.31 ]** — PDF p. 125 *(slide)*
 
 $$
@@ -606,6 +616,7 @@ $$
 
 *Check:* $y(0)=1+\frac{12}{z}-3+2-\frac{12}{z}=0$ for every $z$ ✓.
 
+![alt text](./book-figures/3-32.png)
 > **[ FIG 3.32 ]** — PDF p. 127 *(slide)*
 
 Read the coefficients as $z$ moves, from Demo 3's table:
@@ -643,7 +654,9 @@ $$
 
 with the poles at $-0.1\pm j$ and the zeros placed at $-\alpha\pm j\beta$ for $(\alpha,\beta)=(0.1,1.0)$, $(0.25,1.0)$ and $(0.5,1.0)$.
 
+![alt text](./book-figures/3-33.png)
 > **[ FIG 3.33 ]** — PDF p. 128 *(the three zero locations)*
+![alt text](./book-figures/3-34.png)
 > **[ FIG 3.34 ]** — PDF p. 130 *(the three step responses)*
 >
 > **Show:** Fig. 3.33 first and ask the class to predict; then Fig. 3.34.
@@ -667,6 +680,7 @@ $$
 
 Altitude $h$ from elevator angle $\delta_e$, for a Boeing 747. A zero at $s=+6$, from $s-6=0$. Poles at $s=0$ and at the roots of $s^2+4s+13$, which are $s=\frac{-4\pm\sqrt{16-52}}{2}=-2\pm3j$.
 
+![alt text](./book-figures/3-35.png)
 > **[ FIG 3.35 ]** — PDF p. 132 *(slide)*
 
 ### 11.1 The physics, which is the point
@@ -730,8 +744,11 @@ H(s)=\frac{1}{\left(\dfrac{s}{\alpha\zeta\omega_n}+1\right)\left[\left(\dfrac{s}
 }
 $$
 
+![alt text](./book-figures/3-36.png)
 > **[ FIG 3.36 ]** — PDF p. 134 ($\zeta=0.5$)
+![alt text](./book-figures/3-37.png)
 > **[ FIG 3.37 ]** — PDF p. 135 ($\zeta=0.707$)
+![alt text](./book-figures/3-38.png)
 > **[ FIG 3.38 ]** — PDF p. 136 (normalised rise time versus $\alpha$)
 
 $$

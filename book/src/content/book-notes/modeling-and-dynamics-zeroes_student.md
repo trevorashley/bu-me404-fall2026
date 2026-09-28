@@ -43,11 +43,15 @@ Physical masses, inertias, capacitances, resistances, and restoring stiffnesses 
 Consider a ball rolling without slipping on a beam pivoted at its center.
 
 ```text
-                       o  ball, position x along beam
-                   ___/______________
-      ____________/                  \
-                  \        pivot O     (beam tilted by alpha)
-                   \
+                                    ball: mass m, radius r
+                                            │ mg
+‾‾‾‾---...___                               │
+             ‾‾‾‾---...____ _ _ _ _ _ _ _ _ ▼   horizontal through O
+                         ▲‾‾‾‾---...___     ●     ) α
+      torque M ↻  pivot O              ‾‾‾‾---...___  beam, tilted α below
+                  (x = 0)                             the horizontal
+
+              −x  ◄──────── x measured along the beam ────────►  +x
 ```
 
 Let

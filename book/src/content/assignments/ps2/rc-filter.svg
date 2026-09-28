@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="225" viewBox="0 0 560 225" role="img" aria-labelledby="title desc">
+  <title id="title">RC low-pass filter</title>
+  <desc id="desc">Input x is applied between the left terminals. A 10 kiloohm resistor connects the upper input terminal to output y. A 50 microfarad capacitor connects the output to the common ground.</desc>
+  <rect width="560" height="225" fill="white"/>
+  <g fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 65 H145 L153 53 L169 77 L185 53 L201 77 L217 53 L233 77 L241 65 H440"/>
+    <path d="M350 65 V110 M323 110 H377 M323 122 H377 M350 122 V180 H60"/>
+    <path d="M350 180 V194 M334 194 H366 M340 201 H360 M346 208 H354"/>
+    <circle cx="60" cy="65" r="4" fill="white"/>
+    <circle cx="60" cy="180" r="4" fill="white"/>
+    <circle cx="440" cy="65" r="4" fill="white"/>
+    <circle cx="350" cy="65" r="3" fill="#222"/>
+  </g>
+  <g fill="#222" font-family="Arial, sans-serif" font-size="18">
+    <text x="193" y="30" text-anchor="middle">R = 10 kΩ</text>
+    <text x="391" y="122">C = 50 µF</text>
+    <text x="34" y="125" text-anchor="middle" font-style="italic">x(t)</text>
+    <text x="26" y="80">+</text>
+    <text x="26" y="178">−</text>
+    <text x="453" y="71" font-style="italic">y(t)</text>
+    <text x="90" y="208" font-size="15">Voltages relative to ground</text>
+  </g>
+</svg>

@@ -9,6 +9,7 @@
 # Assignments
 - [Assignments](./content/assignments.md)
     - [Problem Set 1](./content/assignments/ps1/ps1.md)
+    - [Problem Set 2](./content/assignments/ps2/ps2.md)
 
 ---
 
@@ -22,6 +23,10 @@
     - [Block Diagrams](./content/book-notes/block-diagrams_student.md)
     - [Time-Domain Specifications](./content/book-notes/time-domain-specs_student.md)
     - [Stability](./content/book-notes/stability_student.md)
+    - [Feedback Properties](./content/book-notes/feedback-properties_student.md)
+    - [PID Control](./content/book-notes/pid-control_student.md)
+    - [System Type](./content/book-notes/system-type_student.md)
+    - [PID Tuning and Implementation](./content/book-notes/pid-tuning_student.md)
 - [Class Notes](./content/class-notes.md)
     - [09/10/2026](./content/class-notes/20260910.md)
     - [09/15/2026](./content/class-notes/20260915.md)
