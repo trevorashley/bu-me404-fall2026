@@ -1,5 +1,5 @@
 """
-L2 Demo 2  --  Integral control: zero error whatever the plant
+PID control Demo 2  --  Integral control: zero error whatever the plant
                                         (Section 4.3.2, Eqs. 4.64-4.69, Figs. 4.8, 4.9)
 
 Pure integral control D_c = k_I / s around the same plant
@@ -35,7 +35,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 2 -- integral control, D_c = k_I / s")
+    dk.title("PID control Demo 2 -- integral control, D_c = k_I / s")
 
     t = np.linspace(0, 40, 8001)
 

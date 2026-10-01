@@ -1,5 +1,5 @@
 """
-L1 Demo 2  --  Frequency response, transient and steady state    (Examples 3.6, 3.7)
+Convolution and transfer functions Demo 2  --  Frequency response, transient and steady state    (Examples 3.6, 3.7)
 
 For H(s) = 1/(s + 1) the book claims that a sinusoid in gives a sinusoid out,
 same frequency, amplitude scaled by |H(j w)| and phase shifted by arg H(j w).
@@ -29,7 +29,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L1 Demo 2 -- amplitude ratio and phase, measured rather than quoted")
+    dk.title("Convolution and transfer functions Demo 2 -- amplitude ratio and phase, measured rather than quoted")
 
     M = abs(H(1j * W))
     phi = np.angle(H(1j * W))

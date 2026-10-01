@@ -1,5 +1,5 @@
 """
-L4 Demo 3  --  Integrator windup, and the anti-windup loop that cures it
+PID tuning and implementation Demo 3  --  Integrator windup, and the anti-windup loop that cures it
                                                   (FPE Section 9.3.1, Example 9.9)
 
 Plant G(s) = 1/s, PI controller D_c(s) = 2 + 4/s, unity feedback, actuator
@@ -60,7 +60,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 3 -- windup: the integrator keeps charging while the actuator is pinned")
+    dk.title("PID tuning and implementation Demo 3 -- windup: the integrator keeps charging while the actuator is pinned")
 
     runs = {}
     rows = []

@@ -1,5 +1,5 @@
 """
-L2 Demo 2  --  Fig. 3.16, recomputed                              (FPE §3.3)
+Block diagrams and pole locations Demo 2  --  Fig. 3.16, recomputed                              (FPE §3.3)
 
 Fig. 3.16 is the picture the book asks you to commit to memory: where a pole
 sits in the s-plane and what motion that produces. Here every one of those
@@ -36,7 +36,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 2 -- pole location decides the shape of the natural response")
+    dk.title("Block diagrams and pole locations Demo 2 -- pole location decides the shape of the natural response")
 
     dk.section("what each pole does")
     rows = []

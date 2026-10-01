@@ -1,5 +1,5 @@
 """
-L4 Demo 3  --  Two gains at once: the stable region in a parameter plane
+Stability and Routh’s criterion Demo 3  --  Two gains at once: the stable region in a parameter plane
                                                             (Example 3.34)
 
 PI control of 1/[(s+1)(s+2)] gives the characteristic equation
@@ -40,7 +40,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 3 -- a stability region in the gain plane, two ways")
+    dk.title("Stability and Routh’s criterion Demo 3 -- a stability region in the gain plane, two ways")
 
     dk.note(
         "The Routh array is [1, 2+K], [3, K_I], [(6 + 3K - K_I)/3], [K_I]. Positive "

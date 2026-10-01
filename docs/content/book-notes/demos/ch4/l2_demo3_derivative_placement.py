@@ -1,5 +1,5 @@
 """
-L2 Demo 3  --  Where the derivative goes: same poles, different zeros
+PID control Demo 3  --  Where the derivative goes: same poles, different zeros
                                                        (Section 4.3.3, Fig. 4.10)
 
 PID around G(s) = 1/(s^2 + 1.4 s + 1). The characteristic polynomial is
@@ -16,7 +16,7 @@ Identical poles; the zeros differ. With the derivative on the error a step in
 r is differentiated, so u(t) contains an impulse k_D delta(t). An ideal
 derivative cannot be built; here it is approximated by k_D s / (tau_f s + 1)
 with tau_f = 0.02 s, which turns the impulse into a spike of height about
-k_D / tau_f. Filtering the derivative is taken up properly in L4.
+k_D / tau_f. Filtering the derivative is taken up properly in PID tuning and implementation.
 
 Run:  uv run python ch4/l2_demo3_derivative_placement.py
 """
@@ -64,7 +64,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 3 -- derivative on the error or on the output")
+    dk.title("PID control Demo 3 -- derivative on the error or on the output")
 
     dk.section("choosing the three gains by matching coefficients")
     target = [-1.0, -1.0 + 1.0j, -1.0 - 1.0j]

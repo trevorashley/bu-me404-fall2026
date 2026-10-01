@@ -1,5 +1,5 @@
 """
-L1 Demo 3  --  Disturbance against noise: the regulation dilemma  (FPE §4.1.3)
+Feedback properties Demo 3  --  Disturbance against noise: the regulation dilemma  (FPE §4.1.3)
 
 Plant G = 1/(s + 1), proportional control D_cl = K, reference r = 0. Two
 unwanted inputs arrive together:
@@ -36,7 +36,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L1 Demo 3 -- more gain rejects the bias and admits the noise")
+    dk.title("Feedback properties Demo 3 -- more gain rejects the bias and admits the noise")
 
     rows = []
     for K in GAINS:

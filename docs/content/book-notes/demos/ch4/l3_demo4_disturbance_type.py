@@ -1,5 +1,5 @@
 """
-L3 Demo 4  --  Type with respect to a disturbance (Example 4.4)
+Steady-state error and system type Demo 4  --  Type with respect to a disturbance (Example 4.4)
                                                      (FPE §4.2.2, Eqs. 4.46-4.54)
 
 The DC motor of Fig. 4.6: plant A/[s(tau s + 1)], a load torque W entering
@@ -40,7 +40,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 4 -- a load torque on a DC motor: which integrator counts?")
+    dk.title("Steady-state error and system type Demo 4 -- a load torque on a DC motor: which integrator counts?")
     dk.note(
         "With R = 0, E = -Y, and E/W = T_w(s) = s^n T_o,w(s). A step torque leaves "
         "e_ss = T_w(0); a ramp torque leaves lim T_w(s)/s. Type to W is the number "

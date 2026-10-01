@@ -1,5 +1,5 @@
 """
-L3 Demo 1  --  How good are t_r = 1.8/wn, M_p = e^..., t_s = 4.6/sigma?
+Time-domain specifications Demo 1  --  How good are t_r = 1.8/wn, M_p = e^..., t_s = 4.6/sigma?
                                                               (FPE §3.4)
 
 The three design formulas of Section 3.4 are stated for a second-order system
@@ -42,7 +42,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 1 -- the three time-domain formulas, measured")
+    dk.title("Time-domain specifications Demo 1 -- the three time-domain formulas, measured")
 
     dk.section("rise time: the 1.8 is a fit, and here is its error")
     rows = []

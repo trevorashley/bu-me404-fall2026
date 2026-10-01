@@ -1,5 +1,5 @@
 """
-L2 Demo 1  --  Block-diagram reduction is Gaussian elimination
+Block diagrams and pole locations Demo 1  --  Block-diagram reduction is Gaussian elimination
                                                    (Examples 3.22, 3.23, 3.24)
 
 Block-diagram algebra feels like a set of tricks to memorise. It is not: the
@@ -55,7 +55,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 1 -- the reduced transfer function is the solved linear system")
+    dk.title("Block diagrams and pole locations Demo 1 -- the reduced transfer function is the solved linear system")
 
     # ---------------------------------------------------------- Example 3.22
     dk.section("Example 3.22: the simple loop, done both ways")

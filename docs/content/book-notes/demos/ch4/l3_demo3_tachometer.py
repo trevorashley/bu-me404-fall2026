@@ -1,5 +1,5 @@
 """
-L3 Demo 3  --  A sensor in the loop: tachometer feedback (Example 4.3)
+Steady-state error and system type Demo 3  --  A sensor in the loop: tachometer feedback (Example 4.3)
                                                      (FPE §4.2.1, Eqs. 4.39-4.45)
 
 Position servo G = 1/[s(s+1)] (tau = 1), proportional gain k_P = 10, and a
@@ -47,7 +47,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 3 -- tachometer feedback: damping bought with velocity constant")
+    dk.title("Steady-state error and system type Demo 3 -- tachometer feedback: damping bought with velocity constant")
     dk.note(
         "With a sensor in the loop the system error is E = R - Y = [1 - T(s)] R, "
         "Eq. (4.42). The error constants must be computed from 1 - T, Eq. (4.45), "

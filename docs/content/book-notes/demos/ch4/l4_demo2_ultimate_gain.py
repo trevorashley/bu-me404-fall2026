@@ -1,5 +1,5 @@
 """
-L4 Demo 2  --  Ziegler-Nichols by the ultimate-sensitivity method
+PID tuning and implementation Demo 2  --  Ziegler-Nichols by the ultimate-sensitivity method
                                                   (Example 4.10, and Routh)
 
 Turn the integral and derivative terms off, raise k_P until the loop just
@@ -35,7 +35,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 2 -- the ultimate gain: push the loop to the edge, then back off")
+    dk.title("PID tuning and implementation Demo 2 -- the ultimate gain: push the loop to the edge, then back off")
 
     # --------------------------------------------------------- heat exchanger
     dk.section("part 1: the heat exchanger (Example 4.10)")

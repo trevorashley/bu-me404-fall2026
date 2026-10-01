@@ -1,5 +1,5 @@
 """
-L2 Demo 5  --  P, PI and PID on a DC motor's speed       (Example 4.6, Fig. 4.16)
+PID control Demo 5  --  P, PI and PID on a DC motor's speed       (Example 4.6, Fig. 4.16)
 
 Armature-controlled DC motor, speed output, parameters of Eq. (4.78), with
 J_m and L_a scaled so that time is in milliseconds:
@@ -43,7 +43,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 5 -- Example 4.6: motor speed under P, PI and PID")
+    dk.title("PID control Demo 5 -- Example 4.6: motor speed under P, PI and PID")
 
     ol = np.roots(M())
     print("  open-loop poles (1/ms): " + ", ".join(dk.fmt_root(z, 3) for z in ol))

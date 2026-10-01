@@ -1,5 +1,5 @@
 """
-L1 Demo 3  --  Cover-up residues, and misuse of the Final Value Theorem
+Convolution and transfer functions Demo 3  --  Cover-up residues, and misuse of the Final Value Theorem
                                           (Examples 3.11, 3.12, 3.13, 3.14)
 
 Three things at once, because they are the same idea seen from three sides:
@@ -34,7 +34,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L1 Demo 3 -- partial fractions by cover-up, and the FVT's fine print")
+    dk.title("Convolution and transfer functions Demo 3 -- partial fractions by cover-up, and the FVT's fine print")
 
     # ---------------------------------------------------------- Example 3.11
     dk.section("Example 3.11: Y(s) = (s+2)(s+4) / [s(s+1)(s+3)]")

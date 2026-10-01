@@ -1,5 +1,5 @@
 """
-L3 Demo 4  --  An extra pole, and a real nonminimum-phase aeroplane
+Time-domain specifications Demo 4  --  An extra pole, and a real nonminimum-phase aeroplane
                                                 (Eq. 3.82, Example 3.30)
 
 Two loose ends of Section 3.5, both checked numerically.
@@ -42,7 +42,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 4 -- an extra pole slows things down; a RHP zero reverses them")
+    dk.title("Time-domain specifications Demo 4 -- an extra pole slows things down; a RHP zero reverses them")
 
     # ------------------------------------------------------- extra pole
     dk.section("Fig. 3.38: normalised rise time versus the extra pole's distance")

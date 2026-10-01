@@ -1,5 +1,5 @@
 """
-L1 Demo 1  --  Superposition builds the convolution integral      (FPE 3.1.1)
+Convolution and transfer functions Demo 1  --  Superposition builds the convolution integral      (FPE 3.1.1)
 
 The book's Figs. 3.1 and 3.2 are a claim, not a proof: chop the input into short
 pulses, add up one shifted impulse response per pulse, and in the limit you get
@@ -62,7 +62,7 @@ def main() -> None:
     t = np.linspace(0.0, T_END, 1601)
     y_exact = exact(t)
 
-    dk.title("L1 Demo 1 -- a sum of pulse responses becomes the convolution integral")
+    dk.title("Convolution and transfer functions Demo 1 -- a sum of pulse responses becomes the convolution integral")
     dk.note(
         "The system is y' + k y = u with k = 1, whose impulse response is h(t) = e^-t. "
         "The input is a decaying sinusoid on a constant offset with a step added at "

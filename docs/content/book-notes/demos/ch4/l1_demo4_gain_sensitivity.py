@@ -1,5 +1,5 @@
 """
-L1 Demo 4  --  Feedback buys insensitivity to the plant           (FPE §4.1.4)
+Feedback properties Demo 4  --  Feedback buys insensitivity to the plant           (FPE §4.1.4)
 
 Plant G = A/(s + 1) whose gain A is nominally 1 but is actually anywhere from
 0.5 to 1.5 (a +/-50% error).
@@ -29,7 +29,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L1 Demo 4 -- a 50% plant error, open loop and with loop gain 99")
+    dk.title("Feedback properties Demo 4 -- a 50% plant error, open loop and with loop gain 99")
 
     T0 = K / (1 + K)
     S0 = 1 / (1 + K)

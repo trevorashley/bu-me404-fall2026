@@ -1,5 +1,5 @@
 """
-L3 Demo 2  --  The PID examples of L2, re-read in the language of type
+Steady-state error and system type Demo 2  --  The examples from the PID-control lecture, re-read in the language of type
                                           (FPE §4.3.1-4.3.2 plant; §4.2.1 ideas)
 
 The plant of FPE Eq. (4.58) with a1 = 1.4, a2 = 1 and a gain A that is allowed
@@ -44,7 +44,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 2 -- P and I control of the L2 plant, read as Type 0 and Type 1")
+    dk.title("Steady-state error and system type Demo 2 -- P and I control of the plant from the PID-control lecture, read as Type 0 and Type 1")
 
     dk.section("the book's P-control gains (Fig. 4.7), A = 1")
     rows = []

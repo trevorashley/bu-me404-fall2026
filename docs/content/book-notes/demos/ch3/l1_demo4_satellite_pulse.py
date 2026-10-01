@@ -1,5 +1,5 @@
 """
-L1 Demo 4  --  A double integrator, one thruster pulse, and two    (Example 3.21)
+Convolution and transfer functions Demo 4  --  A double integrator, one thruster pulse, and two    (Example 3.21)
 
 The satellite of Example 2.3 has H(s) = d/I / s^2 = 0.0002/s^2 with d = 1 m and
 I = 5000 kg m^2. Fire a 25 N thruster for 0.1 s at t = 5 s and the attitude
@@ -34,7 +34,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L1 Demo 4 -- the pole at the origin, seen as a satellite that drifts")
+    dk.title("Convolution and transfer functions Demo 4 -- the pole at the origin, seen as a satellite that drifts")
 
     t = np.arange(0.0, 10.0, 0.001)
     single = np.where((t >= T_ON) & (t < T_ON + DUR), F, 0.0)

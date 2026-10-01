@@ -1,5 +1,5 @@
 """
-L1 Demo 2  --  A perfect tracker with a lightly hidden disturbance response
+Feedback properties Demo 2  --  A perfect tracker with a lightly hidden disturbance response
                                                      (FPE §4.1.2 exercise)
 
 The tracking exercise of §4.1.2: plant G = 1/(s^2 + 3s + 9), controller
@@ -33,7 +33,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L1 Demo 2 -- the four transfer functions of one pole-placement design")
+    dk.title("Feedback properties Demo 2 -- the four transfer functions of one pole-placement design")
 
     plant_den = [1.0, 3.0, 9.0]
     target = np.polymul(np.polymul([1, 6], [1, 3]), plant_den)

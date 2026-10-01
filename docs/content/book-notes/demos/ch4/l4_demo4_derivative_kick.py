@@ -1,5 +1,5 @@
 """
-L4 Demo 4  --  Where the derivative acts: kick, filtering and setpoint weighting
+PID tuning and implementation Demo 4  --  Where the derivative acts: kick, filtering and setpoint weighting
                                       (FPE Fig. 4.10; AM Section 11.5)
 
 Plant G(s) = 1/(s^2 + 1.4 s + 1)  (Eq. 4.58 with a1 = 1.4, a2 = 1, A = 1),
@@ -38,7 +38,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 4 -- same poles, different zeros: where to put the derivative")
+    dk.title("PID tuning and implementation Demo 4 -- same poles, different zeros: where to put the derivative")
 
     s = ct.tf("s")
     G = 1 / (s**2 + 1.4 * s + 1)

@@ -1,5 +1,5 @@
 """
-L2 Demo 3  --  Reading a response off the poles              (Examples 3.25, 3.26)
+Block diagrams and pole locations Demo 3  --  Reading a response off the poles              (Examples 3.25, 3.26)
 
 Two transfer functions with the same numerator and almost the same denominator:
 
@@ -34,7 +34,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 3 -- the poles set the shapes, the zero sets the weights")
+    dk.title("Block diagrams and pole locations Demo 3 -- the poles set the shapes, the zero sets the weights")
 
     # ---------------------------------------------------------- Example 3.25
     dk.section("Example 3.25: real poles at -1 and -2, zero at -0.5")

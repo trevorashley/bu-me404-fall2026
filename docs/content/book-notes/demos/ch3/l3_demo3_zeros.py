@@ -1,5 +1,5 @@
 """
-L3 Demo 3  --  What a zero does to a step response     (FPE §3.5, Example 3.28)
+Time-domain specifications Demo 3  --  What a zero does to a step response     (FPE §3.5, Example 3.28)
 
 Section 3.5 makes a mechanical claim about zeros. Write the normalised system
 
@@ -41,7 +41,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 3 -- a zero adds a derivative to the response")
+    dk.title("Time-domain specifications Demo 3 -- a zero adds a derivative to the response")
 
     t = np.linspace(0, 12, 6000)
     y0 = step_of(lti([1.0], [1.0, 2 * ZETA, 1.0]), t)
