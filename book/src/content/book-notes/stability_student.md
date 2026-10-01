@@ -4,7 +4,7 @@
 
 Stability determines whether natural motion decays and whether bounded forcing produces a bounded output. These are different questions when internal modes are hidden from a transfer function. Routh’s criterion tests a characteristic polynomial and gives stability ranges with controller gains left as symbols.
 
-**Prerequisites:** [L1](convolution-impulse-response_student.md), [L2](block-diagrams_student.md), and [L3](time-domain-specs_student.md).
+**Prerequisites:** [Convolution and transfer functions](convolution-impulse-response_student.md), [Block diagrams and pole locations](block-diagrams_student.md), and [Time-domain specifications](time-domain-specs_student.md).
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed. Example and equation numbers follow the textbook. Numbered sections and § references refer to these notes unless labelled as textbook sections.
 
@@ -126,7 +126,7 @@ $$
 
 **Worked check:** For a 1 F capacitor at rest, a 1 A constant current gives $v(t)=t$ volts. For $H(s)=1/(s^2+1)$ and $u(t)=\sin t\,1(t)$, verify $y(t)=(\sin t-t\cos t)/2$. Both bounded inputs produce unbounded outputs, despite the absence of RHP poles.
 
-*Working.* The capacitor: $V=\frac1s\cdot\frac1s=\frac1{s^2}$, so $v=t$. The resonance: $Y=\frac{1}{s^2+1}\cdot\frac{1}{s^2+1}=\frac{1}{(s^2+1)^2}$, a *repeated* pole pair at $\pm j$. This is not in the elementary table, so use property 9 of the properties table in L1 §6 ($tf\leftrightarrow-dF/ds$) on the cosine. $\mathcal L\{t\cos t\}=-\frac{d}{ds}\frac{s}{s^2+1}=\frac{s^2-1}{(s^2+1)^2}$. Write $\frac{1}{(s^2+1)^2}=\frac12\left[\frac{1}{s^2+1}-\frac{s^2-1}{(s^2+1)^2}\right]$; the check is $\frac{(s^2+1)-(s^2-1)}{2(s^2+1)^2}=\frac{1}{(s^2+1)^2}$. Inverting gives $y=\tfrac12(\sin t-t\cos t)$. The $t\cos t$ term grows linearly: forcing at the pole frequency makes the input's poles coincide with the plant's.
+*Working.* The capacitor: $V=\frac1s\cdot\frac1s=\frac1{s^2}$, so $v=t$. The resonance: $Y=\frac{1}{s^2+1}\cdot\frac{1}{s^2+1}=\frac{1}{(s^2+1)^2}$, a *repeated* pole pair at $\pm j$. This is not in the elementary table, so use property 9 of the properties table in [Convolution and transfer functions §6](convolution-impulse-response_student.md#section-6) ($tf\leftrightarrow-dF/ds$) on the cosine. $\mathcal L\{t\cos t\}=-\frac{d}{ds}\frac{s}{s^2+1}=\frac{s^2-1}{(s^2+1)^2}$. Write $\frac{1}{(s^2+1)^2}=\frac12\left[\frac{1}{s^2+1}-\frac{s^2-1}{(s^2+1)^2}\right]$; the check is $\frac{(s^2+1)-(s^2-1)}{2(s^2+1)^2}=\frac{1}{(s^2+1)^2}$. Inverting gives $y=\tfrac12(\sin t-t\cos t)$. The $t\cos t$ term grows linearly: forcing at the pole frequency makes the input's poles coincide with the plant's.
 
 ![A capacitor's unbounded voltage, a resonant system driven at resonance, and a stable transfer function hiding an unstable internal mode](demos/ch3/figures/l4_demo4_bibo_internal.svg)
 
@@ -167,7 +167,7 @@ This is **internal asymptotic stability**, provided $a(s)$ represents the full p
 | A simple conjugate pair at $\pm j\omega_1$ | constant-amplitude oscillation |
 | **Repeated** poles on the axis | $te^{\pm j\omega_1t}$ terms: **unbounded** |
 
-A double integrator has two poles at zero and free motion $y(t)=y(0)+\dot y(0)t$. A nonzero initial velocity gives an unbounded ramp. The satellite in L1 §10 is a physical example.
+A double integrator has two poles at zero and free motion $y(t)=y(0)+\dot y(0)t$. A nonzero initial velocity gives an unbounded ramp. The satellite in [Convolution and transfer functions §10](convolution-impulse-response_student.md#section-10) is a physical example.
 
 $$
 \boxed{
@@ -537,7 +537,7 @@ At the $K=7.5$ boundary of Example 3.33, the $s^1$ row vanishes, since $(4\cdot7
 
 **Kharitonov's theorem (1978).** For a real fixed-degree polynomial family whose coefficients vary independently within specified intervals (with a leading coefficient bounded away from zero), robust strict stability can be checked using four particular endpoint polynomials. This is a pointer to robust control, not a recipe for arbitrary correlated or changing-order uncertainty.
 
-**System identification (textbook §3.7).** Building a model from measured data rather than from first principles. The frequency-response measurement of L1 §4 is the simplest version: drive with sinusoids, record amplitude ratio and phase, and you have $H(j\omega)$ without ever writing an equation of motion. Details in Appendix W3.7.
+**System identification (textbook §3.7).** Building a model from measured data rather than from first principles. The frequency-response measurement of [Convolution and transfer functions §4](convolution-impulse-response_student.md#section-4) is the simplest version: drive with sinusoids, record amplitude ratio and phase, and you have $H(j\omega)$ without ever writing an equation of motion. Details in Appendix W3.7.
 
 **Amplitude and time scaling (textbook §3.8).** When model quantities span many orders of magnitude, rescale both signal amplitudes and time, then translate results back to physical units. For example, $\hat y=y/y_{\rm ref}$ is amplitude scaling and $\hat t=t/t_{\rm ref}$ is time scaling. The one-sided transform rule is $\mathcal L\{f(at)\}=F(s/a)/a$ for $a>0$. The printed chapter points to Appendix W3.8 for the details; time scaling alone is not the whole topic.
 
@@ -641,7 +641,7 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 
 ## Chapter 3 student notes
 
-- [L1: Convolution and transfer functions](convolution-impulse-response_student.md)
-- [L2: Block diagrams and pole locations](block-diagrams_student.md)
-- [L3: Specifications and zeros](time-domain-specs_student.md)
-- [L4: Stability and Routh’s criterion](stability_student.md)
+- [Convolution and transfer functions](convolution-impulse-response_student.md)
+- [Block diagrams and pole locations](block-diagrams_student.md)
+- [Specifications and zeros](time-domain-specs_student.md)
+- [Stability and Routh’s criterion](stability_student.md)

@@ -1,5 +1,5 @@
 """
-L3 Demo 5  --  K_v from the closed loop: error area and Truxal's formula
+Steady-state error and system type Demo 5  --  K_v from the closed loop: error area and Truxal's formula
                                    (FPE §4.2.1 Eq. 4.45; Truxal, Appendix W4.2.2.1)
                                                            [beyond the book]
 
@@ -50,7 +50,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 5 -- the velocity constant read from the closed loop")
+    dk.title("Steady-state error and system type Demo 5 -- the velocity constant read from the closed loop")
 
     t = np.linspace(0, 60, 60001)
     rows, runs = [], {}

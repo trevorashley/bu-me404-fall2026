@@ -5,9 +5,7 @@
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §§3.4–3.5. Worked examples and figure numbers are the book's. Additions of my own are marked **[beyond the book]**.
 
-**Prerequisites:** L2 of this series (§3.3: pole locations, $\zeta$, $\omega_n$, $\sigma$, $\omega_d$, the Fig. 3.18 geometry). The physical origin of zeros is in [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md), cited as *(0.0.8 §n)*.
-
-**Earlier-lecture shorthand:** “0.0.8 §n” below refers to section n of the linked prerequisite, whose current filename is `modeling-and-dynamics_instructor.md`.
+**Prerequisites:** [Block diagrams and pole locations](block-diagrams_instructor.md) of this series (§3.3: pole locations, $\zeta$, $\omega_n$, $\sigma$, $\omega_d$, the Fig. 3.18 geometry). The physical origin of zeros is in [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md).
 
 **Duration:** 75 minutes.
 
@@ -91,12 +89,12 @@ By the end of this lecture students should be able to:
 | 4–10 min | The four definitions (Fig. 3.23) | §5.1 |
 | 10–16 min | Rise time, and why 1.8 | §5.2 |
 | 16–26 min | Overshoot and peak time, derived | §5.3 |
-| 26–32 min | Settling time and the envelope; the first-order case | §5.4–§5.5 |
+| 26–32 min | Settling time and the envelope; the first-order case | §§5.4–5.5 |
 | 32–42 min | Design synthesis; Example 3.27; the region | §6 |
-| 42–52 min | Zeros: coefficient modification, the normalised family, Fig. 3.29 | §7–§8 |
-| 52–60 min | The derivative decomposition; RHP zeros | §9–§10 |
-| 60–68 min | Example 3.28, Example 3.29; the Boeing 747 | §10.2–§11 |
-| 68–75 min | Extra poles; the four conclusions; closing | §12–§13 |
+| 42–52 min | Zeros: coefficient modification, the normalised family, Fig. 3.29 | §§7–8 |
+| 52–60 min | The derivative decomposition; RHP zeros | §§9–10 |
+| 60–68 min | Example 3.28, Example 3.29; the Boeing 747 | §§10.2–11 |
+| 68–75 min | Extra poles; the four conclusions; closing | §§12–13 |
 
 **Prepare as slides:** Figs. 3.23, 3.24, 3.25, 3.26 (definitions and regions) and Figs. 3.27–3.38 (the zero and extra-pole families). There are many figures in §3.5 and almost no algebra; resist deriving what a picture already settles. Reserve the board for the $M_p$ derivation (§5.3), the Example 3.27 arithmetic (§6), and Eq. (3.81) (§9).
 
@@ -179,7 +177,7 @@ y(t)=1-e^{-\sigma t}\left(\cos\omega_dt+\frac{\sigma}{\omega_d}\sin\omega_dt\rig
 \tag{3.69}
 $$
 
-(derived by partial fractions in L2 §10.2). The identity $A\sin\alpha+B\cos\alpha=C\cos(\alpha-\beta)$ compresses it. Here the bracket has $B=1$ and $A=\sigma/\omega_d=\zeta/\sqrt{1-\zeta^2}$, so
+(derived by partial fractions in [Block diagrams and pole locations §10.2](block-diagrams_instructor.md#section-10-2)). The identity $A\sin\alpha+B\cos\alpha=C\cos(\alpha-\beta)$ compresses it. Here the bracket has $B=1$ and $A=\sigma/\omega_d=\zeta/\sqrt{1-\zeta^2}$, so
 
 $$
 C=\sqrt{1+\frac{\zeta^2}{1-\zeta^2}}=\frac{1}{\sqrt{1-\zeta^2}},
@@ -288,10 +286,10 @@ t_{s,\mathrm{env}}=\frac{-\ln\!\left(\epsilon\sqrt{1-\zeta^2}\right)}{\sigma},
 \qquad 0<\zeta<1.
 $$
 
-The bound follows from Eq. (3.70) because $|\cos(\cdot)|\le1$. To get $t_{s,\mathrm{env}}$, set the bound equal to $\epsilon$ and take logs: $e^{-\sigma t}=\epsilon\sqrt{1-\zeta^2}$, so $\sigma t=-\ln(\epsilon\sqrt{1-\zeta^2})$. For a tolerance $\epsilon=0.01$, the response stays in the band once $t\ge t_{s,\mathrm{env}}$. The actual settling time is the last band crossing and can be earlier. The shorter rule $4.6/\sigma$ is **not a guaranteed upper bound**. Near critical damping the sinusoidal envelope bound is very loose; use the actual response. At $\zeta=1$, the step response is $1-(1+\omega_nt)e^{-\omega_nt}$ (L2 §10.2), which approaches 1 monotonically from below. Setting the error $(1+x)e^{-x}=0.01$ with $x=\omega_nt$ gives a transcendental equation. Its root is $x\approx6.64$ (Newton's method from $x=6$ gives 6.49, 6.63, 6.64; or use `fsolve`), so $t_s\approx6.64/\omega_n$, not $4.6/\omega_n$. The factor $(1+x)$ is what the pure-exponential rule misses.
+The bound follows from Eq. (3.70) because $|\cos(\cdot)|\le1$. To get $t_{s,\mathrm{env}}$, set the bound equal to $\epsilon$ and take logs: $e^{-\sigma t}=\epsilon\sqrt{1-\zeta^2}$, so $\sigma t=-\ln(\epsilon\sqrt{1-\zeta^2})$. For a tolerance $\epsilon=0.01$, the response stays in the band once $t\ge t_{s,\mathrm{env}}$. The actual settling time is the last band crossing and can be earlier. The shorter rule $4.6/\sigma$ is **not a guaranteed upper bound**. Near critical damping the sinusoidal envelope bound is very loose; use the actual response. At $\zeta=1$, the step response is $1-(1+\omega_nt)e^{-\omega_nt}$ ([Block diagrams and pole locations §10.2](block-diagrams_instructor.md#section-10-2)), which approaches 1 monotonically from below. Setting the error $(1+x)e^{-x}=0.01$ with $x=\omega_nt$ gives a transcendental equation. Its root is $x\approx6.64$ (Newton's method from $x=6$ gives 6.49, 6.63, 6.64; or use `fsolve`), so $t_s\approx6.64/\omega_n$, not $4.6/\omega_n$. The factor $(1+x)$ is what the pure-exponential rule misses.
 
 ![alt](./book-figures/3-21.png)
-> **[ FIG 3.21 ]** — PDF p. 99 *(recall from L2: the envelope)*
+> **[ FIG 3.21 ]** — PDF p. 99 *(recall from [Block diagrams and pole locations](block-diagrams_instructor.md): the envelope)*
 
 > **[ DEMO 1, continued ]** — right-hand panel
 >
@@ -306,7 +304,7 @@ y(t)=\left(1-e^{-\sigma t}\right)1(t)
 \tag{3.77}
 $$
 
-(the step response of L2 §8.2, scaled to unit DC gain). Each specification follows by solving $y(t)=$ level:
+(the step response of [Block diagrams and pole locations §8.2](block-diagrams_instructor.md#section-8-2), scaled to unit DC gain). Each specification follows by solving $y(t)=$ level:
 
 - **Overshoot.** $\dot y=\sigma e^{-\sigma t}>0$, so $y$ rises monotonically to 1 and never exceeds it: $M_p=0$.
 - **Rise time.** $1-e^{-\sigma t}=p$ gives $t=-\ln(1-p)/\sigma$. So $t_{10}=-\ln0.9/\sigma=0.105/\sigma$ and $t_{90}=-\ln0.1/\sigma=2.303/\sigma$. The difference is $t_r=(\ln10-\ln\tfrac{10}{9})/\sigma=\ln9/\sigma=2.197/\sigma$.
@@ -367,7 +365,7 @@ Squaring is safe because both sides are positive for $0<\zeta<1$. $M_p$ decrease
 
 **The other two bounds** follow directly from Eqs. (3.68) and (3.73). $t_r\simeq1.8/\omega_n\le t_r^{\rm spec}$ gives $\omega_n\ge1.8/t_r^{\rm spec}$, and $t_s\simeq4.6/\sigma\le t_s^{\rm spec}$ gives $\sigma\ge4.6/t_s^{\rm spec}$.
 
-**Why each is the stated shape (the L2 §10.1 geometry).** $\omega_n$ is the pole's distance from the origin, so a lower bound on it excludes a disc. $\zeta=\sin\theta$ with $\theta$ measured from the imaginary axis, so a lower bound on $\zeta$ is a lower bound on $\theta$: a wedge about the negative real axis. $\sigma$ is the distance from the imaginary axis, so a lower bound on it is a half-plane to the left of a vertical line.
+**Why each is the stated shape (the [Block diagrams and pole locations §10.1](block-diagrams_instructor.md#section-10-1) geometry).** $\omega_n$ is the pole's distance from the origin, so a lower bound on it excludes a disc. $\zeta=\sin\theta$ with $\theta$ measured from the imaginary axis, so a lower bound on $\zeta$ is a lower bound on $\theta$: a wedge about the negative real axis. $\sigma$ is the distance from the imaginary axis, so a lower bound on it is a half-plane to the left of a vertical line.
 
 | Bound | Region in the $s$-plane |
 |---|---|
@@ -520,7 +518,7 @@ H(s)=\underbrace{\frac{1}{s^2+2\zeta s+1}}_{H_0(s)}
 }
 $$
 
-The second term is a constant times $s$ times the first. With a step input, $Y=H/s$, so $Y=Y_0+\frac1{\alpha\zeta}sY_0$ with $Y_0=H_0/s$. By property 5 of L1 §9, $\mathcal L\{\dot y_0\}=sY_0-y_0(0^-)=sY_0$, because the system starts at rest. Multiplication by $s$ is differentiation. Therefore, in the time domain,
+The second term is a constant times $s$ times the first. With a step input, $Y=H/s$, so $Y=Y_0+\frac1{\alpha\zeta}sY_0$ with $Y_0=H_0/s$. By property 5 of [Convolution and transfer functions §9](convolution-impulse-response_instructor.md#section-9), $\mathcal L\{\dot y_0\}=sY_0-y_0(0^-)=sY_0$, because the system starts at rest. Multiplication by $s$ is differentiation. Therefore, in the time domain,
 
 $$
 \boxed{
@@ -568,7 +566,7 @@ $$
 
 This is **nonminimum-phase** behaviour. Here $\dot y(0^+)=1/(\alpha\zeta)<0$ in normalised units, which proves the initial reversal.
 
-*Derivation of the initial slope.* Differentiate the decomposition: $\dot y=\dot y_0+\frac1{\alpha\zeta}\ddot y_0$. For the zero-free pair, $\dot y_0=h_0$, which has $h_0(0^+)=0$ by Eq. (3.66) because $\sin0=0$. Its derivative at $0^+$ is $\ddot y_0(0^+)=\omega_n^2=1$, from differentiating Eq. (3.66) or from the initial value theorem, $\lim_{s\to\infty}s^2H_0(s)=1$. So $\dot y(0^+)=0+\frac1{\alpha\zeta}\cdot1=1/(\alpha\zeta)$, which is negative for $\alpha<0$. In general, having RHP zeros does not always mean the step response's first motion is backwards; other zeros and the relative degree matter. For example, two real RHP zeros can give an initially positive response followed by an inverse excursion. The unstable zero-dynamics interpretation is developed in *(0.0.8 §31–§34)*.
+*Derivation of the initial slope.* Differentiate the decomposition: $\dot y=\dot y_0+\frac1{\alpha\zeta}\ddot y_0$. For the zero-free pair, $\dot y_0=h_0$, which has $h_0(0^+)=0$ by Eq. (3.66) because $\sin0=0$. Its derivative at $0^+$ is $\ddot y_0(0^+)=\omega_n^2=1$, from differentiating Eq. (3.66) or from the initial value theorem, $\lim_{s\to\infty}s^2H_0(s)=1$. So $\dot y(0^+)=0+\frac1{\alpha\zeta}\cdot1=1/(\alpha\zeta)$, which is negative for $\alpha<0$. In general, having RHP zeros does not always mean the step response's first motion is backwards; other zeros and the relative degree matter. For example, two real RHP zeros can give an initially positive response followed by an inverse excursion. The unstable zero-dynamics interpretation is developed in *([Modeling and dynamics §§31–34](modeling-and-dynamics_instructor.md#section-31))*.
 
 > **[ DEMO 3, continued ]** — the RHP table
 >
@@ -666,7 +664,7 @@ Then read the book's warning, which is the whole lesson of the example:
 
 > *In practice, the locations of the lightly damped poles are not known precisely, and exact cancellation is not really possible.*
 
-**[beyond the book]** The stated transfer function has DC gain $H(0)=\dfrac{\alpha^2+\beta^2}{1\cdot(0.1^2+1)}=\dfrac{\alpha^2+\beta^2}{1.01}$. For the three cases this is $1.01/1.01=1.00$, $1.0625/1.01=1.052$ and $1.25/1.01=1.238$. Fig. 3.34 is drawn about a common final value of 1, suggesting an unstated normalisation or a plotting inconsistency. To reproduce that comparison explicitly, plot $H(s)/H(0)$ and label it normalised. The source does not state the normalisation. Placing compensator zeros near a resonance can attenuate its response, but exact cancellation is sensitive to modelling error. L4 treats unstable cancellations.
+**[beyond the book]** The stated transfer function has DC gain $H(0)=\dfrac{\alpha^2+\beta^2}{1\cdot(0.1^2+1)}=\dfrac{\alpha^2+\beta^2}{1.01}$. For the three cases this is $1.01/1.01=1.00$, $1.0625/1.01=1.052$ and $1.25/1.01=1.238$. Fig. 3.34 is drawn about a common final value of 1, suggesting an unstated normalisation or a plotting inconsistency. To reproduce that comparison explicitly, plot $H(s)/H(0)$ and label it normalised. The source does not state the normalisation. Placing compensator zeros near a resonance can attenuate its response, but exact cancellation is sensitive to modelling error. [Stability and Routh’s criterion](stability_instructor.md) treats unstable cancellations.
 
 ---
 
@@ -693,7 +691,7 @@ Altitude $h$ from elevator angle $\delta_e$, for a Boeing 747. A zero at $s=+6$,
 >
 > Then the nose comes up, the wings meet the air at a larger angle of attack, lift increases, and the aircraft climbs to a new altitude.
 >
-> Down, then up. That is the right half-plane zero, and notice what it is not: it is not a modelling error, not a delay, and not something a better controller removes. It is the physics of where the control surface sits relative to the centre of mass. Compare the flexible-structure and quadrotor examples of the earlier lecture *(0.0.8 §28–§30)*: the same geometry, the same conclusion.
+> Down, then up. That is the right half-plane zero, and notice what it is not: it is not a modelling error, not a delay, and not something a better controller removes. It is the physics of where the control surface sits relative to the centre of mass. Compare the flexible-structure and quadrotor examples of the earlier lecture *([Modeling and dynamics §§28–30](modeling-and-dynamics_instructor.md#section-28))*: the same geometry, the same conclusion.
 
 ### 11.2 The numbers
 
@@ -762,6 +760,186 @@ $$
 > **Teaching check [beyond the book]:** For $\zeta=0.5$, the normalised 10–90% rise times with an added pole at $-\alpha\sigma$ are approximately 1.87, 2.29, 3.46, and 8.49 for $\alpha=4,2,1,0.5$, compared with 1.64 without the extra pole. Even $\alpha=4$ changes rise time by about 14%.
 
 Use the same factor-of-four heuristic to identify extra poles worth checking, not to certify that more distant poles have no effect. Approximation accuracy depends on modal residues, zeros, and the required tolerance as well as pole separation.
+
+### 12.1 By the way: sharper estimates exist [beyond the book]
+
+**Scope.** The lecture stays with FPE's three formulas. They are deliberately simple, and their simplicity is what turns specifications into a radius, an angle and a distance (§6). This subsection is an optional aside and is not in the 75-minute plan. In lecture it deserves one sentence at most: "sharper estimates exist; they are in the notes." The student version is §9.1 of the student notes. It gives the results without derivations.
+
+The asides below cover three refinements: a better rise-time fit, an exact bracket on settling time, and a residue correction that accounts for zeros and extra poles.
+
+#### (a) Rise time: better curve fits
+
+Other textbooks fit the normalised 10–90% rise time more closely than 1.8:
+
+$$
+\omega_nt_r\simeq1.76\zeta^3-0.417\zeta^2+1.039\zeta+1
+\qquad\text{(Nise, 7th ed., §4.6, Fig. 4.16)}
+$$
+
+$$
+\omega_nt_r\simeq2.16\zeta+0.60,\quad0.3\le\zeta\le0.8
+\qquad\text{(Dorf and Bishop, 13th ed., Eq. 5.17)}
+$$
+
+Nise obtained the cubic with MATLAB's `polyfit`. Both are empirical fits, not derivations. Compared with the measured values from §5.2:
+
+| $\zeta$ | measured $\omega_nt_r$ | 1.8 | Nise cubic | Dorf linear |
+|---:|---:|---:|---:|---:|
+| 0.1 | 1.104 | +63% | 1.101 (−0.2%) | 0.816 (−26%) |
+| 0.3 | 1.321 | +36% | 1.322 (0.0%) | 1.248 (−5.5%) |
+| 0.5 | 1.638 | +10% | 1.635 (−0.1%) | 1.680 (+2.6%) |
+| 0.7 | 2.126 | −15% | 2.127 (0.0%) | 2.112 (−0.7%) |
+| 0.9 | 2.883 | −38% | 2.880 (−0.1%) | 2.544 (−12%) |
+| 1.0 | 3.358 | −46% | 3.382 (+0.7%) | 2.760 (−18%) |
+
+**The price of accuracy.** The bound $\omega_n\ge1.8/t_r$ is a circle. With either fit, the rise-time boundary becomes $\omega_n\ge f(\zeta)/t_r$, whose radius grows with $\zeta$. The shaded region of Example 3.27 is then no longer a disc removed from a wedge. The rise-time failure of Demo 2 (§6.1) is exactly the error this fit removes.
+
+Ogata (5th ed., Eq. 5-19) derives an exact rise time, $t_r=(\pi-\cos^{-1}\zeta)/\omega_d$. It uses the 0–100% definition, however, so it is not comparable with FPE's 10–90% convention.
+
+#### (b) Settling time: no smooth formula can be exact, but the exact value can be bracketed
+
+**Why no smooth formula works.** Ogata (5th ed., Fig. 5-11) plots the exact settling time against $\zeta$ and remarks that it is discontinuous. As $\zeta$ increases, an oscillation peak can drop inside the band. When that happens, the last exit from the band jumps back by about half a period. For the 1% band, the measured $\sigma t_s$ jumps between about 3.8 and 5.1 over $0.3\le\zeta\le0.9$. The book's 4.6 tracks the middle of this staircase.
+
+**The exact bracket.** Assume the standard pair of Eq. (3.69), with $0<\zeta<1$, unit final value and a band $0<\epsilon<1$.
+
+*Step 1 (extrema).* From §5.3, $\dot y=\frac{\omega_n^2}{\omega_d}e^{-\sigma t}\sin\omega_dt$. The extrema therefore occur at $\omega_dt_k=k\pi$ for $k=1,2,\dots$. Substituting into Eq. (3.69), $\sin k\pi=0$ and $\cos k\pi=(-1)^k$, so
+
+$$
+y(t_k)-1=-(-1)^ke^{-\sigma k\pi/\omega_d}=-(-1)^kM_p^{\,k},
+$$
+
+using $e^{-\sigma\pi/\omega_d}=M_p$ from §5.3. Take $t_0=0$ as well, where $y-1=-1=-M_p^{\,0}$.
+
+*Step 2 (monotone between extrema).* On $(t_k,t_{k+1})$, $\sin\omega_dt$ has one sign, so $y$ is monotone there. By Eq. (3.70), $y-1$ vanishes where $\cos(\omega_dt-\beta)=0$. Since $0<\beta<\pi/2$, exactly one such point lies in the interval, at $\omega_dt=k\pi+\pi/2+\beta$. So $|y-1|$ falls monotonically from $M_p^{\,k}$ to zero, then rises monotonically to $M_p^{\,k+1}$.
+
+*Step 3 (the bracket).* Let $k^*$ be the largest integer $k\ge0$ with $M_p^{\,k}>\epsilon$. Equivalently, $k^*=\lceil\ln\epsilon/\ln M_p\rceil-1$.
+
+- At $t_{k^*}$, $|y-1|=M_p^{\,k^*}>\epsilon$, so the response is still outside the band and $t_s>t_{k^*}$.
+- After the zero crossing that follows $t_{k^*}$, Step 2 gives $|y-1|\le M_p^{\,k^*+1}\le\epsilon$. This holds on the rest of that interval and on every later one. The last exit from the band therefore occurs before that zero crossing.
+
+Hence
+
+$$
+\boxed{
+k^*\pi<\omega_dt_s<k^*\pi+\frac{\pi}{2}+\sin^{-1}\zeta,
+\qquad
+k^*=\left\lceil\frac{\ln\epsilon}{\ln M_p}\right\rceil-1
+}
+$$
+
+**Worked check.** Take $\zeta=0.5$ and $\epsilon=0.01$.
+
+- $M_p=0.163$ and $\ln0.01/\ln0.163=-4.605/-1.814=2.54$, so $k^*=2$.
+- $\sigma/\omega_d=0.5/0.866=0.577$.
+- The lower end is $\sigma t_s>0.577\times2\pi=3.628$.
+- The upper end is $\sigma t_s<0.577\times(2\pi+\pi/2+\pi/6)=0.577\times8.378=4.837$.
+- The measured value is $\sigma t_s=4.390$, inside the bracket.
+
+A SciPy sweep confirmed the bracket at every $\zeta$ from 0.30 to 0.90 in steps of 0.05; for example:
+
+| $\zeta$ | measured $\sigma t_s$ | $k^*$ | bracket on $\sigma t_s$ |
+|---:|---:|---:|---|
+| 0.45 | 3.950 | 2 | (3.166, 4.193) |
+| 0.50 | 4.390 | 2 | (3.628, 4.837) |
+| 0.60 | 3.755 | 1 | (2.356, 4.017) |
+| 0.70 | 4.602 | 1 | (3.079, 5.379) |
+| 0.85 | 3.793 | 0 | (0, 4.174) |
+
+When $\zeta$ goes from 0.55 to 0.60, $k^*$ drops from 2 to 1, and the measured value falls from 4.73 to 3.76. That drop is the staircase described above.
+
+#### (c) Zeros and extra poles: the dominant-residue correction
+
+This is the most useful of the three refinements. It extends Eqs. (3.71)–(3.72) to a dominant pair with extra zeros and poles, using only the cover-up idea of §7.
+
+**Assumptions.**
+
+- The complete model is $H(s)=H_0(s)G(s)$, where $H_0=\omega_n^2/(s^2+2\zeta\omega_ns+\omega_n^2)$ is the standard pair with $0<\zeta<1$.
+- $G(0)=1$, so the DC gain is 1.
+- The poles are simple, and no pole or zero of $G$ sits at the origin.
+- The zeros $z_i$ and extra poles $p_j$ of $G$ are written as locations in the $s$-plane:
+
+$$
+G(s)=\prod_i\frac{s-z_i}{-z_i}\;\prod_j\frac{-p_j}{s-p_j}.
+$$
+
+Let $p=-\sigma+j\omega_d$ be the upper pole of the pair and $\bar p$ its conjugate.
+
+*Step 1 (cover-up).* The unit-step response is $Y=H/s$. Its residue at $p$ is
+
+$$
+R=\left.\frac{\omega_n^2\,G(s)}{s\,(s-\bar p)}\right|_{s=p}=R_0\,G(p),
+\qquad
+R_0=\left.\frac{\omega_n^2}{s\,(s-\bar p)}\right|_{s=p},
+$$
+
+where $R_0$ is the residue for $H_0$ alone. **The extra zeros and poles multiply the pair's residue by the single complex number $G(p)$.**
+
+*Step 2 (the pair's term).* For $H_0$ alone, the pair contributes $2\,\mathrm{Re}(R_0e^{pt})=y_0-1=-e^{-\sigma t}\cos(\omega_dt-\beta)/\sqrt{1-\zeta^2}$ by Eq. (3.70). Write $G(p)=|G(p)|e^{j\phi}$. Since $e^{pt}=e^{-\sigma t}e^{j\omega_dt}$, the factor $e^{j\phi}$ adds $\phi$ to $\omega_dt$ and leaves $e^{-\sigma t}$ unchanged:
+
+$$
+2\,\mathrm{Re}\!\left(R_0|G|e^{j\phi}e^{pt}\right)
+=-|G(p)|\,\frac{e^{-\sigma t}}{\sqrt{1-\zeta^2}}\cos(\omega_dt+\phi-\beta).
+$$
+
+The complete response is therefore
+
+$$
+y(t)=1-|G(p)|\frac{e^{-\sigma t}}{\sqrt{1-\zeta^2}}\cos(\omega_dt+\phi-\beta)+\sum_jC_je^{p_jt},
+$$
+
+where the last sum collects the modes of the extra poles.
+
+*Step 3 (the approximation).* Drop $\sum_jC_je^{p_jt}$ near the peak. **If $G$ has zeros only, nothing is dropped and the result is exact.** Let $\theta=\omega_dt+\phi$. Differentiating the remaining term, and using $\sigma=\omega_n\sin\beta$ and $\omega_d=\omega_n\cos\beta$,
+
+$$
+\frac{d}{dt}\Big[e^{-\sigma t}\cos(\theta-\beta)\Big]
+=-e^{-\sigma t}\big[\sigma\cos(\theta-\beta)+\omega_d\sin(\theta-\beta)\big]
+=-\omega_ne^{-\sigma t}\sin\theta .
+$$
+
+The extrema are at $\theta=k\pi$, that is, $\omega_dt_k=k\pi-\phi$. There $\cos(k\pi-\beta)=(-1)^k\cos\beta=(-1)^k\sqrt{1-\zeta^2}$, so
+
+$$
+y(t_k)-1=(-1)^{k+1}\,|G(p)|\,e^{-\sigma t_k}.
+$$
+
+Odd $k$ gives overshoots and even $k$ gives undershoots. The peak time is the first odd $k$ with $t_k>0$. When $\pi-\phi>0$ this is $k=1$, which covers every case below.
+
+*Step 4 (geometry).* Take the argument of each factor of $G(p)$. For a real LHP root $r$, $-r>0$ contributes no angle. Let $\psi_r=\arg(p-r)\in(0,\pi)$ be the angle, measured from the positive real axis, of the vector from the root to $p$. Then $\phi=\sum\psi_{\rm zeros}-\sum\psi_{\rm poles}$. A real RHP zero also contributes $-\pi$, because $-z_i<0$. The magnitudes are distances: $\ell$ from the root to $p$, and $d$ from the root to the origin.
+
+$$
+\boxed{
+t_p\simeq\frac{\pi-\sum\psi_{\rm zeros}+\sum\psi_{\rm poles}}{\omega_d},
+\qquad
+M_p\simeq\left[\prod_{\rm zeros}\frac{\ell_i}{d_i}\prod_{\rm poles}\frac{d_j}{\ell_j}\right]e^{-\sigma t_p}
+}
+$$
+
+With no extra roots, $G=1$ and $\phi=0$, and the box reduces to Eqs. (3.71)–(3.72). For a complex pair of zeros or poles, include both members, each with its own angle and distances.
+
+**Reading the result.**
+
+- A LHP zero adds angle, so the peak comes earlier, while the envelope $e^{-\sigma t}$ is still large. It also rescales the amplitude by $\ell/d$. At $\alpha=4$ that factor is 0.866, yet overshoot still rises from 16.3% to 19.1% because the peak moves earlier.
+- An extra pole delays the peak and multiplies by $d/\ell$.
+- The angle sums preview the root-locus angle condition of Chapter 5.
+
+**Worked checks** ($\zeta=0.5$, $\omega_n=1$, so $\sigma=0.5$ and $\omega_d=0.866$):
+
+- *LHP zero, $\alpha=2$ (zero at $-1$).* $p-z=0.5+0.866j$, so $\ell=1$, $d=1$ and $\psi=60^\circ$. Then $t_p=(180^\circ-60^\circ)/\omega_d=2.094/0.866=2.418$ and $M_p=e^{-0.5\times2.418}=e^{-1.209}=0.298$. This is the 29.8% of §8, and it is exact.
+- *RHP zero, $\alpha=-2$ (zero at $+1$).* $p-z=-1.5+0.866j$, so $\ell=\sqrt3$, $d=1$, $\psi=150^\circ$ and $\phi=150^\circ-180^\circ=-30^\circ$.
+  - Overshoot ($k=1$): $t_p=(180^\circ+30^\circ)/\omega_d=3.665/0.866=4.232$ and $M_p=\sqrt3\,e^{-2.116}=0.209$. This is the 20.9% of §10.1.
+  - Undershoot ($k=0$): $t_0=(30^\circ)/\omega_d=0.524/0.866=0.605$, and $y-1=-\sqrt3\,e^{-0.302}=-1.280$, so $y_{\min}=-0.280$. This is the minimum quoted in §10.
+- *Extra pole.*
+  - $\alpha=4$ (pole at $-2$): $p-p_j=1.5+0.866j$, so $\ell=\sqrt3$, $d=2$ and $\psi=30^\circ$. Then $t_p=(180^\circ+30^\circ)/\omega_d=4.232$ and $M_p=(2/\sqrt3)e^{-2.116}=0.139$. The simulation also gives 13.9%.
+  - $\alpha=2$: the estimate is 8.9% against 8.1% measured. The pole's own mode is no longer negligible at $t_p$.
+  - $\alpha=1$: the estimate is 3.8% against no overshoot at all. The real pole now dominates, and the approximation fails, as the factor-of-four rule warns.
+- *The 747 (Ex. 3.30).* By the §11.2 worked check, the altitude response is the step response of the unit-DC pair $-2\pm3j$ with a zero at $+6$.
+  - Geometry: $p-z=-8+3j$, so $\ell=\sqrt{73}=8.544$, $d=6$, $|G|=1.424$, $\psi=159.44^\circ$ and $\phi=-20.56^\circ=-0.3588$ rad.
+  - Overshoot: $t_p=(\pi+0.3588)/3=1.167$ s and $M_p=1.424\,e^{-2\times1.167}=0.138$. This is exactly the complete-model 13.8%.
+  - Undershoot: $t_0=0.3588/3=0.120$ s and $y-1=-1.424\,e^{-0.239}=-1.121$. Scaled by $180/13$, the minimum is $-1.68$.
+  - The whole gap between the pair-only 12.3% and the complete-model 13.8% in the §11.2 table is the RHP zero's residue factor.
+
+**Verification.** SymPy confirmed three identities: the residue identity $R=R_0G(p)$, the phase-shift form in Step 2, and the extremum values $(-1)^{k+1}|G|e^{-\sigma t_k}$. SciPy step responses reproduced every number above to the precision shown.
 
 ---
 
@@ -883,14 +1061,14 @@ Both zeros are $6=3\sigma$ from the imaginary axis ($|\alpha|=3$ in the normalis
 |---|---|---|---|---|
 | 1 | `l3_demo1_step_specs.py` | §5 | Exact peak formulas, a rise-time fit, and an approximate settling rule compared with the full envelope bound. | slide |
 | 2 | `l3_demo2_spec_regions.py` | §6 | A pole pair on the specification boundary that fails the specification. | **live** |
-| 3 | `l3_demo3_zeros.py` | §8–§10 | The derivative decomposition; overshoot versus $\alpha$; Example 3.28's exact cancellations. | slide |
-| 4 | `l3_demo4_extra_pole_aircraft.py` | §11–§12 | The 747's undershoot and final value; extra-pole rise times matching Fig. 3.38. | **live** |
+| 3 | `l3_demo3_zeros.py` | §§8–10 | The derivative decomposition; overshoot versus $\alpha$; Example 3.28's exact cancellations. | slide |
+| 4 | `l3_demo4_extra_pole_aircraft.py` | §§11–12 | The 747's undershoot and final value; extra-pole rise times matching Fig. 3.38. | **live** |
 
 ## 19. Where this lecture sits
 
 | Lecture | Book sections | Content |
 |---|---|---|
-| L1 | 3.1 | Convolution, transfer functions, frequency response, partial fractions, final value, poles and zeros |
-| L2 | 3.2, 3.3 | Block diagrams, effect of pole locations |
-| **This lecture (L3)** | **3.4, 3.5** | **Time-domain specifications; effects of zeros and additional poles** |
-| L4 | 3.6–3.9 | Stability, Routh's criterion, system identification, scaling, history |
+| [Convolution and transfer functions](convolution-impulse-response_instructor.md) | 3.1 | Convolution, transfer functions, frequency response, partial fractions, final value, poles and zeros |
+| [Block diagrams and pole locations](block-diagrams_instructor.md) | 3.2, 3.3 | Block diagrams, effect of pole locations |
+| **This lecture** | **3.4, 3.5** | **Time-domain specifications; effects of zeros and additional poles** |
+| [Stability and Routh’s criterion](stability_instructor.md) | 3.6–3.9 | Stability, Routh's criterion, system identification, scaling, history |

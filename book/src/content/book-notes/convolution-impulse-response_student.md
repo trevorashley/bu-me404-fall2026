@@ -40,7 +40,7 @@ After studying this lecture, you should be able to:
 
 Unless stated otherwise, transfer functions describe causal LTI systems from zero initial state. Add the zero-input response for nonzero initial conditions. LHP and RHP mean the left and right half planes.
 
-Here $s=\sigma_1+j\omega$ uses $\sigma_1=\Re(s)$. In L2–L3, a stable pole is written $s=-\sigma\pm j\omega_d$ with $\sigma>0$, so the decay-rate convention has the opposite sign.
+Here $s=\sigma_1+j\omega$ uses $\sigma_1=\Re(s)$. In [Block diagrams and pole locations](block-diagrams_student.md) and [Time-domain specifications](time-domain-specs_student.md), a stable pole is written $s=-\sigma\pm j\omega_d$ with $\sigma>0$, so the decay-rate convention has the opposite sign.
 
 ---
 
@@ -620,7 +620,7 @@ Use the following procedure:
 
 > **Hand inversion is often deferred during design.** Pole-zero locations guide a candidate design; a numerical time response then checks its actual performance. Pole locations alone do not determine amplitudes or certify specifications.
 
-L2 develops the connection between pole locations and response shapes.
+[Block diagrams and pole locations](block-diagrams_student.md) develops the connection between pole locations and response shapes.
 
 ### 7.2 The cover-up method {#section-7-2}
 
@@ -990,7 +990,7 @@ $$
 
 Four consequences are useful:
 
-1. **Poles give visible natural modes.** They set exponential rates and oscillation frequencies. L2 develops the pole-location picture.
+1. **Poles give visible natural modes.** They set exponential rates and oscillation frequencies. [Block diagrams and pole locations](block-diagrams_student.md) develops the pole-location picture.
 2. **Zeros block transmission.** Drive with $u=u_0e^{s_0t}$ where $s_0=z_i$ and the output is identically zero, for a compatible initial state. Hence *transmission zeros*.
 3. **Zeros at infinity.** If $m<n$, the book counts $n-m$ zeros at infinity. Standard finite-dimensional causal state-space models have proper transfer functions ($m\le n$). Ideal differentiators and some idealised choices of physical input/output can produce improper models; these are not bounded-bandwidth realisations.
 4. **Cancellation is a warning sign.** A common numerator/denominator factor disappears from the reduced transfer function. If it represents a mode of the physical realisation, that internal mode remains. The transfer function alone cannot tell whether such a hidden mode is physically present. Lecture 4 makes this distinction concrete.
@@ -1106,7 +1106,7 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 
 ## Chapter 3 student notes
 
-- [L1: Convolution and transfer functions](convolution-impulse-response_student.md)
-- [L2: Block diagrams and pole locations](block-diagrams_student.md)
-- [L3: Specifications and zeros](time-domain-specs_student.md)
-- [L4: Stability and Routh’s criterion](stability_student.md)
+- [Convolution and transfer functions](convolution-impulse-response_student.md)
+- [Block diagrams and pole locations](block-diagrams_student.md)
+- [Specifications and zeros](time-domain-specs_student.md)
+- [Stability and Routh’s criterion](stability_student.md)

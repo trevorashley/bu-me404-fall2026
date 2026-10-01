@@ -1,5 +1,5 @@
 """
-L1 Demo 1  --  Open loop cannot stabilise; feedback can           (FPE §4.1.1)
+Feedback properties Demo 1  --  Open loop cannot stabilise; feedback can           (FPE §4.1.1)
 
 The inverted pendulum of §4.1.1 has G(s) = 1/(s^2 - 1), with a pole at +1.
 
@@ -30,7 +30,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L1 Demo 1 -- the inverted pendulum, open loop and closed loop")
+    dk.title("Feedback properties Demo 1 -- the inverted pendulum, open loop and closed loop")
 
     # ------------------------------------------------ the exercise, solved
     dk.section("the book's exercise: place the pair at zeta, omega_n")

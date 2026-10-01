@@ -1,5 +1,5 @@
 """
-L3 Demo 2  --  Turning specifications into a region of the s-plane
+Time-domain specifications Demo 2  --  Turning specifications into a region of the s-plane
                                                             (Example 3.27)
 
 The requirement is t_r <= 0.6 s, M_p <= 10%, t_s <= 3 s. Section 3.4 converts
@@ -41,7 +41,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 2 -- specifications become a region, and the region is tested")
+    dk.title("Time-domain specifications Demo 2 -- specifications become a region, and the region is tested")
 
     dk.table(["specification", "requirement", "becomes", "value"],
              [["rise time", f"t_r <= {TR_MAX} s", "omega_n >= 1.8/t_r",

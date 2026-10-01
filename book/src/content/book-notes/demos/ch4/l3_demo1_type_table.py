@@ -1,5 +1,5 @@
 """
-L3 Demo 1  --  Table 4.1, simulated: three loops, three inputs, nine errors
+Steady-state error and system type Demo 1  --  Table 4.1, simulated: three loops, three inputs, nine errors
                                                     (FPE §4.2.1, Eqs. 4.33-4.38)
 
 Three unity-feedback loops, one of each type:
@@ -51,7 +51,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L3 Demo 1 -- system type and the error table, by simulation")
+    dk.title("Steady-state error and system type Demo 1 -- system type and the error table, by simulation")
     dk.note(
         "For unity feedback, E = S R with S = 1/(1+L). Write L = L_o(s)/s^n with "
         "L_o(0) = K_n finite. A reference t^k/k! has transform 1/s^(k+1), and the "

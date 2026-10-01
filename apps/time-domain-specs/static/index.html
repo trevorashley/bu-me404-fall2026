@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Time-Domain Specifications Explorer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M2 28 C8 28 8 4 14 6 S20 18 30 16' fill='none' stroke='%232a78d6' stroke-width='3'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Time-Domain Specifications <small>ME404 · FPE §3.4–3.5</small></h1>
+    <nav class="tabs" role="tablist"></nav>
+    <div class="header-tools">
+      <button class="tool" id="predict" aria-pressed="false" title="Hide responses until you reveal them">Predict mode</button>
+      <button class="tool" id="reveal" hidden title="Show the hidden response (R)">Reveal (R)</button>
+      <button class="tool" id="share" title="Copy a link to exactly this configuration">Copy link</button>
+      <button class="tool" id="theme" title="Colour theme">Theme: auto</button>
+      <button class="tool" id="smaller" title="Smaller text (−)">A−</button>
+      <button class="tool" id="larger" title="Larger text (+)">A+</button>
+    </div>
+  </header>
+  <main>
+    <div class="predict-banner">
+      <b>Predict mode.</b>
+      <span>Responses and measured values are hidden. Click a response plot to mark your guess for the peak, then press <b>Reveal</b> or <kbd>R</kbd>. Any change hides them again.</span>
+    </div>
+    <div id="panels"></div>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

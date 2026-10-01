@@ -5,9 +5,9 @@
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §§4.3–4.3.5 (Eqs. 4.55–4.90, Examples 4.5–4.8). Worked examples and figure numbers are the book's. Additions of my own are marked **[beyond the book]**.
 
-**Prerequisites:** [L1 of this chapter: the basic equations of feedback](feedback-properties_instructor.md), cited as *(L1 §n)*. From Chapter 3: the Final Value Theorem and partial fractions in [Convolution and transfer functions](convolution-impulse-response_instructor.md), second-order specifications in [Time-domain specifications](time-domain-specs_instructor.md), and Routh's criterion in [Stability](stability_instructor.md), cited as *(Stab §n)*.
+**Prerequisites:** [the basic equations of feedback](feedback-properties_instructor.md). From Chapter 3: the Final Value Theorem and partial fractions in [Convolution and transfer functions](convolution-impulse-response_instructor.md), second-order specifications in [Time-domain specifications](time-domain-specs_instructor.md), and Routh's criterion in [Stability](stability_instructor.md).
 
-**Course order:** in this course the PID lectures come **before** system type and error constants (FPE §4.2, our [L3](system-type_instructor.md)). Every steady-state result below is derived directly from the Final Value Theorem. Where the book says "Type 1" or quotes an error constant, the notes give the FVT calculation and forward-reference L3. Integrator windup, derivative filtering and tuning rules belong to [L4](pid-tuning_instructor.md).
+**Course order:** in this course the PID lectures come **before** system type and error constants (FPE §4.2, our [Steady-state error and system type](system-type_instructor.md)). Every steady-state result below is derived directly from the Final Value Theorem. Where the book says "Type 1" or quotes an error constant, the notes give the FVT calculation and forward-reference [Steady-state error and system type](system-type_instructor.md). Integrator windup, derivative filtering and tuning rules belong to [PID tuning and implementation](pid-tuning_instructor.md).
 
 **Duration:** two 75-minute sessions (the schedule's "PID" and "PID (cont.)"). The split point is marked in §3 and in the text.
 
@@ -37,7 +37,7 @@ Page cues use the PDF viewer's 1-based page numbers (120 pages). The figures are
 
 ## 1. Teaching strategy
 
-L1 showed what feedback buys in principle: disturbance attenuation and lower sensitivity when the loop gain is large. This lecture introduces the controller that almost every mechanical engineer will actually tune. It predates root locus, Bode and state space, and was developed by trial and error.
+[Feedback properties](feedback-properties_instructor.md) showed what feedback buys in principle: disturbance attenuation and lower sensitivity when the loop gain is large. This lecture introduces the controller that almost every mechanical engineer will actually tune. It predates root locus, Bode and state space, and was developed by trial and error.
 
 The book's structure is simple: one term at a time, each on the same second-order plant, with the Final Value Theorem as the measuring instrument. Keep that structure. Every term gets the same three questions:
 
@@ -55,7 +55,7 @@ Four moments to protect:
 
 1. **§6.2** — proportional gain on the motor model slides the poles *vertically*. Error goes down, damping goes down, and the settling-time estimate $4.6/\sigma$ does not change at all (the exact settling time moves only a little).
 2. **§7.4** — the one-line argument for why integral control gives zero error without knowing the plant: *if the control settles to a constant, $\dot u=k_Ie=0$.*
-3. **§10.3** — Example 4.5's PI zero cancels the slow thermal pole. The reference response looks second order; the disturbance response still carries the 10-second tail. It is the cancellation lesson from *(Stab §6.3)* in its legal, stable form.
+3. **§10.3** — Example 4.5's PI zero cancels the slow thermal pole. The reference response looks second order; the disturbance response still carries the 10-second tail. It is the cancellation lesson from *([Stability and Routh’s criterion §6.3](stability_instructor.md#section-6-3))* in its legal, stable form.
 4. **§11.2** — three gains, three closed-loop roots: PID on a second-order plant places the poles anywhere, by matching coefficients.
 
 ---
@@ -83,7 +83,7 @@ By the end of these two sessions students should be able to:
 
 | Time | Topic | Section |
 |---:|---|---|
-| 0–5 min | Where the controller sits; the three-term law; the FVT recipe | §4–§5 |
+| 0–5 min | Where the controller sits; the three-term law; the FVT recipe | §§4–5 |
 | 5–25 min | Proportional control on the motor model; Fig. 4.7 | §6 |
 | 25–50 min | Integral control: history, zero error, the robustness argument, the price | §7 |
 | 50–68 min | Derivative control: prediction, why never alone, where to put it (Fig. 4.10) | §8 |
@@ -100,7 +100,7 @@ By the end of these two sessions students should be able to:
 | 30–48 min | PID; three knobs, three roots; coefficient matching | §11 |
 | 48–60 min | Example 4.6: motor speed under P, PI and PID | §12 |
 | 60–70 min | Disturbance errors in Examples 4.7 and 4.8, by FVT; preview of system type | §13 |
-| 70–75 min | Summary table; what L3 and L4 add | §14–§15 |
+| 70–75 min | Summary table; what [Steady-state error and system type](system-type_instructor.md) and [PID tuning and implementation](pid-tuning_instructor.md) add | §§14–15 |
 
 **Prepare as slides:** Fig. 4.2 (the loop), Fig. 4.7, 4.9, 4.10, 4.12, 4.14 and 4.16, plus the summary table in §14. Put the characteristic equations on the board: (4.60), the integral cubic, (4.77).
 
@@ -162,7 +162,7 @@ D_c(s)=k_P\left(1+\frac{1}{T_Is}+T_Ds\right),
 \qquad T_I=\frac{k_P}{k_I},\quad T_D=\frac{k_D}{k_P}.
 $$
 
-**[beyond the book]** Both forms appear on data sheets and in L4's tuning tables; students should convert between them without thinking. $T_I$ and $T_D$ have units of time whatever the units of $k_P$.
+**[beyond the book]** Both forms appear on data sheets and in the tuning tables in [PID tuning and implementation](pid-tuning_instructor.md); students should convert between them without thinking. $T_I$ and $T_D$ have units of time whatever the units of $k_P$.
 
 ### 5.2 Where it sits
 
@@ -170,7 +170,7 @@ $$
 
 > **[ FIG 4.2 ]** — PDF p. 4 *(slide; leave it up through §7)*
 
-The controller acts on $E=R-Y$ and its output $U$ adds to a disturbance $W$ at the plant input. Sensor noise $V$ is set to zero in this lecture. From *(L1)*, with $V=0$,
+The controller acts on $E=R-Y$ and its output $U$ adds to a disturbance $W$ at the plant input. Sensor noise $V$ is set to zero in this lecture. From *([Feedback properties](feedback-properties_instructor.md))*, with $V=0$,
 
 $$
 Y=\frac{D_cG}{1+D_cG}R+\frac{G}{1+D_cG}W,
@@ -182,13 +182,13 @@ Every result in this lecture is one of these four transfer functions, evaluated 
 
 ### 5.3 The measuring instrument
 
-**[beyond the book]** The recipe used throughout, in place of the system-type machinery of L3:
+**[beyond the book]** The recipe used throughout, in place of the system-type machinery of [Steady-state error and system type](system-type_instructor.md):
 
 > For a step of size $r_0$ (or $w_0$), and **provided the closed loop is stable**,
 > $$y(\infty)=\lim_{s\to0}s\,\mathcal T(s)\frac{r_0}{s}=\mathcal T(0)\,r_0 .$$
 > For a ramp of slope $v_0$, $y(\infty)$ is not constant; compute the error instead, $e(\infty)=\lim_{s\to0}s\,\dfrac{E}{R}(s)\dfrac{v_0}{s^2}$.
 
-The stability proviso is not decoration *(Stab §5)*. Each time we compute a final value below, say where the stability condition came from.
+The stability proviso is not decoration *([Stability and Routh’s criterion §5](stability_instructor.md#section-5))*. Each time we compute a final value below, say where the stability condition came from.
 
 ---
 
@@ -300,7 +300,7 @@ That sentence is the whole case for integral action.
 
 ### 6.4 Beyond second order
 
-For the underdamped all-pole second-order model used here, proportional gain leaves the poles' real part unchanged. On higher-order plants the picture is less tidy: some poles gain damping while others lose it, and for enough gain a plant of order three or more usually goes unstable. You met that already: in *(Stab §8)* the gain range was found with Routh. Root locus (Part IV) is the tool that draws the whole picture.
+For the underdamped all-pole second-order model used here, proportional gain leaves the poles' real part unchanged. On higher-order plants the picture is less tidy: some poles gain damping while others lose it, and for enough gain a plant of order three or more usually goes unstable. You met that already: in *([Stability and Routh’s criterion §8](stability_instructor.md#section-8))* the gain range was found with Routh. Root locus (Part IV) is the tool that draws the whole picture.
 
 #### Ask the class
 
@@ -329,7 +329,7 @@ The control at time $t_1$ is $k_I$ times the net area under the error curve up t
 >
 > **Say:** "This curve is the error of the loop we are about to analyse, with $k_I=0.5$. The shaded area is the control. When the error has returned to zero, the area it left behind is still there."
 
-The controller has infinite gain at DC: $|D_c(j\omega)|=k_I/\omega\to\infty$ as $\omega\to0$. Put that together with *(L1)*, where large loop gain meant small error, and expect zero steady-state error.
+The controller has infinite gain at DC: $|D_c(j\omega)|=k_I/\omega\to\infty$ as $\omega\to0$. Put that together with *([Feedback properties](feedback-properties_instructor.md))*, where large loop gain meant small error, and expect zero steady-state error.
 
 ### 7.2 Reference step (Eqs. 4.64–4.67)
 
@@ -421,7 +421,7 @@ $$
 a(s)=s^3+a_1s^2+a_2s+Ak_I .
 $$
 
-Routh *(Stab §7)*: the first column is $1,\ a_1,\ (a_1a_2-Ak_I)/a_1,\ Ak_I$, so
+Routh *([Stability and Routh’s criterion §7](stability_instructor.md#section-7))*: the first column is $1,\ a_1,\ (a_1a_2-Ak_I)/a_1,\ Ak_I$, so
 
 $$
 \boxed{0<k_I<\frac{a_1a_2}{A}}
@@ -431,9 +431,9 @@ For the book's numbers, $0<k_I<1.4$. At $k_I=1.4$, $a(s)=s^3+1.4s^2+s+1.4=(s+1.4
 
 **Speed.** At $k_I=0.5$ the dominant pair has $\sigma=0.247$, three times slower than the P loop's $0.7$. The 1% settling time is 16.5 s, against about 6 s for P. An integrator responds to area, and area takes time to accumulate.
 
-**Ramps.** A constant error to a ramp reference remains; the book cites §4.2. We derive it in §10.2 and name it in L3.
+**Ramps.** A constant error to a ramp reference remains; the book cites §4.2. We derive it in §10.2 and name it in [Steady-state error and system type](system-type_instructor.md).
 
-**Saturation.** Every real actuator saturates. While $u$ is pinned at its limit, the integrator keeps integrating; this is *windup*, and the book sends it to Chapter 9. It is L4's first topic. Say now: **never ship integral action without anti-windup.**
+**Saturation.** Every real actuator saturates. While $u$ is pinned at its limit, the integrator keeps integrating; this is *windup*, and the book sends it to Chapter 9. It is covered in [PID tuning and implementation](pid-tuning_instructor.md). Say now: **never ship integral action without anti-windup.**
 
 ---
 
@@ -464,7 +464,7 @@ $$
 
 PD control is proportional control acting on a linear extrapolation of the error $T_D$ seconds ahead. When the error is falling fast, the controller eases off before the error reaches zero, which is exactly what removes overshoot. The extrapolation is only good when the error is smooth over $T_D$.
 
-**Noise.** A differentiator's gain is $k_D\omega$, growing without bound with frequency. Sensor noise is high-frequency. The book defers the full discussion to Chapter 6; every practical derivative is filtered, $k_Ds/(\tau_fs+1)$, and choosing $\tau_f$ is part of L4.
+**Noise.** A differentiator's gain is $k_D\omega$, growing without bound with frequency. Sensor noise is high-frequency. The book defers the full discussion to Chapter 6; every practical derivative is filtered, $k_Ds/(\tau_fs+1)$, and choosing $\tau_f$ is part of [PID tuning and implementation](pid-tuning_instructor.md).
 
 ### 8.3 Where to put it: Fig. 4.10
 
@@ -498,7 +498,7 @@ In (b), a step in $r$ is differentiated: the control contains an impulse $k_D\de
 
 #### Say out loud
 
-> Moving the derivative changes the zeros, not the poles. In this example the kick-free version overshoots more, because it lost the numerator's $s^2$ term that was helping. So "put the derivative on the output" is a rule about the actuator, not a free improvement in the response. L4 returns to the kick when it discusses physical realisation.
+> Moving the derivative changes the zeros, not the poles. In this example the kick-free version overshoots more, because it lost the numerator's $s^2$ term that was helping. So "put the derivative on the output" is a rule about the actuator, not a free improvement in the response. [PID tuning and implementation](pid-tuning_instructor.md) returns to the kick when it discusses physical realisation.
 
 > **[ DEMO 3 ]** — `ch4/l2_demo3_derivative_placement.py` *(live, ~5 s)*
 
@@ -541,7 +541,7 @@ $$
 
 Written the second way, PI is a pole at the origin and a **zero at $-k_I/k_P=-1/T_I$**. The integrator provides the zero steady-state error of §7; the proportional term provides a faster response than integral action alone. Most practical controllers with an integral term also have a proportional term.
 
-You have already seen a PI loop: Example 3.34 put $K+K_I/s$ around $1/[(s+1)(s+2)]$ and found its stability region with Routh *(Stab §9)*. The same Routh reasoning applies here.
+You have already seen a PI loop: Example 3.34 put $K+K_I/s$ around $1/[(s+1)(s+2)]$ and found its stability region with Routh *([Stability and Routh’s criterion §9](stability_instructor.md#section-9))*. The same Routh reasoning applies here.
 
 ### 10.2 Example 4.5: a thermal system
 
@@ -561,7 +561,7 @@ Pulling the time constants out, $G(s)=\dfrac{100}{(s+1)(s+0.1)}$: a fast pole at
 
 > **[ FIG 4.11 ]** — PDF p. 47
 
-It settles to 1% in $t_s=47.1$ s (confirmed by simulation: 47.11 s), set by the slow pole, with zero error — if $K_o$ is exactly 1000. A 5% gain error gives $315^\circ$C instead of 300: a 5% output error. Open loop has no defence against gain uncertainty *(L1)*.
+It settles to 1% in $t_s=47.1$ s (confirmed by simulation: 47.11 s), set by the slow pole, with zero error — if $K_o$ is exactly 1000. A 5% gain error gives $315^\circ$C instead of 300: a 5% output error. Open loop has no defence against gain uncertainty *([Feedback properties](feedback-properties_instructor.md))*.
 
 **P control, $k_P=0.03$.** The characteristic polynomial is $(s+1)(10s+1)+30=10s^2+11s+31$, or $s^2+1.1s+3.1$:
 
@@ -578,7 +578,7 @@ The book rounds this to $\zeta=0.3$. The closed-loop DC gain is $30/31$, so the 
 
 > **[ FIG 4.12, 4.13 ]** — PDF pp. 48–49
 >
-> **Teaching check [beyond the book]:** with $K_o=900$ and $1100$ the offsets are $300/28=10.71$ and $300/34=8.82^\circ$C. A ±10% plant-gain change moves the offset by about ±1°C, roughly 0.3% of the setpoint, instead of by ±30°C. That is the sensitivity reduction of *(L1)*, in numbers. The three output traces are nearly indistinguishable; the control signals (Fig. 4.13) are not, because the controller is doing the compensating.
+> **Teaching check [beyond the book]:** with $K_o=900$ and $1100$ the offsets are $300/28=10.71$ and $300/34=8.82^\circ$C. A ±10% plant-gain change moves the offset by about ±1°C, roughly 0.3% of the setpoint, instead of by ±30°C. That is the sensitivity reduction of *([Feedback properties](feedback-properties_instructor.md))*, in numbers. The three output traces are nearly indistinguishable; the control signals (Fig. 4.13) are not, because the controller is doing the compensating.
 
 **PI control, $k_P=0.03$, $k_I=0.003$.**
 
@@ -609,7 +609,7 @@ $$
 e_{\text{ramp}}=\lim_{s\to0}s\cdot\frac{s(s+1)}{s^2+s+3}\cdot\frac{30}{s^2}=\frac{30}{3}=10^\circ\text{C}.
 $$
 
-The simulation gives $9.97^\circ$C at $t=10$ s. The PI loop tracks a step with zero error and a ramp with a constant lag; P lags the ramp by about $20^\circ$C at the same instant. L3 calls the number 3 the velocity constant.
+The simulation gives $9.97^\circ$C at $t=10$ s. The PI loop tracks a step with zero error and a ramp with a constant lag; P lags the ramp by about $20^\circ$C at the same instant. [Steady-state error and system type](system-type_instructor.md) calls the number 3 the velocity constant.
 
 > **[ DEMO 4 ]** — `ch4/l2_demo4_thermal_pi.py` *(slide)*
 
@@ -633,7 +633,7 @@ The slow pole is back. For a unit step at the heater input, the FVT gives $y(\in
 
 > In the stability lecture we cancelled an *unstable* pole and watched the hidden mode blow up. This is the legal version: the cancelled pole is stable, so nothing blows up, and the book is right to call the design good. But the mode is not gone. The reference cannot excite it; the disturbance can. When you cancel a slow pole, your tracking gets fast and your disturbance rejection stays slow.
 
-Compare *(Stab §6.3)*, and the near-cancellation of lightly damped poles in Example 3.29 ([Time-domain specifications](time-domain-specs_instructor.md)). The rule is the same in both: the full characteristic polynomial is $(s+0.1)(s^2+s+3)$, and every one of its roots shows up in some input-output pair.
+Compare *([Stability and Routh’s criterion §6.3](stability_instructor.md#section-6-3))*, and the near-cancellation of lightly damped poles in Example 3.29 ([Time-domain specifications](time-domain-specs_instructor.md)). The rule is the same in both: the full characteristic polynomial is $(s+0.1)(s^2+s+3)$, and every one of its roots shows up in some input-output pair.
 
 ---
 
@@ -752,7 +752,7 @@ These are the two dashed P levels in Fig. 4.16. With PI or PID the integrator fo
 
 ## 13. Disturbance errors: Examples 4.7 and 4.8, by the Final Value Theorem
 
-The book works these two examples in the language of §4.2 (system type, error constants). We have not met that language yet; the FVT gets the same numbers directly, and L3 will name the pattern.
+The book works these two examples in the language of §4.2 (system type, error constants). We have not met that language yet; the FVT gets the same numbers directly, and [Steady-state error and system type](system-type_instructor.md) will name the pattern.
 
 ### 13.1 Example 4.7: DC motor position, P and PI
 
@@ -775,7 +775,7 @@ $$
 \boxed{e(\infty)=-\frac{B}{Ak_Ph}}
 $$
 
-a constant offset, even though the plant contains an integrator. The plant's integrator sits after the disturbance, so it helps track the reference but does not reject a constant torque. For a constant reference $r_0$ with $W=0$, however, the stable P loop has $Y/R=Ak_P/(\tau s^2+s+Ak_Ph)\to1/h$ as $s\to0$, so $y(\infty)=r_0/h$ and the system error is $r_0(1-1/h)$. Thus $h\ne1$ makes it Type 0 for reference inputs despite the plant integrator; zero step error requires $h=1$ (see [L3 §11](system-type_instructor.md), where $H(0)=1$).
+a constant offset, even though the plant contains an integrator. The plant's integrator sits after the disturbance, so it helps track the reference but does not reject a constant torque. For a constant reference $r_0$ with $W=0$, however, the stable P loop has $Y/R=Ak_P/(\tau s^2+s+Ak_Ph)\to1/h$ as $s\to0$, so $y(\infty)=r_0/h$ and the system error is $r_0(1-1/h)$. Thus $h\ne1$ makes it Type 0 for reference inputs despite the plant integrator; zero step error requires $h=1$ (see [Steady-state error and system type §11](system-type_instructor.md#section-11), where $H(0)=1$).
 
 For PI, a unit step torque gives $e(\infty)=0$, and a unit **ramp** torque, $W=1/s^2$, gives
 
@@ -816,7 +816,7 @@ $$
 
 #### Say out loud
 
-> The satellite with PD tracks a step command perfectly — the plant has two integrators in the path from controller to output — yet sits at a constant angle error when a constant torque pushes on it. Whether a loop has zero error depends on **which input** you ask about and **where the integrators are** relative to it. L3 turns that sentence into a table.
+> The satellite with PD tracks a step command perfectly — the plant has two integrators in the path from controller to output — yet sits at a constant angle error when a constant torque pushes on it. Whether a loop has zero error depends on **which input** you ask about and **where the integrators are** relative to it. [Steady-state error and system type](system-type_instructor.md) turns that sentence into a table.
 
 ---
 
@@ -906,7 +906,7 @@ $$
 
 | Problem | Topic | Why this one |
 |---|---|---|
-| 4.34 | P, PD and PI to stabilise a given loop | One plant, three controllers; part (d) previews L3. |
+| 4.34 | P, PD and PI to stabilise a given loop | One plant, three controllers; part (d) previews [Steady-state error and system type](system-type_instructor.md). |
 | 4.35 | P for a damping target, PI for no overshoot, PID for settling time | Converts specifications into gains; stability ranges with Routh. |
 | 4.36 | Liquid-level control: P, PI, PD, PID against time specifications | Same tasks on a different plant. |
 | 4.37 | Process control: PI and PID against rise time, overshoot and peak time | Good practice at "which term fixes which spec". |
@@ -915,7 +915,7 @@ $$
 | 4.42 | DC motor speed with PI: place the closed-loop roots | Coefficient matching (§11.2) on a real motor. |
 | Review Questions 4.8–4.10 | Objectives of I and D; D in the feedback path | Short written answers. |
 
-Problems 4.40–4.41 and 4.43–4.44 are framed in system-type language; hold them for L3.
+Problems 4.40–4.41 and 4.43–4.44 are framed in system-type language; hold them for [Steady-state error and system type](system-type_instructor.md).
 
 **Suggested additional exercise [beyond the book]:** in `l2_demo4_thermal_pi.py`, change $\tau_2$ to 12 s while keeping $k_I/k_P=0.1$. Report the new closed-loop roots and describe what happens to the reference response.
 
@@ -923,10 +923,10 @@ Problems 4.40–4.41 and 4.43–4.44 are framed in system-type language; hold th
 
 1. **State the stability proviso every time you use the FVT.** Integral action needs a nonzero plant DC gain for zero constant tracking error, and every internal mode must be stable; a cancelled mode at the origin does not qualify. State these assumptions when using the zero-error result.
 2. **P control on the second-order plant moves $\omega_n$, not $\sigma$.** Students expect more gain to mean faster settling. On this plant it does not; show the pole column of §6.2.
-3. **Do not let "integral removes error" become "integral removes all error."** A ramp still leaves a constant lag (§10.2), and a double-integrator disturbance defeats a single integrator. L3 organises this.
-4. **Derivative control is never used alone,** and an unfiltered derivative is never implemented. Mention the filter now; L4 does it properly.
+3. **Do not let "integral removes error" become "integral removes all error."** A ramp still leaves a constant lag (§10.2), and a double-integrator disturbance defeats a single integrator. [Steady-state error and system type](system-type_instructor.md) organises this.
+4. **Derivative control is never used alone,** and an unfiltered derivative is never implemented. Mention the filter now; [PID tuning and implementation](pid-tuning_instructor.md) does it properly.
 5. **The Fig. 4.10 choice is about the actuator.** Moving D to the feedback path removes the kick; it does not automatically improve the output response (§8.3).
-6. **A cancellation is not a removal.** Example 4.5's cancelled pole returns in the disturbance response (§10.3). This is the stable counterpart of *(Stab §6.3)*.
+6. **A cancellation is not a removal.** Example 4.5's cancelled pole returns in the disturbance response (§10.3). This is the stable counterpart of *([Stability and Routh’s criterion §6.3](stability_instructor.md#section-6-3))*.
 7. **Watch the units in Example 4.6:** time is in milliseconds, and the book's units on $k_I$ and $k_D$ are inconsistent (§12).
 8. **Examples 4.7 and 4.8 lean on §4.2, which comes next in this course.** Present them with the FVT and treat the words "Type 0" and "Type 1" as previews.
 
@@ -952,7 +952,7 @@ Rounded values in the book that check out: Example 4.5's $\zeta=0.3$ is 0.312, a
 
 | Lecture | Book sections | Content |
 |---|---|---|
-| [L1](feedback-properties_instructor.md) | 4.1 | The basic equations of feedback: tracking, regulation, sensitivity |
-| **This lecture (L2)** | **4.3.1–4.3.5** | **P, I, D, PI and PID control actions** |
-| [L3](system-type_instructor.md) | 4.2 | System type, error constants, disturbance type |
-| [L4](pid-tuning_instructor.md) | 4.3.6, 4.4, 9.3.1 | Ziegler–Nichols tuning, feedforward, anti-windup, physical realisation |
+| [Feedback properties](feedback-properties_instructor.md) | 4.1 | The basic equations of feedback: tracking, regulation, sensitivity |
+| **This lecture** | **4.3.1–4.3.5** | **P, I, D, PI and PID control actions** |
+| [Steady-state error and system type](system-type_instructor.md) | 4.2 | System type, error constants, disturbance type |
+| [PID tuning and implementation](pid-tuning_instructor.md) | 4.3.6, 4.4, 9.3.1 | Ziegler–Nichols tuning, feedforward, anti-windup, physical realisation |

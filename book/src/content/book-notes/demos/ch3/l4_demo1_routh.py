@@ -1,5 +1,5 @@
 """
-L4 Demo 1  --  The Routh array, built and believed              (Example 3.32)
+Stability and Routh’s criterion Demo 1  --  The Routh array, built and believed              (Example 3.32)
 
 Routh's test claims to count right half-plane roots without finding any roots.
 Here the array is built from the coefficients, its first column is read for
@@ -80,7 +80,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 1 -- Routh's test counts RHP roots without computing them")
+    dk.title("Stability and Routh’s criterion Demo 1 -- Routh's test counts RHP roots without computing them")
 
     dk.note(
         "The necessary condition is free: if any coefficient is missing or negative, "

@@ -5,7 +5,7 @@
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §3.1. Numbered examples follow the book; §10.3 groups the initial-value examples before the Final Value Theorem for teaching purposes. Clarifications and classroom checks supplement the source.
 
-**Prerequisite:** the earlier lecture [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md). That lecture arrived at $e^{st}$, the characteristic polynomial, poles as natural rates, and zeros as blocked transmission, all from physical models. This one supplies the machinery the textbook builds on top of it: superposition, convolution, the transform table, partial fractions, and the Final Value Theorem. Cross-references to it are written *(0.0.8 §n)*, meaning section n of that lecture.
+**Prerequisite:** the earlier lecture [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md). That lecture arrived at $e^{st}$, the characteristic polynomial, poles as natural rates, and zeros as blocked transmission, all from physical models. This one supplies the machinery the textbook builds on top of it: superposition, convolution, the transform table, partial fractions, and the Final Value Theorem.
 
 **Duration:** 75 minutes. See §3 for the route and for what to prepare as slides.
 
@@ -55,7 +55,7 @@ Three moments are worth protecting:
 
 1. **§6** — the convolution integral collapses to a multiplication, $Y(s)=H(s)U(s)$. This is the payoff for the whole first half.
 2. **§7** — the frequency response is read off $H(j\omega)$, and the transient that the frequency response does not describe is visible beside it.
-3. **§11–§12** — the Final Value Theorem, and the example where applying it without checking gives a confident wrong answer.
+3. **§§11–12** — the Final Value Theorem, and the example where applying it without checking gives a confident wrong answer.
 
 A framing line for the lecture:
 
@@ -87,13 +87,13 @@ By the end of this lecture students should be able to:
 | Time | Topic | Section |
 |---:|---|---|
 | 0–5 min | Where we are; the two properties that make §3.1 work | §4 |
-| 5–20 min | Superposition, time invariance, impulse response, convolution | §4–§5 |
+| 5–20 min | Superposition, time invariance, impulse response, convolution | §§4–5 |
 | 20–30 min | Convolution $\rightarrow$ transfer function; three definitions; RC example | §6 |
 | 30–40 min | Frequency response; transient versus steady state | §7 |
-| 40–50 min | The $\mathcal L_-$ transform, four transform pairs, the properties table | §8–§9 |
+| 40–50 min | The $\mathcal L_-$ transform, four transform pairs, the properties table | §§8–9 |
 | 50–60 min | Partial fractions by cover-up; the five-step procedure | §10 |
 | 60–68 min | Final Value Theorem, DC gain, and the trap | §11 |
-| 68–75 min | Poles and zeros; computer tools; closing | §12–§14 |
+| 68–75 min | Poles and zeros; computer tools; closing | §§12–14 |
 
 **Prepare as slides:** the convolution build-up figures (Figs. 3.1 and 3.2), the frequency-response plots (Figs. 3.4 and 3.5), the transform-pair and properties tables, and the satellite pulse figures (Figs. 3.7 and 3.8). Derive on the board only: the pulse-train limit, the exponential-input calculation, the cover-up method, and the Final Value Theorem statement.
 
@@ -121,7 +121,7 @@ Use the demos for the selected live examples; the accompanying checks also work 
 
 # Part I — The lecture
 
-## 4. Opening: the two properties that everything rests on
+## 4. Opening: the two properties that everything rests on {#section-4}
 
 ### Instructor script
 
@@ -304,7 +304,7 @@ y(0^+)-y(0^-)=1
 y(0^+)=1 .
 $$
 
-For $t>0$ the equation is homogeneous, $\dot y+ky=0$. Substituting $y=Ae^{st}$ gives $(s+k)Ae^{st}=0$, so $s=-k$. Then $y(0^+)=A=1$ — exactly the argument of the earlier lecture *(0.0.8 §5.2)*. Since $y=0$ for $t<0$, the result is
+For $t>0$ the equation is homogeneous, $\dot y+ky=0$. Substituting $y=Ae^{st}$ gives $(s+k)Ae^{st}=0$, so $s=-k$. Then $y(0^+)=A=1$ — exactly the argument of the earlier lecture *([Modeling and dynamics §5.2](modeling-and-dynamics_instructor.md#section-5-2))*. Since $y=0$ for $t<0$, the result is
 
 $$
 \boxed{
@@ -385,7 +385,7 @@ sH(s)e^{st}+kH(s)e^{st}=e^{st}
 \boxed{H(s)=\frac1{s+k}} .
 $$
 
-Note what was *not* required: the integral in Eq. (3.18) was never evaluated. Substituting the assumed exponential form into the differential equation is enough, which is exactly the procedure of the earlier lecture *(0.0.8 §8)*.
+Note what was *not* required: the integral in Eq. (3.18) was never evaluated. Substituting the assumed exponential form into the differential equation is enough, which is exactly the procedure of the earlier lecture *([Modeling and dynamics §8](modeling-and-dynamics_instructor.md#section-8))*.
 
 ### 6.3 Three definitions of the same object
 
@@ -462,11 +462,11 @@ $$
 h(t)=\frac1{RC}e^{-t/(RC)}1(t) .
 $$
 
-This is the same first-order lag as the thermal body of the earlier lecture *(0.0.8 §5.4)*, with $\tau=RC$ again. Say so — students should leave with one first-order system in their heads, not three.
+This is the same first-order lag as the thermal body of the earlier lecture *([Modeling and dynamics §5.4](modeling-and-dynamics_instructor.md#section-5-4))*, with $\tau=RC$ again. Say so — students should leave with one first-order system in their heads, not three.
 
 ---
 
-## 7. Frequency response
+## 7. Frequency response {#section-7}
 
 ### 7.1 Two exponentials make a cosine
 
@@ -492,7 +492,7 @@ M=|H(j\omega)|,
 }
 $$
 
-This is the conjugate-pair argument of *(0.0.8 §7.5)* used for a second purpose: there it recovered real free motion, here it recovers a real forced response.
+This is the conjugate-pair argument of *([Modeling and dynamics §7.5](modeling-and-dynamics_instructor.md#section-7-5))* used for a second purpose: there it recovered real free motion, here it recovers a real forced response.
 
 ### 7.2 Examples 3.6 and 3.7
 
@@ -608,7 +608,7 @@ $$
 Three remarks, briefly:
 
 - **Why one-sided.** Eq. (3.30) integrates from $-\infty$; Eq. (3.32) starts at $t=0^-$. In control we switch things on, and we want initial conditions to appear in the algebra.
-- **Why $0^-$ and not $0^+$.** Mainly so that an impulse at the origin is inside the interval; that is Example 3.9. It also makes the differentiation rule use $f(0^-)$, the initial conditions known *before* the input arrives (property 5 in §9). The book notes that the $\mathcal L_+$ version "is sometimes used in other applications." *(Same convention as 0.0.8 §18.)*
+- **Why $0^-$ and not $0^+$.** Mainly so that an impulse at the origin is inside the interval; that is Example 3.9. It also makes the differentiation rule use $f(0^-)$, the initial conditions known *before* the input arrives (property 5 in §9). The book notes that the $\mathcal L_+$ version "is sometimes used in other applications." *(Same convention as [Modeling and dynamics §18](modeling-and-dynamics_instructor.md#section-18).)*
 - **Convergence.** The factor $e^{-\sigma_1 t}$ is a built-in convergence aid: if $f$ grows no faster than exponentially, the integral converges for $\sigma_1$ large enough.
 
 The inversion integral
@@ -620,7 +620,7 @@ $$
 
 exists, and the book's comment on it is the honest one: *in practice this relation is seldom used.* Show it, point at the $e^{st}$ inside it, and move to the table.
 
-### 8.2 Four pairs, derived not quoted (Examples 3.8–3.10)
+### 8.2 Four pairs, derived not quoted (Examples 3.8–3.10) {#section-8-2}
 
 | $f(t)$, $t\ge0$ | $F(s)$ | Region |
 |---|---|---|
@@ -680,7 +680,7 @@ $$
 
 ---
 
-## 9. The properties table
+## 9. The properties table {#section-9}
 
 Work down Table A.1 quickly. The ones that earn board time are marked.
 
@@ -705,7 +705,7 @@ $$
 }
 $$
 
-and in general Eq. (3.43). The derivation was done in the earlier lecture *(0.0.8 §19)*; here, state it and use it.
+and in general Eq. (3.43). The derivation was done in the earlier lecture *([Modeling and dynamics §19](modeling-and-dynamics_instructor.md#section-19))*; here, state it and use it.
 
 #### Say out loud
 
@@ -790,7 +790,7 @@ In Matlab this is `[r,p,k] = residue(num,den)`, and the book prints the result t
 
 ![Partial-fraction terms for Example 3.11, a valid Final Value Theorem result for Example 3.12, and the invalid result for Example 3.13](demos/ch3/figures/l1_demo3_partial_fractions_fvt.svg)
 
-**Repeated roots and complex pairs** are in Appendix A. Mention that a repeated root brings in $te^{pt}$ terms — the same $(A+Bt)e^{st}$ structure as the critically damped case of *(0.0.8 §7.2)* — and leave the algebra to the appendix.
+**Repeated roots and complex pairs** are in Appendix A. Mention that a repeated root brings in $te^{pt}$ terms — the same $(A+Bt)e^{st}$ structure as the critically damped case of *([Modeling and dynamics §7.2](modeling-and-dynamics_instructor.md#section-7-2))* — and leave the algebra to the appendix.
 
 ### 10.3 Solving differential equations (Examples 3.15–3.17)
 
@@ -941,7 +941,7 @@ Only the last two. **For zero initial state, the poles of $Y=HU$ come from the p
 
 ---
 
-## 11. The Final Value Theorem
+## 11. The Final Value Theorem {#section-11}
 
 ### 11.1 Statement
 
@@ -1106,8 +1106,8 @@ $$
 
 Four statements to make, each in one sentence:
 
-1. **Poles are the modes.** They set the natural, unforced behaviour — this is the content of the earlier lecture *(0.0.8 §17)*, and it is what §3.3 will develop into a picture.
-2. **Zeros block transmission.** Drive with $u=u_0e^{s_0t}$ where $s_0=z_i$ and the output is identically zero, for a compatible initial state. Hence *transmission zeros*. *(The precise version, with the required initial state, is 0.0.8 §17.)*
+1. **Poles are the modes.** They set the natural, unforced behaviour — this is the content of the earlier lecture *([Modeling and dynamics §17](modeling-and-dynamics_instructor.md#section-17))*, and it is what §3.3 will develop into a picture.
+2. **Zeros block transmission.** Drive with $u=u_0e^{s_0t}$ where $s_0=z_i$ and the output is identically zero, for a compatible initial state. Hence *transmission zeros*. *(The precise version, with the required initial state, is [Modeling and dynamics §17](modeling-and-dynamics_instructor.md#section-17).)*
 3. **Zeros at infinity.** If $m<n$, the book counts $n-m$ zeros at infinity. Standard finite-dimensional causal state-space models have proper transfer functions ($m\le n$). Ideal differentiators and some idealised choices of physical input/output can produce improper models; these are not bounded-bandwidth realisations.
 4. **Cancellation is a warning sign.** A common numerator/denominator factor disappears from the reduced transfer function. If it represents a mode of the physical realisation, that internal mode remains. The transfer function alone cannot tell whether such a hidden mode is physically present. Lecture 4 makes this distinction concrete.
 
@@ -1117,7 +1117,7 @@ Worth thirty seconds because it makes $|H|\to\infty$ concrete: plot $|H(s)|$ as 
 
 ---
 
-## 13. Computer tools (§3.1.9)
+## 13. Computer tools (§3.1.9) {#section-13}
 
 The book works four systems from Chapter 2 through Matlab. Show the code, run the equivalent in whatever language your students use, and spend the time on the *interpretation* instead of the syntax.
 
@@ -1298,7 +1298,7 @@ Hence $y=\tfrac12e^{-t}+\tfrac12(\sin t-\cos t)$ with transient coefficient $\tf
 | Lecture | Book sections | Content |
 |---|---|---|
 | *From Physical Models to the Laplace Transform* | — | $e^{st}$, characteristic polynomials, poles as rates, zeros and zero dynamics, from physics |
-| **This lecture (L1)** | **3.1** | **Convolution, transfer functions, frequency response, transform properties, partial fractions, final value, poles and zeros** |
-| L2 | 3.2, 3.3 | Block diagrams, Mason's rule, effect of pole locations |
-| L3 | 3.4, 3.5 | Time-domain specifications, effects of zeros and extra poles |
-| L4 | 3.6–3.9 | Stability, Routh's criterion, system identification, scaling, history |
+| **This lecture** | **3.1** | **Convolution, transfer functions, frequency response, transform properties, partial fractions, final value, poles and zeros** |
+| [Block diagrams and pole locations](block-diagrams_instructor.md) | 3.2, 3.3 | Block diagrams, Mason's rule, effect of pole locations |
+| [Time-domain specifications](time-domain-specs_instructor.md) | 3.4, 3.5 | Time-domain specifications, effects of zeros and extra poles |
+| [Stability and Routh’s criterion](stability_instructor.md) | 3.6–3.9 | Stability, Routh's criterion, system identification, scaling, history |

@@ -1,5 +1,5 @@
 """
-L4 Demo 5  --  Feedforward by plant DC-gain inversion        (Example 4.11)
+PID tuning and implementation Demo 5  --  Feedforward by plant DC-gain inversion        (Example 4.11)
 
 Plant G(s) = 1/(s^2 + 1.4 s + 1), so G(0) = 1 and G^{-1}(0) = 1; proportional
 feedback k_P = 1.5 and 6.
@@ -25,7 +25,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 5 -- feedforward: let the model supply the steady effort")
+    dk.title("PID tuning and implementation Demo 5 -- feedforward: let the model supply the steady effort")
 
     t = np.linspace(0, 10, 5001)
     runs, rows = {}, []

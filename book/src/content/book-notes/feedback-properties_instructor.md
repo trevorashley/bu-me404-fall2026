@@ -7,8 +7,6 @@
 
 **Prerequisites:** the four Chapter 3 lectures, especially [Block Diagrams](block-diagrams_instructor.md) (the feedback formula) and [Stability](stability_instructor.md) (Routh, and the cancellation trap).
 
-**Earlier-lecture shorthand:** “3-L2 §n” and “3-L4 §n” below refer to section n of `block-diagrams_instructor.md` and `stability_instructor.md` respectively. “3-L3” is `time-domain-specs_instructor.md`.
-
 **Duration:** 75 minutes.
 
 **Book figures:** figure numbers refer to
@@ -24,7 +22,7 @@ Page cues use the PDF viewer's 1-based page numbers (120 pages). The figures are
 | Symbol | Meaning |
 |---|---|
 | $G(s)=b(s)/a(s)$ | plant transfer function; $a$, $b$ its denominator and numerator polynomials |
-| $D_{ol}(s)$, $D_{cl}(s)=c(s)/d(s)$ | open-loop and feedback controllers; from L2 on, the feedback controller is written $D_c$, as FPE does from §4.2 |
+| $D_{ol}(s)$, $D_{cl}(s)=c(s)/d(s)$ | open-loop and feedback controllers; from [PID control](pid-control_instructor.md) on, the feedback controller is written $D_c$, as FPE does from §4.2 |
 | $R,\ W,\ V$ | reference, plant-input disturbance, sensor noise |
 | $Y,\ U,\ E$ | output, control, error $E=R-Y$ |
 | $L=GD_{cl}$ | loop gain (open-loop transfer function around the loop) |
@@ -100,7 +98,7 @@ By the end of this lecture students should be able to:
 
 **Prepare as slides:** Fig. 4.1 and Fig. 4.2 side by side (leave Fig. 4.2 up for the whole lecture if you have two screens), the comparison table of §1, and the demo figures. Derive Eqs. (4.5)–(4.11) on the board once, slowly.
 
-**If you are short of time,** compress §6.3 (feedback can destabilise) to one sentence pointing back to 3-L4, and cut the audio-amplifier calculation in §10.2. Do not compress §7.2.
+**If you are short of time,** compress §6.3 (feedback can destabilise) to one sentence pointing back to [Stability and Routh’s criterion](stability_instructor.md), and cut the audio-amplifier calculation in §10.2. Do not compress §7.2.
 
 ### Runnable demonstrations
 
@@ -253,7 +251,7 @@ $$
 \boxed{\text{An open-loop structure cannot stabilise an unstable plant.}}
 $$
 
-**Qualification [beyond the book]:** "no roots in the RHP" in the book's sentence should be read as *no roots in the closed RHP*: as in 3-L4 §5, roots on the imaginary axis are not acceptable either.
+**Qualification [beyond the book]:** "no roots in the RHP" in the book's sentence should be read as *no roots in the closed RHP*: as in [Stability and Routh’s criterion §5](stability_instructor.md#section-5), roots on the imaginary axis are not acceptable either.
 
 ### 6.2 Feedback can
 
@@ -270,7 +268,7 @@ $$
 
 The controller polynomials $c$ and $d$ now enter the characteristic equation *added* to the plant's, not multiplied. That is the freedom. Two warnings survive:
 
-- A RHP root of $a$ cancelled by a root of $c$ is a common factor of both $ad$ and $bc$, so it is a root of Eq. (4.16). **The unstable pole remains a closed-loop pole.** This is exactly the cancellation trap of 3-L4 §6.3.
+- A RHP root of $a$ cancelled by a root of $c$ is a common factor of both $ad$ and $bc$, so it is a root of Eq. (4.16). **The unstable pole remains a closed-loop pole.** This is exactly the cancellation trap of [Stability and Routh’s criterion §6.3](stability_instructor.md#section-6-3).
 - A stable cancellation is legitimate; the cancelled pole stays in the characteristic equation but it is stable.
 
 ### 6.3 The inverted pendulum, Eq. (4.17)
@@ -288,7 +286,7 @@ $$
 \tag{4.17}
 $$
 
-*"This is the problem that Maxwell faced in his study of governors"* — conditions on the parameters for all roots in the LHP — and Routh solved it (3-L4 §7). Here a shortcut works: choose $\gamma=1$. Then $(s+1)$ is a factor of both terms:
+*"This is the problem that Maxwell faced in his study of governors"* — conditions on the parameters for all roots in the LHP — and Routh solved it ([Stability and Routh’s criterion §7](stability_instructor.md#section-7)). Here a shortcut works: choose $\gamma=1$. Then $(s+1)$ is a factor of both terms:
 
 $$
 (s+1)\big[(s-1)(s+\delta)+K\big]=0 .
@@ -304,7 +302,7 @@ $$
 \boxed{\delta=1+2\zeta\omega_n,\qquad K=\omega_n^2+2\zeta\omega_n+1}
 $$
 
-> **Teaching check [beyond the book]:** $\zeta=0.5$, $\omega_n=2$ gives $\delta=1+2=3$ and $K=4+2+1=7$, so $D_{cl}=7(s+1)/(s+3)$. The full characteristic polynomial is $(s+1)(s-1)(s+3)+7(s+1)=(s+1)(s^2+2s+4)$, with roots $-1$ and $-1\pm j\sqrt3=-1\pm1.732j$. Check: $s^2+2s+4$ has $\omega_n=2$ and $2\zeta\omega_n=2$, so $\zeta=0.5$ ✓. From $R$ the $(s+1)$ cancels and $\mathcal T=7/(s^2+2s+4)$, whose DC gain is $7/4=1.75$, not 1. The loop is stabilised but is not yet a good tracker, which is what PID (L2) and system type (L3) address. With $\zeta=0.5$ the overshoot is 16.3% (3-L3), so the peak is $1.163\times1.75=2.035$.
+> **Teaching check [beyond the book]:** $\zeta=0.5$, $\omega_n=2$ gives $\delta=1+2=3$ and $K=4+2+1=7$, so $D_{cl}=7(s+1)/(s+3)$. The full characteristic polynomial is $(s+1)(s-1)(s+3)+7(s+1)=(s+1)(s^2+2s+4)$, with roots $-1$ and $-1\pm j\sqrt3=-1\pm1.732j$. Check: $s^2+2s+4$ has $\omega_n=2$ and $2\zeta\omega_n=2$, so $\zeta=0.5$ ✓. From $R$ the $(s+1)$ cancels and $\mathcal T=7/(s^2+2s+4)$, whose DC gain is $7/4=1.75$, not 1. The loop is stabilised but is not yet a good tracker, which is what [PID control](pid-control_instructor.md) and [Steady-state error and system type](system-type_instructor.md) address. With $\zeta=0.5$ the overshoot is 16.3% ([Time-domain specifications](time-domain-specs_instructor.md)), so the peak is $1.163\times1.75=2.035$.
 
 > **[ DEMO 1 ]** — `ch4/l1_demo1_pendulum_stabilise.py` *(slide)*
 >
@@ -338,7 +336,7 @@ If the plant is stable with no RHP poles or zeros, an open-loop controller can i
 
 #### Say out loud
 
-> Open-loop inversion is not a silly idea. It comes back in L4 as *feedforward*, where it is combined with feedback rather than used instead of it. The three caveats are why it cannot stand alone.
+> Open-loop inversion is not a silly idea. It comes back in [PID tuning and implementation](pid-tuning_instructor.md) as *feedforward*, where it is combined with feedback rather than used instead of it. The three caveats are why it cannot stand alone.
 
 ### 7.2 The pole-placement exercise
 
@@ -420,7 +418,7 @@ $$
 e_{ss}=\lim_{s\to0}s\,S(s)\frac{A}{s}=A\,S(0)=0 .
 $$
 
-With the numbers, $S(0)=0\cdot9/(3\cdot6)=0$ ✓. **An integrator in the controller makes $S$ vanish at DC.** L3 turns this observation into system type.
+With the numbers, $S(0)=0\cdot9/(3\cdot6)=0$ ✓. **An integrator in the controller makes $S$ vanish at DC.** [Steady-state error and system type](system-type_instructor.md) turns this observation into system type.
 
 ---
 
@@ -485,7 +483,7 @@ $$
 e_{ss}=-\frac{w_0}{D_{cl}(0)}\neq0 .
 $$
 
-**Qualification [beyond the book]:** the second statement assumes the controller has no integrator of its own. If both have one, $d(0)=0$ again and the error is zero. What matters is **where the integrator sits relative to where the disturbance enters**: an integrator *after* the disturbance (in $G$) cannot generate the constant control needed to cancel it. L3 formalises this as system type with respect to disturbances.
+**Qualification [beyond the book]:** the second statement assumes the controller has no integrator of its own. If both have one, $d(0)=0$ again and the error is zero. What matters is **where the integrator sits relative to where the disturbance enters**: an integrator *after* the disturbance (in $G$) cannot generate the constant control needed to cancel it. [Steady-state error and system type](system-type_instructor.md) formalises this as system type with respect to disturbances.
 
 > **Teaching check [beyond the book]:** DC motor position, $G=1/[s(\tau s+1)]$, under proportional control $D_{cl}=K$ with a constant load torque $w_0$ at the input: $e_{ss}=-w_0/K$. Doubling $K$ halves the error; only an integrator in $D_{cl}$ removes it. This is the case in which the plant's own integrator removes the step-*reference* error, yet a bias *disturbance* still leaves an error.
 
@@ -619,7 +617,7 @@ To hold the error to 1%, $|1+GD_{cl}|\ge100$, which is effectively $|GD_{cl}|\gt
 
 > **Teaching check [beyond the book]:** $|L|\ge101$ guarantees $|1+L|\ge100$ by the triangle inequality, so "effectively" is justified. If the loop gain falls off like an integrator, $L=\omega_c/s$, then $|L(j\omega)|=\omega_c/\omega\ge100$ at $\omega=2\pi\cdot15{,}000$ requires $\omega_c\ge2\pi\cdot1.5\times10^6$ rad/s: a loop that is still at unity gain at **1.5 MHz**, for an audio amplifier. This is why op-amps are specified by their gain–bandwidth product. **Qualification:** the usual statement of the audible range is about 20 Hz to 20 kHz; the book's 60–15,000 Hz is a narrower working band.
 
-**The filtered case.** With a prefilter $F(s)$ on the reference and sensor dynamics $H(s)$, the equations must be re-derived; the book defers this to online Appendix W4.1.4.1. L3 uses the sensor-dynamics version (Fig. 4.5).
+**The filtered case.** With a prefilter $F(s)$ on the reference and sensor dynamics $H(s)$, the equations must be re-derived; the book defers this to online Appendix W4.1.4.1. [Steady-state error and system type](system-type_instructor.md) uses the sensor-dynamics version (Fig. 4.5).
 
 ### 10.3 The cost of feedback [beyond the book; AM §12.1, OWN §11.2]
 
@@ -632,7 +630,7 @@ The book's Review Questions 4.1 and 4.2 ask for three advantages and two disadva
 | Insensitivity to the plant by $S$ (§9) | **Control effort**: large loop gain means large $u$, and saturation (Demos 2, 4) |
 | Tracking without an exact plant model | **Possible instability**: a stable plant can be destabilised by too much gain (§6.4) |
 
-The control-signal entry deserves emphasis because it is invisible in an output plot. In Demo 3 at $K=100$ the output looks merely a little noisy. The motor, meanwhile, is being driven with a 4.4-amplitude sinusoid at 50 rad/s that does nothing useful and heats the windings. Åström and Murray call $D_{cl}S$ the **noise sensitivity** for this reason. At high frequency, where $L\to0$, $D_{cl}S\to D_{cl}$: whatever the controller's high-frequency gain is, the sensor noise gets multiplied by it. That is why the derivative term in L2 must be filtered.
+The control-signal entry deserves emphasis because it is invisible in an output plot. In Demo 3 at $K=100$ the output looks merely a little noisy. The motor, meanwhile, is being driven with a 4.4-amplitude sinusoid at 50 rad/s that does nothing useful and heats the windings. Åström and Murray call $D_{cl}S$ the **noise sensitivity** for this reason. At high frequency, where $L\to0$, $D_{cl}S\to D_{cl}$: whatever the controller's high-frequency gain is, the sensor noise gets multiplied by it. That is why the derivative term in [PID control](pid-control_instructor.md) must be filtered.
 
 ---
 
@@ -705,7 +703,7 @@ The control-signal entry deserves emphasis because it is invisible in an output 
 | 4.2 | Sensitivity of three amplifier topologies (Fig. 4.30) | Part (c) shows that feedback shifts precision requirements onto the sensor. |
 | 4.3 | Two structures compared for sensitivity to amplifier gain | Sensitivity as a logarithmic derivative. |
 | 4.4 | Sensitivity of $A/[s(s+a)]$ to $A$, $a$ and a feedback gain $\beta$ | The frequency-dependent version; part (c) is the sensor result again. |
-| 4.5 | System error with sensor dynamics (Fig. 4.5) | Bridge to the filtered case and to L3. |
+| 4.5 | System error with sensor dynamics (Fig. 4.5) | Bridge to the filtered case and to [Steady-state error and system type](system-type_instructor.md). |
 | Exercises of §4.1.1–4.1.3 | Pendulum placement; pole placement; bias rejection | Worked in §6.3, §7.2–7.3 and §8.3; set the pendulum with $\zeta=0.7$, $\omega_n=3$ as a variation. |
 | Review Questions 4.1, 4.2 | Advantages and disadvantages of feedback | Short answers; compare with the ledger in §10.3. |
 
@@ -715,8 +713,8 @@ The control-signal entry deserves emphasis because it is invisible in an output 
 
 1. **Two errors.** The book's $E$ is $R-Y$; the controller acts on $R-Y-V$. Say this when drawing Fig. 4.2, or students will be puzzled by the $+\mathcal T V$ term in Eq. (4.11).
 2. **Sign conventions.** $V$ enters with a minus sign in $Y$ and $U$ and a plus sign in $E$. Derive them rather than memorising them.
-3. **$\mathcal T$ versus $T$.** The book uses a script $\mathcal T$ for complementary sensitivity to avoid a clash with time constants and sampling periods. Students will write $T$; accept it, but keep $T_I$, $T_D$ (L2) visibly distinct.
-4. **Cancellations again.** §6.2 and §7.2 are the second and third appearances of the cancellation lesson (after 3-L4 §6.3). The new point is that even a *stable* cancellation leaves the cancelled dynamics in $GS$.
+3. **$\mathcal T$ versus $T$.** The book uses a script $\mathcal T$ for complementary sensitivity to avoid a clash with time constants and sampling periods. Students will write $T$; accept it, but keep $T_I$, $T_D$ ([PID control](pid-control_instructor.md)) visibly distinct.
+4. **Cancellations again.** §6.2 and §7.2 are the second and third appearances of the cancellation lesson (after [Stability and Routh’s criterion §6.3](stability_instructor.md#section-6-3)). The new point is that even a *stable* cancellation leaves the cancelled dynamics in $GS$.
 5. **Sensitivity is not robustness to everything.** Emphasise the sensor caveat in §9; it is what Problem 4.2(c) is getting at.
 6. **$|S|+|\mathcal T|\ne1$.** The identity is between complex numbers. Magnitude plots of $S$ and $\mathcal T$ do not add to one, and near crossover both can be of order one (§13, Q7).
 7. **The first-order sensitivity formula underestimates large gain losses.** Demo 4's $-50\%$ row gives $-0.99\%$, not $-0.5\%$.
@@ -734,7 +732,7 @@ The control-signal entry deserves emphasis because it is invisible in an output 
 
 | Lecture | Book sections | Content |
 |---|---|---|
-| **This lecture (L1)** | **Ch. 4 intro, 4.1** | **Basic equations; stability, tracking, regulation, sensitivity; $S+\mathcal T=1$; the cost of feedback** |
-| [L2](pid-control_instructor.md) | 4.3.1–4.3.5 | P, I, D, PI and PID actions |
-| [L3](system-type_instructor.md) | 4.2 | Steady-state error, system type, error constants |
-| [L4](pid-tuning_instructor.md) | 4.3.6, 4.4, 9.3.1 | Ziegler–Nichols tuning, feedforward, anti-windup, practical PID |
+| **This lecture** | **Ch. 4 intro, 4.1** | **Basic equations; stability, tracking, regulation, sensitivity; $S+\mathcal T=1$; the cost of feedback** |
+| [PID control](pid-control_instructor.md) | 4.3.1–4.3.5 | P, I, D, PI and PID actions |
+| [Steady-state error and system type](system-type_instructor.md) | 4.2 | Steady-state error, system type, error constants |
+| [PID tuning and implementation](pid-tuning_instructor.md) | 4.3.6, 4.4, 9.3.1 | Ziegler–Nichols tuning, feedforward, anti-windup, practical PID |

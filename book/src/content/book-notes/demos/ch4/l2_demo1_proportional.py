@@ -1,5 +1,5 @@
 """
-L2 Demo 1  --  Proportional control: one knob, and what it cannot reach
+PID control Demo 1  --  Proportional control: one knob, and what it cannot reach
                                                         (Section 4.3.1, Fig. 4.7)
 
 The plant is the second-order motor model of Eq. (4.58),
@@ -32,7 +32,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 1 -- proportional control of G = 1/(s^2 + 1.4 s + 1)")
+    dk.title("PID control Demo 1 -- proportional control of G = 1/(s^2 + 1.4 s + 1)")
 
     dk.note(
         "Closed loop: s^2 + 1.4 s + (1 + k_P). The gain appears only in the constant "

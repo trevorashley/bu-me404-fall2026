@@ -4,7 +4,7 @@
 
 Rise time, overshoot, and settling time turn a response sketch into measurable requirements. For a standard second-order system, these requirements suggest a region for the poles. Zeros and additional poles change the response, so the resulting estimates must be checked against the complete model.
 
-**Prerequisites:** [L2: Block diagrams and pole locations](block-diagrams_student.md), especially the standard second-order form and pole geometry.
+**Prerequisites:** [Block diagrams and pole locations](block-diagrams_student.md), especially the standard second-order form and pole geometry.
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed. Example and equation numbers follow the textbook. Numbered sections and § references refer to these notes unless labelled as textbook sections.
 
@@ -85,7 +85,7 @@ y(t)=1-e^{-\sigma t}\left(\cos\omega_dt+\frac{\sigma}{\omega_d}\sin\omega_dt\rig
 \tag{3.69}
 $$
 
-(derived in L2 by integrating the impulse response). The identity $A\sin\alpha+B\cos\alpha=C\cos(\alpha-\beta)$ compresses it. Here the bracket has $B=1$ and $A=\sigma/\omega_d=\zeta/\sqrt{1-\zeta^2}$, so
+(derived in [Block diagrams and pole locations](block-diagrams_student.md) by integrating the impulse response). The identity $A\sin\alpha+B\cos\alpha=C\cos(\alpha-\beta)$ compresses it. Here the bracket has $B=1$ and $A=\sigma/\omega_d=\zeta/\sqrt{1-\zeta^2}$, so
 
 $$
 C=\sqrt{1+\frac{\zeta^2}{1-\zeta^2}}=\frac{1}{\sqrt{1-\zeta^2}},
@@ -95,7 +95,7 @@ C=\sqrt{1+\frac{\zeta^2}{1-\zeta^2}}=\frac{1}{\sqrt{1-\zeta^2}},
 \sin\beta=\frac AC=\zeta .
 $$
 
-Hence $\beta=\sin^{-1}\zeta$, the same angle $\theta$ as in the L2 pole geometry (Fig. 3.18), and
+Hence $\beta=\sin^{-1}\zeta$, the same angle $\theta$ as in the [Block diagrams and pole locations](block-diagrams_student.md) pole geometry (Fig. 3.18), and
 
 $$
 \boxed{
@@ -192,7 +192,7 @@ t_{s,\mathrm{env}}=\frac{-\ln\!\left(\epsilon\sqrt{1-\zeta^2}\right)}{\sigma},
 \qquad 0<\zeta<1.
 $$
 
-The bound follows from Eq. (3.70) because $|\cos(\cdot)|\le1$. To get $t_{s,\mathrm{env}}$, set the bound equal to $\epsilon$ and take logs: $e^{-\sigma t}=\epsilon\sqrt{1-\zeta^2}$, so $\sigma t=-\ln(\epsilon\sqrt{1-\zeta^2})$. For a tolerance $\epsilon=0.01$, the response stays in the band once $t\ge t_{s,\mathrm{env}}$. The actual settling time is the last band crossing and can be earlier. The shorter rule $4.6/\sigma$ is **not a guaranteed upper bound**. Near critical damping the sinusoidal envelope bound is very loose; use the actual response. At $\zeta=1$, the step response is $1-(1+\omega_nt)e^{-\omega_nt}$ (L2), which approaches 1 monotonically from below. Setting the error $(1+x)e^{-x}=0.01$ with $x=\omega_nt$ gives a transcendental equation. Its root is $x\approx6.64$ (Newton's method from $x=6$ gives 6.49, 6.63, 6.64; or use `fsolve`), so $t_s\approx6.64/\omega_n$, not $4.6/\omega_n$. The factor $(1+x)$ is what the pure-exponential rule misses.
+The bound follows from Eq. (3.70) because $|\cos(\cdot)|\le1$. To get $t_{s,\mathrm{env}}$, set the bound equal to $\epsilon$ and take logs: $e^{-\sigma t}=\epsilon\sqrt{1-\zeta^2}$, so $\sigma t=-\ln(\epsilon\sqrt{1-\zeta^2})$. For a tolerance $\epsilon=0.01$, the response stays in the band once $t\ge t_{s,\mathrm{env}}$. The actual settling time is the last band crossing and can be earlier. The shorter rule $4.6/\sigma$ is **not a guaranteed upper bound**. Near critical damping the sinusoidal envelope bound is very loose; use the actual response. At $\zeta=1$, the step response is $1-(1+\omega_nt)e^{-\omega_nt}$ ([Block diagrams and pole locations](block-diagrams_student.md)), which approaches 1 monotonically from below. Setting the error $(1+x)e^{-x}=0.01$ with $x=\omega_nt$ gives a transcendental equation. Its root is $x\approx6.64$ (Newton's method from $x=6$ gives 6.49, 6.63, 6.64; or use `fsolve`), so $t_s\approx6.64/\omega_n$, not $4.6/\omega_n$. The factor $(1+x)$ is what the pure-exponential rule misses.
 
 **Worked check:** At $\zeta=0.7$, $\omega_n=4$ rad/s, the actual 1% settling time is approximately 1.644 s, slightly later than $4.6/\sigma=1.643$ s. The corrected envelope bound above is approximately 1.765 s. Arithmetic: $\sigma=0.7\times4=2.8$ s$^{-1}$, $4.6/2.8=1.643$ s, $\sqrt{1-0.49}=0.714$, and $-\ln(0.00714)/2.8=4.942/2.8=1.765$ s. Thus the textbook estimate is not guaranteed conservative.
 
@@ -205,7 +205,7 @@ y(t)=\left(1-e^{-\sigma t}\right)1(t)
 \tag{3.77}
 $$
 
-(the first-order step response of L2, scaled to unit DC gain). Each specification follows by solving $y(t)=$ level:
+(the first-order step response of [Block diagrams and pole locations](block-diagrams_student.md), scaled to unit DC gain). Each specification follows by solving $y(t)=$ level:
 
 - **Overshoot.** $\dot y=\sigma e^{-\sigma t}>0$, so $y$ rises monotonically to 1 and never exceeds it: $M_p=0$.
 - **Rise time.** $1-e^{-\sigma t}=p$ gives $t=-\ln(1-p)/\sigma$. So $t_{10}=-\ln0.9/\sigma=0.105/\sigma$ and $t_{90}=-\ln0.1/\sigma=2.303/\sigma$. The difference is $t_r=(\ln10-\ln\tfrac{10}{9})/\sigma=\ln9/\sigma=2.197/\sigma$.
@@ -268,7 +268,7 @@ Squaring is safe because both sides are positive for $0<\zeta<1$. $M_p$ decrease
 
 **The other two bounds** follow directly from Eqs. (3.68) and (3.73). $t_r\simeq1.8/\omega_n\le t_r^{\rm spec}$ gives $\omega_n\ge1.8/t_r^{\rm spec}$, and $t_s\simeq4.6/\sigma\le t_s^{\rm spec}$ gives $\sigma\ge4.6/t_s^{\rm spec}$.
 
-**Why each is the stated shape (the pole geometry of L2).** $\omega_n$ is the pole's distance from the origin, so a lower bound on it excludes a disc. $\zeta=\sin\theta$ with $\theta$ measured from the imaginary axis, so a lower bound on $\zeta$ is a lower bound on $\theta$: a wedge about the negative real axis. $\sigma$ is the distance from the imaginary axis, so a lower bound on it is a half-plane to the left of a vertical line.
+**Why each is the stated shape (the pole geometry of [Block diagrams and pole locations](block-diagrams_student.md)).** $\omega_n$ is the pole's distance from the origin, so a lower bound on it excludes a disc. $\zeta=\sin\theta$ with $\theta$ measured from the imaginary axis, so a lower bound on $\zeta$ is a lower bound on $\theta$: a wedge about the negative real axis. $\sigma$ is the distance from the imaginary axis, so a lower bound on it is a half-plane to the left of a vertical line.
 
 | Bound | Region in the $s$-plane |
 |---|---|
@@ -349,7 +349,7 @@ because the zero at $-1.1$ nearly cancels the pole at $-1$. Put the zero exactly
 
 > If a zero can switch a mode off, is a pole-zero cancellation a good way to get rid of a mode you dislike?
 
-Cancellation removes the mode from this transfer function. A mode present in the physical realisation can remain internally; Example 3.29 and L4 explain why that distinction matters.
+Cancellation removes the mode from this transfer function. A mode present in the physical realisation can remain internally; Example 3.29 and [Stability and Routh’s criterion](stability_student.md) explain why that distinction matters.
 
 ---
 
@@ -394,7 +394,7 @@ H(s)=\underbrace{\frac{1}{s^2+2\zeta s+1}}_{H_0(s)}
 }
 $$
 
-The second term is a constant times $s$ times the first. With a step input, $Y=H/s$, so $Y=Y_0+\frac1{\alpha\zeta}sY_0$ with $Y_0=H_0/s$. By the differentiation property (property 5 in the L1 properties table), $\mathcal L\{\dot y_0\}=sY_0-y_0(0^-)=sY_0$, because the system starts at rest. Multiplication by $s$ is differentiation. Therefore, in the time domain,
+The second term is a constant times $s$ times the first. With a step input, $Y=H/s$, so $Y=Y_0+\frac1{\alpha\zeta}sY_0$ with $Y_0=H_0/s$. By the differentiation property (property 5 in the [Convolution and transfer functions](convolution-impulse-response_student.md) properties table), $\mathcal L\{\dot y_0\}=sY_0-y_0(0^-)=sY_0$, because the system starts at rest. Multiplication by $s$ is differentiation. Therefore, in the time domain,
 
 $$
 \boxed{
@@ -517,7 +517,7 @@ Exact cancellation is sensitive to uncertainty in the pole location:
 
 > *In practice, the locations of the lightly damped poles are not known precisely, and exact cancellation is not really possible.*
 
-The stated transfer function has DC gain $H(0)=\dfrac{\alpha^2+\beta^2}{1\cdot(0.1^2+1)}=\dfrac{\alpha^2+\beta^2}{1.01}$. For the three cases this is $1.01/1.01=1.00$, $1.0625/1.01=1.052$ and $1.25/1.01=1.238$. For a common unit final value, compare $H(s)/H(0)$ rather than the unnormalised models. Placing compensator zeros near a resonance can attenuate its response, but exact cancellation is sensitive to modelling error. L4 treats unstable cancellations.
+The stated transfer function has DC gain $H(0)=\dfrac{\alpha^2+\beta^2}{1\cdot(0.1^2+1)}=\dfrac{\alpha^2+\beta^2}{1.01}$. For the three cases this is $1.01/1.01=1.00$, $1.0625/1.01=1.052$ and $1.25/1.01=1.238$. For a common unit final value, compare $H(s)/H(0)$ rather than the unnormalised models. Placing compensator zeros near a resonance can attenuate its response, but exact cancellation is sensitive to modelling error. [Stability and Routh’s criterion](stability_student.md) treats unstable cancellations.
 
 ---
 
@@ -592,6 +592,54 @@ $$
 
 Use the same factor-of-four heuristic to identify extra poles worth checking, not to certify that more distant poles have no effect. Approximation accuracy depends on modal residues, zeros, and the required tolerance as well as pole separation.
 
+### 9.1 By the way: sharper estimates exist {#section-9-1}
+
+*This subsection is optional and goes beyond the textbook.* The book's three formulas are deliberately simple. Their simplicity is what turns specifications into a circle, a wedge and a line in the $s$-plane (§3). When you need a better number without running a simulation, three refinements are available.
+
+**Rise time.** Nise (7th ed., §4.6) fits the measured curve with a cubic:
+
+$$
+\omega_nt_r\simeq1.76\zeta^3-0.417\zeta^2+1.039\zeta+1 .
+$$
+
+It is within about 1% of the measured value for $0.1\le\zeta\le1$. By comparison, 1.8 is off by 36% at $\zeta=0.3$ and by 15% at $\zeta=0.7$. Dorf and Bishop (13th ed., Eq. 5.17) give the simpler $\omega_nt_r\simeq2.16\zeta+0.60$, which they state for $0.3\le\zeta\le0.8$ and which stays within about 6% over that range. The cost of either fit is that the rise-time boundary is no longer a circle, because its radius now depends on $\zeta$.
+
+**Settling time.** The exact settling time jumps as $\zeta$ changes. Each jump happens when one oscillation peak drops inside the band. So no smooth formula can match it everywhere: for the 1% band, $\sigma t_s$ moves between about 3.8 and 5.1 over $0.3\le\zeta\le0.9$. You can, however, bracket it exactly. The $k$-th extremum (peak or trough) of the standard response lies $M_p^{\,k}$ away from the final value. Let $k^*$ be the number of extrema outside the band, that is, the largest $k\ge0$ with $M_p^{\,k}>\epsilon$. Then
+
+$$
+k^*\pi<\omega_dt_s<k^*\pi+\frac{\pi}{2}+\sin^{-1}\zeta .
+$$
+
+For example, at $\zeta=0.5$, $M_p=0.163$ and two peaks exceed 1%, so $k^*=2$ ($0.163^2=0.027>0.01$ but $0.163^3=0.004<0.01$). The bracket is $3.63<\sigma t_s<4.84$, and the measured value is 4.39.
+
+**Zeros and extra poles.** Let $p=-\sigma+j\omega_d$ be the dominant upper pole. For every other zero and pole, measure three things:
+
+- the angle $\psi$ of the vector from that root to $p$, measured from the positive real axis;
+- its distance $\ell$ to $p$;
+- its distance $d$ to the origin.
+
+Then
+
+$$
+t_p\simeq\frac{\pi-\sum\psi_{\rm zeros}+\sum\psi_{\rm poles}}{\omega_d},
+\qquad
+M_p\simeq\left[\prod_{\rm zeros}\frac{\ell_i}{d_i}\prod_{\rm poles}\frac{d_j}{\ell_j}\right]e^{-\sigma t_p}.
+$$
+
+For a real zero in the right half-plane, subtract an extra $\pi$ from its angle. With no extra roots, these formulas reduce to Eqs. (3.71)–(3.72).
+
+**Why it works.** By the cover-up rule of §4, the other roots multiply the pair's residue by one complex number. Its magnitude scales the oscillation, and its angle shifts the peak in time.
+
+- **With zeros only, the result is exact.** For the zero at $\alpha=2$ in §5, the zero is at $-1$ and $p=-0.5+0.866j$, so $\ell=d=1$ and $\psi=60^\circ$. Then $t_p=(180^\circ-60^\circ)/\omega_d=2.418$ and $M_p=e^{-0.5\times2.418}=29.8\%$, as measured.
+- **With extra poles, it is approximate.** It ignores the extra pole's own decaying term. For §9's pole at $\alpha=4$, the estimate is 13.9%, the same as measured. At $\alpha=1$ it fails, because the real pole has become dominant.
+- **For the 747 of §8.2,** the zero at $+6$ gives $13.8\%$ at $t_p=1.17$ s. That matches the complete-model column. It shows that the gap from the pair-only 12.3% is due entirely to the RHP zero.
+
+#### Check your understanding
+
+> Why is the correction exact for zeros but only approximate for extra poles?
+
+A zero adds no new mode to the response; it only changes the size and timing of the modes that are already there. An extra pole adds its own mode $C_je^{p_jt}$, which the formula neglects at the peak.
+
 ---
 
 ## 10. Summary {#section-10}
@@ -645,7 +693,7 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 
 ## Chapter 3 student notes
 
-- [L1: Convolution and transfer functions](convolution-impulse-response_student.md)
-- [L2: Block diagrams and pole locations](block-diagrams_student.md)
-- [L3: Specifications and zeros](time-domain-specs_student.md)
-- [L4: Stability and Routh’s criterion](stability_student.md)
+- [Convolution and transfer functions](convolution-impulse-response_student.md)
+- [Block diagrams and pole locations](block-diagrams_student.md)
+- [Specifications and zeros](time-domain-specs_student.md)
+- [Stability and Routh’s criterion](stability_student.md)

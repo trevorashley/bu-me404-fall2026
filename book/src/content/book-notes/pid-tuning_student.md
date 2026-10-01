@@ -4,7 +4,7 @@
 
 The PID formula fits on one line. A PID that works on a real machine needs four more decisions: the gains, where the derivative acts, what happens at the actuator's limit, and how much of the job the reference does on its own. These notes cover Ziegler–Nichols tuning, practical realisation of the derivative and setpoint, integrator antiwindup, and feedforward.
 
-**Prerequisites:** [L1 Feedback properties](feedback-properties_student.md), [L2 PID control](pid-control_student.md), [L3 System type](system-type_student.md), and Routh's criterion from [Stability](stability_student.md).
+**Prerequisites:** [Feedback properties](feedback-properties_student.md), [PID control](pid-control_student.md), [System type](system-type_student.md), and Routh's criterion from [Stability](stability_student.md).
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §4.3.6, §4.4, §4.5 and §9.3.1. Example, figure and equation numbers follow the textbook. The filtered derivative and setpoint weighting follow Åström & Murray, *Feedback Systems*, 2nd ed., §§11.3–11.5. Numbered sections and § references refer to these notes unless labelled as textbook sections.
 
@@ -156,7 +156,7 @@ $$
 
 Turn off the integral and derivative terms and raise $k_P$ until the loop sustains an oscillation. The gain is the **ultimate gain** $K_u$ and the period is the **ultimate period** $P_u$. Measure $P_u$ at the smallest amplitude possible, so that the actuator does not saturate.
 
-**When the experiment works.** It needs a finite positive gain at which a complex pair of closed-loop poles reaches the imaginary axis. Not every plant has one. L2's model $G=1/(s^2+1.4s+1)$ gives $s^2+1.4s+1+k_P$, which is stable for every $k_P>0$, so it has no $K_u$ or $P_u$ and Table 4.3 cannot be applied to it. Many process plants with delay or multiple lags do have the required phase crossing, which is why the method suits them. Counting lags alone is not a test; review question 9 explores why.
+**When the experiment works.** It needs a finite positive gain at which a complex pair of closed-loop poles reaches the imaginary axis. Not every plant has one. The model in [PID control](pid-control_student.md), $G=1/(s^2+1.4s+1)$, gives $s^2+1.4s+1+k_P$, which is stable for every $k_P>0$, so it has no $K_u$ or $P_u$ and Table 4.3 cannot be applied to it. Many process plants with delay or multiple lags do have the required phase crossing, which is why the method suits them. Counting lags alone is not a test; review question 9 explores why.
 
 When it does work, use textbook Table 4.3:
 
@@ -193,7 +193,7 @@ The responses resemble those of Example 4.9. The textbook remarks that the step-
 
 ### 4.3 The same experiment, done by Routh {#section-4-3}
 
-For a plant without delay, the ultimate gain is the boundary of Routh's stable range, and the ultimate frequency comes from the auxiliary polynomial ([Stability §7](stability_student.md#section-7)). Routh can also show that no such boundary exists, as for L2's second-order plant; then there is no ultimate gain to find. For $G=1/(s+1)^3$ with $D_c=K$:
+For a plant without delay, the ultimate gain is the boundary of Routh's stable range, and the ultimate frequency comes from the auxiliary polynomial ([Stability §7](stability_student.md#section-7)). Routh can also show that no such boundary exists, as for the second-order plant in [PID control](pid-control_student.md); then there is no ultimate gain to find. For $G=1/(s+1)^3$ with $D_c=K$:
 
 $$
 s^3+3s^2+3s+(1+K)=0,
@@ -415,7 +415,7 @@ Integral action removes steady-state error but reduces damping. For a known inpu
 *Fig. 4.27 (textbook):* DC-gain feedforward for (a) tracking and (b) a measured disturbance.
 
 - **Tracking:** $U=D_cE+G^{-1}(0)R$.
-- **Disturbance rejection:** in Fig. 4.27(b) $W$ is an **output disturbance**, added after the plant. If it is *measured*, $U=D_cE-G^{-1}(0)W$ cancels its steady-state effect. For a disturbance at the plant *input*, as in L1–L3, direct cancellation is simply $U=D_cE-W$, with no $G^{-1}(0)$. An unmeasured disturbance can only be handled by feedback.
+- **Disturbance rejection:** in Fig. 4.27(b) $W$ is an **output disturbance**, added after the plant. If it is *measured*, $U=D_cE-G^{-1}(0)W$ cancels its steady-state effect. For a disturbance at the plant *input*, as in [Feedback properties](feedback-properties_student.md), [PID control](pid-control_student.md), and [Steady-state error and system type](system-type_student.md), direct cancellation is simply $U=D_cE-W$, with no $G^{-1}(0)$. An unmeasured disturbance can only be handled by feedback.
 
 ### 8.2 Example 4.11 {#section-8-2}
 
@@ -459,7 +459,7 @@ $$
 e_{ss}=\frac{1-G(0)/\hat G(0)}{1+k_PG(0)} .
 $$
 
-With a 20% error ($G(0)=1.2$, $\hat G(0)=1$): at $k_P=1.5$, $e_{ss}=-0.2/2.8=-0.071$, against $+0.357$ with feedback alone; at $k_P=6$, $-0.024$ against $+0.122$. Feedforward removes most of the error, and feedback divides the remainder by $1+k_PG(0)$, the inverse of the sensitivity $S(0)$ from [L1](feedback-properties_student.md). Feedforward does the work the model can predict; feedback corrects what it cannot. Integral action makes the residual exactly zero.
+With a 20% error ($G(0)=1.2$, $\hat G(0)=1$): at $k_P=1.5$, $e_{ss}=-0.2/2.8=-0.071$, against $+0.357$ with feedback alone; at $k_P=6$, $-0.024$ against $+0.122$. Feedforward removes most of the error, and feedback divides the remainder by $1+k_PG(0)$, the inverse of the sensitivity $S(0)$ from [Feedback properties](feedback-properties_student.md). Feedforward does the work the model can predict; feedback corrects what it cannot. Integral action makes the residual exactly zero.
 
 ---
 
@@ -522,7 +522,7 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 
 ## Chapter 4 student notes
 
-- [L1: The basic equations of control](feedback-properties_student.md)
-- [L2: The three-term controller: P, I, D, PI and PID](pid-control_student.md)
-- [L3: Steady-state error and system type](system-type_student.md)
-- [L4: Tuning, realising and feeding forward the PID](pid-tuning_student.md)
+- [The basic equations of control](feedback-properties_student.md)
+- [The three-term controller: P, I, D, PI and PID](pid-control_student.md)
+- [Steady-state error and system type](system-type_student.md)
+- [Tuning, realising and feeding forward the PID](pid-tuning_student.md)

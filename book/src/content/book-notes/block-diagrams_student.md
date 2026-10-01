@@ -4,7 +4,7 @@
 
 A block diagram is a set of simultaneous equations. Eliminating its internal signals gives a transfer function; the poles of that function describe the rates and oscillations visible in the response. This lecture connects block reduction to the geometry of the complex $s$-plane.
 
-**Prerequisites:** [L1: Convolution and transfer functions](convolution-impulse-response_student.md).
+**Prerequisites:** [Convolution and transfer functions](convolution-impulse-response_student.md).
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed. Example and equation numbers follow the textbook. Numbered sections and § references refer to these notes unless labelled as textbook sections.
 
@@ -172,7 +172,7 @@ $$
 s=\frac{-2\pm\sqrt{4-16}}{2}=-1\pm j\frac{\sqrt{12}}{2}=-1\pm j\sqrt3 .
 $$
 
-**Feedback moved the poles.** In the second-order notation of §7, match $s^2+2s+4$ to $s^2+2\zeta\omega_ns+\omega_n^2$. This gives $\omega_n^2=4$, so $\omega_n=2$ rad/s, and $2\zeta\omega_n=2$, so $\zeta=0.5$. Check: $\sigma=\zeta\omega_n=1$ and $\omega_d=2\sqrt{1-0.25}=\sqrt3$, matching the roots. The zero at $-2$ means that L3’s zero-free overshoot formula does not apply directly.
+**Feedback moved the poles.** In the second-order notation of §7, match $s^2+2s+4$ to $s^2+2\zeta\omega_ns+\omega_n^2$. This gives $\omega_n^2=4$, so $\omega_n=2$ rad/s, and $2\zeta\omega_n=2$, so $\zeta=0.5$. Check: $\sigma=\zeta\omega_n=1$ and $\omega_d=2\sqrt{1-0.25}=\sqrt3$, matching the roots. The zero at $-2$ means that the zero-free overshoot formula in [Time-domain specifications](time-domain-specs_student.md) does not apply directly.
 
 ### 3.2 Example 3.23 {#section-3-2}
 
@@ -327,7 +327,7 @@ The percentages follow by evaluating $1-e^{-t/\tau}$. For example, $e^{-1}=0.368
 
 The response reaches 63% of its final value at one time constant and is within 1% of it by five. “Settled” always needs a tolerance; the final value is approached asymptotically.
 
-**Stability:** If $\sigma>0$ the pole is at $-\sigma$ in the left half plane and the response decays: stable. If $\sigma<0$ the pole is on the right and the response grows: unstable. L4 distinguishes free-response stability from bounded-input stability.
+**Stability:** If $\sigma>0$ the pole is at $-\sigma$ in the left half plane and the response decays: stable. If $\sigma<0$ the pole is on the right and the response grows: unstable. [Stability and Routh’s criterion](stability_student.md) distinguishes free-response stability from bounded-input stability.
 
 ---
 
@@ -391,7 +391,7 @@ For simple modes, pole locations give the following response shapes:
 | Right, real axis | Pure growth | "runs away" |
 | At the origin | Constant | "an integrator remembers" |
 
-This table describes simple modes. Repeated poles add polynomial factors in time: a double pole at zero gives a ramp, and a repeated imaginary-axis pole can give growing oscillations. “Neutral” describes bounded free motion with all other modes decaying; it does not mean BIBO stable (L4).
+This table describes simple modes. Repeated poles add polynomial factors in time: a double pole at zero gives a ramp, and a repeated imaginary-axis pole can give growing oscillations. “Neutral” describes bounded free motion with all other modes decaying; it does not mean BIBO stable ([Stability and Routh’s criterion](stability_student.md)).
 
 **Worked check:** Compare poles at $-3$ and $-0.6$: their decay time constants are $1/3$ s and $5/3$ s. Then sketch poles at $\pm j$ and $+0.5\pm j$: equal oscillation frequency, different amplitude evolution. These are modal shapes, not claims about arbitrary-input boundedness.
 
@@ -495,7 +495,7 @@ $$
 \mathcal L\{e^{-\sigma t}\sin\omega_dt\,1(t)\}=\frac{\omega_d}{(s+\sigma)^2+\omega_d^2},
 $$
 
-which is the sine transform of L1 §5.2 with the frequency shift $s\to s+\sigma$ (property 4 in L1 §6). The numerator of $H$ is $\omega_n^2$, not $\omega_d$, so multiply and divide by $\omega_d$:
+which is the sine transform of [Convolution and transfer functions §5.2](convolution-impulse-response_student.md#section-5-2) with the frequency shift $s\to s+\sigma$ (property 4 in [Convolution and transfer functions §6](convolution-impulse-response_student.md#section-6)). The numerator of $H$ is $\omega_n^2$, not $\omega_d$, so multiply and divide by $\omega_d$:
 
 $$
 H(s)=\frac{\omega_n^2}{\omega_d}\cdot\frac{\omega_d}{(s+\sigma)^2+\omega_d^2}
@@ -538,7 +538,7 @@ For $0<\zeta<1$, the step response tends to 1. At $\zeta=0$, the same formula gi
 
 At critical damping, $\zeta=1$, the denominator is $(s+\omega_n)^2$. Then $H=\omega_n^2/(s+\omega_n)^2$, and the repeated-pole pair $1/(s+a)^2\leftrightarrow te^{-at}$ gives $h(t)=\omega_n^2t e^{-\omega_nt}$. For the step, $\dfrac{\omega_n^2}{s(s+\omega_n)^2}=\dfrac1s-\dfrac1{s+\omega_n}-\dfrac{\omega_n}{(s+\omega_n)^2}$, so $y_{\rm step}(t)=1-(1+\omega_nt)e^{-\omega_nt}$. To check the expansion, recombine over a common denominator: $(s+\omega_n)^2-s(s+\omega_n)-\omega_ns=\omega_n^2$ ✓. The underdamped formulas with $\sqrt{1-\zeta^2}$ in a denominator must not be used directly at $\zeta=1$.
 
-**Worked check:** For the zero-free standard pair, the overshoot formula in L3 gives 72.92% at $\zeta=0.1$, 16.30% at 0.5, and 4.60% at 0.7. The formula is $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$, from evaluating $y_{\rm step}$ at the first peak, $\omega_dt=\pi$. The exponents are $\pi(0.1)/0.99499=0.3157$, $\pi(0.5)/0.86603=1.8138$, and $\pi(0.7)/0.71414=3.0794$. Keep the numerator fixed when comparing this family.
+**Worked check:** For the zero-free standard pair, the overshoot formula in [Time-domain specifications](time-domain-specs_student.md) gives 72.92% at $\zeta=0.1$, 16.30% at 0.5, and 4.60% at 0.7. The formula is $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$, from evaluating $y_{\rm step}$ at the first peak, $\omega_dt=\pi$. The exponents are $\pi(0.1)/0.99499=0.3157$, $\pi(0.5)/0.86603=1.8138$, and $\pi(0.7)/0.71414=3.0794$. Keep the numerator fixed when comparing this family.
 
 ### 7.3 Example 3.26 {#section-7-3}
 
@@ -616,7 +616,7 @@ Put numbers on it. *How much* overshoot? Settled by *when*? That is textbook §3
 
 ## 9. Looking ahead {#section-9}
 
-Block reduction determines the transfer function. Pole locations describe its visible natural rates, while the numerator sets modal amplitudes. L3 attaches quantitative specifications to this geometry: rise time, overshoot, and settling time.
+Block reduction determines the transfer function. Pole locations describe its visible natural rates, while the numerator sets modal amplitudes. [Time-domain specifications](time-domain-specs_student.md) attaches quantitative specifications to this geometry: rise time, overshoot, and settling time.
 
 ---
 
@@ -641,11 +641,11 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 | 3.22, 3.23 | The same diagrams by Mason's rule |
 | 3.16 | DC gain and unit-step final value of a second-order system |
 | 3.36 | Initial-condition response and logarithmic decrement |
-| 3.41 | Sketch a step response from poles and zeros, then compare with Matlab (uses the zero effects from L3) |
+| 3.41 | Sketch a step response from poles and zeros, then compare with Matlab (uses the zero effects from [Time-domain specifications](time-domain-specs_student.md)) |
 
 ## Chapter 3 student notes
 
-- [L1: Convolution and transfer functions](convolution-impulse-response_student.md)
-- [L2: Block diagrams and pole locations](block-diagrams_student.md)
-- [L3: Specifications and zeros](time-domain-specs_student.md)
-- [L4: Stability and Routh’s criterion](stability_student.md)
+- [Convolution and transfer functions](convolution-impulse-response_student.md)
+- [Block diagrams and pole locations](block-diagrams_student.md)
+- [Specifications and zeros](time-domain-specs_student.md)
+- [Stability and Routh’s criterion](stability_student.md)

@@ -1,5 +1,5 @@
 """
-L4 Demo 2  --  Routh with a symbol in it: the range of stabilising gain
+Stability and Routh’s criterion Demo 2  --  Routh with a symbol in it: the range of stabilising gain
                                                             (Example 3.33)
 
 The plant (s+1)/[s(s-1)(s+6)] is open-loop unstable. Close a proportional loop
@@ -34,7 +34,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 2 -- the stabilising range of a gain, found without root finding")
+    dk.title("Stability and Routh’s criterion Demo 2 -- the stabilising range of a gain, found without root finding")
 
     dk.note(
         "Routh's array for s^3 + 5s^2 + (K-6)s + K has first column "

@@ -5,9 +5,7 @@
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §§3.2–3.3. Worked examples and figure numbers are the book's. Additions of my own are marked **[beyond the book]**.
 
-**Prerequisites:** L1 of this series (§3.1: convolution, $Y=HU$, poles and zeros) and the earlier lecture [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md), cited below as *(0.0.8 §n)*.
-
-**Earlier-lecture shorthand:** “0.0.8 §n” below refers to section n of the linked prerequisite, whose current filename is `modeling-and-dynamics_instructor.md`.
+**Prerequisites:** [Convolution and transfer functions](convolution-impulse-response_instructor.md) of this series (§3.1: convolution, $Y=HU$, poles and zeros) and the earlier lecture [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md).
 
 **Duration:** 75 minutes.
 
@@ -75,14 +73,14 @@ By the end of this lecture students should be able to:
 |---:|---|---|
 | 0–4 min | Recap: $Y=HU$; today, where $H$ comes from and what it means | §4 |
 | 4–14 min | Three elementary diagrams; the feedback rule; sign conventions | §5 |
-| 14–22 min | Block algebra; Example 3.22 | §5.3–§6.1 |
+| 14–22 min | Block algebra; Example 3.22 | §§5.3–6.1 |
 | 22–32 min | Example 3.23, the six-block reduction | §6.2 |
 | 32–36 min | Computer tools; Mason's rule pointer | §7 |
 | 36–44 min | Impulse response as natural response; first-order poles and $\tau$ | §8 |
 | 44–52 min | Example 3.25; fast and slow poles | §9.1 |
 | 52–62 min | **Fig. 3.16 on the board** | §9.2 |
-| 62–72 min | Complex poles: $\zeta$, $\omega_n$, the Fig. 3.18 geometry, the response families | §10.1–§10.2 |
-| 72–75 min | Example 3.26 as a prepared result; bridge to specifications | §10.3–§12 |
+| 62–72 min | Complex poles: $\zeta$, $\omega_n$, the Fig. 3.18 geometry, the response families | §§10.1–10.2 |
+| 72–75 min | Example 3.26 as a prepared result; bridge to specifications | §§10.3–12 |
 
 **Prepare as slides:** Figs. 3.9 and 3.10 (the block algebra catalogue), Figs. 3.11–3.13 (the two examples), Figs. 3.14, 3.19, 3.20 and 3.21 (response families and envelopes). Reserve the board for the feedback-rule derivation, the Example 3.23 elimination, and Fig. 3.16.
 
@@ -255,7 +253,7 @@ $$
 s=\frac{-2\pm\sqrt{4-16}}{2}=-1\pm j\frac{\sqrt{12}}{2}=-1\pm j\sqrt3 .
 $$
 
-Say it plainly: **feedback moved the poles.** That single sentence is the reason Chapter 5 exists. In the second-order language of §10 below, match $s^2+2s+4$ to $s^2+2\zeta\omega_ns+\omega_n^2$. This gives $\omega_n^2=4$, so $\omega_n=2$ rad/s, and $2\zeta\omega_n=2$, so $\zeta=0.5$. Check: $\sigma=\zeta\omega_n=1$ and $\omega_d=2\sqrt{1-0.25}=\sqrt3$, matching the roots. It also has a zero at $-2$, so the zero-free overshoot formula from L3 does not apply directly.
+Say it plainly: **feedback moved the poles.** That single sentence is the reason Chapter 5 exists. In the second-order language of §10 below, match $s^2+2s+4$ to $s^2+2\zeta\omega_ns+\omega_n^2$. This gives $\omega_n^2=4$, so $\omega_n=2$ rad/s, and $2\zeta\omega_n=2$, so $\zeta=0.5$. Check: $\sigma=\zeta\omega_n=1$ and $\omega_d=2\sqrt{1-0.25}=\sqrt3$, matching the roots. It also has a zero at $-2$, so the zero-free overshoot formula from [Time-domain specifications](time-domain-specs_instructor.md) does not apply directly.
 
 ### 6.2 Example 3.23
 ![alt text](./book-figures/3-12a.png)
@@ -382,7 +380,7 @@ The poles say which exponentials appear; the numerator says how much of each.
 
 Here “natural response” follows the book's terminology and means the modes excited by an impulse. More generally, natural (or zero-input) response means motion due to initial conditions with the input set to zero. For a strictly proper system, the motion after the impulse is unforced, but its modal coefficients need not match an arbitrary initial-state response. Modes hidden from the input-output transfer function need not appear in the impulse response at all. A proper system with direct feedthrough also has an impulse at $t=0$.
 
-### 8.2 One pole, one exponential
+### 8.2 One pole, one exponential {#section-8-2}
 
 $$
 H(s)=\frac1{s+\sigma}
@@ -524,7 +522,7 @@ Walk this table, sketching as you go:
 | Right, real axis | Pure growth | "runs away" |
 | At the origin | Constant | "an integrator remembers" |
 
-This table describes simple modes. Repeated poles add polynomial factors in time: a double pole at zero gives a ramp, and a repeated imaginary-axis pole can give growing oscillations. “Neutral” describes bounded free motion with all other modes decaying; it does not mean BIBO stable (L4).
+This table describes simple modes. Repeated poles add polynomial factors in time: a double pole at zero gives a ramp, and a repeated imaginary-axis pole can give growing oscillations. “Neutral” describes bounded free motion with all other modes decaying; it does not mean BIBO stable ([Stability and Routh’s criterion](stability_instructor.md)).
 
 > **[ DEMO 2 ]** — `ch3/l2_demo2_pole_locations.py` *(live, ~10 s, projected beside the board)*
 >
@@ -579,7 +577,7 @@ $$
 
 The real-frequency geometry and sinusoidal formulas below apply to $0\le\zeta<1$ with $\omega_n>0$. At $\zeta=1$ use the limiting critically damped formulas; for $\zeta>1$, the poles are real and unequal.
 
-### 10.1 The geometry — do this on the board
+### 10.1 The geometry — do this on the board {#section-10-1}
 
 > **[ FIG 3.18 ]** — PDF p. 94 *(slide, alongside the board sketch)*
 
@@ -603,7 +601,7 @@ $$
 
 > Where do the poles go as $\zeta$ runs from 0 to 1, with $\omega_n$ held fixed?
 
-Around a circle of radius $\omega_n$, from the imaginary axis to the real axis, meeting there at $\zeta=1$. This is exactly the constant-magnitude arc derived from the physical parameters in *(0.0.8 §7.4)* — same picture, now in the book's $\zeta,\omega_n$ language. Students who saw that demonstration should recognise it immediately.
+Around a circle of radius $\omega_n$, from the imaginary axis to the real axis, meeting there at $\zeta=1$. This is exactly the constant-magnitude arc derived from the physical parameters in *([Modeling and dynamics §7.4](modeling-and-dynamics_instructor.md#section-7-4))* — same picture, now in the book's $\zeta,\omega_n$ language. Students who saw that demonstration should recognise it immediately.
 
 $$
 \zeta=0 \ \Rightarrow\ \theta=0,\ \omega_d=\omega_n
@@ -613,7 +611,7 @@ $$
 
 **Footnote worth mentioning:** filter engineers write the same system with a quality factor $Q=1/(2\zeta)$. Students will meet it in electronics.
 
-### 10.2 The response families
+### 10.2 The response families {#section-10-2}
 
 Rewriting Eq. (3.63) so the table can be used directly,
 
@@ -628,7 +626,7 @@ $$
 \mathcal L\{e^{-\sigma t}\sin\omega_dt\,1(t)\}=\frac{\omega_d}{(s+\sigma)^2+\omega_d^2},
 $$
 
-which is the sine transform of L1 §8.2 with the frequency shift $s\to s+\sigma$ (property 4). The numerator of $H$ is $\omega_n^2$, not $\omega_d$, so multiply and divide by $\omega_d$:
+which is the sine transform of [Convolution and transfer functions §8.2](convolution-impulse-response_instructor.md#section-8-2) with the frequency shift $s\to s+\sigma$ (property 4). The numerator of $H$ is $\omega_n^2$, not $\omega_d$, so multiply and divide by $\omega_d$:
 
 $$
 H(s)=\frac{\omega_n^2}{\omega_d}\cdot\frac{\omega_d}{(s+\sigma)^2+\omega_d^2}
@@ -686,7 +684,7 @@ At critical damping, $\zeta=1$, the denominator is $(s+\omega_n)^2$. Then $H=\om
 
 > **[ DEMO 3, continued ]** — right-hand panel of `l2_demo3_second_order.py`
 >
-> **Teaching check [beyond the book]:** For the zero-free standard pair, the overshoot formula in L3 gives 72.92% at $\zeta=0.1$, 16.30% at 0.5, and 4.60% at 0.7. The formula is $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$, from evaluating $y_{\rm step}$ at the first peak, $\omega_dt=\pi$. The exponents are $\pi(0.1)/0.99499=0.3157$, $\pi(0.5)/0.86603=1.8138$, and $\pi(0.7)/0.71414=3.0794$. Keep the numerator fixed when comparing this family.
+> **Teaching check [beyond the book]:** For the zero-free standard pair, the overshoot formula in [Time-domain specifications](time-domain-specs_instructor.md) gives 72.92% at $\zeta=0.1$, 16.30% at 0.5, and 4.60% at 0.7. The formula is $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$, from evaluating $y_{\rm step}$ at the first peak, $\omega_dt=\pi$. The exponents are $\pi(0.1)/0.99499=0.3157$, $\pi(0.5)/0.86603=1.8138$, and $\pi(0.7)/0.71414=3.0794$. Keep the numerator fixed when comparing this family.
 
 ### 10.3 Example 3.26
 
@@ -828,9 +826,9 @@ Put numbers on it. *How much* overshoot? Settled by *when*? That is Section 3.4,
 | 3.19, 3.20 | Transfer functions of several diagrams | The core drill; assign two or three, not all. |
 | 3.21 | $R$ to $Y$ through a multi-loop diagram | Nested loops, like Example 3.23. |
 | 3.22, 3.23 | The same diagrams by Mason's rule | Optional; pair with the online appendix. |
-| 3.16 | DC gain and unit-step final value of a second-order system | Review L1; add pole and damping calculations as an instructor extension. |
+| 3.16 | DC gain and unit-step final value of a second-order system | Review [Convolution and transfer functions](convolution-impulse-response_instructor.md); add pole and damping calculations as an instructor extension. |
 | 3.36 | Initial-condition response and logarithmic decrement | Connects complex poles to observed decay; extension after §10. |
-| 3.41 | Sketch a step response from poles and zeros, then compare with Matlab | Extends Fig. 3.16 using the zero effects taught in L3; assign after that lecture. |
+| 3.41 | Sketch a step response from poles and zeros, then compare with Matlab | Extends Fig. 3.16 using the zero effects taught in [Time-domain specifications](time-domain-specs_instructor.md); assign after that lecture. |
 
 **Suggested additional exercise [beyond the book]:** deliberately reverse the inner-loop sign in Example 3.23. Use both elimination and a numerical substitution to identify which term changes.
 
@@ -864,7 +862,7 @@ Only the sign of the $G_1G_3$ term in the denominator changes. The numerator doe
 
 | Lecture | Book sections | Content |
 |---|---|---|
-| L1 | 3.1 | Convolution, transfer functions, frequency response, partial fractions, final value, poles and zeros |
-| **This lecture (L2)** | **3.2, 3.3** | **Block diagrams, Mason's rule pointer, effect of pole locations** |
-| L3 | 3.4, 3.5 | Time-domain specifications, effects of zeros and extra poles |
-| L4 | 3.6–3.9 | Stability, Routh's criterion, system identification, scaling, history |
+| [Convolution and transfer functions](convolution-impulse-response_instructor.md) | 3.1 | Convolution, transfer functions, frequency response, partial fractions, final value, poles and zeros |
+| **This lecture** | **3.2, 3.3** | **Block diagrams, Mason's rule pointer, effect of pole locations** |
+| [Time-domain specifications](time-domain-specs_instructor.md) | 3.4, 3.5 | Time-domain specifications, effects of zeros and extra poles |
+| [Stability and Routh’s criterion](stability_instructor.md) | 3.6–3.9 | Stability, Routh's criterion, system identification, scaling, history |

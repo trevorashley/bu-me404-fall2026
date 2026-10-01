@@ -27,7 +27,7 @@ After studying this lecture, you should be able to:
 | Symbol | Meaning |
 |---|---|
 | $G(s)=b(s)/a(s)$ | plant transfer function; $a$, $b$ its denominator and numerator polynomials |
-| $D_{ol}(s)$, $D_{cl}(s)=c(s)/d(s)$ | open-loop and feedback controllers; from L2 on, the feedback controller is written $D_c$, as FPE does from §4.2 |
+| $D_{ol}(s)$, $D_{cl}(s)=c(s)/d(s)$ | open-loop and feedback controllers; from [PID control](pid-control_student.md) on, the feedback controller is written $D_c$, as FPE does from §4.2 |
 | $R,\ W,\ V$ | reference, plant-input disturbance, sensor noise |
 | $Y,\ U,\ E$ | output, control, error $E=R-Y$ |
 | $L=GD_{cl}$ | loop gain (open-loop transfer function around the loop) |
@@ -246,7 +246,7 @@ If the plant is stable with no RHP poles or zeros, an open-loop controller can i
 2. **Actuator limits.** A fast $\mathcal T$ demands large inputs, and a real actuator saturates; the linear analysis is then no longer valid.
 3. **Sensitivity.** Cancelling a pole barely inside the LHP is risky: when the plant drifts, the cancellation becomes imperfect and a slow, lightly damped residue appears.
 
-Plant inversion returns as *feedforward* (see [L4](pid-tuning_student.md)), where it is combined with feedback rather than used alone.
+Plant inversion returns as *feedforward* (see [PID tuning and implementation](pid-tuning_student.md)), where it is combined with feedback rather than used alone.
 
 ### 4.2 The pole-placement exercise {#section-4-2}
 
@@ -318,7 +318,7 @@ $$
 e_{ss}=\lim_{s\to0}s\,S(s)\frac{A}{s}=A\,S(0)=0 .
 $$
 
-An integrator in the controller makes $S$ vanish at zero frequency. [L3](system-type_student.md) develops this into system type.
+An integrator in the controller makes $S$ vanish at zero frequency. [Steady-state error and system type](system-type_student.md) develops this into system type.
 
 ---
 
@@ -492,7 +492,7 @@ $$
 
 A 1% error requires $|1+GD_{cl}|\ge100$, effectively $|GD_{cl}|\gtrsim100$ (by the triangle inequality, $|L|\ge101$ guarantees it). The textbook applies this to a high-fidelity audio amplifier over $2\pi\cdot60\le\omega\le2\pi\cdot15{,}000$ rad/s. If the loop gain falls off like an integrator, $L=\omega_c/s$, then $\omega_c/\omega\ge100$ at 15 kHz requires $\omega_c\ge2\pi\cdot1.5\times10^6$ rad/s: unity loop gain at 1.5 MHz. The usual statement of the audible range is about 20 Hz to 20 kHz; the textbook's band is narrower.
 
-With a reference prefilter $F(s)$ and sensor dynamics $H(s)$, the equations must be re-derived (textbook Appendix W4.1.4.1). [L3](system-type_student.md) uses the version with sensor dynamics.
+With a reference prefilter $F(s)$ and sensor dynamics $H(s)$, the equations must be re-derived (textbook Appendix W4.1.4.1). [Steady-state error and system type](system-type_student.md) uses the version with sensor dynamics.
 
 ### 7.3 The cost of feedback {#section-7-3}
 
@@ -509,7 +509,7 @@ The control-signal cost does not appear in an output plot. In the regulation exa
 
 ## 8. Looking ahead {#section-8}
 
-Every benefit of feedback is measured by $S=1/(1+L)$, and making $S$ small at a frequency makes $\mathcal T$ close to one there. The PID controller of [L2](pid-control_student.md) uses its three terms to shape $L$: the proportional term raises it, the integral term makes it infinite at zero frequency (removing the bias error of §5.3), and the derivative term adds damping but must be filtered because of the noise cost of §7.3.
+Every benefit of feedback is measured by $S=1/(1+L)$, and making $S$ small at a frequency makes $\mathcal T$ close to one there. The PID controller of [PID control](pid-control_student.md) uses its three terms to shape $L$: the proportional term raises it, the integral term makes it infinite at zero frequency (removing the bias error of §5.3), and the derivative term adds damping but must be filtered because of the noise cost of §7.3.
 
 ---
 
@@ -538,7 +538,7 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 
 ## Chapter 4 student notes
 
-- [L1: The basic equations of control](feedback-properties_student.md)
-- [L2: The three-term controller: P, I, D, PI and PID](pid-control_student.md)
-- [L3: Steady-state error and system type](system-type_student.md)
-- [L4: Tuning, realising and feeding forward the PID](pid-tuning_student.md)
+- [The basic equations of control](feedback-properties_student.md)
+- [The three-term controller: P, I, D, PI and PID](pid-control_student.md)
+- [Steady-state error and system type](system-type_student.md)
+- [Tuning, realising and feeding forward the PID](pid-tuning_student.md)

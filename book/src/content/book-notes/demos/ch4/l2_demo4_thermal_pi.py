@@ -1,5 +1,5 @@
 """
-L2 Demo 4  --  PI control of a thermal system        (Example 4.5, Figs. 4.11-4.15)
+PID control Demo 4  --  PI control of a thermal system        (Example 4.5, Figs. 4.11-4.15)
 
 Two thermal masses: G(s) = K_o / [(tau1 s + 1)(tau2 s + 1)] with tau1 = 1 s,
 tau2 = 10 s, K_o = 1000. The reference ramps at 30 C/s to 300 C at t = 10 s
@@ -52,7 +52,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L2 Demo 4 -- Example 4.5: open loop, P and PI on a thermal plant")
+    dk.title("PID control Demo 4 -- Example 4.5: open loop, P and PI on a thermal plant")
 
     t = np.linspace(0, 70, 70001)
     _, y_ol = step(lti([KO], plant_den()), T=t)

@@ -5,9 +5,7 @@
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §§3.6–3.9 and the chapter Summary. Worked examples and figure numbers are the book's. Additions of my own are marked **[beyond the book]**.
 
-**Prerequisites:** L1–L3 of this series. The physical reading of a right half-plane pole is in [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md), cited as *(0.0.8 §n)*.
-
-**Earlier-lecture shorthand:** “0.0.8 §n” below refers to section n of the linked prerequisite, whose current filename is `modeling-and-dynamics_instructor.md`.
+**Prerequisites:** [Convolution and transfer functions](convolution-impulse-response_instructor.md), [Block diagrams and pole locations](block-diagrams_instructor.md), and [Time-domain specifications](time-domain-specs_instructor.md) of this series. The physical reading of a right half-plane pole is in [From Physical Models to the Laplace Transform](modeling-and-dynamics_instructor.md).
 
 **Duration:** 75 minutes, including the chapter wrap-up.
 
@@ -80,16 +78,16 @@ By the end of this lecture students should be able to:
 
 | Time | Topic | Section |
 |---:|---|---|
-| 0–4 min | Recap of L1–L3; the question left open | §4 |
+| 0–4 min | Recap of [Convolution and transfer functions](convolution-impulse-response_instructor.md), [Block diagrams and pole locations](block-diagrams_instructor.md), and [Time-domain specifications](time-domain-specs_instructor.md); the question left open | §4 |
 | 4–8 min | The LTI stability statement; back to Fig. 3.16 | §5.1 |
-| 8–18 min | BIBO stability; the capacitor; resonant forcing | §5.2–§5.3 |
+| 8–18 min | BIBO stability; the capacitor; resonant forcing | §§5.2–5.3 |
 | 18–28 min | Internal stability; repeated $j\omega$ poles; the cancellation trap | §6 |
 | 28–34 min | The necessary condition, and why it is not enough | §7.1 |
-| 34–44 min | The Routh array; Example 3.32 | §7.2–§7.3 |
+| 34–44 min | The Routh array; Example 3.32 | §§7.2–7.3 |
 | 44–54 min | Example 3.33: a range of gain | §8 |
 | 54–62 min | Example 3.34: a region in two parameters | §9 |
 | 62–68 min | Special cases, Kharitonov; §3.7 and §3.8 in brief | §10 |
-| 68–75 min | Historical perspective; chapter summary; what Chapter 4 does with it | §11–§13 |
+| 68–75 min | Historical perspective; chapter summary; what Chapter 4 does with it | §§11–13 |
 
 **Prepare as slides:** Fig. 3.39 (the capacitor), Fig. 3.40 and 3.41 (Example 3.33), Fig. 3.43 and 3.44 (Example 3.34), and the chapter summary. The Routh array construction belongs on the board, written out slowly once.
 
@@ -128,7 +126,7 @@ Use the demos for the selected live examples; the accompanying checks also work 
 
 ---
 
-## 5. Stability, and the first version of the test (§3.6)
+## 5. Stability, and the first version of the test (§3.6) {#section-5}
 
 ### 5.1 The statement
 
@@ -141,7 +139,8 @@ $$
 \end{array}}
 $$
 
-> **[ FIG 3.16 ]** — PDF p. 88 *(recall from L2)*
+![alt text](book-figures/3-16.png)
+> **[ FIG 3.16 ]** — PDF p. 88 *(recall from [Block diagrams and pole locations](block-diagrams_instructor.md))*
 >
 > **Say:** "We drew this two lectures ago and read it as shapes of motion. Read it again as a verdict: everything on the left decays, everything on the right grows, and the imaginary axis is the boundary where the argument needs more care."
 
@@ -201,6 +200,7 @@ For a proper model with direct feedthrough, $h(t)=D\delta(t)+h_r(t)$; use finite
 
 ### 5.3 Example 3.31: the capacitor
 
+![alt text](book-figures/3-39.png)
 > **[ FIG 3.39 ]** — PDF p. 142 *(slide: capacitor driven by a current source)*
 
 Current in, voltage out. Transform $C\dot v=i$ with $v(0^-)=0$ to get $CsV(s)=I(s)$. The transfer function is therefore $V/I=1/(Cs)$, and since $1/s\leftrightarrow1(t)$, $h(t)=1(t)/C$. The book uses the normalised case $C=1$, giving
@@ -221,7 +221,7 @@ $$
 >
 > **Teaching check [beyond the book]:** For a 1 F capacitor at rest, a 1 A constant current gives $v(t)=t$ volts. For $H(s)=1/(s^2+1)$ and $u(t)=\sin t\,1(t)$, verify $y(t)=(\sin t-t\cos t)/2$. Both bounded inputs produce unbounded outputs, despite the absence of RHP poles.
 >
-> *Working.* The capacitor: $V=\frac1s\cdot\frac1s=\frac1{s^2}$, so $v=t$. The resonance: $Y=\frac{1}{s^2+1}\cdot\frac{1}{s^2+1}=\frac{1}{(s^2+1)^2}$, a *repeated* pole pair at $\pm j$. This is not in the elementary table, so use property 9 of L1 §9 ($tf\leftrightarrow-dF/ds$) on the cosine. $\mathcal L\{t\cos t\}=-\frac{d}{ds}\frac{s}{s^2+1}=\frac{s^2-1}{(s^2+1)^2}$. Write $\frac{1}{(s^2+1)^2}=\frac12\left[\frac{1}{s^2+1}-\frac{s^2-1}{(s^2+1)^2}\right]$; the check is $\frac{(s^2+1)-(s^2-1)}{2(s^2+1)^2}=\frac{1}{(s^2+1)^2}$. Inverting gives $y=\tfrac12(\sin t-t\cos t)$. The $t\cos t$ term grows linearly: forcing at the pole frequency makes the input's poles coincide with the plant's.
+> *Working.* The capacitor: $V=\frac1s\cdot\frac1s=\frac1{s^2}$, so $v=t$. The resonance: $Y=\frac{1}{s^2+1}\cdot\frac{1}{s^2+1}=\frac{1}{(s^2+1)^2}$, a *repeated* pole pair at $\pm j$. This is not in the elementary table, so use property 9 of [Convolution and transfer functions §9](convolution-impulse-response_instructor.md#section-9) ($tf\leftrightarrow-dF/ds$) on the cosine. $\mathcal L\{t\cos t\}=-\frac{d}{ds}\frac{s}{s^2+1}=\frac{s^2-1}{(s^2+1)^2}$. Write $\frac{1}{(s^2+1)^2}=\frac12\left[\frac{1}{s^2+1}-\frac{s^2-1}{(s^2+1)^2}\right]$; the check is $\frac{(s^2+1)-(s^2-1)}{2(s^2+1)^2}=\frac{1}{(s^2+1)^2}$. Inverting gives $y=\tfrac12(\sin t-t\cos t)$. The $t\cos t$ term grows linearly: forcing at the pole frequency makes the input's poles coincide with the plant's.
 
 ![A capacitor's unbounded voltage, a resonant system driven at resonance, and a stable transfer function hiding an unstable internal mode](demos/ch3/figures/l4_demo4_bibo_internal.svg)
 
@@ -262,7 +262,7 @@ This is **internal asymptotic stability**, provided $a(s)$ represents the full p
 | A simple conjugate pair at $\pm j\omega_1$ | constant-amplitude oscillation |
 | **Repeated** poles on the axis | $te^{\pm j\omega_1t}$ terms: **unbounded** |
 
-A double integrator is the example to give: two poles at the origin, and a free response containing a ramp. Students met it as the drifting satellite in L1 §13, and as the free mass of *(0.0.8 §10)*.
+A double integrator is the example to give: two poles at the origin, and a free response containing a ramp. Students met it as the drifting satellite in [Convolution and transfer functions §13](convolution-impulse-response_instructor.md#section-13), and as the free mass of *([Modeling and dynamics §10](modeling-and-dynamics_instructor.md#section-10))*.
 
 $$
 \boxed{
@@ -274,7 +274,7 @@ $$
 
 **Scope [beyond the book]:** the repeated-pole statement above applies to the scalar ODE/transfer-pole setting. For a general state-space realisation, repeated imaginary-axis eigenvalues can still give bounded free motion if they are semisimple (no nontrivial Jordan blocks). For example, $A=0_{2\times2}$ gives two constant states; a double integrator has a Jordan block and gives a ramp. Neutrality also requires no RHP modes.
 
-### 6.3 The cancellation trap [beyond the book: worked example]
+### 6.3 The cancellation trap [beyond the book: worked example] {#section-6-3}
 
 The book's sentence is easy to read past:
 
@@ -350,13 +350,13 @@ The mode at $+1$ is not in $T(s)$. It is in the system.
 >
 > *Working.* The eigenvectors are $(A-I)v=0\Rightarrow v_{+1}=(4,-1)$ and $(A+4I)v=0\Rightarrow v_{-4}=(1,1)$. Expand the initial state: $(\epsilon,0)=a(4,-1)+b(1,1)$ gives $b=a$ and $5a=\epsilon$, so $a=b=\epsilon/5$. The first component is $x_p=\frac{\epsilon}{5}(4e^{t}+e^{-4t})$. The input $B=(1,1)^T$ is itself the $-4$ eigenvector, which is why $r$ never excites $e^{t}$. At $t=10$: $0.25+0.8\times10^{-6}e^{10}=0.25+0.0176=0.268$. At $t=20$: $0.25+0.8\times10^{-6}e^{20}=0.25+388.13=388.38$.
 
-**[beyond the book]** Chapter 7 gives this its proper names — the cancelled mode is uncontrollable from $r$ while remaining observable at $y$ — and the earlier lecture's discussion of hidden internal motion *(0.0.8 §14, §34)* is the same phenomenon approached from the zero-dynamics side.
+**[beyond the book]** Chapter 7 gives this its proper names — the cancelled mode is uncontrollable from $r$ while remaining observable at $y$ — and the earlier lecture's discussion of hidden internal motion *([Modeling and dynamics §14](modeling-and-dynamics_instructor.md#section-14), [Modeling and dynamics §34](modeling-and-dynamics_instructor.md#section-34))* is the same phenomenon approached from the zero-dynamics side.
 
 ---
 
-## 7. Routh's criterion (§3.6.3)
+## 7. Routh's criterion (§3.6.3) {#section-7}
 
-### 7.1 The free half of the test
+### 7.1 The free half of the test {#section-7-1}
 
 $$
 \boxed{
@@ -493,8 +493,9 @@ Whenever the question is a yes-or-no about stability, or a *boundary* in a param
 
 ---
 
-## 8. Example 3.33: the range of stabilising gain
+## 8. Example 3.33: the range of stabilising gain {#section-8}
 
+![alt text](book-figures/3-40.png)
 > **[ FIG 3.40 ]** — PDF p. 151 *(slide)*
 
 **Source correction [beyond the book]:** Fig. 3.40 prints the plant denominator as $s(s+1)(s+6)$; the worked solution uses $s(s-1)(s+6)$. Use the latter to obtain the characteristic equation and gain range below.
@@ -560,12 +561,14 @@ The first inequality gives $4K>30$, so $K>7.5$. That implies $K>0$ and the neces
 
 ![Closed-loop roots as the gain varies, and step responses at K = 7.5, 13, and 25](demos/ch3/figures/l4_demo2_gain_range.svg)
 
+![alt text](book-figures/3-41.png)
 > **[ FIG 3.41 ]** — PDF p. 154
 
 ---
 
-## 9. Example 3.34: two parameters, and a region
+## 9. Example 3.34: two parameters, and a region {#section-9}
 
+![alt text](book-figures/3-42.png)
 > **[ FIG 3.42 ]** — PDF p. 155; the PI feedback system is $C(s)=K+K_I/s$ around $\dfrac{1}{(s+1)(s+2)}$
 
 First write the controller over a common denominator: $K+\dfrac{K_I}{s}=\dfrac{Ks+K_I}{s}$. Then multiply the characteristic equation through by $s(s+1)(s+2)$:
@@ -615,6 +618,7 @@ $$
 
 In the $(K,K_I)$ plane the second condition is the region below the straight line $K_I=3K+6$, which has slope 3 and $K_I$-intercept 6. The first condition is the region above the $K$ axis. Their intersection is the region in Fig. 3.43.
 
+![alt text](book-figures/3-43.png)
 > **[ FIG 3.43 ]** — PDF p. 158 *(slide: the allowable region)*
 
 > **[ DEMO 3 ]** — `ch3/l4_demo3_pi_region.py` *(slide)*
@@ -633,7 +637,7 @@ You could confirm points on it. You could not *derive* it. This is the book's ow
 
 ---
 
-## 10. Loose ends (§3.6.3 special cases, §3.7, §3.8)
+## 10. Loose ends (§3.6.3 special cases, §3.7, §3.8) {#section-10}
 
 Keep this section brisk; it is signposting.
 
@@ -646,7 +650,7 @@ At the $K=7.5$ boundary of Example 3.33, the $s^1$ row vanishes, since $(4\cdot7
 
 **Kharitonov's theorem (1978).** For a real fixed-degree polynomial family whose coefficients vary independently within specified intervals (with a leading coefficient bounded away from zero), robust strict stability can be checked using four particular endpoint polynomials. This is a pointer to robust control, not a recipe for arbitrary correlated or changing-order uncertainty.
 
-**§3.7 System identification.** Building a model from measured data rather than from first principles. The frequency-response measurement of L1 §7 is the simplest version: drive with sinusoids, record amplitude ratio and phase, and you have $H(j\omega)$ without ever writing an equation of motion. Details in Appendix W3.7.
+**§3.7 System identification.** Building a model from measured data rather than from first principles. The frequency-response measurement of [Convolution and transfer functions §7](convolution-impulse-response_instructor.md#section-7) is the simplest version: drive with sinusoids, record amplitude ratio and phase, and you have $H(j\omega)$ without ever writing an equation of motion. Details in Appendix W3.7.
 
 **§3.8 Amplitude and time scaling.** When model quantities span many orders of magnitude, rescale both signal amplitudes and time, then translate results back to physical units. For example, $\hat y=y/y_{\rm ref}$ is amplitude scaling and $\hat t=t/t_{\rm ref}$ is time scaling. The one-sided transform rule is $\mathcal L\{f(at)\}=F(s/a)/a$ for $a>0$. The printed chapter points to Appendix W3.8 for the details; time scaling alone is not the whole topic.
 
@@ -713,6 +717,7 @@ $$
 \end{array}}
 $$
 
+![alt text](book-figures/3-summary.png)
 > **[ SUMMARY FIG ]** — PDF p. 168
 
 ### The book's review questions (§ Review Questions 3.1–3.12)
@@ -834,8 +839,8 @@ Use three or four as a closing quiz, with hands up rather than written answers:
 
 | Lecture | Book sections | Content |
 |---|---|---|
-| L1 | 3.1 | Convolution, transfer functions, frequency response, partial fractions, final value, poles and zeros |
-| L2 | 3.2, 3.3 | Block diagrams, effect of pole locations |
-| L3 | 3.4, 3.5 | Time-domain specifications; effects of zeros and additional poles |
-| **This lecture (L4)** | **3.6–3.9** | **BIBO and internal stability, Routh's criterion, system identification, scaling, historical perspective, chapter summary** |
+| [Convolution and transfer functions](convolution-impulse-response_instructor.md) | 3.1 | Convolution, transfer functions, frequency response, partial fractions, final value, poles and zeros |
+| [Block diagrams and pole locations](block-diagrams_instructor.md) | 3.2, 3.3 | Block diagrams, effect of pole locations |
+| [Time-domain specifications](time-domain-specs_instructor.md) | 3.4, 3.5 | Time-domain specifications; effects of zeros and additional poles |
+| **This lecture** | **3.6–3.9** | **BIBO and internal stability, Routh's criterion, system identification, scaling, historical perspective, chapter summary** |
 | Next | Chapter 4 | Feedback: what moving the poles actually buys |

@@ -27,12 +27,18 @@
     - [PID Control](./content/book-notes/pid-control_student.md)
     - [System Type](./content/book-notes/system-type_student.md)
     - [PID Tuning and Implementation](./content/book-notes/pid-tuning_student.md)
+    - [Root Locus I: Construction](./content/book-notes/root-locus-construction_student.md)
+    - [Root Locus II: Gain Selection](./content/book-notes/root-locus-gain-design_student.md)
+    - [Root Locus III: PD and Lead](./content/book-notes/root-locus-lead-pd_student.md)
+    - [Root Locus IV: Lag, PI, and Extensions](./content/book-notes/root-locus-lag-pi_student.md)
+        - [Part IV Demonstration Guide](./content/book-notes/demos/ch5/guide.md)
 - [Class Notes](./content/class-notes.md)
     - [09/10/2026](./content/class-notes/20260910.md)
     - [09/15/2026](./content/class-notes/20260915.md)
     - [09/17/2026](./content/class-notes/20260917.md)
     - [09/22/2026](./content/class-notes/20260922.md)
     - [09/24/2026](./content/class-notes/20260924.md)
+    - [09/29/2026](./content/class-notes/20260929.md)
 
 ---
 

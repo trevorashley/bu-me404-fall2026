@@ -4,11 +4,11 @@
 
 The proportional–integral–derivative (PID) controller is the most widely used feedback law in engineering practice. Each of its three terms responds to a different feature of the error: its present size, its accumulated history, and its trend. These notes take the terms one at a time on a single plant, measure each with the Final Value Theorem, and then combine them.
 
-**Prerequisites:** [L1: the basic equations of feedback](feedback-properties_student.md). From Chapter 3: the Final Value Theorem in [Convolution and transfer functions](convolution-impulse-response_student.md), second-order specifications in [Time-domain specifications](time-domain-specs_student.md), and Routh's criterion in [Stability](stability_student.md).
+**Prerequisites:** [the basic equations of feedback](feedback-properties_student.md). From Chapter 3: the Final Value Theorem in [Convolution and transfer functions](convolution-impulse-response_student.md), second-order specifications in [Time-domain specifications](time-domain-specs_student.md), and Routh's criterion in [Stability](stability_student.md).
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed. Example, equation and figure numbers follow the textbook. Numbered sections and § references refer to these notes unless labelled as textbook sections.
 
-**Course order:** system type and error constants (textbook §4.2) come in the next lecture, [L3](system-type_student.md). Every steady-state result here is derived directly from the Final Value Theorem. Integrator windup, derivative filtering and tuning rules are in [L4](pid-tuning_student.md).
+**Course order:** system type and error constants (textbook §4.2) come in the next lecture, [Steady-state error and system type](system-type_student.md). Every steady-state result here is derived directly from the Final Value Theorem. Integrator windup, derivative filtering and tuning rules are in [PID tuning and implementation](pid-tuning_student.md).
 
 ## Learning objectives
 
@@ -76,7 +76,7 @@ The controller was developed by trial and error long before root locus, frequenc
 
 *Fig. 4.2: the controller acts on $E=R-Y$; its output $U$ adds to a disturbance $W$ at the plant input.*
 
-From L1, with no sensor noise,
+From [Feedback properties](feedback-properties_student.md), with no sensor noise,
 
 $$
 Y=\frac{D_cG}{1+D_cG}R+\frac{G}{1+D_cG}W,
@@ -221,7 +221,7 @@ The control at time $t_1$ is $k_I$ times the net area under the error curve up t
 
 *Fig. 4.8: the error of the integral loop analysed below, with $k_I=0.5$. When the error returns to zero, the area it left behind — and so the control — remains.*
 
-The controller has infinite gain at DC: $|D_c(j\omega)|=k_I/\omega\to\infty$ as $\omega\to0$. From L1, a large loop gain means a small error, so zero steady-state error is the expected result.
+The controller has infinite gain at DC: $|D_c(j\omega)|=k_I/\omega\to\infty$ as $\omega\to0$. From [Feedback properties](feedback-properties_student.md), a large loop gain means a small error, so zero steady-state error is the expected result.
 
 ### 3.2 Reference step {#section-3-2}
 
@@ -313,9 +313,9 @@ For $A=1$, $a_1=1.4$, $a_2=1$, this is $0<k_I<1.4$. At $k_I=1.4$, $a(s)=(s+1.4)(
 
 **Speed.** At $k_I=0.5$ the dominant pair has $\sigma=0.247$, about three times slower than the proportional loop's $0.7$; the 1% settling time is 16.5 s. An integrator responds to area, and area takes time to accumulate.
 
-**Ramps.** A ramp reference still leaves a constant error (§5.3); L3 classifies this.
+**Ramps.** A ramp reference still leaves a constant error (§5.3); [Steady-state error and system type](system-type_student.md) classifies this.
 
-**Saturation.** Real actuators saturate. While $u$ is held at its limit, the integrator keeps integrating the error — *integrator windup* — and the result can be a large overshoot. Practical integral control always includes anti-windup, covered in L4.
+**Saturation.** Real actuators saturate. While $u$ is held at its limit, the integrator keeps integrating the error — *integrator windup* — and the result can be a large overshoot. Practical integral control always includes anti-windup, covered in [PID tuning and implementation](pid-tuning_student.md).
 
 ---
 
@@ -346,7 +346,7 @@ $$
 
 PD control is proportional control acting on a linear extrapolation of the error $T_D$ seconds ahead. When the error is falling quickly, the controller eases off before the error reaches zero, which reduces overshoot. The extrapolation is only good when the error is smooth over $T_D$.
 
-**Noise.** A differentiator's gain $k_D\omega$ grows without bound with frequency, and sensor noise is high-frequency. Practical derivatives are filtered, $k_Ds/(\tau_fs+1)$; see L4.
+**Noise.** A differentiator's gain $k_D\omega$ grows without bound with frequency, and sensor noise is high-frequency. Practical derivatives are filtered, $k_Ds/(\tau_fs+1)$; see [PID tuning and implementation](pid-tuning_student.md).
 
 ### 4.3 Where to put the derivative {#section-4-3}
 
@@ -428,7 +428,7 @@ The response settles to 1% in $t_s=47.1$ s, set by the slow pole, with zero erro
 ![Fig. 4.12 — Closed-loop response for the P controller, nominal and ±10% gain](./book-figures/4-12.png)
 ![Fig. 4.13 — Control signals for the P controller](./book-figures/4-13.png)
 
-**Worked check:** with $K_o=900$ and $1100$ the DC gains are $27/28$ and $33/34$, so the offsets are $300/28=10.71$ and $300/34=8.82^\circ$C. A ±10% plant-gain change moves the output by about ±1°C instead of the ±30°C of open loop — the sensitivity reduction of L1. The outputs are nearly indistinguishable; the control signals are not, because the controller does the compensating.
+**Worked check:** with $K_o=900$ and $1100$ the DC gains are $27/28$ and $33/34$, so the offsets are $300/28=10.71$ and $300/34=8.82^\circ$C. A ±10% plant-gain change moves the output by about ±1°C instead of the ±30°C of open loop — the sensitivity reduction of [Feedback properties](feedback-properties_student.md). The outputs are nearly indistinguishable; the control signals are not, because the controller does the compensating.
 
 **PI control, $k_P=0.03$, $k_I=0.003$.**
 
@@ -457,7 +457,7 @@ $$
 e_{\text{ramp}}=\lim_{s\to0}s\cdot\frac{s(s+1)}{s^2+s+3}\cdot\frac{30}{s^2}=\frac{30}{3}=10^\circ\text{C}.
 $$
 
-The simulated lag at $t=10$ s is $9.97^\circ$C; the P loop lags by about $20^\circ$C at the same instant. The PI loop tracks a step with zero error and a ramp with a constant lag. L3 calls the number 3 the velocity constant.
+The simulated lag at $t=10$ s is $9.97^\circ$C; the P loop lags by about $20^\circ$C at the same instant. The PI loop tracks a step with zero error and a ramp with a constant lag. [Steady-state error and system type](system-type_student.md) calls the number 3 the velocity constant.
 
 ### 5.4 What the cancellation hides {#section-5-4}
 
@@ -595,7 +595,7 @@ $$
 \boxed{e(\infty)=-\frac{B}{Ak_Ph}}
 $$
 
-a constant offset, even though the plant contains an integrator. The plant's integrator sits after the disturbance, so it helps track the reference but does not reject a constant torque. For a constant reference $r_0$ with $W=0$, however, the stable loop has $Y/R\to1/h$, so $y(\infty)=r_0/h$ and the system error is $r_0(1-1/h)$. Thus $h\ne1$ makes it Type 0 for reference inputs despite the plant integrator; zero step error requires $h=1$ (see [L3 §6](system-type_student.md#section-6), where $H(0)=1$).
+a constant offset, even though the plant contains an integrator. The plant's integrator sits after the disturbance, so it helps track the reference but does not reject a constant torque. For a constant reference $r_0$ with $W=0$, however, the stable loop has $Y/R\to1/h$, so $y(\infty)=r_0/h$ and the system error is $r_0(1-1/h)$. Thus $h\ne1$ makes it Type 0 for reference inputs despite the plant integrator; zero step error requires $h=1$ (see [Steady-state error and system type §6](system-type_student.md#section-6), where $H(0)=1$).
 
 The textbook's part (a) prints $-B/Ak_P$, omitting $h$. Under PI, a unit step torque gives $e(\infty)=0$, and a unit ramp torque $W=1/s^2$ gives
 
@@ -630,7 +630,7 @@ The textbook prints (4.86) and (4.88) without the leading minus sign; since $E=-
 
 Pure P is absent for a reason: $Js^2+k_P$ has roots at $\pm j\sqrt{k_P/J}$, so proportional control alone leaves the satellite oscillating forever. The derivative is what makes this loop stable.
 
-The satellite under PD tracks a step command with zero error, because the plant's two integrators lie between the controller and the output, yet it holds a constant angle error under a constant torque. Whether a loop has zero steady-state error depends on **which input** is applied and **where the integrators are** relative to it. L3 organises this into system type.
+The satellite under PD tracks a step command with zero error, because the plant's two integrators lie between the controller and the output, yet it holds a constant angle error under a constant torque. Whether a loop has zero steady-state error depends on **which input** is applied and **where the integrators are** relative to it. [Steady-state error and system type](system-type_student.md) organises this into system type.
 
 ---
 
@@ -689,7 +689,7 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 
 ## Chapter 4 student notes
 
-- [L1: The basic equations of control](feedback-properties_student.md)
-- [L2: The three-term controller: P, I, D, PI and PID](pid-control_student.md)
-- [L3: Steady-state error and system type](system-type_student.md)
-- [L4: Tuning, realising and feeding forward the PID](pid-tuning_student.md)
+- [The basic equations of control](feedback-properties_student.md)
+- [The three-term controller: P, I, D, PI and PID](pid-control_student.md)
+- [Steady-state error and system type](system-type_student.md)
+- [Tuning, realising and feeding forward the PID](pid-tuning_student.md)

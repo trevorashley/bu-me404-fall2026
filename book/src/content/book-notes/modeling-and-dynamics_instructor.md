@@ -82,7 +82,7 @@ There are three moments the lecture is built around. Protect them even if you ha
 
 1. **§8** — the forced response turns the characteristic polynomial into the *denominator of a transfer function*. This is where poles stop being a definition and become inevitable.
 2. **§14** — holding the measured output at zero does not stop the system. This is where zeros become physical.
-3. **§18–§20** — the Laplace transform extends the exponential calculation to signals with a transform, and a switched heater gives a complete time-response example.
+3. **§§18–20** — the Laplace transform extends the exponential calculation to signals with a transform, and a switched heater gives a complete time-response example.
 
 ---
 
@@ -117,23 +117,23 @@ Additional objectives for Part II:
 |---:|---|---|
 | 0–5 min | Why exponentials? Introduce $e^{st}$ | §4 |
 | 5–13 min | Thermal system: free response, then forcing $\rightarrow$ first transfer function | §5 |
-| 13–24 min | Spring-mass-damper; complex $s$; recovering real solutions | §6–§7 |
+| 13–24 min | Spring-mass-damper; complex $s$; recovering real solutions | §§6–7 |
 | 24–30 min | Forced spring-mass-damper: the transfer function; poles = characteristic roots | §8 |
-| 30–37 min | Pendulum, two linearizations, and the $s$-plane | §9–§10 |
-| 37–52 min | Two-mass system: poles, zeros, zero dynamics, moving the sensor | §11–§17 |
-| 52–65 min | Laplace transform, worked thermal step response, and summary | §18–§23 |
+| 30–37 min | Pendulum, two linearizations, and the $s$-plane | §§9–10 |
+| 37–52 min | Two-mass system: poles, zeros, zero dynamics, moving the sensor | §§11–17 |
+| 52–65 min | Laplace transform, worked thermal step response, and summary | §§18–23 |
 
-Prepare the §7.4 numerical table and §12–§13 cofactor algebra as slides/handouts. In the final block, explain the $0^-$ convention briefly, show the inversion formula without evaluating a contour, and use §21 as a comparison slide rather than another board derivation. Read the closing script over the §22 summary. For students new to ODEs or complex numbers, allow another session rather than compressing these introductions.
+Prepare the §7.4 numerical table and §§12–13 cofactor algebra as slides/handouts. In the final block, explain the $0^-$ convention briefly, show the inversion formula without evaluating a contour, and use §21 as a comparison slide rather than another board derivation. Read the closing script over the §22 summary. For students new to ODEs or complex numbers, allow another session rather than compressing these introductions.
 
 ### Part II — optional second lecture (45 minutes)
 
 | Time | Topic | Section |
 |---:|---|---|
 | 0–8 min | Ball-and-beam: underactuation and internal coordinates | §24 |
-| 8–16 min | Flexible structures, noncollocation, hard-disk drives | §25–§26 |
+| 8–16 min | Flexible structures, noncollocation, hard-disk drives | §§25–26 |
 | 16–26 min | A stable nonminimum-phase rigid body | §27 |
-| 26–36 min | Quadrotor with and without a sensor offset | §28–§30 |
-| 36–45 min | Zero dynamics in general; why RHP zeros limit control | §31–§34 |
+| 26–36 min | Quadrotor with and without a sensor offset | §§28–30 |
+| 36–45 min | Zero dynamics in general; why RHP zeros limit control | §§31–34 |
 
 ### Runnable demonstrations
 
@@ -159,9 +159,9 @@ see §39 for the full index.
 
 The 65-minute route already assumes prepared cofactor algebra, so do not count that preparation again as a saving. For a hard 55-minute slot, use the shorter route below and allow the remaining time for questions. If retaining the two-mass sequence in the first session is essential, plan the longer slot or assign part of the derivation as prior work; the full sequence should not depend on students having no questions.
 
-Protect §18–§20, including the worked thermal step response. The Laplace transform is the title of the lecture.
+Protect §§18–20, including the worked thermal step response. The Laplace transform is the title of the lecture.
 
-For a first encounter with Laplace transforms, an alternative is §4–§10 followed by §18–§23 — thermal, spring-mass-damper, complex $s$, pendulum, and Laplace — with the two-mass sequence starting the next session. Budget about 50 minutes for that route. The remaining enrichment then needs additional time or selected examples; moving the two-mass material does not make it disappear from the course. The default sequence below retains all three protected moments in Part I.
+For a first encounter with Laplace transforms, an alternative is §§4–10 followed by §§18–23 — thermal, spring-mass-damper, complex $s$, pendulum, and Laplace — with the two-mass sequence starting the next session. Budget about 50 minutes for that route. The remaining enrichment then needs additional time or selected examples; moving the two-mass material does not make it disappear from the course. The default sequence below retains all three protected moments in Part I.
 
 ---
 
@@ -293,7 +293,7 @@ C\dot x+\frac1R x=0
 }
 $$
 
-### 5.2 The free response
+### 5.2 The free response {#section-5-2}
 
 #### Instructor script
 
@@ -393,7 +393,7 @@ $$
 
 Expected reasoning: $\tau=RC$ increases, so $|s|=1/(RC)$ decreases, the pole moves *toward the origin*, and the response becomes slower. Keep that phrase — "toward the origin" — because §10 will turn it into a picture.
 
-### 5.4 Adding an input: the first transfer function
+### 5.4 Adding an input: the first transfer function {#section-5-4}
 
 So far the body has just been left alone. Now let a heater supply $q_{\text{in}}(t)$:
 
@@ -627,7 +627,7 @@ a sum of two decaying exponentials. No oscillation occurs.
 
 That one-line sign argument is worth the board space: it is the first time students see stability read off the *coefficients* rather than the roots, which is the seed of Routh-style reasoning later.
 
-### 7.2 Critically damped: $c^2=4mk$
+### 7.2 Critically damped: $c^2=4mk$ {#section-7-2}
 
 There is a repeated root
 
@@ -664,7 +664,7 @@ Here $\sigma=0$: neither growth nor decay, just sustained oscillation at the nat
 
 This oscillatory case returns as a zero in the undamped antiresonance (§15) and for the above-CM quadrotor output (§29). The quadrotor's repeated poles at the origin are different: they can produce polynomial motion (§10).
 
-### 7.4 Underdamped: $0<c<2\sqrt{mk}$
+### 7.4 Underdamped: $0<c<2\sqrt{mk}$ {#section-7-4}
 
 The roots are a complex-conjugate pair. Here $c^2-4mk<0$, so write $\sqrt{c^2-4mk}=j\sqrt{4mk-c^2}$ in the quadratic formula and split it into its real and imaginary parts:
 
@@ -761,7 +761,7 @@ $$
 }
 $$
 
-### 7.5 Getting a real answer back
+### 7.5 Getting a real answer back {#section-7-5}
 
 This is the question every student asks and most lectures skip:
 
@@ -838,9 +838,9 @@ since $2\Re\{|A_1|e^{j\psi}e^{j\omega_dt}\}=2|A_1|\cos(\omega_dt+\psi)$. Problem
 
 ---
 
-## 8. Forcing the spring-mass-damper: the transfer function
+## 8. Forcing the spring-mass-damper: the transfer function {#section-8}
 
-§6–§7 described free motion: set the force to zero and solve for the natural rates $s_1,s_2$. Now repeat the forced-response calculation of §5.4: choose an input rate $s$ and solve for the response amplitude.
+§§6–7 described free motion: set the force to zero and solve for the natural rates $s_1,s_2$. Now repeat the forced-response calculation of §5.4: choose an input rate $s$ and solve for the response amplitude.
 
 Include an external force:
 
@@ -917,7 +917,7 @@ $$
 }
 $$
 
-**Scope of the pole interpretation.** In these one-coordinate models, every natural rate appears as a transfer-function pole. For a general state model, a mode must be both excitable by the input and visible at the output to appear in the reduced transfer function. Common factors can cancel; §16–§17 returns to this point.
+**Scope of the pole interpretation.** In these one-coordinate models, every natural rate appears as a transfer-function pole. For a general state model, a mode must be both excitable by the input and visible at the output to appear in the reduced transfer function. Common factors can cancel; §§16–17 returns to this point.
 
 **3. A note on notation, so nothing surprises them later.** Here $X$ and $F$ are complex *amplitudes* — numbers. In §18 we will define $X(s)$ and $F(s)$ as Laplace *transforms* — functions. For zero initial conditions these give the identical ratio, which is why the same symbol $G(s)$ serves both. Say this once, now, and the transition in §20 will be uneventful.
 
@@ -1040,7 +1040,7 @@ That is a mode that grows on its own. The pendulum falls over.
 
 ---
 
-## 10. The $s$-plane
+## 10. The $s$-plane {#section-10}
 
 Everything so far has been sign conditions in prose. Draw the picture once and they become locations.
 
@@ -1252,7 +1252,7 @@ m_2s^2+c_2s+k_2
 }
 $$
 
-$D(s)$ is a fourth-degree polynomial for the four-state model. Its roots are the natural rates at which the plant can move with $u=0$. They are also poles of an input-output transfer function when no common numerator factor cancels them. We assume no such cancellation in the examples below; moving a sensor never changes the internal dynamics, but it can change which modes remain visible (§16–§17).
+$D(s)$ is a fourth-degree polynomial for the four-state model. Its roots are the natural rates at which the plant can move with $u=0$. They are also poles of an input-output transfer function when no common numerator factor cancels them. We assume no such cancellation in the examples below; moving a sensor never changes the internal dynamics, but it can change which modes remain visible (§§16–17).
 
 ---
 
@@ -1293,7 +1293,7 @@ This numerator has a beautiful mechanical interpretation, which is the whole poi
 
 ---
 
-## 14. Zero dynamics from the collocated two-mass system
+## 14. Zero dynamics from the collocated two-mass system {#section-14}
 
 Suppose the measured output is
 
@@ -1518,7 +1518,7 @@ This distinction becomes extremely important in control, and Part II is essentia
 
 ---
 
-## 17. Poles and zeros: definitions
+## 17. Poles and zeros: definitions {#section-17}
 
 Suppose
 
@@ -1594,7 +1594,7 @@ That extra phase lag is one way to see the feedback difficulty. §34 states the 
 
 ---
 
-## 18. Transition to the Laplace transform
+## 18. Transition to the Laplace transform {#section-18}
 
 At this point, return to the observation that has appeared in every single derivation:
 
@@ -1659,7 +1659,7 @@ The same $s$ that described physical exponential modes is now the coordinate of 
 
 ---
 
-## 19. Derivative property of the Laplace transform
+## 19. Derivative property of the Laplace transform {#section-19}
 
 Starting from
 
@@ -1833,7 +1833,7 @@ $$
 >
 > That is not a coincidence. It is the whole point.
 
-### 20.1 A complete payoff: switch on the heater
+### 20.1 A complete payoff: switch on the heater {#section-20-1}
 
 Return to $C\dot x+x/R=q_{\mathrm{in}}$ with $x(0^-)=0$ and $\tau=RC$. Switch the heater from zero to a constant $q_0$ at $t=0$. Unlike the earlier test exponential, this input has a switch-on time, and we want the complete response from rest.
 
@@ -2603,7 +2603,7 @@ For positive $c_x$ and nonzero $A,B,C$, all three coefficients share a sign exac
 
 ---
 
-## 28. Quadrotor: underactuation does not require a RHP zero
+## 28. Quadrotor: underactuation does not require a RHP zero {#section-28}
 
 A planar quadrotor near hover provides a useful comparison — and a counterexample that stops a very common overgeneralization.
 
@@ -2873,7 +2873,7 @@ This explains the initial inverse response. Increasing feedback gain without acc
 
 ---
 
-## 31. Zero dynamics in general
+## 31. Zero dynamics in general {#section-31}
 
 The transfer-function definition of §17 is algebraically convenient, but the physical interpretation is more revealing and generalizes to nonlinear systems.
 
@@ -2990,7 +2990,7 @@ The upright pendulum of §9.2 supplies the other distinction: it has an unstable
 
 ---
 
-## 34. Why RHP zeros matter in control
+## 34. Why RHP zeros matter in control {#section-34}
 
 A RHP zero places **fundamental** limitations on achievable closed-loop behavior — limitations no controller can design around, because they follow from the plant structure rather than from any particular design.
 
@@ -3118,7 +3118,7 @@ These work well as pauses during the lecture.
 3. Why does a larger thermal resistance slow the system?
 4. The transfer function $R/(\tau s+1)$ blows up at $s=-1/\tau$. What is physically happening at that value of $s$?
 
-### Spring-mass-damper (§6–§8)
+### Spring-mass-damper (§§6–8)
 
 1. What determines whether the roots are real or complex?
 2. What does the real part of $s$ do? The imaginary part?
@@ -3127,14 +3127,14 @@ These work well as pauses during the lecture.
 5. We found $G(s)=1/(ms^2+cs+k)$ by assuming a *particular* solution. What happened to the free modes?
 6. Why is the denominator of $G(s)$ the same polynomial as the characteristic equation? (Answer it with the "no input" argument, not by inspection.)
 
-### Pendulum and the $s$-plane (§9–§10)
+### Pendulum and the $s$-plane (§§9–10)
 
 1. Why does the same pendulum have different linear models around downward and upright equilibria?
 2. What changed sign, and why does that sign change cause instability?
 3. Locate both pendulum models' poles on the $s$-plane. What physically happened between the two pictures?
 4. What kind of motion corresponds to a pole exactly at the origin?
 
-### Two-mass system (§11–§16)
+### Two-mass system (§§11–16)
 
 1. If $x_1=0$, must $x_2=0$?
 2. Can internal energy exist when the measured output is zero?
@@ -3142,7 +3142,7 @@ These work well as pauses during the lecture.
 4. Why did moving the sensor change the zeros but not the poles?
 5. The collocated numerator turned out to be the pinned-$m_2$ characteristic polynomial. Would you expect that pattern to generalize?
 
-### Laplace transform (§18–§21)
+### Laplace transform (§§18–21)
 
 1. Why do exponentials make differential equations easy?
 2. What is the precise difference between $\dot x\leftrightarrow sx$ and $\mathcal L\{\dot x\}=sX-x(0^-)$?
@@ -3285,7 +3285,7 @@ A quadrotor carries a camera $h=0.35\ \text{m}$ below its center of mass and mus
     $z>0$ is a point on the positive real axis; frequency response lives on $s=j\omega$. $S(z)=1$ is an analytic interpolation constraint, not a statement about the response at $\omega=z$ (§34).
 
 15. **Use a consistent unilateral-transform convention.**
-    The $0^-$ convention includes an impulse at switching and the state just before it. For ordinary continuous signals, writing 0 as the integration limit is harmless; jumps and impulses require the convention to be explicit (§18–§19).
+    The $0^-$ convention includes an impulse at switching and the state just before it. For ordinary continuous signals, writing 0 as the integration limit is harmless; jumps and impulses require the convention to be explicit (§§18–19).
 
 16. **Do not equate "same side of the center of mass" with collocation.**
     Collocation is the special case $b=-a$. The favorable sign structure covers a larger set than collocation does (§27).
@@ -3356,16 +3356,16 @@ The scripts retain their original narration; when presenting them, use the corre
 
 ---
 
-## 40. Revision notes — version 0.0.8
+## 40. Revision notes
 
 This version preserves the lecture's Parts I–III and the main worked examples. The earlier revision history remains in the unchanged `lecture_0.0.7.md`. Changes here incorporate the mathematical reviews and rebuttal:
 
-- **§4–§8: rate notation.** Use $s$ consistently; free motion solves for it, while forcing chooses it. Amplitude ratios precede transform notation.
+- **§§4–8: rate notation.** Use $s$ consistently; free motion solves for it, while forcing chooses it. Amplitude ratios precede transform notation.
 - **§7, §10, §31: stability.** Restrict the constant-radius locus to the range through critical damping; distinguish exponential growth, nondecaying axis modes, and possible polynomial growth.
-- **§12–§17, §32: poles and zeros.** State the cancellation/minimality assumptions where needed. Keep natural rates, visible transfer poles, and zero-dynamics rates distinct.
-- **§17, §25, §28–§29: terminology and collocation.** Announce the minimum-phase convention, use the DC-normalized all-pass factor, label the CM channel “no finite zeros,” and specify the assumptions behind interlacing and passive velocity feedback.
-- **§18–§20: Laplace payoff.** State a sufficient exponential-order condition, identify the inversion line, distinguish zero-state/zero-input from particular/homogeneous responses, and add a complete switched-heater calculation.
+- **§§12–17, §32: poles and zeros.** State the cancellation/minimality assumptions where needed. Keep natural rates, visible transfer poles, and zero-dynamics rates distinct.
+- **§17, §25, §§28–29: terminology and collocation.** Announce the minimum-phase convention, use the DC-normalized all-pass factor, label the CM channel “no finite zeros,” and specify the assumptions behind interlacing and passive velocity feedback.
+- **§§18–20: Laplace payoff.** State a sufficient exponential-order condition, identify the inversion line, distinguish zero-state/zero-input from particular/homogeneous responses, and add a complete switched-heater calculation.
 - **§27, §33, Problem 8, §38: RHP-zero condition.** The interval condition characterizes opposite-sign real numerator roots. It is sufficient, not necessary, for a RHP zero. Damping immunity is restricted to $AC<0$; the reference table and homework show how damping changes half planes when $AC>0$.
-- **§27, §29–§30: inverse response.** Use acceleration and static gains for the parallel platform paths, and relative degree for the quadrotor cascade. Handle numerator degree reductions explicitly.
+- **§27, §§29–30: inverse response.** Use acceleration and static gains for the parallel platform paths, and relative degree for the quadrotor cascade. Handle numerator degree reductions explicitly.
 - **Demo cues and §39.** Correct the damped-notch and decaying-amplitude descriptions; identify the quadrotor simulations as linear-model responses with local physical validity.
 - **Planning and materials.** Reserve time for the thermal step response, use prepared algebra/comparison slides, and align questions, cautions, and summaries with the corrected statements.

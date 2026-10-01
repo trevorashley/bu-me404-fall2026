@@ -1,7 +1,7 @@
 # Addendum A to *From Physical Models to the Laplace Transform*
 ## Signals Built from Exponentials: Fourier Series, Periodic Forcing, and the Road to $e^{-\sigma t}$
 
-**Attaches to:** `lecture_0.0.8.md`, between §17 and §18. It uses the forced spring-mass-damper and $G(s)$ of §8, the conjugate-pair argument of §7.5, and the switched-heater pair $\mathcal L\{1\}=1/s$ of §20.1.
+**Attaches to:** [Modeling and dynamics §17](modeling-and-dynamics_instructor.md#section-17) and [Modeling and dynamics §18](modeling-and-dynamics_instructor.md#section-18) (insert this addendum between them). It uses the forced spring-mass-damper and $G(s)$ of [Modeling and dynamics §8](modeling-and-dynamics_instructor.md#section-8), the conjugate-pair argument of [Modeling and dynamics §7.5](modeling-and-dynamics_instructor.md#section-7-5), and the switched-heater pair $\mathcal L\{1\}=1/s$ of [Modeling and dynamics §20.1](modeling-and-dynamics_instructor.md#section-20-1).
 
 **Syllabus:** topics 2a–2b, and the opening of topic 7, in `references/syllabus-topics.md`.
 
@@ -141,7 +141,7 @@ x_p(t)=A\,|G(j\omega)|\cos\!\big(\omega t+\angle G(j\omega)\big)
 }
 $$
 
-The same holds with $\sin$ in place of $\cos$. This is the "one free sentence" at the end of §8, now derived. Magnitude is the amplitude ratio, angle is the phase shift.
+The same holds with $\sin$ in place of $\cos$. This is the "one free sentence" at the end of [Modeling and dynamics §8](modeling-and-dynamics_instructor.md#section-8), now derived. Magnitude is the amplitude ratio, angle is the phase shift.
 
 ### Instructor script
 
@@ -563,14 +563,14 @@ The ramp is Problem A5. For the exponential, $\int_0^\infty e^{2t}e^{-st}\,dt=\i
 
 ## A.10 Two ways to take a signal apart
 
-Close with a board that the next lecture (`lecture_ch3_L1`) will complete:
+Close with a board that the next lecture ([Convolution and transfer functions](convolution-impulse-response_instructor.md)) will complete:
 
 | | Build from impulses | Build from exponentials |
 |---|---|---|
 | Building block | a shifted impulse $\delta(t-\tau)$ | an exponential $e^{st}$ |
 | What the system returns | $h(t-\tau)$, a different shape | $G(s)e^{st}$ as a particular response, away from poles |
 | How the pieces combine | convolution, an integral over time | multiplication by $G(s)$, one frequency at a time |
-| Where it appears | L1 §4–§5 | this addendum and §18–§20 |
+| Where it appears | [Convolution and transfer functions §§4–5](convolution-impulse-response_instructor.md#section-4) | this addendum and [Modeling and dynamics §§18–20](modeling-and-dynamics_instructor.md#section-18) |
 
 Both describe the same LTI system, with the convergence conditions of §A.9.4 when using inverse integrals. The exponential entry is a particular response: switching an exponential on at zero generally also produces natural-mode transients, even from rest. Convolution with $h$ gives the complete zero-state response; nonzero initial conditions add a zero-input response. Scaling exponentials is what makes the transform algebra simple.
 

@@ -5,9 +5,7 @@
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §4.3.6 (Ziegler–Nichols tuning), §4.4 (feedforward by plant model inversion), §4.5 (a pointer only) and §9.3.1 (integrator antiwindup, Example 9.9). Worked examples and figure numbers are the book's. The treatment of the filtered derivative and setpoint weighting follows Åström & Murray, *Feedback Systems*, 2nd ed., §§11.3–11.5 (AM). Additions of my own are marked **[beyond the book]**.
 
-**Prerequisites:** [L1 Feedback properties](feedback-properties_instructor.md), [L2 PID control](pid-control_instructor.md) and [L3 System type](system-type_instructor.md) of this series. Routh's criterion and the imaginary-axis crossing are in [Stability and Routh's criterion](stability_instructor.md), cited as *(Ch3-L4 §n)*.
-
-**Earlier-lecture shorthand:** "L2 §n" means section n of `pid-control_instructor.md`; "Ch3-L4 §n" means section n of `stability_instructor.md`.
+**Prerequisites:** [Feedback properties](feedback-properties_instructor.md), [PID control](pid-control_instructor.md) and [System type](system-type_instructor.md) of this series. Routh's criterion and the imaginary-axis crossing are in [Stability and Routh's criterion](stability_instructor.md).
 
 **Duration:** 75 minutes.
 
@@ -41,7 +39,7 @@ Chapter 4 page cues use the PDF viewer's 1-based page numbers (120 pages). Chapt
 
 ## 1. Teaching strategy
 
-L2 produced the three terms of the PID. This lecture turns that formula into a controller a technician could commission on a real machine. Three questions organise it:
+[PID control](pid-control_instructor.md) produced the three terms of the PID. This lecture turns that formula into a controller a technician could commission on a real machine. Three questions organise it:
 
 | Question | Answer in this lecture | Book |
 |---|---|---|
@@ -49,7 +47,7 @@ L2 produced the three terms of the PID. This lecture turns that formula into a c
 | **What does the formula leave out?** | The derivative needs a filter and should not act on the reference; the integrator must stop charging when the actuator saturates | Fig. 4.10, §9.3.1, **[AM 11.3–11.5]** |
 | **Can the reference do some of the work?** | Yes: feed forward the effort the model says is needed, and let feedback correct the rest | §4.4 |
 
-The unifying idea is that **the loop is not the whole controller.** Tuning sets the feedback path. Derivative placement, setpoint weighting and feedforward change only how the reference enters. Anti-windup changes only what happens when the linear model stops being true. Students leave L2 believing a PID is the formula $k_P+k_I/s+k_Ds$. They should leave this lecture knowing that four controllers with that formula can respond to a setpoint step very differently.
+The unifying idea is that **the loop is not the whole controller.** Tuning sets the feedback path. Derivative placement, setpoint weighting and feedforward change only how the reference enters. Anti-windup changes only what happens when the linear model stops being true. Students leave [PID control](pid-control_instructor.md) believing a PID is the formula $k_P+k_I/s+k_Ds$. They should leave this lecture knowing that four controllers with that formula can respond to a setpoint step very differently.
 
 The framing line:
 
@@ -177,7 +175,7 @@ with $k_I=k_P/T_I$ and $k_D=k_PT_D$. Table 4.2 (tuning for a decay ratio of 0.25
 
 **Source note [beyond the book]:** the body of Table 4.2 is missing from the supplied PDF (p. 61 prints only the caption). The entries above are Ziegler and Nichols' published values. The P and PI rows are confirmed by the book's own arithmetic in Example 4.9.
 
-Two patterns to point out. Adding integral action *lowers* $k_P$ (from 1 to 0.9), because the integrator adds phase lag and costs stability margin. Adding derivative action *raises* it (to 1.2), because the derivative adds phase lead and buys margin back. That is the qualitative story of L2, now with numbers attached.
+Two patterns to point out. Adding integral action *lowers* $k_P$ (from 1 to 0.9), because the integrator adds phase lag and costs stability margin. Adding derivative action *raises* it (to 1.2), because the derivative adds phase lead and buys margin back. That is the qualitative story of [PID control](pid-control_instructor.md), now with numbers attached.
 
 ### 5.4 Quarter decay, and what it means
 
@@ -194,7 +192,7 @@ The rules were chosen so that the closed-loop transient decays to a quarter of i
 >
 > Take logs: $2\pi\zeta/\sqrt{1-\zeta^2}=\ln4$, so $\zeta/\sqrt{1-\zeta^2}=\ln4/(2\pi)=0.2206$. Squaring and solving gives $\zeta=0.2206/\sqrt{1+0.2206^2}=0.2155$ ✓.
 >
-> Now the overshoot. From L3 of Chapter 3, $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$. The exponent is **exactly half** of the one above, so
+> Now the overshoot. From [Time-domain specifications](time-domain-specs_instructor.md), $M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$. The exponent is **exactly half** of the one above, so
 >
 > $$
 > \boxed{M_p=\sqrt{1/4}=\tfrac12}
@@ -231,7 +229,7 @@ $$
 
 Read the figure with the class:
 
-- **P leaves an offset.** The plant is Type 0 with $G(0)=1$, so the closed-loop final value is $k_P/(1+k_P)=6.92/7.92=0.874$, an error of $1/(1+k_P)=0.126$. That is L3's error constant $K_p=k_P$ at work.
+- **P leaves an offset.** The plant is Type 0 with $G(0)=1$, so the closed-loop final value is $k_P/(1+k_P)=6.92/7.92=0.874$, an error of $1/(1+k_P)=0.126$. That is the error constant $K_p=k_P$ from [Steady-state error and system type](system-type_instructor.md) at work.
 - **PI removes it**, as the integrator must (Type 1), at the cost of a larger overshoot.
 - **Both are oscillatory.** That is the quarter-decay target, as promised in §5.4.
 - **Halving $k_P$** (Fig. 4.24b) nearly removes the oscillation and makes the P offset larger: $3.46/4.46=0.776$.
@@ -260,7 +258,7 @@ Read the figure with the class:
 
 Turn off the integral and derivative terms. Raise $k_P$ until the loop just sustains an oscillation. Record the gain, $K_u$ (the **ultimate gain**), and the period of the oscillation, $P_u$ (the **ultimate period**). The book adds that $P_u$ should be measured at the smallest amplitude possible, because at large amplitude the actuator saturates and the loop is no longer linear.
 
-**[beyond the book]** **When the experiment works.** It needs a finite positive gain at which a complex pair of closed-loop poles reaches the imaginary axis. Not every plant has one. L2's model $G=1/(s^2+1.4s+1)$ gives $s^2+1.4s+1+k_P$, which is stable for every $k_P>0$, so it has no $K_u$ or $P_u$ and Table 4.3 cannot be applied to it. A boundary crossed at $\omega=0$ (a real pole through the origin) gives no finite period either. Many process plants, with delay or multiple lags, do have the required phase crossing, which is why the method suits them. For example, a positive-gain cascade of three or more stable first-order lags without zeros always has a finite $K_u$. Counting lags alone is not a test, though: left-half-plane zeros add phase lead, and $G=(s+0.1)^2/(s+1)^3$ has three lags but is stable for every $k_P>0$ (its Routh condition is $8+3.59k_P+0.2k_P^2>0$). Ask the class before revealing it.
+**[beyond the book]** **When the experiment works.** It needs a finite positive gain at which a complex pair of closed-loop poles reaches the imaginary axis. Not every plant has one. The model in [PID control](pid-control_instructor.md), $G=1/(s^2+1.4s+1)$, gives $s^2+1.4s+1+k_P$, which is stable for every $k_P>0$, so it has no $K_u$ or $P_u$ and Table 4.3 cannot be applied to it. A boundary crossed at $\omega=0$ (a real pole through the origin) gives no finite period either. Many process plants, with delay or multiple lags, do have the required phase crossing, which is why the method suits them. For example, a positive-gain cascade of three or more stable first-order lags without zeros always has a finite $K_u$. Counting lags alone is not a test, though: left-half-plane zeros add phase lead, and $G=(s+0.1)^2/(s+1)^3$ has three lags but is stable for every $k_P>0$ (its Routh condition is $8+3.59k_P+0.2k_P^2>0$). Ask the class before revealing it.
 
 When it applies, use Table 4.3:
 
@@ -303,7 +301,7 @@ The responses resemble Example 4.9's, and again halving $k_P$ tames them (Fig. 4
 
 ### 7.3 The same experiment, done by Routh [beyond the book]
 
-This is the payoff from Chapter 3. For a plant without delay, the ultimate gain is the boundary of Routh's stable range, and the ultimate period comes from the auxiliary polynomial *(Ch3-L4 §10)*. Routh does not always return one: for L2's $1/(s^2+1.4s+1)$ every first-column entry stays positive for all $k_P>0$, which *proves* there is no ultimate gain. On the board, for $G(s)=1/(s+1)^3$ with $D_c=K$:
+This is the payoff from Chapter 3. For a plant without delay, the ultimate gain is the boundary of Routh's stable range, and the ultimate period comes from the auxiliary polynomial *([Stability and Routh’s criterion §10](stability_instructor.md#section-10))*. Routh does not always return one: for the plant in [PID control](pid-control_instructor.md), $1/(s^2+1.4s+1)$, every first-column entry stays positive for all $k_P>0$, which *proves* there is no ultimate gain. On the board, for $G(s)=1/(s+1)^3$ with $D_c=K$:
 
 $$
 1+\frac{K}{(s+1)^3}=0
@@ -357,7 +355,7 @@ The book lists successors (Cohen–Coon, Chien–Hrones–Reswick, Åström–H�
 
 ### 9.1 Derivative kick
 
-The ideal derivative $k_Ds$ applied to the error differentiates the reference. A unit step in $r$ puts an impulse $k_D\delta(t)$ into $u$. No actuator can deliver that. What actually happens is that the amplifier saturates for a moment and the mechanism takes a jolt, which is why the effect is called **derivative kick**. L2 noted that $k_Ds$ is also improper: it has more zeros than poles, so its gain grows without bound at high frequency and it amplifies sensor noise.
+The ideal derivative $k_Ds$ applied to the error differentiates the reference. A unit step in $r$ puts an impulse $k_D\delta(t)$ into $u$. No actuator can deliver that. What actually happens is that the amplifier saturates for a moment and the mechanism takes a jolt, which is why the effect is called **derivative kick**. [PID control](pid-control_instructor.md) noted that $k_Ds$ is also improper: it has more zeros than poles, so its gain grows without bound at high frequency and it amplifies sensor noise.
 
 The book's remedy is on PDF p. 44: move the derivative into the feedback path.
 
@@ -429,7 +427,7 @@ The integral term must always see the true error $r-y$; otherwise the steady sta
 
 #### Say out loud
 
-> Moving the derivative removed the kick, and the overshoot got *worse*. That is not a contradiction. With the filter cleared ($T_f=1/30$), the reference numerator changed from $(k_D+k_PT_f)s^2+(k_P+k_IT_f)s+k_I=2.2s^2+6.2s+6$, with zeros at $-1.41\pm0.86j$, to $(k_Ps+k_I)(1+sT_f)$, with a slow real zero at $-k_I/k_P=-1$ (and the fast one at $-30$). That zero is slow and close to the dominant poles, and a slow LHP zero adds overshoot, exactly as in [L3 of Chapter 3](time-domain-specs_instructor.md). Take the proportional path away as well and the zero goes too: almost no overshoot, but a rise nearly three times slower.
+> Moving the derivative removed the kick, and the overshoot got *worse*. That is not a contradiction. With the filter cleared ($T_f=1/30$), the reference numerator changed from $(k_D+k_PT_f)s^2+(k_P+k_IT_f)s+k_I=2.2s^2+6.2s+6$, with zeros at $-1.41\pm0.86j$, to $(k_Ps+k_I)(1+sT_f)$, with a slow real zero at $-k_I/k_P=-1$ (and the fast one at $-30$). That zero is slow and close to the dominant poles, and a slow LHP zero adds overshoot, exactly as in [Time-domain specifications](time-domain-specs_instructor.md). Take the proportional path away as well and the zero goes too: almost no overshoot, but a rise nearly three times slower.
 >
 > The feedback loop is the same in all three. If a disturbance hits, all three respond identically. **The reference path is a separate design decision.** That is what "two degrees of freedom" means.
 
@@ -437,7 +435,7 @@ The integral term must always see the true error $r-y$; otherwise the steady sta
 
 ## 10. Integrator windup and antiwindup (§9.3.1)
 
-This material sits in Chapter 9 (nonlinear systems) of the book, but it belongs with PID: the syllabus lists it here, and L2 promised it.
+This material sits in Chapter 9 (nonlinear systems) of the book, but it belongs with PID: the syllabus lists it here, and [PID control](pid-control_instructor.md) promised it.
 
 ### 10.1 What goes wrong
 
@@ -541,14 +539,14 @@ The integrator's pole at the origin has moved to $-K_ak_I$. For Example 9.9 that
 
 ### 11.1 The idea
 
-Integral action removes steady error but, as L2 showed, it costs damping. There is a cheaper way to handle a *known* input. If we know the reference, we can compute the effort needed to hold the output there and apply it directly, leaving feedback only the job of correcting the difference between the model and the plant. The simplest version inverts only the plant's DC gain:
+Integral action removes steady error but, as [PID control](pid-control_instructor.md) showed, it costs damping. There is a cheaper way to handle a *known* input. If we know the reference, we can compute the effort needed to hold the output there and apply it directly, leaving feedback only the job of correcting the difference between the model and the plant. The simplest version inverts only the plant's DC gain:
 
 ![Fig. 4.27(a) — Feedforward for tracking](./book-figures/4-27a.png)
 ![Fig. 4.27(b) — Feedforward for disturbance rejection](./book-figures/4-27b.png)
 > **[ FIG 4.27 ]** — PDF pp. 72–73
 
 - **Tracking (a):** $U=D_cE+G^{-1}(0)R$.
-- **Disturbance rejection (b):** here $W$ is an **output disturbance**, added after the plant; say so at once, since L1–L3 put $W$ at the plant input. If it is *measured*, $U=D_cE-G^{-1}(0)W$. For an input disturbance, direct cancellation is simply $U=D_cE-W$, with no $G^{-1}(0)$.
+- **Disturbance rejection (b):** here $W$ is an **output disturbance**, added after the plant; say so at once, since [Feedback properties](feedback-properties_instructor.md), [PID control](pid-control_instructor.md), and [Steady-state error and system type](system-type_instructor.md) put $W$ at the plant input. If it is *measured*, $U=D_cE-G^{-1}(0)W$. For an input disturbance, direct cancellation is simply $U=D_cE-W$, with no $G^{-1}(0)$.
 
 ### 11.2 Example 4.11
 
@@ -580,7 +578,7 @@ $$
 
 > **Teaching check [beyond the book]:** $k_P=1.5$: $\omega_n=\sqrt{2.5}=1.581$, $\zeta=1.4/(2\times1.581)=0.443$, $M_p=e^{-\pi(0.443)/0.897}=21.2\%$. $k_P=6$: $\omega_n=\sqrt7=2.646$, $\zeta=0.265$, $M_p=42.2\%$. These are the peaks of 1.21 and 1.42 in Fig. 4.28. Here the numerator of $Y/R$ is a constant, so the standard formula applies exactly. The disturbance responses in Fig. 4.29 start at 1 (an output disturbance passes straight through) and undershoot to $-0.212$ and $-0.422$: the same two numbers, because $(s^2+1.4s)/\Delta=1-(1+k_P)/\Delta$.
 >
-> Without feedforward, the Type 0 loop leaves steady errors of $1/(1+k_P)$: 0.4 and 0.143 (L3).
+> Without feedforward, the Type 0 loop leaves steady errors of $1/(1+k_P)$: 0.4 and 0.143 ([Steady-state error and system type](system-type_instructor.md)).
 
 > **[ DEMO 5 ]** — `ch4/l4_demo5_feedforward.py` *(slide)*
 
@@ -596,7 +594,7 @@ $$
 
 > **Teaching check:** With a 20% model error, $G(0)=1.2$ and $\hat G(0)=1$. At $k_P=1.5$: $e_{ss}=(1-1.2)/(1+1.8)=-0.071$, against $+0.357$ for feedback alone. At $k_P=6$: $-0.024$ against $+0.122$.
 
-The feedforward removes most of the error, and feedback divides the remainder by $1+k_PG(0)$, which is $1/S(0)$ in L1's terms. Feedforward and feedback are partners: **feedforward does the work the model can predict; feedback cleans up what it cannot.** Integral action is what makes the residual exactly zero.
+The feedforward removes most of the error, and feedback divides the remainder by $1+k_PG(0)$, which is $1/S(0)$ in the notation of [Feedback properties](feedback-properties_instructor.md). Feedforward and feedback are partners: **feedforward does the work the model can predict; feedback cleans up what it cannot.** Integral action is what makes the residual exactly zero.
 
 ---
 
@@ -721,8 +719,8 @@ Thus every positive gain is stable and no finite $K_u$ exists, whereas $1/(s+1)^
 
 | Lecture | Book sections | Content |
 |---|---|---|
-| L1 | 4.1 | The basic equations of control; sensitivity; noise and the cost of feedback |
-| L2 | 4.3.1–4.3.5 | Proportional, integral and derivative actions |
-| L3 | 4.2 | Steady-state error, system type, error constants |
-| **This lecture (L4)** | **4.3.6, 4.4, 4.5, 9.3.1** | **Ziegler–Nichols tuning, realising the PID, antiwindup, feedforward** |
+| [Feedback properties](feedback-properties_instructor.md) | 4.1 | The basic equations of control; sensitivity; noise and the cost of feedback |
+| [PID control](pid-control_instructor.md) | 4.3.1–4.3.5 | Proportional, integral and derivative actions |
+| [Steady-state error and system type](system-type_instructor.md) | 4.2 | Steady-state error, system type, error constants |
+| **This lecture** | **4.3.6, 4.4, 4.5, 9.3.1** | **Ziegler–Nichols tuning, realising the PID, antiwindup, feedforward** |
 | Next | Chapter 5 | The root locus: seeing where the poles go as a gain varies |

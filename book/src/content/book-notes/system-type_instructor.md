@@ -5,9 +5,9 @@
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed., §4.2 (4.2.1 and 4.2.2, with the pointer to Truxal's formula). Worked examples and figure numbers are the book's. Additions of my own are marked **[beyond the book]**.
 
-**Prerequisites:** [L1: The Basic Equations of Control](feedback-properties_instructor.md) (§4.1: $S$, $\mathcal T$, Eq. (4.8)) and [L2: PID Control](pid-control_instructor.md) (§§4.3.1–4.3.5). From Chapter 3: the Final Value Theorem ([Ch. 3 L1 §11](convolution-impulse-response_instructor.md)) and Routh's criterion ([Ch. 3 L4 §§7–9](stability_instructor.md)).
+**Prerequisites:** [The Basic Equations of Control](feedback-properties_instructor.md) (§4.1: $S$, $\mathcal T$, Eq. (4.8)) and [PID Control](pid-control_instructor.md) (§§4.3.1–4.3.5). From Chapter 3: the Final Value Theorem ([Convolution and transfer functions §11](convolution-impulse-response_instructor.md#section-11)) and Routh's criterion ([Stability and Routh’s criterion §§7–9](stability_instructor.md#section-7)).
 
-**Course order:** this course teaches PID (FPE §4.3) *before* system type (FPE §4.2). This lecture therefore re-reads the L2 examples in the language of type rather than previewing them.
+**Course order:** this course teaches PID (FPE §4.3) *before* system type (FPE §4.2). This lecture therefore re-reads the [PID control](pid-control_instructor.md) examples in the language of type rather than previewing them.
 
 **Duration:** two 75-minute sessions ("System Type" and "System Type (cont.)"). The split is marked in §3.
 
@@ -26,7 +26,7 @@ Page cues below use the PDF viewer's 1-based page numbers (120 pages). Extracted
 | $G,\ D_c,\ H$ | plant, controller, sensor. The book writes $D_{cl}$ for the controller in §4.2.1 and $D_c$ from Eq. (4.39) on; they are the same block |
 | $R,\ W,\ V$ | reference, plant disturbance, sensor noise |
 | $E=R-Y$ | **system error**: reference minus output, *not* the signal entering the controller |
-| $S=\dfrac{1}{1+GD_c},\ \mathcal T=\dfrac{GD_c}{1+GD_c}$ | sensitivity and complementary sensitivity (L1) |
+| $S=\dfrac{1}{1+GD_c},\ \mathcal T=\dfrac{GD_c}{1+GD_c}$ | sensitivity and complementary sensitivity ([Feedback properties](feedback-properties_instructor.md)) |
 | $n$ | system type: the number of poles of the loop at $s=0$ (unity feedback), or more generally the degree read off Eq. (4.45) or (4.48) |
 | $k$ | degree of the polynomial input $r(t)=t^k/k!$ |
 | $K_n$ | $\lim_{s\to0}s^nGD_c(s)$; $K_p=K_0$, $K_v=K_1$, $K_a=K_2$ |
@@ -39,7 +39,7 @@ Page cues below use the PDF viewer's 1-based page numbers (120 pages). Extracted
 
 ## 1. Teaching strategy
 
-L2 showed, with pictures, that integral action removes the steady error to a step and to a constant disturbance. This lecture turns that observation into bookkeeping: **count the integrators, and you know the answer before you simulate.**
+[PID control](pid-control_instructor.md) showed, with pictures, that integral action removes the steady error to a step and to a constant disturbance. This lecture turns that observation into bookkeeping: **count the integrators, and you know the answer before you simulate.**
 
 The section is algebraically light. The Final Value Theorem does all the work, and the only new objects are an integer (the type) and one constant per type. What students get wrong is not the algebra. It is the *scope* of each statement:
 
@@ -72,7 +72,7 @@ By the end of the two sessions students should be able to:
 1. Explain why polynomial inputs (step, ramp, parabola) are the right test signals for steady-state accuracy, and name the "position, velocity, acceleration" convention.
 2. Derive the steady-state error of a stable unity-feedback loop to $t^k/k!$ from the Final Value Theorem, Eqs. (4.28)–(4.35).
 3. Define system type and the error constants $K_p$, $K_v$, $K_a$, and reproduce Table 4.1 from the single formula $e_{ss}=\lim_{s\to0}s^n/(s^n+K_n)\cdot1/s^k$.
-4. Determine type and error constant for the P and PI speed-control loops (Examples 4.1, 4.2) and for the P and I loops of L2.
+4. Determine type and error constant for the P and PI speed-control loops (Examples 4.1, 4.2) and for the P and I loops of [PID control](pid-control_instructor.md).
 5. Explain why type is robust to parameter changes in unity feedback while error constants are not.
 6. Compute steady-state error with sensor dynamics from $1-\mathcal T(s)$, Eqs. (4.39)–(4.45), and explain why $H(0)=1$ matters (Example 4.3).
 7. Classify a loop by type with respect to a disturbance, Eqs. (4.46)–(4.48), and identify which integrators count (Example 4.4).
@@ -91,7 +91,7 @@ By the end of the two sessions students should be able to:
 | 6–20 min | The error to $t^k/k!$ by the Final Value Theorem | §5 |
 | 20–40 min | Type, error constants, Table 4.1; Demo 1 live | §6 |
 | 40–52 min | Examples 4.1 and 4.2: speed control with P and PI | §7 |
-| 52–68 min | The L2 examples re-read; robustness of type; Demo 2 | §8 |
+| 52–68 min | The PID examples re-read; robustness of type; Demo 2 | §8 |
 | 68–75 min | Summary of session 1; what a sensor will break | §9 |
 
 ### Session 2 — System Type (cont.)
@@ -132,7 +132,7 @@ Use the demos for the protected examples; the accompanying checks also work on t
 
 ### Instructor script
 
-> In L1 we wrote the error of a feedback loop as a sum of three terms: reference, disturbance, noise. In L2 we watched integral action drive one of those terms to zero. Today we ask the question an engineer asks at a design review: *which signals will this loop follow with zero error, which with a fixed error, and which will it lose altogether?* And we want to answer it without running a simulation.
+> In [Feedback properties](feedback-properties_instructor.md) we wrote the error of a feedback loop as a sum of three terms: reference, disturbance, noise. In [PID control](pid-control_instructor.md) we watched integral action drive one of those terms to zero. Today we ask the question an engineer asks at a design review: *which signals will this loop follow with zero error, which with a fixed error, and which will it lose altogether?* And we want to answer it without running a simulation.
 >
 > The trick is to pick the right test signals. Real references are not steps. But over the time scale on which a loop responds, most of them look like a low-degree polynomial.
 
@@ -170,16 +170,16 @@ The $1/k!$ is there so that every transform is exactly $1/s^{k+1}$. The Laplace 
 
 ![Fig. 4.2 — Closed-loop system with reference, disturbance and noise](./book-figures/4-2.png)
 
-> **[ FIG 4.2 ]** — PDF p. 4 *(recall from L1)*
+> **[ FIG 4.2 ]** — PDF p. 4 *(recall from [Feedback properties](feedback-properties_instructor.md))*
 
-Set $W=V=0$ in L1's Eq. (4.8). What remains is
+Set $W=V=0$ in Eq. (4.8) in [Feedback properties](feedback-properties_instructor.md). What remains is
 
 $$
 E=\frac{1}{1+GD_c}R=SR .
 \tag{4.27}
 $$
 
-Apply the Final Value Theorem ([Ch. 3 L1 §11](convolution-impulse-response_instructor.md)) with $R=1/s^{k+1}$:
+Apply the Final Value Theorem ([Convolution and transfer functions §11](convolution-impulse-response_instructor.md#section-11)) with $R=1/s^{k+1}$:
 
 $$
 e_{ss}=\lim_{s\to0}sE(s)=\lim_{s\to0}s\,\frac{1}{1+GD_c}\,\frac{1}{s^{k+1}} .
@@ -306,7 +306,7 @@ A common student error is to say the constant error "holds the integrator's outp
 
 ## 7. Examples 4.1 and 4.2: speed control with P and PI
 
-The speed-control plant of §4.1 (L1) is first order,
+The speed-control plant of §4.1 ([Feedback properties](feedback-properties_instructor.md)) is first order,
 
 $$
 G(s)=\frac{A}{\tau s+1}.
@@ -348,11 +348,11 @@ The velocity constant depends on $k_I$ only, not on $k_P$. At $s=0$ the proporti
 
 ---
 
-## 8. The L2 examples, re-read — and the robustness of type
+## 8. The PID examples, re-read — and the robustness of type
 
 ### 8.1 Proportional control of the second-order plant
 
-In [L2](pid-control_instructor.md) we closed a proportional loop around FPE Eq. (4.58),
+In [PID control](pid-control_instructor.md) we closed a proportional loop around FPE Eq. (4.58),
 
 $$
 G(s)=\frac{A}{s^2+a_1s+a_2},\qquad a_1=1.4,\ a_2=1,\ A=1 ,
@@ -369,17 +369,17 @@ These are the two final values in Fig. 4.7.
 
 ![Fig. 4.7 — Steady-state tracking error under proportional control](./book-figures/4-7.png)
 
-> **[ FIG 4.7 ]** — PDF p. 38 *(recall from L2)*
+> **[ FIG 4.7 ]** — PDF p. 38 *(recall from [PID control](pid-control_instructor.md))*
 
 ### 8.2 Integral control of the same plant
 
-With $D_c=k_I/s$ and $k_I=0.5$ (Fig. 4.9 in L2), $GD_c=k_IG/s$ has one integrator: **Type 1**, with
+With $D_c=k_I/s$ and $k_I=0.5$ (Fig. 4.9 in [PID control](pid-control_instructor.md)), $GD_c=k_IG/s$ has one integrator: **Type 1**, with
 
 $$
 K_v=\lim_{s\to0}s\cdot\frac{k_I}{s}G(s)=k_IG(0)=0.5 .
 $$
 
-Zero step error, as L2's Eq. (4.66) found. The new information is the next column of the table: a unit ramp leaves an error $1/K_v=2$.
+Zero step error, as Eq. (4.66) in [PID control](pid-control_instructor.md) found. The new information is the next column of the table: a unit ramp leaves an error $1/K_v=2$.
 
 ### 8.3 Type is robust; error constants are not
 
@@ -395,7 +395,7 @@ Now let the plant gain $A$ drift. In Demo 2, $A\in\{0.5,\ 1,\ 2\}$ with $k_P=6$ 
 >
 > **Teaching check [beyond the book]:** The zero in the middle column survives every change of $A$, because it comes from the pole of $D_c$ at $s=0$, and changing $A$ cannot move that pole. The P-control error and the I-control ramp error both move with $A$, because they are set by an error constant, and every error constant is a product of loop gains. The I loop is not stable for every $A$: its characteristic polynomial is $s^3+1.4s^2+s+k_IA$, and Routh's $s^1$ entry $(1.4\cdot1-k_IA)/1.4$ requires $k_IA<1.4$, i.e. $A<2.8$. At $A=2$ the slowest pair has real part $-0.079$, and the step response rings for tens of seconds.
 
-![P and I control of the L2 plant as its gain A varies: the step error under I control stays zero, while the ramp error scales as 1/(k_I A)](demos/ch4/figures/l3_demo2_pid_type.svg)
+![P and I control of the plant from the PID-control lecture as its gain A varies: the step error under I control stays zero, while the ramp error scales as 1/(k_I A)](demos/ch4/figures/l3_demo2_pid_type.svg)
 
 This is what the book means on PDF p. 27:
 
@@ -438,7 +438,7 @@ Write the formula and the table on the board again; they are the only things nee
 
 ---
 
-## 11. A sensor in the loop (§4.2.1, Eqs. 4.39–4.45)
+## 11. A sensor in the loop (§4.2.1, Eqs. 4.39–4.45) {#section-11}
 
 ### 11.1 The system error is not the actuating error
 
@@ -510,7 +510,7 @@ The closed-loop characteristic polynomial is $s(\tau s+1)+k_P(1+k_ts)=\tau s^2+(
 | 0 | $s^2+s+10$ | 0.158 | 60.5% | 10 | 0.1 |
 | 0.2 | $s^2+3s+10$ | 0.474 | 18.4% | 3.33 | 0.3 |
 
-Here $\omega_n=\sqrt{10}=3.162$, and $\zeta=(1+k_tk_P)/(2\omega_n)$: $1/6.325=0.158$ and $3/6.325=0.474$. The transfer function $\mathcal T=10/(s^2+(1+10k_t)s+10)$ has no zero, because $H$ sits in the feedback path. So the standard overshoot formula from [Ch. 3 L3](time-domain-specs_instructor.md) applies exactly: $e^{-\pi\zeta/\sqrt{1-\zeta^2}}=0.605$ and $0.184$.
+Here $\omega_n=\sqrt{10}=3.162$, and $\zeta=(1+k_tk_P)/(2\omega_n)$: $1/6.325=0.158$ and $3/6.325=0.474$. The transfer function $\mathcal T=10/(s^2+(1+10k_t)s+10)$ has no zero, because $H$ sits in the feedback path. So the standard overshoot formula from [Time-domain specifications](time-domain-specs_instructor.md) applies exactly: $e^{-\pi\zeta/\sqrt{1-\zeta^2}}=0.605$ and $0.184$.
 
 > **[ DEMO 3 ]** — `ch4/l3_demo3_tachometer.py` *(slide)*
 >
@@ -607,7 +607,7 @@ $$
 
 and when $n_D\ge1$ the disturbance error constant is $K_{n,w}=-D_o(0)$, a property of the controller alone. The general statement: **only integrators between the error signal and the point where the disturbance enters count.** Integrators downstream of the disturbance see the disturbance as just another input to integrate.
 
-This is the answer to L1's exercise on PDF p. 14 ("if $w$ is a constant bias and $D_c$ has a pole at $s=0$, the error due to this bias will be zero; ... if $G$ has a pole at zero, the error due to this bias will not be zero"), and to Review Question 4.7.
+This is the answer to the exercise on PDF p. 14 discussed in [Feedback properties](feedback-properties_instructor.md) ("if $w$ is a constant bias and $D_c$ has a pole at $s=0$, the error due to this bias will be zero; ... if $G$ has a pole at zero, the error due to this bias will not be zero"), and to Review Question 4.7.
 
 ---
 
@@ -731,7 +731,7 @@ Here $p_i$ and $z_j$ are the **closed-loop** poles and zeros. Two consequences:
 
 > **[ DEMO 5 ]** — `ch4/l3_demo5_error_area.py` *(slide)*
 >
-> **Teaching check [beyond the book]:** Take the PI loop of Ch. 3 Example 3.34 at $K=10$, $K_I=5$ ([Ch. 3 L4 §9](stability_instructor.md)). Directly, $K_v=\lim_{s\to0}s\cdot\dfrac{10s+5}{s(s+1)(s+2)}=5/2=2.5$. By Truxal, the closed-loop denominator $s^3+3s^2+12s+5$ gives $\sum1/(-p_i)=12/5=2.4$, and the zero at $-0.5$ gives $1/0.5=2$. So $1/K_v=2.4-2.0=0.4$ and $K_v=2.5$ ✓. Individually, the slow pole at $-0.462$ contributes $2.166$, and it sits next to the zero. This near-cancelling pair barely shows in the step response, yet it carries $0.166$ of the $0.400$. For the Type 1 loop of Demo 1, $s^2+2s+4$ gives $2/4=0.5=1/K_v$ ✓. For the Type 2 loop, $s^3+5s^2+10s+10$ gives $10/10=1$ and the zero at $-1$ gives 1, so $1/K_v=0$ ✓. Its measured step-error area is $0.0000$, with a minimum error of $-0.375$: 37.5% overshoot.
+> **Teaching check [beyond the book]:** Take the PI loop of Ch. 3 Example 3.34 at $K=10$, $K_I=5$ ([Stability and Routh’s criterion §9](stability_instructor.md#section-9)). Directly, $K_v=\lim_{s\to0}s\cdot\dfrac{10s+5}{s(s+1)(s+2)}=5/2=2.5$. By Truxal, the closed-loop denominator $s^3+3s^2+12s+5$ gives $\sum1/(-p_i)=12/5=2.4$, and the zero at $-0.5$ gives $1/0.5=2$. So $1/K_v=2.4-2.0=0.4$ and $K_v=2.5$ ✓. Individually, the slow pole at $-0.462$ contributes $2.166$, and it sits next to the zero. This near-cancelling pair barely shows in the step response, yet it carries $0.166$ of the $0.400$. For the Type 1 loop of Demo 1, $s^2+2s+4$ gives $2/4=0.5=1/K_v$ ✓. For the Type 2 loop, $s^3+5s^2+10s+10$ gives $10/10=1$ and the zero at $-1$ gives 1, so $1/K_v=0$ ✓. Its measured step-error area is $0.0000$, with a minimum error of $-0.375$: 37.5% overshoot.
 
 ![Step-error area equals 1/K_v; the Type 2 error must cross zero; Truxal's pole-zero contributions for the Example 3.34 PI loop](demos/ch4/figures/l3_demo5_error_area.svg)
 
@@ -749,7 +749,7 @@ $$
 s^2(s+1)+k_I=s^3+s^2+0\cdot s+k_I .
 $$
 
-The coefficient of $s$ is missing, so the loop is unstable for **every** $k_I>0$, by the necessary condition of [Ch. 3 L4 §7.1](stability_instructor.md). At $k_I=1$ the roots are $-1.466$ and $+0.233\pm0.793j$.
+The coefficient of $s$ is missing, so the loop is unstable for **every** $k_I>0$, by the necessary condition of [Stability and Routh’s criterion §7.1](stability_instructor.md#section-7-1). At $k_I=1$ the roots are $-1.466$ and $+0.233\pm0.793j$.
 
 **Add a zero: PI control.** With $D_c=(k_Ps+k_I)/s$,
 
@@ -786,7 +786,7 @@ This is the same trade as Example 4.3, from the other side: there damping cost a
 >
 > And a price: every integrator makes stability harder, and needs a zero to pay for it.
 >
-> In L4 we put numbers on the three PID gains using tuning rules, and deal with what happens to an integrator when the actuator saturates.
+> In [PID tuning and implementation](pid-tuning_instructor.md) we put numbers on the three PID gains using tuning rules, and deal with what happens to an integrator when the actuator saturates.
 
 ---
 
@@ -872,7 +872,7 @@ This is the same trade as Example 4.3, from the other side: there damping cost a
 | # | Script | Section | What it settles | Use |
 |---|---|---|---|---|
 | 1 | `l3_demo1_type_table.py` | §6.3 | Table 4.1 measured: nine error histories against the formula; the diagonal matches to four decimals. | **live** |
-| 2 | `l3_demo2_pid_type.py` | §8 | The L2 plant under P and I control as its gain varies by 4×: the I-control step error stays zero while every error constant moves. | slide |
+| 2 | `l3_demo2_pid_type.py` | §8 | The plant from [PID control](pid-control_instructor.md) under P and I control as its gain varies by 4×: the I-control step error stays zero while every error constant moves. | slide |
 | 3 | `l3_demo3_tachometer.py` | §11 | Example 4.3: $\zeta$ from 0.158 to 0.474 and $1/K_v$ from 0.1 to 0.3; a 2% sensor gain error turns the loop Type 0. | slide |
 | 4 | `l3_demo4_disturbance_type.py` | §13 | Example 4.4: step and ramp load torque under P and PI; Type 1 to the reference, Type 0 to the torque. | **live** |
 | 5 | `l3_demo5_error_area.py` | §14 | $1/K_v$ three ways: $\lim sGD_c$, Truxal, and step-error area; the Type 2 error crosses zero. | slide |
@@ -881,8 +881,8 @@ This is the same trade as Example 4.3, from the other side: there damping cost a
 
 | Lecture | Book sections | Content |
 |---|---|---|
-| L1 | 4.1 | The basic equations of control: stability, tracking, regulation, sensitivity; $S$ and $\mathcal T$ |
-| L2 | 4.3.1–4.3.5 | P, I, D, PI and PID actions and their effect on response |
-| **This lecture (L3)** | **4.2** | **Steady-state error to polynomial inputs; system type for tracking and for disturbance rejection** |
-| L4 | 4.3.6, 4.4, 9.3.1 | Ziegler–Nichols tuning, feedforward, integrator anti-windup, physical realisation |
+| [Feedback properties](feedback-properties_instructor.md) | 4.1 | The basic equations of control: stability, tracking, regulation, sensitivity; $S$ and $\mathcal T$ |
+| [PID control](pid-control_instructor.md) | 4.3.1–4.3.5 | P, I, D, PI and PID actions and their effect on response |
+| **This lecture** | **4.2** | **Steady-state error to polynomial inputs; system type for tracking and for disturbance rejection** |
+| [PID tuning and implementation](pid-tuning_instructor.md) | 4.3.6, 4.4, 9.3.1 | Ziegler–Nichols tuning, feedforward, integrator anti-windup, physical realisation |
 | Next | Chapter 5 | Root locus: moving the poles with a gain, and lag compensation for error constants |

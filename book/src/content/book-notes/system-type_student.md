@@ -4,7 +4,7 @@
 
 A feedback loop's steady-state accuracy to steps, ramps and parabolas is decided by an integer, the system type. For unity feedback and a reference input, the type is the number of integrators in the loop. Gains only set the size of a constant error. This lecture derives that result from the Final Value Theorem, extends it to loops with sensor dynamics and to disturbance inputs, and shows what raising the type costs.
 
-**Prerequisites:** [L1: The Basic Equations of Control](feedback-properties_student.md) and [L2: PID Control](pid-control_student.md). From Chapter 3: the Final Value Theorem ([Ch. 3 L1 §8](convolution-impulse-response_student.md#section-8)) and Routh's criterion ([Ch. 3 L4 §4](stability_student.md#section-4)).
+**Prerequisites:** [The Basic Equations of Control](feedback-properties_student.md) and [PID Control](pid-control_student.md). From Chapter 3: the Final Value Theorem ([Convolution and transfer functions §8](convolution-impulse-response_student.md#section-8)) and Routh's criterion ([Stability and Routh’s criterion §4](stability_student.md#section-4)).
 
 **Source:** Franklin, Powell & Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed. Example, equation and figure numbers follow the textbook. Numbered sections and § references refer to these notes unless labelled as textbook sections. Material marked **[beyond the book]** is not in the printed chapter.
 
@@ -15,7 +15,7 @@ After studying this lecture, you should be able to:
 1. Explain why polynomial inputs (step, ramp, parabola) are the right test signals for steady-state accuracy, and name the "position, velocity, acceleration" convention.
 2. Derive the steady-state error of a stable unity-feedback loop to $t^k/k!$ from the Final Value Theorem, Eqs. (4.28)–(4.35).
 3. Define system type and the error constants $K_p$, $K_v$, $K_a$, and reproduce Table 4.1 from the single formula $e_{ss}=\lim_{s\to0}s^n/(s^n+K_n)\cdot1/s^k$.
-4. Determine type and error constant for the P and PI speed-control loops (Examples 4.1, 4.2) and for the P and I loops of L2.
+4. Determine type and error constant for the P and PI speed-control loops (Examples 4.1, 4.2) and for the P and I loops of [PID control](pid-control_student.md).
 5. Explain why type is robust to parameter changes in unity feedback while error constants are not.
 6. Compute steady-state error with sensor dynamics from $1-\mathcal T(s)$, Eqs. (4.39)–(4.45), and explain why $H(0)=1$ matters (Example 4.3).
 7. Classify a loop by type with respect to a disturbance, Eqs. (4.46)–(4.48), and identify which integrators count (Example 4.4).
@@ -29,7 +29,7 @@ After studying this lecture, you should be able to:
 | $G,\ D_c,\ H$ | plant, controller, sensor. The book writes $D_{cl}$ for the controller in §4.2.1 and $D_c$ from Eq. (4.39) on; they are the same block |
 | $R,\ W,\ V$ | reference, plant disturbance, sensor noise |
 | $E=R-Y$ | **system error**: reference minus output, *not* the signal entering the controller |
-| $S=\dfrac{1}{1+GD_c},\ \mathcal T=\dfrac{GD_c}{1+GD_c}$ | sensitivity and complementary sensitivity (L1) |
+| $S=\dfrac{1}{1+GD_c},\ \mathcal T=\dfrac{GD_c}{1+GD_c}$ | sensitivity and complementary sensitivity ([Feedback properties](feedback-properties_student.md)) |
 | $n$ | system type |
 | $k$ | degree of the polynomial input $r(t)=t^k/k!$ |
 | $K_n$ | $\lim_{s\to0}s^nGD_c(s)$; $K_p=K_0$, $K_v=K_1$, $K_a=K_2$ |
@@ -74,9 +74,9 @@ The $1/k!$ makes every transform exactly $1/s^{k+1}$, because $\mathcal L\{t^k\}
 
 ![Fig. 4.2 — Closed-loop system with reference, disturbance and noise](./book-figures/4-2.png)
 
-*Fig. 4.2 — The unity-feedback loop of L1 (PDF p. 4).*
+*Fig. 4.2 — The unity-feedback loop of [Feedback properties](feedback-properties_student.md) (PDF p. 4).*
 
-With $W=V=0$, L1's Eq. (4.8) gives
+With $W=V=0$, Eq. (4.8) in [Feedback properties](feedback-properties_student.md) gives
 
 $$
 E=\frac{1}{1+GD_c}R=SR .
@@ -226,11 +226,11 @@ The velocity constant depends on $k_I$ but not on $k_P$: at $s=0$ the integral t
 
 ---
 
-## 5. The L2 examples, re-read — and the robustness of type {#section-5}
+## 5. The PID examples, re-read — and the robustness of type {#section-5}
 
 ### 5.1 Proportional control of the second-order plant {#section-5-1}
 
-In [L2](pid-control_student.md) a proportional loop was closed around FPE Eq. (4.58),
+In [PID control](pid-control_student.md) a proportional loop was closed around FPE Eq. (4.58),
 
 $$
 G(s)=\frac{A}{s^2+a_1s+a_2},\qquad a_1=1.4,\ a_2=1,\ A=1 .
@@ -247,11 +247,11 @@ These are the final values in Fig. 4.7.
 
 ![Fig. 4.7 — Steady-state tracking error under proportional control](./book-figures/4-7.png)
 
-*Fig. 4.7 — Proportional control of the L2 plant with $k_P=1.5$ and $6$ (PDF p. 38).*
+*Fig. 4.7 — Proportional control of the plant from [PID control](pid-control_student.md) with $k_P=1.5$ and $6$ (PDF p. 38).*
 
 ### 5.2 Integral control of the same plant {#section-5-2}
 
-With $D_c=k_I/s$ and $k_I=0.5$, the loop is **Type 1** with $K_v=k_IG(0)=0.5$. The step error is zero, as L2 found, and a unit ramp leaves an error $1/K_v=2$.
+With $D_c=k_I/s$ and $k_I=0.5$, the loop is **Type 1** with $K_v=k_IG(0)=0.5$. The step error is zero, as [PID control](pid-control_student.md) found, and a unit ramp leaves an error $1/K_v=2$.
 
 ### 5.3 Type is robust; error constants are not {#section-5-3}
 
@@ -267,7 +267,7 @@ The zero step error under I control survives every change of $A$. It comes from 
 
 Robustness of type still needs a stable loop. The I-control characteristic polynomial is $s^3+1.4s^2+s+k_IA$. Routh's $s^1$ entry $(1.4-k_IA)/1.4$ requires $k_IA<1.4$, i.e. $A<2.8$. At $A=2$ the slowest pole pair has real part $-0.079$, and the response rings for tens of seconds.
 
-![P and I control of the L2 plant as its gain A varies: the step error under I control stays zero, while the ramp error scales as 1/(k_I A)](demos/ch4/figures/l3_demo2_pid_type.svg)
+![P and I control of the plant from the PID-control lecture as its gain A varies: the step error under I control stays zero, while the ramp error scales as 1/(k_I A)](demos/ch4/figures/l3_demo2_pid_type.svg)
 
 $$
 \boxed{
@@ -615,7 +615,7 @@ Optional practice from FPE, 8th edition; these are study suggestions, not an ass
 
 ## Chapter 4 student notes
 
-- [L1: The basic equations of control](feedback-properties_student.md)
-- [L2: The three-term controller: P, I, D, PI and PID](pid-control_student.md)
-- [L3: Steady-state error and system type](system-type_student.md)
-- [L4: Tuning, realising and feeding forward the PID](pid-tuning_student.md)
+- [The basic equations of control](feedback-properties_student.md)
+- [The three-term controller: P, I, D, PI and PID](pid-control_student.md)
+- [Steady-state error and system type](system-type_student.md)
+- [Tuning, realising and feeding forward the PID](pid-tuning_student.md)

@@ -1,5 +1,5 @@
 """
-L4 Demo 4  --  Three ways to be unstable                     (FPE §3.6.1, §3.6.2)
+Stability and Routh’s criterion Demo 4  --  Three ways to be unstable                     (FPE §3.6.1, §3.6.2)
 
 Section 3.6 uses the word "stable" for three different things, and this script
 separates them.
@@ -26,7 +26,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 4 -- BIBO stability, neutral stability, internal stability")
+    dk.title("Stability and Routh’s criterion Demo 4 -- BIBO stability, neutral stability, internal stability")
 
     # -------------------------------------------------- 1. the capacitor
     dk.section("Example 3.31: a capacitor is not BIBO stable")

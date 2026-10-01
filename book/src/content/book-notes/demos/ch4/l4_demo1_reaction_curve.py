@@ -1,5 +1,5 @@
 """
-L4 Demo 1  --  Ziegler-Nichols from a process reaction curve   (Example 4.9)
+PID tuning and implementation Demo 1  --  Ziegler-Nichols from a process reaction curve   (Example 4.9)
 
 Take the open-loop step response of the heat exchanger, draw the tangent at the
 inflection point, read off its slope R and its time-axis intercept L, and apply
@@ -27,7 +27,7 @@ def main() -> None:
     args = dk.parse_args(__doc__)
     plt = dk.setup(args)
 
-    dk.title("L4 Demo 1 -- tuning a heat exchanger from one open-loop step test")
+    dk.title("PID tuning and implementation Demo 1 -- tuning a heat exchanger from one open-loop step test")
 
     t, y = hx.open_loop_step(400.0)
     dy = np.gradient(y, t)
