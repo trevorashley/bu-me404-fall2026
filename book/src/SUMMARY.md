@@ -39,6 +39,7 @@
     - [09/22/2026](./content/class-notes/20260922.md)
     - [09/24/2026](./content/class-notes/20260924.md)
     - [09/29/2026](./content/class-notes/20260929.md)
+    - [10/01/2026](./content/class-notes/20261001.md)
 
 ---
 
