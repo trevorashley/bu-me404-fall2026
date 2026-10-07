@@ -1,7 +1,8 @@
 # ME404: Dynamics and Control of Mechanical Systems, Fall 2026
 ## Problem Set \#2: Signals and Systems
 
-**Due Date**: 11:59 PM, Thursday, October 8, 2026
+~~**Due Date**: 11:59 PM, Thursday, October 8, 2026~~
+**Due Date**: 11:59 PM, Thursday, October 15, 2026
 
 ### Problem \#1 (**AI ONLY ALLOWED ON PARTS A(iii), B(iii), AND D(ii)**)
 *Source: adapted from Oppenheim, Willsky, and Nawab, Signals and Systems, 2nd ed., Problem 3.22.*
