@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Part IV Demonstration Guide - BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</title>
+        <title>10/08/2026 - BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</title>
 
 
         <!-- Custom HTML head -->
@@ -12,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../../../../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../../../../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../../../../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../../../../css/general-5eb0b121.css">
-        <link rel="stylesheet" href="../../../../css/chrome-41f20a4d.css">
-        <link rel="stylesheet" href="../../../../css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../../css/general-5eb0b121.css">
+        <link rel="stylesheet" href="../../css/chrome-41f20a4d.css">
+        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../../../../fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../../../highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../../../tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../../../ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../../../../";
+            const path_to_root = "../../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../../../searchindex-add00b11.js";
+            window.path_to_searchindex_js = "../../searchindex-096c79eb.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../../../toc-93212657.js"></script>
+        <script src="../../toc-9b1c8d99.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -105,7 +105,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../../../../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">BU ENG ME404: Dynamics and Control of Mechanical Systems, Fall 2026</h1>
 
                     <div class="right-buttons">
-                        <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -175,117 +175,22 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-<h1 id="chapter-5-lecture-demonstrations"><a class="header" href="#chapter-5-lecture-demonstrations">Chapter 5 lecture demonstrations</a></h1>
-<p>Seven runnable demonstrations accompany the four Part IV note pairs. Each prints
-the relevant calculations and generates SVG and PNG figures in <code>figures/</code>.
-The plotting palette and <code>--show</code> / <code>--no-save</code> options reuse <code>../ch2/demokit.py</code>.
-Models are normalized, time is in seconds, and feedback is negative and unity
-unless the notes explicitly introduce an inner velocity loop.</p>
-<h2 id="running-with-python"><a class="header" href="#running-with-python">Running with Python</a></h2>
-<p>From the repository root, the existing course environment can run the seven
-demonstrations:</p>
-<pre><code class="language-bash">book/src/content/book-notes/demos/.venv/bin/python book/src/content/book-notes/demos/ch5/run_all.py
-</code></pre>
-<p>That environment does not currently include SymPy or pip, so it cannot run
-<code>verify_designs.py</code> as-is. For verification, or for a fresh checkout, create a
-separate Chapter 5 environment with all dependencies using the recipe below.
-This leaves the shared course environment intact. The commands assume Python
-3.11 or later is installed; <code>python3 -m venv</code> supplies pip in the new environment.</p>
-<pre><code class="language-bash">cd book/src/content/book-notes/demos
-python3 -m venv ch5/.venv
-ch5/.venv/bin/python -m pip install numpy scipy matplotlib sympy
-ch5/.venv/bin/python ch5/run_all.py
-ch5/.venv/bin/python ch5/l3_demo1_pd_lead.py --show
-ch5/.venv/bin/python ch5/verify_designs.py
-</code></pre>
-<p>On Windows, the new environment’s Python is <code>ch5\.venv\Scripts\python.exe</code>. SymPy is
-needed only for the instructor verification script. The figures are already
-included with the notes, so reading the notes does not require Python.</p>
-<p><code>--show</code> opens a figure window and does not save files, matching the earlier
-course demos. With neither option, a script writes SVG and PNG; <code>--no-save</code>
-computes and prints results without saving. Run <code>run_all.py</code> to regenerate all
-eight figures. It stops with a failing exit status if any demo fails.</p>
-<h2 id="matlab-alternative"><a class="header" href="#matlab-alternative">MATLAB alternative</a></h2>
-<p>Run <a href="run_ch5.m">run_ch5.m</a> in MATLAB with Control System Toolbox. It covers the
-motor/cubic loci, gain selection, PD/lead and Franklin comparisons, long-horizon
-lag/PI responses, and notch attenuation. It opens figures without writing files.
-The notes also give shorter MATLAB examples beside the worked designs.</p>
-<h2 id="what-the-python-means"><a class="header" href="#what-the-python-means">What the Python means</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Python expression</th><th>MATLAB connection / purpose</th></tr>
-</thead>
-<tbody>
-<tr><td><code>np.array([1, 6, 8, K])</code></td><td><code>[1 6 8 K]</code>: polynomial coefficients in descending powers</td></tr>
-<tr><td><code>np.roots(coefficients)</code></td><td><code>roots(coefficients)</code>: all polynomial roots</td></tr>
-<tr><td><code>np.polyadd(a, b)</code></td><td>Adds polynomial coefficients, padding leading zeros as needed</td></tr>
-<tr><td><code>np.polymul(a, b)</code></td><td><code>conv(a,b)</code>: multiplies polynomials</td></tr>
-<tr><td><code>signal.TransferFunction(num, den)</code></td><td><code>tf(num,den)</code>: numerator/denominator model</td></tr>
-<tr><td><code>signal.step(system, T=t)</code></td><td><code>step(system,t)</code>, but Python returns <code>(time, output)</code></td></tr>
-<tr><td><code>signal.lsim(system, U=u, T=t)</code></td><td><code>lsim(system,u,t)</code>, returning time, output, and states</td></tr>
-<tr><td><code>1j</code></td><td>MATLAB’s <code>1j</code>: the imaginary unit</td></tr>
-<tr><td><code>np.linspace(0, 20, 20001)</code></td><td><code>linspace(0,20,20001)</code>: a uniform time grid</td></tr>
-<tr><td><code>**</code></td><td>MATLAB’s scalar power <code>^</code>; NumPy arrays apply it element by element</td></tr>
-</tbody>
-</table>
-</div>
-<p>NumPy handles arrays and polynomial arithmetic, SciPy simulates linear systems,
-and Matplotlib draws the figures. <code>kit.py</code> provides shared plotting and
-closed-loop helpers. Its <code>closed_loop(num,den,K)</code> explicitly forms
-<code>den + K*num</code> without cancelling factors. Dense root samples are plotted as
-dots rather than connecting possibly mismatched roots at breakaway points.</p>
-<h2 id="demonstration-index"><a class="header" href="#demonstration-index">Demonstration index</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Lecture</th><th>Script</th><th>Purpose / source</th></tr>
-</thead>
-<tbody>
-<tr><td>I</td><td><a href="l1_demo1_motor_cubic.py">l1_demo1_motor_cubic.py</a></td><td>FPE Example 5.1 motor; course cubic with breakaway and Routh crossing</td></tr>
-<tr><td>I</td><td><a href="l1_demo2_departure.py">l1_demo2_departure.py</a></td><td>Complex and repeated-pole departures; signed RHP-zero model</td></tr>
-<tr><td>II</td><td><a href="l2_demo1_gain_design.py">l2_demo1_gain_design.py</a></td><td>Exact damping-ray gain and full cubic response</td></tr>
-<tr><td>III</td><td><a href="l3_demo1_pd_lead.py">l3_demo1_pd_lead.py</a></td><td>Exact PD/lead design for −2 ± 2j; numerator effects</td></tr>
-<tr><td>III</td><td><a href="l3_demo2_franklin.py">l3_demo2_franklin.py</a></td><td>FPE 7th/8th ed. Example 5.11 and initial control effort</td></tr>
-<tr><td>IV</td><td><a href="l4_demo1_lag_pi.py">l4_demo1_lag_pi.py</a></td><td>Full lag and PI designs; reference, ramp, and disturbance paths, plus near-origin locus closeups</td></tr>
-<tr><td>IV extension</td><td><a href="l4_demo2_extensions.py">l4_demo2_extensions.py</a></td><td>FPE §5.4.2 lead–lag; illustrative notch; rate feedback</td></tr>
-</tbody>
-</table>
-</div>
-<h2 id="numerical-conventions-and-verification"><a class="header" href="#numerical-conventions-and-verification">Numerical conventions and verification</a></h2>
-<p>Overshoot is relative to the true final value; rise is 10–90%; settling is the
-last entry into a ±1% band on the sampled time grid, matching FPE and the earlier
-course notes. MATLAB calls explicitly set <code>'SettlingTimeThreshold',0.01</code> because
-<code>stepinfo</code> otherwise uses 2%. Short-response demos use
-0.00025–0.001 s grids. The lag/PI demo uses 0.01 s steps over 1000 s to resolve
-both its early response and slow tail. Values are rounded; changing a grid may
-change the last printed digit. A run ending outside the settling band raises an
-error. Simulation horizons also exceed several time constants of the slowest
-closed-loop mode, rather than relying on that final-sample test alone.</p>
-<p><a href="verify_designs.py">verify_designs.py</a> checks exact polynomial and partial-fraction
-identities with SymPy, compares analytic responses with independently simulated
-responses, verifies the Franklin performance specifications, and checks lag/PI
-ramp limits and full-system stability. It prints the slow reference-step residues.
-The notebook-style derivations are in the paired instructor Markdown notes;
-students do not need SymPy to follow the lecture calculations.</p>
-<p>No demo treats ideal PD’s step-command impulse as a finite plotted spike. No
-notch demonstration claims closed-loop robustness for an unspecified flexible
-plant. The lead and lead–lag examples use the textbook parameters; the other
-numerical designs are course examples identified in the notes.</p>
-<link rel="stylesheet" href="../../../../vi-mode.css">
-<script src="../../../../vi-mode-config.js"></script>
-<script defer="" src="../../../../vi-mode-keybinding-vim.js"></script>
-<script defer="" src="../../../../vi-mode.js"></script>
+<h1 id="class-notes-from-october-8-2026"><a class="header" href="#class-notes-from-october-8-2026">Class Notes from October 8, 2026</a></h1>
+<p><a href="https://raw.githubusercontent.com/trevorashley/bu-me404-fall2026/main/book/src/content/class-notes/20261008.pdf">Download Link to PDF</a></p>
+<link rel="stylesheet" href="../../vi-mode.css">
+<script src="../../vi-mode-config.js"></script>
+<script defer="" src="../../vi-mode-keybinding-vim.js"></script>
+<script defer="" src="../../vi-mode.js"></script>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../../../content/book-notes/root-locus-lag-pi_student.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../content/class-notes/20261006.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../../../content/class-notes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../content/faqs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -295,11 +200,11 @@ numerical designs are course examples identified in the notes.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../../../content/book-notes/root-locus-lag-pi_student.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../content/class-notes/20261006.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../../../content/class-notes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../content/faqs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -319,17 +224,17 @@ numerical designs are course examples identified in the notes.</p>
         </script>
 
 
-        <script src="../../../../elasticlunr-ef4e11c1.min.js"></script>
-        <script src="../../../../mark-09e88c2c.min.js"></script>
-        <script src="../../../../searcher-09f2665d.js"></script>
+        <script src="../../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../../mark-09e88c2c.min.js"></script>
+        <script src="../../searcher-09f2665d.js"></script>
 
-        <script src="../../../../clipboard-1626706a.min.js"></script>
-        <script src="../../../../highlight-abc7f01d.js"></script>
-        <script src="../../../../book-f509a403.js"></script>
+        <script src="../../clipboard-1626706a.min.js"></script>
+        <script src="../../highlight-abc7f01d.js"></script>
+        <script src="../../book-f509a403.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../../../../mermaid-eefea253.min.js"></script>
-        <script src="../../../../mermaid-init-53b67c53.js"></script>
+        <script src="../../mermaid-eefea253.min.js"></script>
+        <script src="../../mermaid-init-53b67c53.js"></script>
 
 
 

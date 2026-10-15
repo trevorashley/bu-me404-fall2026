@@ -9,6 +9,7 @@
 # Assignments
 - [Assignments](./content/assignments.md)
     - [Problem Set 1](./content/assignments/ps1/ps1.md)
+        - [Solutions](./content/assignments/ps1/ps1-answers.md)
     - [Problem Set 2](./content/assignments/ps2/ps2.md)
 
 ---

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PID Tuning Explorer</title>
+<style>
+  /* Colour tokens. Light is the default; dark applies under the OS preference
+     or when ui.js sets data-theme (from ?theme=, the mdBook theme, or the OS). */
+  :root {
+    --bg: #ffffff; --fg: #1d2330; --muted: #5f6b7a; --panel: #f4f6f9; --border: #d3d9e2;
+    --plot-bg: #ffffff; --grid: #e6eaf0; --axis: #8a94a3; --rhp: rgba(200, 60, 60, 0.07);
+    --plant: #1f5fbf; --ctrl: #c8651b; --closed: #b0245f; --locus: #6a3fb5;
+    --trace-y: #1f5fbf; --trace-u: #2c8a4b; --band: rgba(31, 95, 191, 0.14); --bad: #c0281c;
+    --accent: #1f5fbf; --focus: #1f5fbf;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) { --bg: #14181f; --fg: #e4e8ee; --muted: #9aa5b4; --panel: #1d232d; --border: #343d4b;
+      --plot-bg: #181d26; --grid: #262e3a; --axis: #6f7b8c; --rhp: rgba(240, 90, 90, 0.09);
+      --plant: #6fa8ff; --ctrl: #f0a05a; --closed: #ff7ab0; --locus: #b79af0;
+      --trace-y: #6fa8ff; --trace-u: #6fd08c; --band: rgba(111, 168, 255, 0.18); --bad: #ff6b5e;
+      --accent: #6fa8ff; --focus: #6fa8ff; }
+  }
+  :root[data-theme="dark"] { --bg: #14181f; --fg: #e4e8ee; --muted: #9aa5b4; --panel: #1d232d; --border: #343d4b;
+    --plot-bg: #181d26; --grid: #262e3a; --axis: #6f7b8c; --rhp: rgba(240, 90, 90, 0.09);
+    --plant: #6fa8ff; --ctrl: #f0a05a; --closed: #ff7ab0; --locus: #b79af0;
+    --trace-y: #6fa8ff; --trace-u: #6fd08c; --band: rgba(111, 168, 255, 0.18); --bad: #ff6b5e;
+    --accent: #6fa8ff; --focus: #6fa8ff; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 8px 12px 16px; background: var(--bg); color: var(--fg);
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  button, select, input { font: inherit; color: inherit; }
+  button, select { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  input[type="number"] { width: 5.6em; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-bottom: 8px; }
+  .toolbar label, .toolbar fieldset { display: inline-flex; align-items: center; gap: 4px; }
+  fieldset { border: 0; margin: 0; padding: 0; }
+
+  .grid { display: grid; gap: 8px; grid-template-columns: 1fr; grid-template-areas: "plane" "controls" "time" "readout"; }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 8px; min-width: 0; }
+  .plane { grid-area: plane; } .time { grid-area: time; } .controls { grid-area: controls; } .readout { grid-area: readout; }
+  @media (min-width: 700px) {
+    .grid { grid-template-columns: 1fr 1fr; grid-template-areas: "plane time" "controls controls" "readout readout"; }
+  }
+  canvas { display: block; width: 100%; height: 340px; border-radius: 4px; background: var(--plot-bg); touch-action: pan-y; }
+  #plane:focus-visible { outline-offset: -2px; }
+  .legend { color: var(--muted); font-size: 12px; margin-top: 4px; display: flex; flex-wrap: wrap; gap: 2px 12px; }
+  .legend b { font-weight: 700; }
+
+  .sliders { display: grid; gap: 6px; }
+  .gain { display: grid; grid-template-columns: 2.4em 1fr 6em; gap: 8px; align-items: center; padding: 4px 6px;
+    border-left: 4px solid transparent; border-radius: 4px; }
+  .gain.active { border-left-color: var(--locus); background: var(--bg); }
+  .gain label { font-weight: 600; }
+  .gain input[type="range"] { width: 100%; min-width: 0; accent-color: var(--accent); }
+  .controls .row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-top: 8px; }
+  .hint { color: var(--muted); font-size: 12px; }
+
+  .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 6px; }
+  .tile { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; text-align: center; }
+  .tile .k { font-size: 11px; color: var(--muted); } .tile .v { font-weight: 700; font-variant-numeric: tabular-nums; }
+  @media (max-width: 520px) { .metrics { grid-template-columns: repeat(3, 1fr); } canvas { height: 300px; } }
+
+  pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 12.5px/1.5 ui-monospace, Menlo, Consolas, monospace; }
+  #status { min-height: 1.4em; margin-top: 8px; color: var(--muted); }
+  #status.warn { color: var(--bad); }
+  #caption { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <label>Preset <select id="preset" aria-label="Preset plant"></select></label>
+  <button id="zn" title="Find the ultimate gain and period with a P-only sweep, then apply Table 4.3 PID gains">ZN tune</button>
+  <button id="reset" title="Reload the preset plant and gains">Reset</button>
+  <fieldset><legend class="hint" style="float:left;margin-right:4px">Input</legend>
+    <label><input type="radio" name="input" value="ref" checked> reference step</label>
+    <label><input type="radio" name="input" value="dist"> disturbance step</label>
+  </fieldset>
+</div>
+<p id="caption"></p>
+
+<div class="grid">
+  <section class="panel plane" aria-label="s-plane">
+    <canvas id="plane" tabindex="0"
+      aria-label="s-plane. Arrow keys move the selected pole or zero; [ and ] change selection; p and z add a real pole or zero; Delete removes the selection; 0 fits the view."></canvas>
+    <div class="legend">
+      <span><b style="color:var(--plant)">&times;</b> plant pole</span>
+      <span><b style="color:var(--plant)">&#9675;</b> plant zero</span>
+      <span><b style="color:var(--ctrl)">+</b> controller pole / zero</span>
+      <span><b style="color:var(--closed)">&#9679;</b> closed-loop pole</span>
+      <span><b style="color:var(--locus)">&middot;</b> <span id="locusWord">locus</span> of <span id="locusName">k_P</span></span>
+    </div>
+    <div class="row" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
+      <button id="addPole" aria-pressed="false">Add pole</button>
+      <button id="addZero" aria-pressed="false">Add zero</button>
+      <button id="delete">Delete selected</button>
+      <button id="fit">Fit view</button>
+    </div>
+  </section>
+
+  <section class="panel controls" aria-label="Controller gains">
+    <div class="sliders" id="sliders"></div>
+    <div class="row">
+      <label><input type="checkbox" id="filter"> derivative filter</label>
+      <label>N <input type="number" id="filterN" min="1" step="any" value="10"></label>
+      <span class="hint" id="tf"></span>
+    </div>
+    <div class="row">
+      <label>plant gain K <input type="number" id="plantK" step="any"></label>
+      <button id="unitK" title="Set K so that G(0) = 1">G(0) = 1</button>
+      <label>horizon (s) <input type="number" id="horizon" min="0" step="any" placeholder="auto"></label>
+    </div>
+    <p class="hint">The most recently touched gain is active: its root locus is drawn faintly on the s-plane. Drag poles and zeros, or select one and use the arrow keys.</p>
+  </section>
+
+  <section class="panel time" aria-label="Time response">
+    <canvas id="time" aria-label="Time response of the output y and the control u"></canvas>
+    <div class="metrics" id="metrics"></div>
+  </section>
+
+  <section class="panel readout" aria-label="Transfer functions">
+    <pre id="readout"></pre>
+  </section>
+</div>
+<div id="status" role="status" aria-live="polite"></div>
+<script type="module" src="ui.js"></script>
+</body>
+</html>

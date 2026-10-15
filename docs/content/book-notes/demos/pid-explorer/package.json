@@ -1,0 +1,6 @@
+{
+  "name": "pid-explorer",
+  "private": true,
+  "type": "module",
+  "description": "Marks the .js files here as ES modules so Node can run the math under verify/."
+}
