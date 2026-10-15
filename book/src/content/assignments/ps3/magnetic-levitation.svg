@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="270" viewBox="0 0 800 270" role="img" aria-labelledby="title desc">
+  <title id="title">Magnetic levitation feedback system</title>
+  <desc id="desc">Unity negative feedback. R minus Y gives error e. The controller K times (s+z)/(s+p) produces u, which drives the plant K_0/(s squared minus a squared) to produce Y.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#222"/>
+    </marker>
+  </defs>
+  <rect width="800" height="270" fill="white"/>
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <circle cx="130" cy="105" r="28"/>
+    <rect x="255" y="45" width="175" height="120"/>
+    <rect x="525" y="45" width="175" height="120"/>
+    <path d="M50 105 H100" marker-end="url(#arrow)"/>
+    <path d="M158 105 H253" marker-end="url(#arrow)"/>
+    <path d="M430 105 H523" marker-end="url(#arrow)"/>
+    <path d="M700 105 H765" marker-end="url(#arrow)"/>
+    <path d="M730 105 V225 H130 V135" marker-end="url(#arrow)"/>
+    <path d="M312 105 H410 M550 105 H675"/>
+    <circle cx="730" cy="105" r="4" fill="#222"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="28" text-anchor="middle">
+    <text x="32" y="114" font-style="italic">R</text>
+    <text x="783" y="114" font-style="italic">Y</text>
+    <text x="130" y="115">Σ</text>
+    <text x="91" y="83">+</text>
+    <text x="103" y="153">−</text>
+    <text x="205" y="89" font-style="italic">e</text>
+    <text x="477" y="89" font-style="italic">u</text>
+    <text x="284" y="115" font-style="italic">K</text>
+    <text x="360" y="88" font-style="italic">s + z</text>
+    <text x="360" y="141" font-style="italic">s + p</text>
+    <text x="612" y="88" font-style="italic">K<tspan baseline-shift="sub" font-size="19" font-style="normal">0</tspan></text>
+    <text x="612" y="141" font-style="italic">s<tspan baseline-shift="super" font-size="19" font-style="normal">2</tspan><tspan baseline-shift="baseline"> − a</tspan><tspan baseline-shift="super" font-size="19" font-style="normal">2</tspan></text>
+  </g>
+</svg>
