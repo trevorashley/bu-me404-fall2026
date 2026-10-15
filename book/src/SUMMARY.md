@@ -31,7 +31,7 @@
     - [Root Locus II: Gain Selection](./content/book-notes/root-locus-gain-design_student.md)
     - [Root Locus III: PD and Lead](./content/book-notes/root-locus-lead-pd_student.md)
     - [Root Locus IV: Lag, PI, and Extensions](./content/book-notes/root-locus-lag-pi_student.md)
-        - [Part IV Demonstration Guide](./content/book-notes/demos/ch5/guide.md)
+
 - [Class Notes](./content/class-notes.md)
     - [09/10/2026](./content/class-notes/20260910.md)
     - [09/15/2026](./content/class-notes/20260915.md)
@@ -41,6 +41,7 @@
     - [09/29/2026](./content/class-notes/20260929.md)
     - [10/01/2026](./content/class-notes/20261001.md)
     - [10/06/2026](./content/class-notes/20261006.md)
+    - [10/08/2026](./content/class-notes/20261008.md)
 
 ---
 
