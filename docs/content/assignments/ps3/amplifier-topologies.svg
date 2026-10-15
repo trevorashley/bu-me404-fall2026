@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">Three amplifier topologies</title>
+  <desc id="desc">Topology (a): beta_1 followed by three cascaded amplifiers, each with gain minus K. Topology (b): three cascaded amplifiers, each with gain minus K and its own feedback through beta_2 to a positive summing input. Topology (c): three cascaded amplifiers, each with gain minus K, with one overall feedback path through beta_3 to a positive summing input.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#222"/>
+    </marker>
+  </defs>
+  <rect width="900" height="640" fill="white"/>
+  <!-- (a) Input scaling followed by three inverting amplifiers. -->
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <rect x="170" y="48" width="65" height="64"/>
+    <path d="M300 40 L385 80 L300 120 Z M455 40 L540 80 L455 120 Z M610 40 L695 80 L610 120 Z"/>
+    <path d="M115 80 H168" marker-end="url(#arrow)"/>
+    <path d="M235 80 H298" marker-end="url(#arrow)"/>
+    <path d="M385 80 H453" marker-end="url(#arrow)"/>
+    <path d="M540 80 H608" marker-end="url(#arrow)"/>
+    <path d="M695 80 H780" marker-end="url(#arrow)"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="28" text-anchor="middle">
+    <text x="95" y="89" font-style="italic">R</text>
+    <text x="800" y="89" font-style="italic">Y</text>
+    <text x="202" y="89" font-style="italic">β<tspan baseline-shift="sub" font-size="19" font-style="normal">1</tspan></text>
+    <text x="329" y="89" font-style="italic">−K</text>
+    <text x="484" y="89" font-style="italic">−K</text>
+    <text x="639" y="89" font-style="italic">−K</text>
+    <text x="450" y="158" font-size="24">(a)</text>
+  </g>
+  <!-- (b) Each inverting amplifier has its own local feedback path. -->
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <circle cx="100" cy="255" r="23"/>
+    <circle cx="360" cy="255" r="23"/>
+    <circle cx="620" cy="255" r="23"/>
+    <path d="M160 215 L245 255 L160 295 Z M420 215 L505 255 L420 295 Z M680 215 L765 255 L680 295 Z"/>
+    <path d="M45 255 H75" marker-end="url(#arrow)"/>
+    <path d="M123 255 H158" marker-end="url(#arrow)"/>
+    <path d="M245 255 H335" marker-end="url(#arrow)"/>
+    <path d="M383 255 H418" marker-end="url(#arrow)"/>
+    <path d="M505 255 H595" marker-end="url(#arrow)"/>
+    <path d="M643 255 H678" marker-end="url(#arrow)"/>
+    <path d="M765 255 H850" marker-end="url(#arrow)"/>
+    <rect x="175" y="315" width="60" height="50"/>
+    <rect x="435" y="315" width="60" height="50"/>
+    <rect x="695" y="315" width="60" height="50"/>
+    <path d="M280 255 V340 H237" marker-end="url(#arrow)"/>
+    <path d="M540 255 V340 H497" marker-end="url(#arrow)"/>
+    <path d="M800 255 V340 H757" marker-end="url(#arrow)"/>
+    <path d="M175 340 H100 V280" marker-end="url(#arrow)"/>
+    <path d="M435 340 H360 V280" marker-end="url(#arrow)"/>
+    <path d="M695 340 H620 V280" marker-end="url(#arrow)"/>
+    <circle cx="280" cy="255" r="4" fill="#222"/>
+    <circle cx="540" cy="255" r="4" fill="#222"/>
+    <circle cx="800" cy="255" r="4" fill="#222"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="28" text-anchor="middle">
+    <text x="25" y="264" font-style="italic">R</text>
+    <text x="870" y="264" font-style="italic">Y</text>
+    <text x="100" y="265">Σ</text><text x="360" y="265">Σ</text><text x="620" y="265">Σ</text>
+    <text x="68" y="237">+</text><text x="328" y="237">+</text><text x="588" y="237">+</text>
+    <text x="77" y="299">+</text><text x="337" y="299">+</text><text x="597" y="299">+</text>
+    <text x="189" y="264" font-style="italic">−K</text>
+    <text x="449" y="264" font-style="italic">−K</text>
+    <text x="709" y="264" font-style="italic">−K</text>
+    <text x="205" y="349" font-style="italic">β<tspan baseline-shift="sub" font-size="19" font-style="normal">2</tspan></text>
+    <text x="465" y="349" font-style="italic">β<tspan baseline-shift="sub" font-size="19" font-style="normal">2</tspan></text>
+    <text x="725" y="349" font-style="italic">β<tspan baseline-shift="sub" font-size="19" font-style="normal">2</tspan></text>
+    <text x="450" y="405" font-size="24">(b)</text>
+  </g>
+  <!-- (c) A single feedback path encloses all three inverting amplifiers. -->
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <circle cx="200" cy="480" r="23"/>
+    <path d="M280 440 L365 480 L280 520 Z M435 440 L520 480 L435 520 Z M590 440 L675 480 L590 520 Z"/>
+    <path d="M135 480 H175" marker-end="url(#arrow)"/>
+    <path d="M223 480 H278" marker-end="url(#arrow)"/>
+    <path d="M365 480 H433" marker-end="url(#arrow)"/>
+    <path d="M520 480 H588" marker-end="url(#arrow)"/>
+    <path d="M675 480 H780" marker-end="url(#arrow)"/>
+    <rect x="430" y="545" width="60" height="50"/>
+    <path d="M720 480 V570 H492" marker-end="url(#arrow)"/>
+    <path d="M430 570 H200 V505" marker-end="url(#arrow)"/>
+    <circle cx="720" cy="480" r="4" fill="#222"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="28" text-anchor="middle">
+    <text x="115" y="489" font-style="italic">R</text>
+    <text x="800" y="489" font-style="italic">Y</text>
+    <text x="200" y="490">Σ</text>
+    <text x="168" y="462">+</text><text x="177" y="524">+</text>
+    <text x="309" y="489" font-style="italic">−K</text>
+    <text x="464" y="489" font-style="italic">−K</text>
+    <text x="619" y="489" font-style="italic">−K</text>
+    <text x="460" y="579" font-style="italic">β<tspan baseline-shift="sub" font-size="19" font-style="normal">3</tspan></text>
+    <text x="450" y="623" font-size="24">(c)</text>
+  </g>
+</svg>
