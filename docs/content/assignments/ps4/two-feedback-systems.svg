@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Two feedback systems</title>
+  <desc id="desc">System (a): the reference R enters the positive input of a summing junction and the output Y enters its negative input; the error drives an integral controller K_1 over s, producing U, which drives the plant K_0 over (4s+1) to produce Y. System (b): the reference R first passes through a gain K_2, then enters the positive input of a summing junction whose negative input is Y; the difference drives a proportional gain K_3, producing U, which drives the same plant K_0 over (4s+1) to produce Y.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#222"/>
+    </marker>
+  </defs>
+  <rect width="900" height="470" fill="white"/>
+  <!-- (a) integral control -->
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <circle cx="200" cy="100" r="26"/>
+    <rect x="300" y="55" width="110" height="90"/>
+    <rect x="505" y="55" width="170" height="90"/>
+    <path d="M120 100 H172" marker-end="url(#arrow)"/>
+    <path d="M226 100 H298" marker-end="url(#arrow)"/>
+    <path d="M410 100 H503" marker-end="url(#arrow)"/>
+    <path d="M675 100 H765" marker-end="url(#arrow)"/>
+    <path d="M735 100 V190 H200 V128" marker-end="url(#arrow)"/>
+    <circle cx="735" cy="100" r="4" fill="#222"/>
+    <path d="M325 100 H385"/>
+    <path d="M530 100 H650"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="28" text-anchor="middle">
+    <text x="100" y="109" font-style="italic">R</text>
+    <text x="785" y="109" font-style="italic">Y</text>
+    <text x="200" y="110">Σ</text>
+    <text x="162" y="80">+</text>
+    <text x="174" y="146">−</text>
+    <text x="456" y="88" font-style="italic">U</text>
+    <text x="355" y="90" font-style="italic">K<tspan baseline-shift="sub" font-size="19" font-style="normal">1</tspan></text>
+    <text x="355" y="138" font-style="italic">s</text>
+    <text x="590" y="90" font-style="italic">K<tspan baseline-shift="sub" font-size="19" font-style="normal">0</tspan></text>
+    <text x="590" y="138" font-style="italic">4s + 1</text>
+    <text x="450" y="235" font-size="24">(a)</text>
+  </g>
+  <!-- (b) proportional control with an input gain -->
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <rect x="110" y="300" width="80" height="60"/>
+    <circle cx="265" cy="330" r="26"/>
+    <rect x="345" y="300" width="80" height="60"/>
+    <rect x="505" y="285" width="170" height="90"/>
+    <path d="M50 330 H108" marker-end="url(#arrow)"/>
+    <path d="M190 330 H237" marker-end="url(#arrow)"/>
+    <path d="M291 330 H343" marker-end="url(#arrow)"/>
+    <path d="M425 330 H503" marker-end="url(#arrow)"/>
+    <path d="M675 330 H765" marker-end="url(#arrow)"/>
+    <path d="M735 330 V420 H265 V358" marker-end="url(#arrow)"/>
+    <circle cx="735" cy="330" r="4" fill="#222"/>
+    <path d="M530 330 H650"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="28" text-anchor="middle">
+    <text x="30" y="339" font-style="italic">R</text>
+    <text x="785" y="339" font-style="italic">Y</text>
+    <text x="265" y="340">Σ</text>
+    <text x="227" y="310">+</text>
+    <text x="239" y="376">−</text>
+    <text x="464" y="318" font-style="italic">U</text>
+    <text x="150" y="340" font-style="italic">K<tspan baseline-shift="sub" font-size="19" font-style="normal">2</tspan></text>
+    <text x="385" y="340" font-style="italic">K<tspan baseline-shift="sub" font-size="19" font-style="normal">3</tspan></text>
+    <text x="590" y="320" font-style="italic">K<tspan baseline-shift="sub" font-size="19" font-style="normal">0</tspan></text>
+    <text x="590" y="368" font-style="italic">4s + 1</text>
+    <text x="450" y="460" font-size="24">(b)</text>
+  </g>
+</svg>

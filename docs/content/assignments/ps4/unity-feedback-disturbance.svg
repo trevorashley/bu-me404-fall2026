@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="300" viewBox="0 0 860 300" role="img" aria-labelledby="title desc">
+  <title id="title">Unity feedback with a disturbance at the plant input</title>
+  <desc id="desc">The reference R enters the positive input of a summing junction and the output Y enters its negative input. The error E passes through the controller D_c(s), producing U. A disturbance W is added to U at a second summing junction, and the sum drives the plant G(s), which produces Y.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#222"/>
+    </marker>
+  </defs>
+  <rect width="860" height="300" fill="white"/>
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <circle cx="130" cy="140" r="26"/>
+    <rect x="245" y="95" width="150" height="90"/>
+    <circle cx="500" cy="140" r="26"/>
+    <rect x="605" y="95" width="150" height="90"/>
+    <path d="M50 140 H102" marker-end="url(#arrow)"/>
+    <path d="M156 140 H243" marker-end="url(#arrow)"/>
+    <path d="M395 140 H472" marker-end="url(#arrow)"/>
+    <path d="M526 140 H603" marker-end="url(#arrow)"/>
+    <path d="M755 140 H815" marker-end="url(#arrow)"/>
+    <path d="M500 45 V112" marker-end="url(#arrow)"/>
+    <path d="M785 140 V240 H130 V168" marker-end="url(#arrow)"/>
+    <circle cx="785" cy="140" r="4" fill="#222"/>
+    <circle cx="500" cy="38" r="5"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="28" text-anchor="middle">
+    <text x="30" y="149" font-style="italic">R</text>
+    <text x="835" y="149" font-style="italic">Y</text>
+    <text x="500" y="26" font-style="italic">W</text>
+    <text x="130" y="150">Σ</text>
+    <text x="500" y="150">Σ</text>
+    <text x="92" y="120">+</text>
+    <text x="104" y="186">−</text>
+    <text x="462" y="120">+</text>
+    <text x="520" y="92">+</text>
+    <text x="200" y="128" font-style="italic">E</text>
+    <text x="435" y="128" font-style="italic">U</text>
+    <text x="320" y="150" font-style="italic">D<tspan baseline-shift="sub" font-size="19">c</tspan>(s)</text>
+    <text x="680" y="150" font-style="italic">G(s)</text>
+  </g>
+</svg>
