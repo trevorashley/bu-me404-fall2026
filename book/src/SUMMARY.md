@@ -13,7 +13,6 @@
     - [Problem Set 2](./content/assignments/ps2/ps2.md)
         - [Solutions](./content/assignments/ps2/ps2-answers.md)
     - [Problem Set 3](./content/assignments/ps3/ps3.md)
-    - [Problem Set 4](./content/assignments/ps4/ps4.md)
 
 ---
 
