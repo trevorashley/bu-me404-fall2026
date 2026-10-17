@@ -11,6 +11,9 @@
     - [Problem Set 1](./content/assignments/ps1/ps1.md)
         - [Solutions](./content/assignments/ps1/ps1-answers.md)
     - [Problem Set 2](./content/assignments/ps2/ps2.md)
+        - [Solutions](./content/assignments/ps2/ps2-answers.md)
+    - [Problem Set 3](./content/assignments/ps3/ps3.md)
+    - [Problem Set 4](./content/assignments/ps4/ps4.md)
 
 ---
 
@@ -43,6 +46,7 @@
     - [10/01/2026](./content/class-notes/20261001.md)
     - [10/06/2026](./content/class-notes/20261006.md)
     - [10/08/2026](./content/class-notes/20261008.md)
+    - [10/15/2026](./content/class-notes/20261015.md)
 
 ---
 
