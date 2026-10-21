@@ -46,6 +46,7 @@
     - [10/06/2026](./content/class-notes/20261006.md)
     - [10/08/2026](./content/class-notes/20261008.md)
     - [10/15/2026](./content/class-notes/20261015.md)
+    - [10/20/2026](./content/class-notes/20261020.md)
 
 ---
 
