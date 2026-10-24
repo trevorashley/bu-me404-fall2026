@@ -12,4 +12,4 @@ for script in sorted(HERE.glob("l*_demo*.py")):
         failed.append(script.name)
 if failed:
     raise SystemExit("Failed: " + ", ".join(failed))
-print("All seven Chapter 5 demos completed.")
+print("All ten Chapter 5 demos completed.")

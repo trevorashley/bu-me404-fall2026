@@ -220,6 +220,13 @@ The experiment and the calculation find the same boundary. Routh needs a model; 
 
 ![Ultimate-gain oscillation of the heat exchanger, Table 4.3 responses, and Ziegler–Nichols tuning of 1/(s+1)^3 via Routh](demos/ch4/figures/l4_demo2_ultimate_gain.svg)
 
+**Try it.** The explorer below starts on $G=1/(s+1)^3$. Press *ZN tune* to run the ultimate-gain experiment on it: the app raises $k_P$ until a complex pair of closed-loop poles reaches the imaginary axis, then applies the PID row of Table 4.3. The result should match $K_u=8$ and the gains above. After ZN tune, drag a gain slider and watch the controller zeros, the closed-loop poles and the step response move together. Switch to the heat-exchanger preset to see the same experiment on the Padé model of the delay.
+
+<iframe src="demos/pid-explorer/index.html#preset=triple-lag" title="Interactive PID tuning explorer" width="100%" height="1100" style="border:0" loading="lazy"></iframe>
+<script>window.addEventListener("message",function(e){var d=e.data;if(!d||d.type!=="pid-explorer-height")return;document.querySelectorAll("iframe").forEach(function(f){if(f.contentWindow===e.source)f.style.height=d.height+"px";});});</script>
+
+[Open the PID explorer full screen](demos/pid-explorer/index.html#preset=triple-lag)
+
 ---
 
 ## 5. After Ziegler–Nichols {#section-5}

@@ -336,6 +336,8 @@ Table 4.3 then gives PID gains $k_P=4.8$, $T_I=1.814$ s and $T_D=0.453$ s. Demo 
 >
 > Which would you rather do to a 50-ton steel furnace?
 
+**Live demo [beyond the book].** The interactive PID explorer is embedded in the student note at the end of §4.3 (`demos/pid-explorer/`). Load the triple-lag preset and press *ZN tune*: the app finds $K_u=8$, $P_u=3.628$ s and sets $k_P=4.8$, $k_I=2.646$, $k_D=2.177$, with 40.6% overshoot, the same lively response as above. Switch to the disturbance input, or to the heat-exchanger preset (a Padé model of the delay, $K_u=15.30$ against the exact-delay 15.29), to show that the experiment works the same way on a different plant. The app prints $G(s)$, $D_c(s)$ and the closed-loop polynomial so students can check it in MATLAB or Python.
+
 ---
 
 ## 8. After Ziegler–Nichols (§4.3.6, end)

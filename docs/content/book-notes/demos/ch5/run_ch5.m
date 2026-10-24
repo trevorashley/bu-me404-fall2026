@@ -11,6 +11,25 @@ figure('Name','Root-locus construction: construction');
 subplot(1,2,1); rlocus(G); grid on; title('Motor');
 subplot(1,2,2); rlocus(Gcubic); grid on; title('Cubic');
 disp('Cubic crossing at K=48:'); disp(roots([1 6 8 48]));
+% FPE Section 5.2 running example, Eq. (5.20): rules 1-5, then the gain for zeta = 0.5.
+Lfpe = 1/(s*((s+4)^2+16));
+figure('Name','Root-locus construction: FPE Eq. (5.20)'); rlocus(Lfpe); sgrid(0.5,[]); grid on;
+disp('FPE Eq. (5.20) roots at K=64 (zeta=0.5 pair plus -4):'); disp(roots([1 8 32 64]));
+disp('FPE Eq. (5.20) crossing at K=256:'); disp(roots([1 8 32 256]));
+
+% Lecture II, FPE Section 5.3: satellite loci (Examples 5.3-5.6), flexibility (5.8-5.9), complex multiple roots (5.10).
+figure('Name','Root-locus gain design: FPE satellite examples');
+subplot(1,4,1); rlocus((s+1)/s^2); title('Ex. 5.3 PD');
+subplot(1,4,2); rlocus((s+1)/(s^2*(s+12))); title('Ex. 5.4 p=12');
+subplot(1,4,3); rlocus((s+1)/(s^2*(s+9))); title('Ex. 5.6 p=9');
+subplot(1,4,4); rlocus((s+1)/(s^2*(s+4))); title('Ex. 5.5 p=4');
+disp('Ex. 5.6 triple root:'); disp(roots([1 9 27 27]));
+Gflex = 1/(s^2*((s+0.1)^2+6.6^2)); Dlead12 = (s+1)/(s+12);
+figure('Name','Root-locus gain design: FPE flexible and multiple-root examples');
+subplot(1,3,1); rlocus(Dlead12*Gflex*((s+0.1)^2+36)); title('Ex. 5.8 collocated');
+subplot(1,3,2); rlocus(Dlead12*Gflex); title('Ex. 5.9 noncollocated');
+subplot(1,3,3); rlocus(1/(s*(s+2)*((s+1)^2+4))); title('Ex. 5.10');
+disp('Ex. 5.10 roots at K=25/4:'); disp(roots([1 4 9 10 25/4]));
 
 % Lecture II: the damping-ray calculation sets one gain for every root.
 K = 224/27;

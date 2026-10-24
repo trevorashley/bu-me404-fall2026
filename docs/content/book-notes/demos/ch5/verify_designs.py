@@ -25,6 +25,18 @@ def main():
     equal(sp.diff(cubic, s).subs(s, sb), 0)
     equal((-s*(s+2)*(s+4)).subs(s, sb), 16*sp.sqrt(3)/9)
     equal(cubic.subs(K, q(224, 27)), (s+q(14, 3))*(s*s+q(4, 3)*s+q(16, 9)))
+    # FPE Section 5.2 examples: Eq. (5.18) trial point, Eq. (5.20) locus, and Section 5.2.3 gain.
+    s0 = -1+2*sp.I
+    phase = sum(sp.arg(s0-zz) for zz in [-1]) - sum(sp.arg(s0-pp) for pp in [0, -5, -2+2*sp.I, -2-2*sp.I])
+    np.testing.assert_allclose(float(sp.deg(phase)), -129.0939, atol=1e-3)
+    fpe = s*(s*s+8*s+32)+K
+    equal(fpe.subs(K, 64), (s+4)*(s*s+4*s+16))
+    equal(fpe.subs(K, 256), (s+8)*(s*s+32))
+    pk = -4+4*sp.I
+    equal(sp.diff(fpe, s).subs(s, pk), -32-32*sp.I)      # ds/dK = -1/a'(p) has angle -45 degrees
+    np.testing.assert_allclose(np.degrees(np.angle(complex(-1/(-32-32*sp.I)))), -45.0)
+    s0 = -2+2*sp.sqrt(3)*sp.I
+    equal(sp.simplify(sp.Abs(s0)*sp.Abs(s0-pk)*sp.Abs(s0-sp.conjugate(pk))), 64)
     sd = -2+2*sp.I
     equal(3*(sd+q(8, 3))/(sd*(sd+1)), -1)
     equal(20*(sd+2)/(sd*(sd+1)*(sd+8)), -1)
@@ -37,6 +49,28 @@ def main():
     required_angle = np.arctan(3)
     np.testing.assert_allclose(np.angle(complex(sd+q(8, 3))), required_angle)
     assert np.angle(complex(sd+3)) < required_angle
+    # FPE Section 5.3 examples (Lecture II, sections 1-4).
+    theta = sp.symbols("theta", real=True)
+    spt = -1+sp.exp(sp.I*theta)
+    equal(sp.simplify(sp.expand_complex(-spt**2/(spt+1))), 2-2*sp.cos(theta))     # Ex. 5.3 circle
+    equal(s*s+4*(s+1), (s+2)**2)
+    equal(sp.expand(sp.diff(s*s*(s+p), s)*(s+1)-s*s*(s+p)), sp.expand(s*(2*s*s+(3+p)*s+2*p)))
+    equal(sp.expand((3+p)**2-16*p), sp.expand((p-1)*(p-9)))                       # Ex. 5.4-5.6 discriminant
+    equal(s*s*(s+9)+27*(s+1), (s+3)**3)                                           # Ex. 5.6 triple root
+    ex10 = s*(s+2)*((s+1)**2+4)+K
+    equal(ex10.subs(K, 4), (s+1)**2*(s*s+2*s+4))                                  # Ex. 5.10
+    equal(ex10.subs(K, q(25, 4)), (s*s+2*s+q(5, 2))**2)
+    flex_pole = -0.1+6.6j
+    others = [0, 0, -12, -0.1-6.6j]
+    def dep(zeros):
+        total = sum(np.degrees(np.angle(flex_pole-zz)) for zz in zeros)
+        total -= sum(np.degrees(np.angle(flex_pole-pp)) for pp in others) + 180
+        return (total+180) % 360-180
+    np.testing.assert_allclose(dep([-1, -0.1+6j, -0.1-6j]), 141.485, atol=1e-2)  # Ex. 5.8 (FPE: 142.6)
+    np.testing.assert_allclose(dep([-1]), -38.515, atol=1e-2)                     # Ex. 5.9 (FPE: -37.4)
+    flex_den = np.polymul([1, 12], np.polymul([1, 0.2, 0.01+6.6**2], [1, 0, 0]))
+    assert max(np.roots(np.polyadd(flex_den, 144.437*np.array([1., 1.]))).real) < 1e-3
+    assert max(np.roots(np.polyadd(flex_den, 145*np.array([1., 1.]))).real) > 0
     # Independent partial-fraction identities underlying all analytic responses.
     equal((3*s+8)/(s*(s*s+4*s+8)), 1/s+(-s-1)/(s*s+4*s+8))
     equal(20*(s+2)/(s*(s+5)*(s*s+4*s+8)),
@@ -57,7 +91,7 @@ def main():
     equal(leadlag, s**4+q(1401, 100)*s**3+q(5207, 50)*s*s+q(4667, 25)*s+q(91, 10))
     equal(sp.limit(s*91*(s+2)*(s+q(1, 20))/(s*(s+1)*(s+13)*(s+q(1, 100))), s, 0), 70)
     equal(K*(s+z)/(s+p), K*z/p + (K*(p-z)/p**2)*s/(1+s/p))
-    print("Symbolic identities: construction, pole placement, partial fractions, lag/PI, lead-lag, filtering passed.")
+    print("Symbolic identities: construction, FPE 5.2 and 5.3 examples, pole placement, partial fractions, lag/PI, lead-lag, filtering passed.")
 
     # Compare time-domain formulas against independent scipy state-space step responses.
     t = np.linspace(0, 20, 20001)
