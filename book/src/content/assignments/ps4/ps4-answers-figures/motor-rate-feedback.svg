@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360" role="img" aria-labelledby="title desc">
+  <title id="title">DC motor position control with rate feedback</title>
+  <desc id="desc">The reference angle enters a summing junction with the shaft angle subtracted, giving the error e. A second summing junction subtracts T_D times the shaft speed from e; the result is multiplied by K to give the armature voltage v_a. The voltage is scaled by b_0 and added to c_0 times the load torque w at a third summing junction. The sum drives 1/(s+a_1) to produce the shaft speed, and an integrator 1/s produces the shaft angle. The speed feeds back through T_D to the second junction, and the angle feeds back to the first.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#222"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="360" fill="white"/>
+  <g fill="none" stroke="#222" stroke-width="2.2" stroke-linejoin="round">
+    <circle cx="110" cy="150" r="24"/>
+    <circle cx="230" cy="150" r="24"/>
+    <rect x="300" y="120" width="60" height="60"/>
+    <rect x="410" y="120" width="60" height="60"/>
+    <circle cx="540" cy="150" r="24"/>
+    <rect x="610" y="115" width="120" height="70"/>
+    <rect x="790" y="115" width="70" height="70"/>
+    <rect x="620" y="50" width="60" height="50"/>
+    <rect x="300" y="230" width="60" height="50"/>
+    <path d="M40 150 H84" marker-end="url(#arrow)"/>
+    <path d="M134 150 H204" marker-end="url(#arrow)"/>
+    <path d="M254 150 H298" marker-end="url(#arrow)"/>
+    <path d="M360 150 H408" marker-end="url(#arrow)"/>
+    <path d="M470 150 H514" marker-end="url(#arrow)"/>
+    <path d="M564 150 H608" marker-end="url(#arrow)"/>
+    <path d="M730 150 H788" marker-end="url(#arrow)"/>
+    <path d="M860 150 H940" marker-end="url(#arrow)"/>
+    <path d="M580 75 H620"/>
+    <path d="M680 75 H760"/>
+    <path d="M540 75 V124" marker-end="url(#arrow)"/>
+    <path d="M580 75 H540"/>
+    <circle cx="775" cy="75" r="0"/>
+    <path d="M760 150 V255 H362" marker-end="url(#arrow)"/>
+    <path d="M300 255 H230 V176" marker-end="url(#arrow)"/>
+    <path d="M905 150 V320 H110 V176" marker-end="url(#arrow)"/>
+    <circle cx="760" cy="150" r="4" fill="#222"/>
+    <circle cx="905" cy="150" r="4" fill="#222"/>
+    <circle cx="770" cy="75" r="5"/>
+  </g>
+  <g fill="#222" font-family="Georgia, 'Times New Roman', serif" font-size="26" text-anchor="middle">
+    <text x="18" y="159" font-style="italic">θ<tspan baseline-shift="sub" font-size="18">r</tspan></text>
+    <text x="965" y="159" font-style="italic">θ<tspan baseline-shift="sub" font-size="18">m</tspan></text>
+    <text x="110" y="159">Σ</text>
+    <text x="230" y="159">Σ</text>
+    <text x="540" y="159">Σ</text>
+    <text x="78" y="132">+</text>
+    <text x="90" y="196">−</text>
+    <text x="198" y="132">+</text>
+    <text x="210" y="196">−</text>
+    <text x="508" y="132">+</text>
+    <text x="520" y="110">+</text>
+    <text x="168" y="138" font-style="italic">e</text>
+    <text x="385" y="138" font-style="italic">v<tspan baseline-shift="sub" font-size="18">a</tspan></text>
+    <text x="330" y="159" font-style="italic">K</text>
+    <text x="440" y="159" font-style="italic">b<tspan baseline-shift="sub" font-size="18">0</tspan></text>
+    <text x="650" y="84" font-style="italic">c<tspan baseline-shift="sub" font-size="18">0</tspan></text>
+    <text x="790" y="62" font-style="italic">w</text>
+    <text x="670" y="143">1</text>
+    <text x="670" y="176" font-style="italic">s + a<tspan baseline-shift="sub" font-size="18">1</tspan></text>
+    <text x="825" y="143">1</text>
+    <text x="825" y="176" font-style="italic">s</text>
+    <text x="330" y="264" font-style="italic">T<tspan baseline-shift="sub" font-size="18">D</tspan></text>
+    <text x="760" y="138" font-style="italic">θ̇<tspan baseline-shift="sub" font-size="18">m</tspan></text>
+  </g>
+  <g fill="none" stroke="#222" stroke-width="2.2">
+    <path d="M670 143 H670" />
+    <path d="M640 150 H700" />
+    <path d="M808 150 H842" />
+  </g>
+</svg>
