@@ -13,6 +13,11 @@
     - [Problem Set 2](./content/assignments/ps2/ps2.md)
         - [Solutions](./content/assignments/ps2/ps2-answers.md)
     - [Problem Set 3](./content/assignments/ps3/ps3.md)
+        - [Solutions](./content/assignments/ps3/ps3-answers.md)
+    - [Problem Set 4 (Midterm Study Guide)](./content/assignments/ps4/ps4.md)
+        - [Solutions](./content/assignments/ps4/ps4-answers.md)
+        - [Midterm Formula Sheet](./content/assignments/ps4/formula-sheet.md)
+    - [Problem Set 5](./content/assignments/ps5/ps5.md)
 
 ---
 

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img" aria-labelledby="title desc">
+  <title id="title">Noncollocated platform on compliant mounts</title>
+  <desc id="desc">A rigid platform moves upward by x and rotates counterclockwise by theta. Force u acts upward at plus a, to the right of its center of mass. A sensor at minus b on the left measures y equals x minus b theta. Symmetric spring and damper supports decouple heave and pitch.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#234e70"/></marker>
+    <marker id="dim" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7" fill="none" stroke="#596775"/></marker>
+  </defs>
+  <rect width="900" height="380" fill="white"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#172938">
+    <text x="210" y="32" text-anchor="middle">Sensor at −b</text>
+    <text x="690" y="32" text-anchor="middle">Actuator at +a</text>
+    <rect x="105" y="155" width="690" height="27" rx="4" fill="#e6eef4" stroke="#234e70" stroke-width="3"/>
+    <circle cx="450" cy="168" r="7" fill="#234e70"/>
+    <text x="450" y="207" text-anchor="middle">CM</text>
+    <circle cx="210" cy="168" r="6" fill="#b55c27"/>
+    <circle cx="690" cy="168" r="6" fill="#234e70"/>
+    <g stroke="#234e70" stroke-width="2.5" fill="none" marker-end="url(#arrow)">
+      <path d="M450 149 V64"/>
+      <path d="M690 149 V64"/>
+      <path d="M210 148 V90"/>
+      <path d="M522 151 A75 75 0 0 0 491 108"/>
+    </g>
+    <text x="466" y="74">x</text>
+    <text x="708" y="81">u</text>
+    <text x="134" y="76">y = x − bθ</text>
+    <text x="530" y="111">θ (+)</text>
+    <g stroke="#596775" stroke-width="1.3" fill="none">
+      <path d="M210 188 V246 M450 217 V246 M690 188 V246" stroke-dasharray="4 4"/>
+      <path d="M215 233 H445" marker-start="url(#dim)" marker-end="url(#dim)"/>
+      <path d="M455 233 H685" marker-start="url(#dim)" marker-end="url(#dim)"/>
+    </g>
+    <rect x="315" y="218" width="30" height="27" fill="white"/>
+    <rect x="555" y="218" width="30" height="27" fill="white"/>
+    <text x="330" y="239" text-anchor="middle">b</text>
+    <text x="570" y="239" text-anchor="middle">a</text>
+    <g stroke="#234e70" stroke-width="2" fill="none">
+      <path d="M280 182 V250 l-10 7 20 10 -20 10 20 10 -10 7 V320"/>
+      <path d="M620 182 V250 l-10 7 20 10 -20 10 20 10 -10 7 V320"/>
+      <path d="M355 182 V263 M340 263 H370 V295 H340 V263 M344 278 H366 M355 278 V320"/>
+      <path d="M545 182 V263 M530 263 H560 V295 H530 V263 M534 278 H556 M545 278 V320"/>
+      <path d="M245 320 H385 M515 320 H655" stroke-width="3"/>
+      <path d="M255 320 l-10 12 M280 320 l-10 12 M305 320 l-10 12 M330 320 l-10 12 M355 320 l-10 12 M380 320 l-10 12 M525 320 l-10 12 M550 320 l-10 12 M575 320 l-10 12 M600 320 l-10 12 M625 320 l-10 12 M650 320 l-10 12"/>
+    </g>
+    <text x="450" y="366" text-anchor="middle" font-size="19">Symmetric compliant mounts: heave (kₓ, cₓ) and pitch (kθ, cθ)</text>
+  </g>
+</svg>
