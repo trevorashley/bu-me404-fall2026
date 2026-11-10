@@ -18,6 +18,7 @@
         - [Solutions](./content/assignments/ps4/ps4-answers.md)
         - [Midterm Formula Sheet](./content/assignments/ps4/formula-sheet.md)
     - [Problem Set 5](./content/assignments/ps5/ps5.md)
+    - [Midterm Exam Reattempt](./content/assignments/midterm-reattempt/midterm-reattempt.md)
 
 ---
 
