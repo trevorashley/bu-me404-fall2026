@@ -37,6 +37,15 @@ def main():
     np.testing.assert_allclose(np.degrees(np.angle(complex(-1/(-32-32*sp.I)))), -45.0)
     s0 = -2+2*sp.sqrt(3)*sp.I
     equal(sp.simplify(sp.Abs(s0)*sp.Abs(s0-pk)*sp.Abs(s0-sp.conjugate(pk))), 64)
+    theta = sp.symbols("theta", real=True)
+    # FPE Fig. 5.22 (Lecture III, section 1): PD K(s+z) on the motor gives a circle of radius sqrt(z(z-1)) about -z.
+    rr = sp.symbols("r", positive=True)
+    pt = -z+rr*sp.exp(sp.I*theta)
+    Kpd = sp.expand_complex(-pt*(pt+1)/(pt+z))
+    equal(sp.simplify(sp.im(Kpd).subs(rr, sp.sqrt(z*z-z))), 0)
+    equal(sp.simplify(sp.re(Kpd).subs(rr, sp.sqrt(z*z-z))), 2*z-1-2*sp.sqrt(z*z-z)*sp.cos(theta))
+    equal(sp.expand(s*(s+1)+4), s*s+s+4)            # proportional at wn=2: zeta=1/4
+    equal(sp.expand(s*(s+1)+2*(s+2)), s*s+3*s+4)    # PD K(s+2) at wn=2: zeta=3/4
     sd = -2+2*sp.I
     equal(3*(sd+q(8, 3))/(sd*(sd+1)), -1)
     equal(20*(sd+2)/(sd*(sd+1)*(sd+8)), -1)
@@ -50,7 +59,6 @@ def main():
     np.testing.assert_allclose(np.angle(complex(sd+q(8, 3))), required_angle)
     assert np.angle(complex(sd+3)) < required_angle
     # FPE Section 5.3 examples (Lecture II, sections 1-4).
-    theta = sp.symbols("theta", real=True)
     spt = -1+sp.exp(sp.I*theta)
     equal(sp.simplify(sp.expand_complex(-spt**2/(spt+1))), 2-2*sp.cos(theta))     # Ex. 5.3 circle
     equal(s*s+4*(s+1), (s+2)**2)
@@ -91,7 +99,33 @@ def main():
     equal(leadlag, s**4+q(1401, 100)*s**3+q(5207, 50)*s*s+q(4667, 25)*s+q(91, 10))
     equal(sp.limit(s*91*(s+2)*(s+q(1, 20))/(s*(s+1)*(s+13)*(s+q(1, 100))), s, 0), 70)
     equal(K*(s+z)/(s+p), K*z/p + (K*(p-z)/p**2)*s/(1+s/p))
-    print("Symbolic identities: construction, FPE 5.2 and 5.3 examples, pole placement, partial fractions, lag/PI, lead-lag, filtering passed.")
+    # Lecture III, section 4: general lead construction reproduces p=8 for z=2, and the feasibility limit z=8/3.
+    phi_c = np.degrees(np.angle(complex(sd*(sd+1))))-180+360   # 71.565 degrees
+    theta_z = np.degrees(np.arctan2(2, 2-2)); theta_p = theta_z-phi_c
+    np.testing.assert_allclose(2+2/np.tan(np.radians(theta_p)), 8)
+    np.testing.assert_allclose(2/np.tan(np.radians(phi_c)), 2/3)                 # theta_p -> 0 at z = 8/3
+    # Lecture IV, section 9: FPE Example 5.15 tachometer numbers and the course rate-feedback design.
+    equal(sp.expand(s*s+s+4+1*s), sp.expand((s+1-sp.sqrt(3)*sp.I)*(s+1+sp.sqrt(3)*sp.I)))
+    equal(sp.expand(s*(s+1)+3*s+8), s*s+4*s+8)
+    # Lecture IV, section 8: FPE Eqs. (5.74)-(5.76). The notch flips the flexible mode's departure angle.
+    flex = complex(-q(1, 2)+sp.sqrt(q(9999, 4))*sp.I)
+    def departure(zeros, poles):
+        total = sum(np.degrees(np.angle(flex-zz)) for zz in zeros)
+        total -= sum(np.degrees(np.angle(flex-pp)) for pp in poles if abs(pp-flex) > 1e-9)+180
+        return (total+180) % 360-180
+    base_z, base_p = [-2, -.05], [0, -1, -13, -.01, flex, flex.conjugate()]
+    notch_z = list(np.roots([1, .8, 3600]))
+    np.testing.assert_allclose(departure(base_z, base_p), -77.73, atol=.01)
+    np.testing.assert_allclose(departure(base_z+notch_z, base_p+[-60, -60]), -158.33, atol=.01)
+    loop_num = 2500*91*np.polymul([1, 2], [1, .05])
+    loop_den = np.polymul(np.polymul([1, 1, 0], [1, 1, 2500]), np.polymul([1, 13], [1, .01]))
+    no_notch = np.roots(np.polyadd(loop_den, loop_num))
+    with_notch = np.roots(np.polyadd(np.polymul(loop_den, np.polymul([1, 60], [1, 60])), np.polymul(loop_num, [1, .8, 3600])))
+    flex_no = max((x for x in no_notch if x.imag > 40), key=lambda x: x.imag)
+    flex_yes = max((x for x in with_notch if x.imag > 40), key=lambda x: x.imag)
+    np.testing.assert_allclose([flex_no.real, flex_yes.real], [-0.2913, -0.6527], atol=5e-4)
+    assert np.all(no_notch.real < 0) and np.all(with_notch.real < 0)
+    print("Symbolic identities: construction, FPE 5.2-5.4 examples, pole placement, partial fractions, lag/PI, lead-lag, notch, filtering passed.")
 
     # Compare time-domain formulas against independent scipy state-space step responses.
     t = np.linspace(0, 20, 20001)

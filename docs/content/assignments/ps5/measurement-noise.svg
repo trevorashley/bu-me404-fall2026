@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 340" role="img" aria-labelledby="title desc">
+  <title id="title">Measurement noise in a negative-feedback servo</title>
+  <desc id="desc">Reference r minus measured output ym produces controller error e. Controller Dc,p and plant G produce true output y. Measurement noise nm adds to y in the feedback path. Performance error ey is r minus true y.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#234e70"/></marker></defs>
+  <rect width="940" height="340" fill="white"/>
+  <g stroke="#234e70" stroke-width="2.5" fill="none">
+    <circle cx="155" cy="105" r="24"/>
+    <rect x="285" y="65" width="170" height="80" rx="3" fill="#e6eef4"/>
+    <rect x="555" y="65" width="130" height="80" rx="3" fill="#e6eef4"/>
+    <circle cx="785" cy="240" r="24"/>
+    <g marker-end="url(#arrow)">
+      <path d="M58 105 H128"/>
+      <path d="M182 105 H281"/>
+      <path d="M458 105 H551"/>
+      <path d="M688 105 H895"/>
+      <path d="M785 105 V213"/>
+      <path d="M760 240 H155 V132"/>
+      <path d="M891 240 H813"/>
+    </g>
+    <circle cx="785" cy="105" r="4" fill="#234e70"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#172938" font-size="25">
+    <text x="44" y="113" text-anchor="end">r</text>
+    <text x="110" y="87" font-size="22">+</text>
+    <text x="170" y="150" font-size="25">−</text>
+    <text x="225" y="91">e</text>
+    <text x="370" y="113" text-anchor="middle">D<tspan baseline-shift="sub" font-size="17">c,p</tspan>(s)</text>
+    <text x="499" y="91">u</text>
+    <text x="620" y="113" text-anchor="middle">G(s)</text>
+    <text x="912" y="113">y</text>
+    <text x="734" y="83" font-size="18">True output</text>
+    <text x="803" y="206" font-size="22">+</text>
+    <text x="826" y="224" font-size="22">+</text>
+    <text x="920" y="248" text-anchor="middle">n<tspan baseline-shift="sub" font-size="17">m</tspan></text>
+    <text x="430" y="228" text-anchor="middle">y<tspan baseline-shift="sub" font-size="17">m</tspan> = y + n<tspan baseline-shift="sub" font-size="17">m</tspan></text>
+    <text x="430" y="270" text-anchor="middle" font-size="18">Measured output</text>
+    <text x="470" y="320" text-anchor="middle" font-size="22">Performance error: e<tspan baseline-shift="sub" font-size="16">y</tspan> = r − y</text>
+  </g>
+</svg>

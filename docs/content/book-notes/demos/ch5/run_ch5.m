@@ -41,6 +41,13 @@ figure('Name','Root-locus gain design: full response'); step(Tcubic,Tpair); grid
 legend('Complete cubic','Pair only');
 disp(stepinfo(Tcubic,'SettlingTimeThreshold',0.01));
 
+% Lecture III, FPE Figs. 5.22-5.23: P versus PD K(s+2) on the motor, then lead with the pole at 20 and 10.
+figure('Name','Lead and PD design: FPE Figs. 5.22-5.23');
+subplot(1,3,1); rlocus(G,(s+2)*G); title('P and PD K(s+2)');
+subplot(1,3,2); rlocus((s+2)/(s+20)*G); title('Lead, p=20');
+subplot(1,3,3); rlocus((s+2)/(s+10)*G); title('Lead, p=10');
+disp('Fig. 5.22 at wn=2: P with K=4 (zeta=0.25), PD K(s+2) with K=2 (zeta=0.75):'); disp(roots([1 1 4])); disp(roots([1 3 4]));
+
 % Lecture III: exact PD and lead designs plus the Franklin iteration.
 Dpd = 3*s+8; Dlead = 20*(s+2)/(s+8);
 Tpd = feedback(Dpd*G,1); Tlead = feedback(Dlead*G,1);
@@ -84,3 +91,11 @@ notch = (sj.^2+0.6*sj+100)./(sj.^2+6*sj+100);
 figure('Name','Extension: notch detuning'); plot(omega,abs(notch)); grid on;
 xlabel('Sinusoidal frequency [rad/s]'); ylabel('Amplitude ratio');
 title('Filter illustration; full plant stability still needs checking');
+% FPE Section 5.4.3, Eqs. (5.74)-(5.76): the flexible plant with and without the notch.
+Gflex = 2500/(s*(s+1)*(s^2+s+2500));
+Dnotch = (s^2+0.8*s+3600)/(s+60)^2;
+figure('Name','Extension: FPE notch on the flexible plant');
+step(feedback(Dcombined*Gflex,1),feedback(Dnotch*Dcombined*Gflex,1),2); grid on;
+legend('Lead-lag on flexible plant','With notch (5.76)');
+disp('Flexible-mode closed-loop roots without and with the notch:');
+disp(pole(feedback(Dcombined*Gflex,1))); disp(pole(feedback(Dnotch*Dcombined*Gflex,1)));
