@@ -22,6 +22,12 @@
 
 ---
 
+# Class Activities
+- [Class Activities](./content/class-activities.md)
+    - [Root Locus: Read, Predict, and Check](./content/class-activities/root-locus-gain-design.md)
+
+---
+
 # Book and Class Notes
 - [Book Notes](./content/book-notes.md)
     - [Introduction to Control](./content/book-notes/introduction_student.md)
