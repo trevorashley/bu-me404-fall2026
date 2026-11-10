@@ -4,13 +4,47 @@
 
 How much can one adjustable gain accomplish? Predict the closed-loop behavior by hand, compare reasoning with your partner, and use MATLAB to test your predictions after each round.
 
-## How we will work
+## Step 1. Set up your workspace
 
-Use paper, a calculator, and this page. Keep MATLAB closed during each hand-work interval. One partner draws and records; the other checks signs, angles, and assumptions. Switch roles each round. Prepare one shared sketch or calculation and one sentence explaining what it means physically. Attempt the current round only; reconvene before moving on.
+1. Find a partner and have paper, a calculator, and this page ready.
+2. Download [root_locus_check.m](root_locus_check.m) into your MATLAB working folder. This helper contains the supplied models and plotting commands; you will enter the gains you find by hand.
+3. Open MATLAB and set its **Current Folder** to the folder containing the downloaded file. The helper requires **Control System Toolbox**. Run these commands to confirm that MATLAB can find the file and that the toolbox is installed:
+
+   ```matlab
+   which root_locus_check
+   ver('control')
+   ```
+
+   The first command should display the path to your downloaded file; the second should list Control System Toolbox. If either is missing, ask for help before Round 1.
+4. Put MATLAB aside until the check interval in each round. Make your hand predictions before running the helper.
+
+## Step 2. Read what you will deliver
+
+Prepare **one shared response per pair**, with both partners' names. Include:
+
+- **Round notes:** For each round, keep your hand sketch or calculation and one sentence explaining its physical meaning. After the MATLAB check, record whether the result supports your prediction and explain any correction.
+- **Synthesis and exit answers:** During the final 10 minutes, write brief numbered answers to the four questions below. Use specific examples, pole locations, or response results from your round notes to support your reasoning.
+
+Read these questions now so you know what evidence to collect as you work:
+
+1. Give one example today in which a zero changed the conclusion.
+2. Explain why a magnitude calculation alone cannot place a pole off the locus.
+3. Why must a selected gain be accompanied by **all** poles and the complete response?
+4. Which conflict motivates PD or lead, and which motivates lag or PI? What would you verify after adding either controller?
+
+## Step 3. Assign roles and follow the schedule
+
+One partner draws and records; the other checks signs, angles, and assumptions. Switch roles at the start of each round.
+
+For each 15-minute round:
+
+1. **Predict by hand — 10 minutes.** Complete the numbered tasks with your partner. Finish these before trying a labeled stretch task; stretch tasks are optional.
+2. **Compare and check — 5 minutes.** Share your prediction during the class discussion, then follow that round's MATLAB instructions. Compare the output with your hand work and update your shared notes.
+3. **Pause before the next round.** Reconvene with the class before moving on.
 
 | Elapsed time | Task |
 |---|---|
-| 0–5 min | Form pairs; review the toolkit below |
+| 0–5 min | Set up MATLAB; preview the deliverables; assign roles and review the toolkit |
 | 5–20 min | 1. A zero changes the double-integrator locus |
 | 20–35 min | 2. An added pole changes it again |
 | 35–50 min | 3. Flexible modes and sensor location |
@@ -19,11 +53,11 @@ Use paper, a calculator, and this page. Keep MATLAB closed during each hand-work
 | 80–95 min | 6. Select a cubic gain; check the whole design |
 | 95–105 min | Synthesis and exit questions |
 
-Each 15-minute round consists of **10 minutes working in pairs**, then **5 minutes comparing solutions and checking with MATLAB**. Finish the numbered tasks first. The labeled stretch tasks are optional; they are not needed to start the next round.
-
 By the end, you should be able to predict how a zero, a pole, or a flexible mode changes a locus; find repeated roots; select a gain for a damping ratio; and distinguish pole placement from verified response and tracking performance.
 
-## Common assumptions and hand-work toolkit
+## Step 4. Review the assumptions and hand-work toolkit
+
+Use this section as a reference during the rounds.
 
 Use linear, continuous-time models, negative unity feedback, normalized signals, and zero initial conditions for forced responses. Time is in seconds, and pole coordinates are in $\mathrm{s}^{-1}$. For every locus, **$K\geq0$ varies and all other parameters stay fixed**. A controller parameter $p>0$ places its pole at $-p$. At $K=0$, inspect the characteristic polynomial before cancellation; zero gain is a locus endpoint, not an asymptotically stable operating choice for these integrator plants.
 
@@ -96,7 +130,11 @@ $$
 
 All entries must be positive for asymptotic stability.
 
-## 1. Can a controller zero supply damping?
+## Step 5. Work through the six rounds
+
+Start each round when directed. For a MATLAB call that uses `K`, first assign `K` the gain you calculated for that round. You can refer to the [MATLAB command reference](#matlab-command-reference) below for additional checks.
+
+### Round 1. Can a controller zero supply damping?
 
 A normalized rigid satellite or frictionless joint has $G(s)=1/s^2$. Compare proportional control $D_c=K$ with PD control $D_c=K(s+1)$. The proportional and derivative coefficients have the same numerical value in this normalized model; their physical units differ. Both terms act on the tracking error $e=r-y$, so $u=K e+K\dot e$. This placement matters for the reference-step response. Treat ideal differentiation as a model; Round 2 adds a pole to make the controller proper.
 
@@ -106,9 +144,9 @@ A normalized rigid satellite or frictionless joint has $G(s)=1/s^2$. Compare pro
 
 **Stretch:** For a complex pole $s=x+jy$, separate real and imaginary parts of the PD polynomial. Prove that its curved locus is a circle, and find its center and radius.
 
-**During the MATLAB check:** Plot both loci. At your PD gain, compare the complete step response with the standard second-order model having the same denominator and unit DC gain. What changed even though the poles did not?
+**Then check with MATLAB:** Run `root_locus_check(1,K)` at your PD gain. Compare the two loci, then compare the complete PD step response with the standard second-order model having the same denominator and unit DC gain. Record what changed even though the poles did not.
 
-## 2. What does an added controller pole cost?
+### Round 2. What does an added controller pole cost?
 
 Replace ideal PD with a lead controller:
 
@@ -127,11 +165,11 @@ $$
 
 **Stretch:** Use the discriminant of the stationary-gain equation to explain why the transition occurs at $p=9$ for $p>1$. Use the cubic Routh column to determine whether the three controllers are stable for all $K>0$.
 
-**During the MATLAB check:** Compare all three loci on equal axis scales. Follow the roots as $p$ changes from 12 through 9 to 4. This repeats the comparison in FPE Example 5.7 without requiring an interactive controller-design tool. Why can moving a controller pole closer to the zero reduce the damping that was available with PD?
+**Then check with MATLAB:** Run `root_locus_check(2)` and compare all three loci on equal axis scales. Follow the roots as $p$ changes from 12 through 9 to 4. This repeats the comparison in FPE Example 5.7 without requiring an interactive controller-design tool. Record why moving a controller pole closer to the zero can reduce the damping that was available with PD.
 
 Compare locus **shapes** first. For $|s|\ll p$, $D_c(s)\approx(K/p)(s+1)$, so the same numerical $K$ in Rounds 1 and 2 does not give the same effective PD gain.
 
-## 3. Can sensor location change the stability risk?
+### Round 3. Can sensor location change the stability risk?
 
 Flexibility adds a lightly damped mode. Compare these two supplied plants, each with $D_c=K(s+1)/(s+12)$:
 
@@ -148,9 +186,9 @@ Both loops have poles $0,0,-12,-0.1\pm6.6j$. The collocated loop has zeros $-1,-
 2. Calculate the departure direction from $p_f=-0.1+6.6j$ in each case. Share the arithmetic: one partner adds the zero angles and the other adds the other-pole angles. Count the origin twice. State whether each branch initially moves left or right.
 3. Draw a small local sketch around $p_f$ and its conjugate. Does a departure toward the right prove instability for every $K>0$? What must MATLAB check before a gain is accepted?
 
-**During the MATLAB check:** Plot both loci, zoom near the flexible poles, and inspect **all five** closed-loop poles at $K=100$ and $200$. Compare the noncollocated case's change in stability. A rigid-body model would omit which evidence?
+**Then check with MATLAB:** Run `root_locus_check(3)`. Examine both loci and the views near the flexible poles, then inspect **all five** closed-loop poles at $K=100$ and $200$. Record the noncollocated case's change in stability and identify the evidence a rigid-body model would omit.
 
-## 4. Can two roots meet off the real axis?
+### Round 4. Can two roots meet off the real axis?
 
 Consider
 
@@ -168,9 +206,9 @@ $$
 
 **Stretch:** At the complex repeated-root gain, factor $P(s)$ into a squared quadratic. Does a complex repeated root have to be a triple root?
 
-**During the MATLAB check:** Plot the locus and mark all roots at each gain you found. Small numerical splitting of a repeated root is expected; use your exact factorization to interpret it.
+**Then check with MATLAB:** Run `root_locus_check(4)` to view the locus, then `root_locus_check(4,K)` at each event gain you found to mark all roots. Record how the plot agrees with your predicted sequence. Small numerical splitting of a repeated root is expected; use your exact factorization to interpret it.
 
-## 5. Can motor gain meet the target?
+### Round 5. Can motor gain meet the target?
 
 A normalized motor-position plant is $G(s)=1/[s(s+1)]$, with proportional controller $D_c=K$.
 
@@ -178,9 +216,9 @@ A normalized motor-position plant is $G(s)=1/[s(s+1)]$, with proportional contro
 2. A design request is **at most 10% overshoot and a 1% settling time of at most 2 s**. Convert these into a damping wedge and an approximate settling line. Does the locus reach their intersection? Explain what your graphical test does and does not guarantee about an exact time-response specification. Consider the real-pole portion too.
 3. Find the gain for $\zeta=1/2$. Calculate the standard overshoot and settling estimate. Separately, test the requested pole $s_d=-2+2j$ by computing the candidate $K=-s_d(s_d+1)$. Can a real positive gain place a pole there?
 
-**During the MATLAB check:** Check the $\zeta=1/2$ gain and compare with $K=5$. Did larger gain move the complex poles farther left? Did it improve overshoot? Propose the kind of controller change that could move the locus.
+**Then check with MATLAB:** Run `root_locus_check(5,K)` at your $\zeta=1/2$ gain; the helper also shows $K=5$. Record whether larger gain moved the complex poles farther left or improved overshoot. Propose the kind of controller change that could move the locus.
 
-## 6. A gain meets damping: does it meet everything else?
+### Round 6. A gain meets damping: does it meet everything else?
 
 Now use $G(s)=1/[s(s+2)(s+4)]$, $D_c=K$, and require a complex pair with $\zeta=1/2$.
 
@@ -194,15 +232,23 @@ Now use $G(s)=1/[s(s+2)(s+4)]$, $D_c=K$, and require a complex pair with $\zeta=
 
 **Stretch:** Determine the full stable gain interval. Could the unit-ramp error be reduced to 0.1 with proportional control while retaining stability?
 
-**During the MATLAB check:** Compare the complete response with the pair approximation using a common dense time vector and a 1% band. Check all roots at the accuracy-bound gain. Name the conflict a lag or PI controller might address, and one added-mode effect that would need checking.
+**Then check with MATLAB:** Save `result = root_locus_check(6,K)` at your damping gain. Compare the complete response with the pair approximation; the helper uses a common dense time vector and a 1% band. Set `Kaccuracy` to the gain you calculated from the ramp-error bound, then check all roots at that gain:
 
-## MATLAB checks after each hand attempt
+```matlab
+pole(feedback(Kaccuracy*result.L0,1))
+```
 
-Download [root_locus_check.m](root_locus_check.m) into your MATLAB working folder. It requires **Control System Toolbox**. It contains the supplied models and plotting commands; you enter the gains you found by hand.
+Record the conflict a lag or PI controller might address and one added-mode effect that would need checking.
 
-Use `root_locus_check(1,K)` with your Round 1 gain, `root_locus_check(5,K)` with your Round 5 gain, and `root_locus_check(6,K)` with your Round 6 gain. For the model comparisons in Rounds 2 and 3 and the full locus in Round 4, call `root_locus_check(2)`, `root_locus_check(3)`, and `root_locus_check(4)`. To mark a Round 4 event, call `root_locus_check(4,K)` with its gain. The helper returns the model and pole data when an output is requested: `result = root_locus_check(6,K)`.
+## Step 6. Complete your synthesis and exit answers
 
-For Round 6's accuracy check, first save `result = root_locus_check(6,K)` at your damping gain. Set `Kaccuracy` to the gain you calculated from the ramp-error bound, then run `pole(feedback(Kaccuracy*result.L0,1))`.
+Use the final **10 minutes** to complete the four [synthesis and exit questions in Step 2](#step-2-read-what-you-will-deliver). Refer to your round notes for evidence and resolve any remaining differences with your partner.
+
+Before finishing, check that your shared response includes both names, a sketch or calculation and a conclusion for each round, your MATLAB comparisons, and all four exit answers.
+
+## MATLAB command reference
+
+Use this reference during the check intervals. The helper calls you need appear in each round above. When you request an output, such as `result = root_locus_check(6,K)`, the helper also returns model and pole data for further checks.
 
 The helper simulates 30 seconds by default. If it warns that a response has not settled, it reports `NaN` (unverified) for that response's metrics. Extend the duration with a third argument, for example `root_locus_check(6,Kaccuracy,120)`. Inspect the full response and extend again if needed; a finite simulation is a numerical check, not a proof that no later excursion occurs.
 
@@ -224,15 +270,6 @@ info = stepinfo(y,t,dcgain(T), ...
 ```
 
 Only calculate settling metrics for stable cases, and extend the time vector if the response has not settled. In Round 3, inspect the poles of unstable cases rather than assigning them a settling time. To keep the plotted gain equal to the $K$ in your characteristic equation, use `rlocus(L0)`, then apply the selected gain once in `feedback(K*L0,1)`. Using `rlocus(K*L0)` would sweep an additional multiplier and relabel the gains.
-
-## Synthesis and exit questions
-
-With your partner, prepare brief answers:
-
-1. Give one example today in which a zero changed the conclusion.
-2. Explain why a magnitude calculation alone cannot place a pole off the locus.
-3. Why must a selected gain be accompanied by **all** poles and the complete response?
-4. Which conflict motivates PD or lead, and which motivates lag or PI? What would you verify after adding either controller?
 
 ## Sources and continuation
 
