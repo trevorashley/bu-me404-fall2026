@@ -1,5 +1,5 @@
 function result = root_locus_check(roundNumber, K, tFinal)
-%ROOT_LOCUS_CHECK Check the ME404 pair activity after working by hand.
+%ROOT_LOCUS_CHECK Instructor demonstrations for the ME404 individual activity.
 %   ROOT_LOCUS_CHECK(N,K) checks Round N at the gain K you calculated.
 %   Rounds 2, 3, and 4 can also be called without a gain.
 %   ROOT_LOCUS_CHECK(N,K,TFINAL) extends the response horizon (default 30 s).

@@ -25,7 +25,7 @@
 # Class Activities
 - [Class Activities](./content/class-activities.md)
     - [Root Locus, One Rule at a Time](./content/class-activities/root-locus-five-rules.md)
-    - [Root Locus: Read, Predict, and Check](./content/class-activities/root-locus-gain-design.md)
+    - [Root locus: read, predict, and check](./content/class-activities/root-locus-gain-design.md)
 
 ---
 
